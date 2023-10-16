@@ -1,17 +1,10 @@
 import { useState } from "react";
 import "./App.css";
-import { counterTest } from "./state/test";
-import { useRecoilState } from "recoil";
 import { BlocklyWorkspace } from "react-blockly";
 import { javascriptCategory } from "./categories/javascript";
 
 function App() {
-  const [count, setCount] = useRecoilState(counterTest);
   const [xml, setXml] = useState<string>();
-
-  const onClick = () => {
-    setCount(count + 1);
-  };
 
   const toolboxCategories = {
     kind: "categoryToolbox",
@@ -20,9 +13,6 @@ function App() {
 
   return (
     <>
-      <div>Counter - {count}</div>
-      <br></br>
-      <button onClick={onClick}>increase</button>
       <BlocklyWorkspace
         toolboxConfiguration={toolboxCategories}
         initialXml={xml}
@@ -36,8 +26,6 @@ function App() {
             snap: true,
           },
         }}
-        // onWorkspaceChange={workspaceDidChange}
-        // onXmlChange={setXml}
       />
     </>
   );
