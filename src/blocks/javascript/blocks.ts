@@ -11,7 +11,3 @@ Blockly.Blocks["regexInput"] = {
     this.setOutput(true, "String");
   }
 };
-
-const javascriptBlocks = {};
-
-export default javascriptBlocks;
