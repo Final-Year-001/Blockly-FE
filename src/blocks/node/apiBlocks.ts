@@ -19,7 +19,10 @@ Blockly.Blocks["api_method"] = {
   },
 };
 
-javascriptGenerator.forBlock["api_method"] = function (block, generator) {
+javascriptGenerator.forBlock["api_method"] = function (
+  block: any,
+  generator: any
+) {
   let dropdown_method = block.getFieldValue("Method");
   let statements_name = generator.statementToCode(block, "NAME");
 
