@@ -135,8 +135,7 @@ javascriptGenerator.forBlock["show_hidden_element"] = function (block, generator
         }
       }
     }
-  
-    // Call the showOrHideElement function
+
     showOrHideElement('${dropdown_method}', '${elementId}');
   `;
 
@@ -165,20 +164,17 @@ javascriptGenerator.forBlock["submit_form_data"] = function (block, generator) {
 
   //replace '/your-server-endpoint' with the actual endpoint in Express
   var code = `
-    // Get the form element
+   
     var form = ${formElement};
-    
-    // Serialize the form data into a format that can be sent to the server
+
     var formData = new FormData(form);
     
-    // Send the form data to the server using a fetch request
     fetch('/your-server-endpoint', {
       method: 'POST',
       body: formData
     })
     .then(response => response.json())
     .then(data => {
-      // Execute the callback function with the response data from the server
       ${callbackFunction}(data);
     })
     .catch(error => {
@@ -206,13 +202,11 @@ javascriptGenerator.forBlock["clear_form_fields"] = function (block, generator) 
   var formElement = generator.valueToCode(block, 'form', 0);
 
   var code = `
-    // Get the form element
+
     var form = ${formElement};
 
-    // Get all input elements within the form
     var inputElements = form.getElementsByTagName('input');
 
-    // Loop through input elements and clear their values
     for (var i = 0; i < inputElements.length; i++) {
       inputElements[i].value = '';
     }
@@ -243,14 +237,12 @@ javascriptGenerator.forBlock["fetch_api_data"] = function (block, generator) {
   var callbackFunction = generator.statementToCode(block, 'callback');
 
   var code = `
-    // Define the API URL
+
     var url = ${apiUrl};
     
-    // Fetch data from the API
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        // Execute the custom callback when data is received
         ${callbackFunction}
       })
       .catch(error => {
