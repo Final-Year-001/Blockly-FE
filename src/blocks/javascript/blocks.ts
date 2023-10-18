@@ -1,4 +1,5 @@
 import Blockly from "blockly";
+import { javascriptGenerator } from "blockly/javascript";
 
 //takes an input (a string), allows you to define the function's body
 Blockly.Blocks["myFunction"] = {
@@ -17,6 +18,24 @@ Blockly.Blocks["myFunction"] = {
     this.setTooltip("Call my custom JavaScript function with input.");
     this.setHelpUrl("");
   }
+};
+
+javascriptGenerator.forBlock["myFunction"] = function (block, generator) {
+  var inputValue = block.getFieldValue('inputValue');
+  var statements = generator.statementToCode(block, 'statements');
+
+  //need to write the custom function 
+  var code = `
+    function myFunction(input) {
+      // Your custom JavaScript code here
+      console.log("Called myFunction with input: " + input);
+      ${statements}
+    }
+    
+    var input = ${inputValue};
+    myFunction(input);
+  `;
+  return code;
 };
 
 //add an event listener to an HTML element, such as a click event
@@ -43,21 +62,18 @@ Blockly.Blocks['add_event_listener'] = {
   }
 };
 
-//set the text content of an HTML element
-Blockly.Blocks['set_text_content'] = {
-  init: function() {
-    this.appendValueInput('element')
-        .setCheck('Element')
-        .appendField('Set text content of');
-    this.appendValueInput('text')
-        .setCheck('String')
-        .appendField('to');
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(160);
-    this.setTooltip('Set the text content of an HTML element.');
-  }
+javascriptGenerator.forBlock["add_event_listener"] = function (block, generator) {
+  var valueElement = generator.valueToCode(block, 'element', 0);
+  var dropdownEvent = block.getFieldValue('event');
+  // This part contains the actions to be executed when the event occurs
+  var statementsCallback = generator.statementToCode(block, 'callback');
+
+  var code = `
+    ${valueElement}.addEventListener('${dropdownEvent}', function(event) {
+      ${statementsCallback} 
+    });
+  `;
+  return code;
 };
 
 // removing an HTML element from the DOM
@@ -73,21 +89,58 @@ Blockly.Blocks['remove_element'] = {
   }
 };
 
+javascriptGenerator.forBlock["remove_element"] = function (block, generator) {
+  var valueElement = generator.valueToCode(block, 'element', 0);
+//checks if the provided HTML element exists and removes it from its parent node if it does
+  var code = `
+    if (${valueElement}) {
+      ${valueElement}.parentNode.removeChild(${valueElement});
+    }
+  `;
+  return code;
+};
+
 //show or hide an HTML element
 Blockly.Blocks['show_hidden_element'] = {
   init: function() {
-    this.appendValueInput('element')
-        .setCheck('Element')
+    this.appendStatementInput('name')
+        .setCheck(null)
         .appendField(new Blockly.FieldDropdown([
           ['Show', 'show'],
           ['Hide', 'hide']
         ]), 'action')
         .appendField('element');
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
     this.setColour(160);
     this.setTooltip('Show or hide an HTML element.');
   }
+};
+
+javascriptGenerator.forBlock["show_hidden_element"] = function (block, generator) {
+  let dropdown_method = block.getFieldValue("action");
+  let statements_name = generator.statementToCode(block, "name");
+
+  // Define the HTML element ID (you can change "myElement" to your desired element ID)
+  let elementId = "myElement";
+
+  //elementId to match the ID of the HTML element
+  var code = `
+    function showOrHideElement(action, elementId) {
+      var element = document.getElementById(elementId);
+
+      if (element) {
+        if (action === 'show') {
+          element.style.display = 'block';
+        } else if (action === 'hide') {
+          element.style.display = 'none';
+        }
+      }
+    }
+  
+    // Call the showOrHideElement function
+    showOrHideElement('${dropdown_method}', '${elementId}');
+  `;
+
+  return code;
 };
 
 //submit form data
@@ -106,6 +159,36 @@ Blockly.Blocks['submit_form_data'] = {
   }
 };
 
+javascriptGenerator.forBlock["submit_form_data"] = function (block, generator) {
+  var formElement = generator.valueToCode(block, 'form', 0);
+  var callbackFunction = generator.valueToCode(block, 'callback', 0);
+
+  //replace '/your-server-endpoint' with the actual endpoint in Express
+  var code = `
+    // Get the form element
+    var form = ${formElement};
+    
+    // Serialize the form data into a format that can be sent to the server
+    var formData = new FormData(form);
+    
+    // Send the form data to the server using a fetch request
+    fetch('/your-server-endpoint', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Execute the callback function with the response data from the server
+      ${callbackFunction}(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  `;
+
+  return code;
+};
+
 //clear form data
 Blockly.Blocks['clear_form_fields'] = {
   init: function() {
@@ -117,6 +200,25 @@ Blockly.Blocks['clear_form_fields'] = {
     this.setColour(110);
     this.setTooltip('Clear all input fields in a form.');
   }
+};
+
+javascriptGenerator.forBlock["clear_form_fields"] = function (block, generator) {
+  var formElement = generator.valueToCode(block, 'form', 0);
+
+  var code = `
+    // Get the form element
+    var form = ${formElement};
+
+    // Get all input elements within the form
+    var inputElements = form.getElementsByTagName('input');
+
+    // Loop through input elements and clear their values
+    for (var i = 0; i < inputElements.length; i++) {
+      inputElements[i].value = '';
+    }
+  `;
+
+  return code;
 };
 
 // fetch data from a REST API at a specified URL 
@@ -134,4 +236,27 @@ Blockly.Blocks['fetch_api_data'] = {
     this.setColour(90);
     this.setTooltip('Fetch data from a REST API and execute a custom callback when data is received.');
   }
+};
+
+javascriptGenerator.forBlock["fetch_api_data"] = function (block, generator) {
+  var apiUrl = generator.valueToCode(block, 'url', 0);
+  var callbackFunction = generator.statementToCode(block, 'callback');
+
+  var code = `
+    // Define the API URL
+    var url = ${apiUrl};
+    
+    // Fetch data from the API
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        // Execute the custom callback when data is received
+        ${callbackFunction}
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  `;
+
+  return code;
 };

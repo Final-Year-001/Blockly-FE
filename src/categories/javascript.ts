@@ -12,10 +12,6 @@ export const javascriptCategory = {
     {
       kind: "block",
       type: "add_event_listener",
-    },
-    {
-      kind: "block",
-      type: "set_text_content",
     }, 
     {
       kind: "block",
