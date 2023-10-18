@@ -1,4 +1,5 @@
 import "../blocks/node/apiBlocks";
+import "../blocks/node/serverCreationBlocks";
 
 export const nodeCategory = {
   kind: "category",
@@ -8,6 +9,10 @@ export const nodeCategory = {
     {
       kind: "block",
       type: "api_method",
+    },
+    {
+      kind: "block",
+      type: "express_server_creation",
     },
   ],
 };
