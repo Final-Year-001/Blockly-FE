@@ -135,7 +135,3 @@ Blockly.Blocks['fetch_api_data'] = {
     this.setTooltip('Fetch data from a REST API and execute a custom callback when data is received.');
   }
 };
-
-const javascriptBlocks = {};
-
-export default javascriptBlocks;
