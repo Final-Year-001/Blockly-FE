@@ -32,6 +32,8 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
 
   // TODO: Assemble javascript into code variable.
   var code = `
+    import express from 'express'
+
     const app = express();
 
     ${middleware}
