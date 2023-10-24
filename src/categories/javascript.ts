@@ -7,22 +7,6 @@ export const javascriptCategory = {
   contents: [
     {
       kind: "block",
-      type: "myFunction",
-    },
-    {
-      kind: "block",
-      type: "add_event_listener",
-    }, 
-    {
-      kind: "block",
-      type: "remove_element",
-    }, 
-    {
-      kind: "block",
-      type: "show_hidden_element",
-    }, 
-    {
-      kind: "block",
       type: "submit_form_data",
     }, 
     {
@@ -31,7 +15,15 @@ export const javascriptCategory = {
     }, 
     {
       kind: "block",
-      type: "fetch_api_data",
+      type: "validate_text_input",
+    }, 
+    {
+      kind: "block",
+      type: "enable_disable_form_fields",
+    }, 
+    {
+      kind: "block",
+      type: "toggle_password_visibility",
     }, 
   ],
 };
