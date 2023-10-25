@@ -2,7 +2,7 @@ import "../blocks/javascript/blocks";
 
 export const javascriptCategory = {
   kind: "category",
-  name: "javascript",
+  name: "Javascript",
   colour: "#5CA699",
   contents: [
     {
