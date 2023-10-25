@@ -26,8 +26,7 @@ javascriptGenerator.forBlock["submit_form_data"] = function (
 
   //replace '/your-server-endpoint' with the actual endpoint in Express
   var code = `
-   
-    var form = ${formElement};
+    var form = document.getElementById(${formElement});
 
     var formData = new FormData(form);
     
@@ -374,5 +373,24 @@ javascriptGenerator.forBlock["fetch_api_data"] = function (
       });
   `;
 
+  return code;
+};
+
+Blockly.Blocks['javascript'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Javascript");
+    this.appendStatementInput("script")
+        .setCheck(null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascriptGenerator.forBlock['javascript'] = function(block, generator) {
+  var statements_script = generator.statementToCode(block, 'script');
+  // TODO: Assemble javascript into code variable.
+  var code = `<script>${statements_script}</script>`;
   return code;
 };

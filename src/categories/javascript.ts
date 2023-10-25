@@ -25,5 +25,9 @@ export const javascriptCategory = {
       kind: "block",
       type: "toggle_password_visibility",
     }, 
+    {
+      kind:"block",
+      type: "javascript"
+    }
   ],
 };
