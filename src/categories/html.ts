@@ -12,7 +12,11 @@ export const htmlCategory = {
     },
     {
       kind: "block",
-      type: "testf2",
+      type: "html_button2",
     }, 
+    {
+        kind: "block",
+        type: "html_input",
+      }, 
   ],
 };
