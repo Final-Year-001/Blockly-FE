@@ -6,28 +6,48 @@ export const javascriptCategory = {
   colour: "#5CA699",
   contents: [
     {
+      kind:"block",
+      type: "javascript"
+    },
+    {
       kind: "block",
       type: "submit_form_data",
     }, 
+    {
+      kind: "block",
+      type: "generate_form_id",
+    }, 
+    {
+      kind: "block",
+      type: "callback_function", 
+    }, 
+    {
+      kind: "block",
+      type: "server_endpoint", 
+    },
     {
       kind: "block",
       type: "clear_form_fields",
     }, 
     {
       kind: "block",
-      type: "validate_text_input",
+      type: "validate_name_input",
     }, 
     {
       kind: "block",
-      type: "enable_disable_form_fields",
+      type: "generate_id",
     }, 
     {
       kind: "block",
-      type: "toggle_password_visibility",
+      type: "error_handling",
     }, 
     {
-      kind:"block",
-      type: "javascript"
-    }
+      kind: "block",
+      type: "validate_age",
+    }, 
+    {
+      kind: "block",
+      type: "age_error_handling",
+    }, 
   ],
 };
