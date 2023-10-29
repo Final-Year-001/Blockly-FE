@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { nodeCategory } from "../../categories/node";
 import {javascriptGenerator} from "blockly/javascript";
+import { commonCategory } from "../../categories/google_blocks";
 
 interface BackendWorkspaceProps {
   onCodeChange?: (code: string) => void;
@@ -12,7 +13,7 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
 
   const toolboxCategories = {
     kind: "categoryToolbox",
-    contents: [nodeCategory],
+    contents: [nodeCategory, commonCategory],
   };
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
@@ -21,8 +22,6 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
     let code = javascriptGenerator.workspaceToCode(workspace)
     console.log(code, "Dfafd");
     onCodeChange?.(code);
-    // const code = generator.
-    // console.log(code, "code");
   }
 
   return (
