@@ -14,10 +14,14 @@ function removeParentheses(str : any) {
 
 Blockly.Blocks["html_button"] = {
   init: function() {
-    this.appendValueInput("html_button_name")
+    this.appendDummyInput()
+        .appendField("Button block");
+    this.appendValueInput("label")
         .setCheck(null)
-        .appendField("Button");
-    this.setOutput(true, null);
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Label");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, String);
     this.setColour(230);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -25,13 +29,13 @@ Blockly.Blocks["html_button"] = {
 };
 
 JavaScript.javascriptGenerator.forBlock['html_button'] = function(block : any, generator : any) {
-  var value_html_button_name = generator.valueToCode(block, 'html_button_name', generator.ORDER_ATOMIC);
-  
-  var code = '<button>' + removeParentheses(value_html_button_name) + '</button>';
-  console.log("this is code" + value_html_button_name);
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, generator.ORDER_NONE];
+  var value_label = generator.valueToCode(block, 'label', generator.ORDER_ATOMIC);
+  // TODO: Assemble javascript into code variable.
+  var code = `<button type="submit">` + removeParentheses(value_label) + '</button>';
+ 
+  return code;
 };
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -62,37 +66,31 @@ JavaScript.javascriptGenerator.forBlock['html_name'] = function(block : any, gen
 
 Blockly.Blocks['html_input_field'] = {
   init: function() {
+    this.appendDummyInput()
+        .appendField("Text Input");
     this.appendValueInput("NAME")
         .setCheck(null)
-        .appendField("Add feild name");
-    this.appendDummyInput()
-        .appendField("Feild");
-    this.setInputsInline(false);
-    this.setOutput(true, null);
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Label");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, "String");
     this.setColour(230);
- this.setTooltip("This block is for a input field");
+ this.setTooltip("");
  this.setHelpUrl("");
   }
 };
 
 JavaScript.javascriptGenerator.forBlock['html_input_field'] = function(block : any, generator : any) {
   var value_name = generator.valueToCode(block, 'NAME', generator.ORDER_ATOMIC);
+  // TODO: Assemble javascript into code variable.
   
-  function removeParentheses(str : any) {
-    // Check if the string starts and ends with parentheses
-    if (str.startsWith("(") && str.endsWith(")")) {
-      str = str.substring(1, str.length - 1);
-    }
-    return str;
-  }
-
   var code = '<label>' + removeParentheses(value_name) + '</label>' + 
   '<input type="text"><br><br>'
   ;
-  return [code, generator.ORDER_NONE];
+  return code;
 };
 
-//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 Blockly.Blocks['html_form'] = {
   init: function() {
@@ -100,60 +98,21 @@ Blockly.Blocks['html_form'] = {
         .appendField("Form Block");
     this.appendValueInput("action")
         .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Action");
-    this.appendValueInput("field1")
-        .setCheck(null)
-        .appendField("Feild");
-    this.appendValueInput("field2")
-        .setCheck(null)
-        .appendField("Feild");
-    this.appendValueInput("button")
-        .setCheck(null)
-        .appendField("Button");
-    this.setColour(230);
- this.setTooltip("This is the form block");
+    this.appendStatementInput("statement")
+        .setCheck(null);
+    this.setColour(0);
+ this.setTooltip("");
  this.setHelpUrl("");
   }
 };
 
-
 JavaScript.javascriptGenerator.forBlock['html_form'] = function(block : any, generator : any) {
+  // var statements_form_block = generator.statementToCode(block, 'form_block');
   var value_action = generator.valueToCode(block, 'action', generator.ORDER_ATOMIC);
-  var value_feild1 = generator.valueToCode(block, 'field1', generator.ORDER_ATOMIC);
-  var value_feild2 = generator.valueToCode(block, 'field2', generator.ORDER_ATOMIC);
-  var value_button = generator.valueToCode(block, 'button', generator.ORDER_ATOMIC);
+  var statements_statement = generator.statementToCode(block, 'statement');
   // TODO: Assemble javascript into code variable.
-
-  var code = `<form action="` + removeParentheses(value_action) +`">` + 
-  removeParentheses(value_feild1) + 
-  removeParentheses(value_feild2) + 
-  removeParentheses(value_button) + 
-  '</form>'
-  ;
-
+  var code = `<form action="` + removeParentheses(value_action) + `">` + statements_statement + `</form>`
   return code;
 };
-
-// JavaScript.javascriptGenerator.forBlock['html_form'] = function(block : any, generator : any) {
-//   var value_action = generator.valueToCode(block, 'Action', generator.ORDER_ATOMIC);
-//   var value_feild1 = generator.valueToCode(block, 'Feild1', generator.ORDER_ATOMIC);
-//   var value_feild2 = generator.valueToCode(block, 'Feild2', generator.ORDER_ATOMIC);
-//   var value_button = generator.valueToCode(block, 'Button', generator.ORDER_ATOMIC);
-
-//   function removeParentheses(str : any) {
-//     // Check if the string starts and ends with parentheses
-//     if (str.startsWith("(") && str.endsWith(")")) {
-//       str = str.substring(1, str.length - 1);
-//     }
-//     return str;
-//   }
-
-//   // var code = `<form action="${value_action}">` + 
-//   // value_feild1 + 
-//   // value_feild2 + 
-//   // value_button + 
-//   // '</form>'
-//   // ;
-//   var code = "this is a test";
-//   return [code, generator.ORDER_NONE];
-// };
