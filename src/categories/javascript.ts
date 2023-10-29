@@ -31,23 +31,15 @@ export const javascriptCategory = {
     }, 
     {
       kind: "block",
-      type: "validate_name_input",
-    }, 
-    {
-      kind: "block",
       type: "generate_id",
     }, 
     {
+       kind: "block",
+      type: "validate_input",
+     }, 
+    {
       kind: "block",
       type: "error_handling",
-    }, 
-    {
-      kind: "block",
-      type: "validate_age",
-    }, 
-    {
-      kind: "block",
-      type: "age_error_handling",
     }, 
   ],
 };

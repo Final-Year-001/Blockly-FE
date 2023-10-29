@@ -202,108 +202,63 @@ javascriptGenerator.forBlock["generate_id"] = function (
   return [code, generator.ORDER_ATOMIC]; // Return the code and precedence
 };
 
-//Name Input Field Validation
-Blockly.Blocks['validate_name_input'] = {
+// General-Purpose Validation Block
+Blockly.Blocks['validate_input'] = {
   init: function() {
     this.appendValueInput('input')
         .setCheck("el_id_input")
-        .appendField('Validate name input in');
+        .appendField('Validate input in');
+    this.appendDummyInput()
+        .appendField('if')
+        .appendField(new Blockly.FieldTextInput(''), 'validation_condition');
     this.appendStatementInput('callback')
         .setCheck(null)
         .appendField('when validation fails, do');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(110);
-    this.setTooltip('Validate a name input field (max length: 20) and execute a custom callback when validation fails.');
+    this.setTooltip('Validate an input field based on a custom condition and execute a custom callback when validation fails.');
   }
 };
 
-javascriptGenerator.forBlock['validate_name_input'] = function (
+javascriptGenerator.forBlock['validate_input'] = function (
   block: any,
   generator: any) {
     var inputElement = generator.valueToCode(block, 'input', 0);
+    var validationCondition = block.getFieldValue('validation_condition');
     var callbackFunction = generator.statementToCode(block, 'callback');
   
     var code = `
       var input = ${inputElement};
-      var value = input.value;
-      if (!value || value.trim() === '' || value.length > 20) {
+      if (!(${validationCondition})) {
         ${callbackFunction}
       }
     `;  
 
-  return code;
+    return code;
 };
 
-// Error Handling Block for Name
+// General-Purpose Error Handling Block
 Blockly.Blocks['error_handling'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField('Handle name errors');
+        .appendField('Handle errors with message');
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput(''), 'error_message');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(160);
-    this.setTooltip('Handle errors that occur during validation.');
+    this.setTooltip('Handle errors that occur during validation with a custom error message.');
   }
 };
 
 javascriptGenerator.forBlock['error_handling'] = function (
   block: any,
   generator: any) {
+    var errorMessage = block.getFieldValue('error_message');
     return `
-    alert('The name should be less than 20 characters'); // Show an alert
-  `;
-};
-
-// Age Validation Block
-Blockly.Blocks['validate_age'] = {
-  init: function() {
-    this.appendValueInput('age')
-        .setCheck("el_id_input")
-        .appendField('Validate age');
-    this.appendStatementInput('callback')
-        .setCheck(null)
-        .appendField('when validation fails, do');
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(110);
-    this.setTooltip('Validate an age input with exactly 2 digits and execute a custom callback when validation fails.');
-  }
-};
-
-javascriptGenerator.forBlock['validate_age'] = function (
-  block: any,
-  generator: any) {
-    var ageInput = javascriptGenerator.valueToCode(block, 'age', 0);
-  var callbackFunction = javascriptGenerator.statementToCode(block, 'callback');
-
-  var code = `
-    var age = ${ageInput};
-    if (!/^[0-9]{2}$/.test(age)) {
-      ${callbackFunction}
-    }
-  `;
-
-  return code;
-  }
-// Error Handling Block
-Blockly.Blocks['age_error_handling'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField('Handle age errors');
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(160);
-    this.setTooltip('Handle errors that occur during validation.');
-  }
-}; 
-
-javascriptGenerator.forBlock['age_error_handling'] = function (
-  block: any,
-  generator: any) {
-    return `
-    alert('The age should be a 2 digit number');
-  `;
+    alert('${errorMessage}');
+    `;
 };
 
 //other blocks - not form related
