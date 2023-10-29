@@ -21,8 +21,6 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
     let code = javascriptGenerator.workspaceToCode(workspace)
     console.log(code, "Dfafd");
     onCodeChange?.(code);
-    // const code = generator.
-    // console.log(code, "code");
   }
 
   return (
