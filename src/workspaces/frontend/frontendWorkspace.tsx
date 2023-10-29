@@ -3,6 +3,8 @@ import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import { javascriptCategory } from "../../categories/javascript";
 import { htmlCategory } from "../../categories/html";
+import { commonCategory } from "../../categories/google_blocks"
+
 
 interface FrontendWorkspaceProps {
     onCodeChange?: (code: string) => void;
@@ -13,7 +15,8 @@ function FrontendWorkspace({ onCodeChange }: FrontendWorkspaceProps) {
 
   const toolboxCategories = {
     kind: "categoryToolbox",
-    contents: [javascriptCategory, htmlCategory],
+
+    contents: [javascriptCategory, htmlCategory, commonCategory],
   };
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {

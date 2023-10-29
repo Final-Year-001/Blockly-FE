@@ -14,5 +14,17 @@ export const nodeCategory = {
       kind: "block",
       type: "express_server_creation",
     },
+    {
+      kind: "block",
+      type: "respond_json",
+    },
+    {
+      kind: "block",
+      type: "get_request",
+    },
+    {
+      kind: "block",
+      type: "controls_if"
+    }
   ],
 };
