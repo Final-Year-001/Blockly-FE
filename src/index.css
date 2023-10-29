@@ -10,3 +10,8 @@
 #root, html, body {
   height: 100vh;
 }
+
+/* This is to fix the blockly scrollbar issue when using tailwind */
+svg[display="none"] {
+  display: none;
+}
