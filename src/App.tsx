@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 import { counterTest } from "./state/test";
 import { useRecoilState } from "recoil";
@@ -9,10 +9,19 @@ function App() {
   const [count, setCount] = useRecoilState(counterTest);
   const [frontendCode, setFrontendCode] = useState("");
   const [backendCode, setBackendCode] = useState("");
-
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  
   const onClick = () => {
     setCount(count + 1);
   };
+
+  const injectCode = (code: string) => {
+    setFrontendCode(code);
+    if(iframeRef.current) {
+      const iframe = iframeRef.current;
+      iframe.srcdoc = code;
+    }
+  }
 
   return (
     <>
@@ -41,6 +50,7 @@ function App() {
           display: "flex",
           flexDirection: "row",
           height: "100%",
+          whiteSpace: "pre-line"
         }}
       >
         <div
@@ -48,7 +58,7 @@ function App() {
             flex: 0.8,
           }}
         >
-          <FrontendWorkspace onCodeChange={setFrontendCode} />
+          <FrontendWorkspace onCodeChange={injectCode} />
         </div>
         <div
           style={{
@@ -61,6 +71,12 @@ function App() {
           >
             {frontendCode}
           </code>
+          <div>
+            <iframe ref={iframeRef} name="iframe1"/>
+          </div>
+        </div>
+        <div>
+
         </div>
       </div>
       <h1>Backend workspace</h1>

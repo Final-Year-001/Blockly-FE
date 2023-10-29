@@ -1,6 +1,333 @@
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
 
+//script tag
+Blockly.Blocks['javascript'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Javascript");
+    this.appendStatementInput("script")
+        .setCheck(null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascriptGenerator.forBlock['javascript'] = function(
+  block: any,
+  generator: any
+) {
+  var statements_script = generator.statementToCode(block, 'script');
+  var code = `<script>${statements_script}</script>`;
+  return code;
+};
+
+//generate id
+Blockly.Blocks["generate_form_id"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Form ID:")
+      .appendField(new Blockly.FieldTextInput("formId"), "formId");
+    this.setOutput(true, "form_id_input");
+    this.setColour(230);
+    this.setTooltip("Enter the form ID.");
+  },
+};
+
+javascriptGenerator.forBlock["generate_form_id"] = function (
+  block: any,
+  generator: any
+) {
+  var formId = block.getFieldValue("formId"); // Get the form ID value
+  var code = `\"${formId}\"`; // Wrap the formId in quotes to make it a string in the generated code
+  return [code, generator.ORDER_ATOMIC]; // Return the code and precedence
+};
+
+//submit form data
+Blockly.Blocks["submit_form_data"] = {
+  init: function () {
+    this.appendValueInput("form")
+      .setCheck("form_id_input")
+      .appendField("Submit form data from");
+    this.appendValueInput("callback")
+      .setCheck("Function")
+      .appendField("and execute callback function");
+    this.appendValueInput("endpoint")
+      .setCheck("String")
+      .appendField("to server endpoint");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+    this.setTooltip("Submit form data and execute a callback function.");
+  },
+};
+
+javascriptGenerator.forBlock["submit_form_data"] = function (
+  block: any,
+  generator: any
+) {
+  var formElement = generator.valueToCode(block, "form", generator.ORDER_ATOMIC);
+  var callbackFunction = generator.valueToCode(block, "callback", generator.ORDER_ATOMIC);
+  var endpoint = generator.valueToCode(block, "endpoint", generator.ORDER_ATOMIC);
+
+  var code = `
+    var form = document.getElementById(${formElement});
+    if (form) {
+      var formData = new FormData(form);
+
+      fetch(${endpoint}, { // Use the specified endpoint
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        ${callbackFunction}(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    } else {
+      console.error('Form not found with ID: ${formElement}');
+    }
+  `;
+  
+  return code;
+};
+
+// Define the "callback_function" block
+Blockly.Blocks["callback_function"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Callback function");
+    this.appendDummyInput()
+      .appendField("Function name:")
+      .appendField(new Blockly.FieldTextInput("myCallback"), "functionName");
+    this.setOutput(true, "Function"); // Set the output type to "Function"
+    this.setColour(210);
+    this.setTooltip("Define a callback function.");
+  },
+};
+
+// Generate code for the "callback_function" block
+javascriptGenerator.forBlock["callback_function"] = function (
+  block: any,
+  generator: any
+) {
+  var functionName = block.getFieldValue("functionName");
+
+  // Generate JavaScript code for the callback function
+  var code = `
+    function ${functionName}(data) {
+      // Your callback function code here
+    }
+  `;
+
+  return [code, generator.ORDER_FUNCTION_CALL]; // Return a tuple containing the code and the precedence
+};
+
+// Server Endpoint
+Blockly.Blocks["server_endpoint"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Server endpoint:")
+      .appendField(new Blockly.FieldTextInput("/your-server-endpoint"), "endpoint");
+    this.setOutput(true, "String"); // Set the output type to String
+    this.setColour(230);
+    this.setTooltip("Specify the server endpoint.");
+  },
+};
+
+javascriptGenerator.forBlock["server_endpoint"] = function (
+  block: any,
+  generator: any
+) {
+  var endpoint = block.getFieldValue("endpoint");
+
+  // Return the server endpoint as a JavaScript string
+  return [endpoint, generator.ORDER_ATOMIC];
+};
+
+//clear form data
+Blockly.Blocks["clear_form_fields"] = {
+  init: function () {
+    this.appendValueInput("form")
+      .setCheck("form_id_input")
+      .appendField("Clear form fields in");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+    this.setTooltip("Clear all input fields in a form.");
+  },
+};
+
+javascriptGenerator.forBlock["clear_form_fields"] = function (
+  block: any,
+  generator: any
+) {
+  var formElement = generator.valueToCode(block, "form", 0);
+
+  var code = `
+
+    var form = ${formElement};
+
+    var inputElements = form.getElementsByTagName('input');
+
+    for (var i = 0; i < inputElements.length; i++) {
+      inputElements[i].value = '';
+    }
+  `;
+
+  return code;
+};
+
+//generate id for input fields
+Blockly.Blocks["generate_id"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Element ID:")
+      .appendField(new Blockly.FieldTextInput("elId"), "elId");
+    this.setOutput(true, "el_id_input");
+    this.setColour(230);
+    this.setTooltip("Enter the element ID.");
+  },
+};
+
+javascriptGenerator.forBlock["generate_id"] = function (
+  block: any,
+  generator: any
+) {
+  var elId = block.getFieldValue("elId"); // Get the form ID value
+  var code = `\"${elId}\"`; // Wrap the formId in quotes to make it a string in the generated code
+  return [code, generator.ORDER_ATOMIC]; // Return the code and precedence
+};
+
+// General-Purpose Validation Block
+Blockly.Blocks['validate_input'] = {
+  init: function() {
+    this.appendValueInput('input')
+        .setCheck("el_id_input")
+        .appendField('Validate input in');
+    this.appendDummyInput()
+        .appendField('if')
+        .appendField(new Blockly.FieldTextInput(''), 'validation_condition');
+    this.appendStatementInput('callback')
+        .setCheck(null)
+        .appendField('when validation fails, do');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+    this.setTooltip('Validate an input field based on a custom condition and execute a custom callback when validation fails.');
+  }
+};
+
+javascriptGenerator.forBlock['validate_input'] = function (
+  block: any,
+  generator: any) {
+    var inputElement = generator.valueToCode(block, 'input', 0);
+    var validationCondition = block.getFieldValue('validation_condition');
+    var callbackFunction = generator.statementToCode(block, 'callback');
+  
+    var code = `
+      var input = ${inputElement};
+      if (!(${validationCondition})) {
+        ${callbackFunction}
+      }
+    `;  
+
+    return code;
+};
+
+// General-Purpose Error Handling Block
+Blockly.Blocks['error_handling'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField('Handle errors with message');
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput(''), 'error_message');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip('Handle errors that occur during validation with a custom error message.');
+  }
+};
+
+javascriptGenerator.forBlock['error_handling'] = function (
+  block: any,
+  generator: any) {
+    var errorMessage = block.getFieldValue('error_message');
+    return `
+    alert('${errorMessage}');
+    `;
+};
+
+//other blocks - not form related
+
+//Enable/Disable Form Fields
+Blockly.Blocks['enable_disable_form_fields'] = {
+  init: function() {
+    this.appendValueInput('form')
+        .setCheck("form_id_input")
+        .appendField(new Blockly.FieldDropdown([
+          ['Enable', 'enable'],
+          ['Disable', 'disable']
+        ]), 'action')
+        .appendField('form fields in');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+    this.setTooltip('Enable or disable form fields within a form.');
+  }
+};
+
+javascriptGenerator.forBlock['enable_disable_form_fields'] = function (
+  block: any,
+  generator: any) {
+  var formElement = generator.valueToCode(block, 'form', 0);
+  var action = block.getFieldValue('action');
+
+  var code = `
+    var form = ${formElement};
+    var inputElements = form.getElementsByTagName('input');
+    for (var i = 0; i < inputElements.length; i++) {
+      inputElements[i].disabled = ${action === 'disable'};
+    }
+  `;
+
+  return code;
+};
+
+//connect to a button click, to allow users to switch between hidden and visible password characters.
+Blockly.Blocks['toggle_password_visibility'] = {
+  init: function() {
+    this.appendValueInput('passwordField')
+        .setCheck('Element')
+        .appendField('Toggle password visibility for');
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+    this.setTooltip('Toggle visibility of the password in a password input field.');
+  }
+};
+
+javascriptGenerator.forBlock['toggle_password_visibility'] = function (
+  block: any,
+  generator: any
+  ) {
+  var passwordField = generator.valueToCode(block, 'passwordField', 0);
+
+  var code = `
+    var passwordField = ${passwordField};
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+    } else {
+      passwordField.type = 'password';
+    }
+  `;
+
+  return code;
+};
+
 //takes an input (a string), allows you to define the function's body
 Blockly.Blocks["myFunction"] = {
   init: function () {
@@ -133,7 +460,7 @@ javascriptGenerator.forBlock["show_hidden_element"] = function (
   let statements_name = generator.statementToCode(block, "name");
 
   // Define the HTML element ID (you can change "myElement" to your desired element ID)
-  let elementId = "myElement";
+  let elementId = statements_name || "myElement";
 
   //elementId to match the ID of the HTML element
   var code = `
@@ -150,85 +477,6 @@ javascriptGenerator.forBlock["show_hidden_element"] = function (
     }
 
     showOrHideElement('${dropdown_method}', '${elementId}');
-  `;
-
-  return code;
-};
-
-//submit form data
-Blockly.Blocks["submit_form_data"] = {
-  init: function () {
-    this.appendValueInput("form")
-      .setCheck("Element")
-      .appendField("Submit form data from");
-    this.appendValueInput("callback")
-      .setCheck(null)
-      .appendField("and execute callback function");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(110);
-    this.setTooltip("Submit form data and execute a callback function.");
-  },
-};
-
-javascriptGenerator.forBlock["submit_form_data"] = function (
-  block: any,
-  generator: any
-) {
-  var formElement = generator.valueToCode(block, "form", 0);
-  var callbackFunction = generator.valueToCode(block, "callback", 0);
-
-  //replace '/your-server-endpoint' with the actual endpoint in Express
-  var code = `
-   
-    var form = ${formElement};
-
-    var formData = new FormData(form);
-    
-    fetch('/your-server-endpoint', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-      ${callbackFunction}(data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  `;
-
-  return code;
-};
-
-//clear form data
-Blockly.Blocks["clear_form_fields"] = {
-  init: function () {
-    this.appendValueInput("form")
-      .setCheck("Element")
-      .appendField("Clear form fields in");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(110);
-    this.setTooltip("Clear all input fields in a form.");
-  },
-};
-
-javascriptGenerator.forBlock["clear_form_fields"] = function (
-  block: any,
-  generator: any
-) {
-  var formElement = generator.valueToCode(block, "form", 0);
-
-  var code = `
-
-    var form = ${formElement};
-
-    var inputElements = form.getElementsByTagName('input');
-
-    for (var i = 0; i < inputElements.length; i++) {
-      inputElements[i].value = '';
-    }
   `;
 
   return code;

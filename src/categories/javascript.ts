@@ -2,36 +2,44 @@ import "../blocks/javascript/blocks";
 
 export const javascriptCategory = {
   kind: "category",
-  name: "javascript",
+  name: "Javascript",
   colour: "#5CA699",
   contents: [
     {
-      kind: "block",
-      type: "myFunction",
+      kind:"block",
+      type: "javascript"
     },
-    {
-      kind: "block",
-      type: "add_event_listener",
-    }, 
-    {
-      kind: "block",
-      type: "remove_element",
-    }, 
-    {
-      kind: "block",
-      type: "show_hidden_element",
-    }, 
     {
       kind: "block",
       type: "submit_form_data",
     }, 
     {
       kind: "block",
+      type: "generate_form_id",
+    }, 
+    {
+      kind: "block",
+      type: "callback_function", 
+    }, 
+    {
+      kind: "block",
+      type: "server_endpoint", 
+    },
+    {
+      kind: "block",
       type: "clear_form_fields",
     }, 
     {
       kind: "block",
-      type: "fetch_api_data",
+      type: "generate_id",
+    }, 
+    {
+       kind: "block",
+      type: "validate_input",
+     }, 
+    {
+      kind: "block",
+      type: "error_handling",
     }, 
   ],
 };
