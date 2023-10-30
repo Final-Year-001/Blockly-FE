@@ -8,6 +8,10 @@ export const htmlCategory = {
   contents: [
     {
       kind: "block",
+      type: "html_html",
+    },
+    {
+      kind: "block",
       type: "html_button",
     },
     {
