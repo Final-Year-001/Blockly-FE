@@ -7,6 +7,10 @@ export const javascriptCategory = {
   contents: [
     {
       kind:"block",
+      type: "head_tag"
+    },
+    {
+      kind:"block",
       type: "javascript"
     },
     {
