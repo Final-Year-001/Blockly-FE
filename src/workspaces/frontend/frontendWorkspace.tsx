@@ -17,7 +17,7 @@ function FrontendWorkspace({ onCodeChange }: FrontendWorkspaceProps) {
   const toolboxCategories = {
     kind: "categoryToolbox",
 
-    contents: [javascriptCategory, htmlCategory, commonCategory, cssCategory],
+    contents: [htmlCategory, cssCategory, javascriptCategory, commonCategory],
   };
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
