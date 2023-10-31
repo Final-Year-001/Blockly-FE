@@ -3,6 +3,9 @@ import { javascriptGenerator } from "blockly/javascript";
 
 Blockly.Blocks["express_server_creation"] = {
   init: function () {
+    this.appendDummyInput()
+      .setAlign(Blockly.inputs.Align.RIGHT)
+      .appendField("Create Server");
     this.appendValueInput("PORT").setCheck("Number").appendField("Port");
     this.appendStatementInput("MIDDLEWARE")
       .setCheck(null)
@@ -14,7 +17,7 @@ Blockly.Blocks["express_server_creation"] = {
     this.appendValueInput("START_SERVER")
       .setCheck("Boolean")
       .appendField("Start server?");
-    this.setColour(230);
+    this.setColour(65);
     this.setTooltip("Creates a new Express server instance.");
     this.setHelpUrl("");
   },
@@ -61,7 +64,7 @@ Blockly.Blocks["server_helmet_guard"] = {
       "This block will secure your server from various possible vulnarabilities by securing request headers "
     );
     this.setHelpUrl("");
-    this.setColour(230);
+    this.setColour(130);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -73,7 +76,36 @@ javascriptGenerator.forBlock["server_helmet_guard"] = function (block: any) {
 
   var code = `
     // Use Helmet middleware with custom options
-    const helmet = require('helmet');
+    import helmet from 'helmet';
+    app.use(helmet(${options}));
+  `;
+
+  return code;
+};
+
+Blockly.Blocks["compression_middleware"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Compress Responses");
+    this.appendDummyInput()
+      .appendField("Options:")
+      .appendField(new Blockly.FieldTextInput(""), "options");
+    this.setTooltip(
+      "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
+    );
+    this.setHelpUrl("");
+    this.setColour(130);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["compression_middleware"] = function (block: any) {
+  var options = block.getFieldValue("options");
+  // check whether the options are in expected type
+
+  var code = `
+    // Use Helmet middleware with custom options
+    import compression from 'compression';
     app.use(helmet(${options}));
   `;
 

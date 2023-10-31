@@ -20,6 +20,10 @@ export const nodeCategory = {
     },
     {
       kind: "block",
+      type: "compression_middleware",
+    },
+    {
+      kind: "block",
       type: "respond_json",
     },
     {
