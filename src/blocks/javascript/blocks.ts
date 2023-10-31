@@ -15,7 +15,7 @@ Blockly.Blocks['head_tag'] = {
 
 javascriptGenerator.forBlock['head_tag'] = function (block : any, generator : any) {
   var content = generator.statementToCode(block, 'content');
-  return '<head>\n' + content + '</head>';
+  return '<header>\n' + content + '</header>';
 };
 
 //script tag

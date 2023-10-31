@@ -26,11 +26,11 @@ function App() {
 
   return (
     <>
-      <div>
+      {/* <div>
         <div>Counter - {count}</div>
         <br></br>
         <button onClick={onClick}>increase</button>
-      </div>
+      </div> */}
 
       <h1>Frontend workspace</h1>
 
