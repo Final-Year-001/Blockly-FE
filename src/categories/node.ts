@@ -16,6 +16,14 @@ export const nodeCategory = {
     },
     {
       kind: "block",
+      type: "server_helmet_guard",
+    },
+    {
+      kind: "block",
+      type: "compression_middleware",
+    },
+    {
+      kind: "block",
       type: "respond_json",
     },
     {
@@ -24,7 +32,7 @@ export const nodeCategory = {
     },
     {
       kind: "block",
-      type: "controls_if"
-    }
+      type: "controls_if",
+    },
   ],
 };
