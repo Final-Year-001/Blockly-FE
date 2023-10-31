@@ -75,7 +75,6 @@ javascriptGenerator.forBlock["server_helmet_guard"] = function (block: any) {
   // check whether the options are in expected type
 
   var code = `
-    // Use Helmet middleware with custom options
     import helmet from 'helmet';
     app.use(helmet(${options}));
   `;
@@ -104,7 +103,6 @@ javascriptGenerator.forBlock["compression_middleware"] = function (block: any) {
   // check whether the options are in expected type
 
   var code = `
-    // Use Helmet middleware with custom options
     import compression from 'compression';
     app.use(helmet(${options}));
   `;
