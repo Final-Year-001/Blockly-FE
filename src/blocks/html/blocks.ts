@@ -1,6 +1,7 @@
 import Blockly from "blockly";
 import * as JavaScript from "blockly/javascript";
 
+
 function removeParentheses(str : any) {
   // Check if the string starts and ends with parentheses
   if (str.startsWith("(") && str.endsWith(")")) {
@@ -8,6 +9,7 @@ function removeParentheses(str : any) {
   }
   return str;
 }
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -84,26 +86,50 @@ Blockly.Blocks['html_button'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Button Block");
-    this.appendValueInput("identifier")
-        .setCheck(null)
+    this.appendDummyInput()
+    .appendField(new Blockly.FieldCheckbox("TRUE"), "show");
+
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldCheckbox("TRUE"), "button_id")
+        .appendField("ID")
+        .appendField(new Blockly.FieldTextInput("default"), "id")
+        .appendField(new Blockly.FieldCheckbox("TRUE"), "button_class")
+        .appendField("Class")
+        .appendField(new Blockly.FieldTextInput("default"), "class")
+    this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Identifier");
-    this.appendValueInput("button_label")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Label");
+        .appendField("Label")
+        .appendField(new Blockly.FieldTextInput("default"), "label");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
+ this.setTooltip("This is a button block");
  this.setHelpUrl("");
   }
 };
 
+
+
 JavaScript.javascriptGenerator.forBlock['html_button'] = function(block : any, generator : any) {
-  var value_button_label = generator.valueToCode(block, 'button_label', generator.ORDER_ATOMIC);
-  var value_identifier = generator.valueToCode(block, 'identifier', generator.ORDER_ATOMIC);
-  var code = `<button type="submit" ` + removeParentheses(value_identifier) + `>` + removeParentheses(value_button_label) + '</button>';
+  var checkbox_show = block.getFieldValue('show') === 'TRUE';
+  var checkbox_button_id = block.getFieldValue('button_id') === 'TRUE';
+  var text_id = block.getFieldValue('id');
+  var checkbox_button_class = block.getFieldValue('button_class') === 'TRUE';
+  var text_class = block.getFieldValue('class');
+  var text_label = block.getFieldValue('label');
+
+  var identifier = "";
+  if(checkbox_button_id){
+    identifier = `id="` + text_id  + `" `
+  }
+  if(checkbox_button_class){
+    identifier = identifier + `class="` + text_class  + `"`
+  }
+  if(!checkbox_show){
+    // showIdentifier = true;
+  }
+
+  var code = `<button ` + identifier + `type="submit">` + removeParentheses(text_label) + '</button>';
  
   return code;
 };
@@ -140,10 +166,17 @@ Blockly.Blocks['html_input_field'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Input Feild");
-    this.appendValueInput("identifier")
-        .setCheck(null)
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "input_id")
+        .appendField("ID")
+        .appendField(new Blockly.FieldTextInput("default"), "id")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "input_class")
+        .appendField("Class")
+        .appendField(new Blockly.FieldTextInput("default"), "class");
+    this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Identifier");
+        .appendField("Type of input")
+        .appendField(new Blockly.FieldDropdown([["text","text"],["email","email"], ["password","password"], ["number","number"]]), "NAME");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
@@ -151,10 +184,26 @@ Blockly.Blocks['html_input_field'] = {
  this.setHelpUrl("");
   }
 };
-
 JavaScript.javascriptGenerator.forBlock['html_input_field'] = function(block : any, generator : any) {
-  var value_identifier = generator.valueToCode(block, 'identifier', generator.ORDER_ATOMIC);
-  var code =`<input type="text" ` + removeParentheses(value_identifier) + `>` + `<br>`
+
+  var checkbox_input_id = block.getFieldValue('input_id') === 'TRUE';
+  var text_id = block.getFieldValue('id');
+  var checkbox_input_class = block.getFieldValue('input_class') === 'TRUE';
+  var text_class = block.getFieldValue('class');
+  var dropdown_name = block.getFieldValue('NAME');
+
+  var identifier = "";
+  if(checkbox_input_id){
+    identifier = `id="` + text_id  + `" `
+  }
+  if(checkbox_input_class){
+    identifier = identifier + `class="` + text_class  + `"`
+  }
+  if(dropdown_name){
+    identifier = identifier + `type="` + dropdown_name + `"`
+  }
+
+  var code =`<input type="text" ` + removeParentheses(identifier) + `>` + `<br>`
   ;
   return code;
 };
@@ -210,10 +259,13 @@ Blockly.Blocks['html_form'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Form Block");
-    this.appendValueInput("identifier")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Identifier");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldCheckbox("TRUE"), "form_id")
+        .appendField("ID")
+        .appendField(new Blockly.FieldTextInput("default"), "id")
+        .appendField(new Blockly.FieldCheckbox("TRUE"), "form_class")
+        .appendField("Class")
+        .appendField(new Blockly.FieldTextInput("default"), "class");
     this.appendStatementInput("statement")
         .setCheck(null);
     this.setPreviousStatement(true, null);
@@ -225,10 +277,21 @@ Blockly.Blocks['html_form'] = {
 };
 
 JavaScript.javascriptGenerator.forBlock['html_form'] = function(block : any, generator : any) {
-  // var statements_form_block = generator.statementToCode(block, 'form_block');
-  var value_identifier = generator.valueToCode(block, 'identifier', generator.ORDER_ATOMIC);
+
+  var checkbox_form_id = block.getFieldValue('form_id') === 'TRUE';
+  var text_id = block.getFieldValue('id');
+  var checkbox_form_class = block.getFieldValue('form_class') === 'TRUE';
+  var text_class = block.getFieldValue('class');
   var statements_statement = generator.statementToCode(block, 'statement');
+
+  var identifiers = "";
+  if(checkbox_form_id){
+    identifiers = ` id="` + removeParentheses(text_id) + `"`
+  }
+  if(checkbox_form_class){
+    identifiers = identifiers + ` class="` + removeParentheses(text_class) + `"`
+  }
   // TODO: Assemble javascript into code variable.
-  var code = `<form ` + removeParentheses(value_identifier) + `>` + statements_statement + `</form>`
+  var code = `<form ` + identifiers + `>` + statements_statement + `</form>`
   return code;
 };
