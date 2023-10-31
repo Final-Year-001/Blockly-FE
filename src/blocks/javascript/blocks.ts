@@ -1,6 +1,22 @@
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
-import "../structure"
+
+// Head Block
+Blockly.Blocks['head_tag'] = {
+  init: function () {
+      this.appendStatementInput('content')
+          .setCheck(null) // Allow any type of block to be nested
+          .appendField('Header');
+      this.setPreviousStatement(true, 'head_tag');
+      this.setColour(160);
+      this.setTooltip('Define the head section of the HTML document.');
+  }
+};
+
+javascriptGenerator.forBlock['head_tag'] = function (block : any, generator : any) {
+  var content = generator.statementToCode(block, 'content');
+  return '<head>\n' + content + '</head>';
+};
 
 //script tag
 Blockly.Blocks['javascript'] = {
