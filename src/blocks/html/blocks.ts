@@ -1,7 +1,6 @@
 import Blockly from "blockly";
 import * as JavaScript from "blockly/javascript";
 
-
 function removeParentheses(str : any) {
   // Check if the string starts and ends with parentheses
   if (str.startsWith("(") && str.endsWith(")")) {
