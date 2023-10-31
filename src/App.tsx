@@ -1,9 +1,33 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { counterTest } from "./state/test";
 import { useRecoilState } from "recoil";
 import BackendWorkspace from "./workspaces/backend/backendWorkspace";
 import FrontendWorkspace from "./workspaces/frontend/frontendWorkspace";
+
+// TODO: this function will be improved
+function organizeImports(code: string) {
+  // Split the code into lines
+  const lines = code.split("\n");
+
+  // Extract import statements and other code
+  const importStatements = [];
+  const otherCode = [];
+
+  for (const line of lines) {
+    if (line.trim().startsWith("import ")) {
+      importStatements.push(line);
+    } else {
+      otherCode.push(line);
+    }
+  }
+
+  // Combine import statements and other code
+  const organizedCode =
+    importStatements.join("\n") + "\n" + otherCode.join("\n");
+
+  return organizedCode;
+}
 
 function App() {
   const [count, setCount] = useRecoilState(counterTest);
@@ -70,9 +94,7 @@ function App() {
               IFrame
             </button>
           </div>
-          {tabView === "code" && (
-            <code>{frontendCode}</code>
-          )}
+          {tabView === "code" && <code>{frontendCode}</code>}
           {tabView === "iframe" && (
             <div>
               <iframe ref={iframeRef} name="iframe1" />
@@ -91,7 +113,11 @@ function App() {
         }}
       >
         <div style={{ flex: 0.8 }}>
-          <BackendWorkspace onCodeChange={setBackendCode} />
+          <BackendWorkspace
+            onCodeChange={(code) => {
+              setBackendCode(organizeImports(code));
+            }}
+          />
         </div>
         <div
           style={{
