@@ -36,7 +36,13 @@ javascriptGenerator.forBlock["api_method"] = function (
 
   // TODO: Assemble javascript into code variable.
   var code = `
-    app.${dropdown_method}("${path}",(req, res) => {\n${statements_name}})
+    app.${dropdown_method}("${path}",(req, res) => {
+      try {
+        ${statements_name}
+      }catch(e){
+        console.error(e);
+      }
+    });
   `;
   return code;
 };
@@ -57,8 +63,8 @@ Blockly.Blocks['get_request'] = {
 };
 
 javascriptGenerator.forBlock['get_request'] = function(block: any, generator: any) {
-  var variable_name = generator.nameDB_.getName(block.getFieldValue('var'), 'VARIABLE');
-  var dropdown_name = block.getFieldValue('NAME');
+  let variable_name = generator.nameDB_.getName(block.getFieldValue('var'), 'VARIABLE');
+  let dropdown_name = block.getFieldValue('NAME');
 
   let code = ""
   switch(dropdown_name) {

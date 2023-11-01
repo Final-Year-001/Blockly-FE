@@ -30,5 +30,9 @@ export const nodeCategory = {
       kind: "block",
       type: "get_request",
     },
+    {
+      kind: "block",
+      type: "respond_with_status",
+    },
   ],
 };

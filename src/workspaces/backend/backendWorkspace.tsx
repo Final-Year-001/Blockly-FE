@@ -4,6 +4,7 @@ import { nodeCategory } from "../../categories/node";
 import { javascriptGenerator } from "blockly/javascript";
 import { mathCategory } from "../../categories/math";
 import { commonCategory } from "../../categories/google_blocks";
+import { databaseCategory } from "../../categories/database";
 
 interface BackendWorkspaceProps {
   onCodeChange?: (code: string) => void;
@@ -15,7 +16,7 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
 
   const toolboxCategories = {
     kind: "categoryToolbox",
-    contents: [nodeCategory, mathCategory, commonCategory],
+    contents: [nodeCategory, databaseCategory, mathCategory, commonCategory],
   };
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
