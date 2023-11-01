@@ -34,8 +34,11 @@ Blockly.Blocks['html_html'] = {
 JavaScript.javascriptGenerator.forBlock['html_html'] = function(block : any, generator : any) {
   var statements_html_head = generator.statementToCode(block, 'html_head');
   var statements_html_body = generator.statementToCode(block, 'html_body');
-  // TODO: Assemble javascript into code variable.
-  var code = "<html>" + statements_html_head + "</html>" + "<body>" + statements_html_body + "</body>";
+  // note to senal - changed the order cause html should wrap everything and added line breaks
+  var code = "<html>\n" +
+             "  <head>\n" + statements_html_head + "  \n</head>\n" +
+             "  <body>\n" + statements_html_body + "  </body>\n" +
+             "</html>";
   return code;
 };
 

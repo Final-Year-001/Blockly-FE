@@ -39,11 +39,11 @@ export const javascriptCategory = {
     }, 
     {
        kind: "block",
-      type: "validate_input",
-     }, 
-    {
+      type: "validate_and_handle_error", 
+     },  
+     {
       kind: "block",
-      type: "error_handling",
+      type: "custom_condition_input_length",
     }, 
     {
       kind: "block",
