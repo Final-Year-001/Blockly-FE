@@ -108,7 +108,7 @@ function App() {
         </div>
       </div>
 
-      <h1 className="text-3xl font-bold mt-6 mb-4 text-indigo-400">Frontend workspace</h1>
+      <h1 className="text-3xl font-bold mt-6 mb-4 text-indigo-400">Backend workspace</h1>
 
       <div
         style={{
