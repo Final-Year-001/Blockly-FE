@@ -230,7 +230,7 @@ Blockly.Blocks['validate_and_handle_error'] = {
         .appendField('Validate input in');
     this.appendValueInput('condition')
         .setCheck('Boolean')
-        .appendField('if condition');
+        .appendField('Pass if the condition is');
     this.appendDummyInput()
         .appendField('Else, handle errors with message');
     this.appendDummyInput()
@@ -245,20 +245,25 @@ Blockly.Blocks['validate_and_handle_error'] = {
 javascriptGenerator.forBlock['validate_and_handle_error'] = function (
   block: any,
   generator: any) {
-    var inputElement = generator.valueToCode(block, 'input', 0);
     var condition = generator.valueToCode(block, 'condition', 0);
     var errorMessage = block.getFieldValue('error_message');
   
     var code = `
     document.addEventListener("DOMContentLoaded", function() {
-      var input = ${inputElement};
-      if (${condition}) {
-       
-      } else {
-        alert('${errorMessage}');
+      var inputElement = document.getElementById("nameId");
+      if (inputElement) {
+        inputElement.addEventListener("input", function() {
+          var input = inputElement.value;
+          if (${condition}) {
+            // Valid input, perform any additional actions here.
+            console.log(input);
+          } else {
+            window.alert('${errorMessage}');
+          }
+        });
       }
     });
-  `;
+  `;  
   
     return code;
 };
