@@ -63,10 +63,10 @@ javascriptGenerator.forBlock['get_request'] = function(block: any, generator: an
   let code = ""
   switch(dropdown_name) {
     case "JSON":
-      code = `${variable_name} = res.body;\n`;
+      code = `let ${variable_name}1 = res.body;\n`;
       break;
     default:
-      code = `${variable_name} = res.body;\n`
+      code = `let ${variable_name}1 = res.body;\n`
   }
   return code;
 };
@@ -88,5 +88,5 @@ Blockly.Blocks['respond_json'] = {
 javascriptGenerator.forBlock['respond_json'] = function(block: any, generator: any) {
   var variable_name = generator.nameDB_.getName(block.getFieldValue('var'), 'VARIABLE');
 
-  return `res.json(${variable_name});\n`;
+  return `res.json(${variable_name}1);\n`;
 };
