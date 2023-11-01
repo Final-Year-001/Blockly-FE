@@ -49,7 +49,7 @@ Blockly.Blocks["generate_form_id"] = {
       .appendField("Form ID:")
       .appendField(new Blockly.FieldTextInput("formId"), "formId");
     this.setOutput(true, "form_id_input");
-    this.setColour(230);
+    this.setColour(0);
     this.setTooltip("Enter the form ID.");
   },
 };
@@ -125,7 +125,7 @@ Blockly.Blocks["callback_function"] = {
       .appendField("Function name:")
       .appendField(new Blockly.FieldTextInput("myCallback"), "functionName");
     this.setOutput(true, "Function"); // Set the output type to "Function"
-    this.setColour(210);
+    this.setColour(370);
     this.setTooltip("Define a callback function.");
   },
 };
@@ -154,7 +154,7 @@ Blockly.Blocks["server_endpoint"] = {
       .appendField("Server endpoint:")
       .appendField(new Blockly.FieldTextInput("/your-server-endpoint"), "endpoint");
     this.setOutput(true, "String"); // Set the output type to String
-    this.setColour(230);
+    this.setColour(540);
     this.setTooltip("Specify the server endpoint.");
   },
 };
@@ -177,7 +177,7 @@ Blockly.Blocks["clear_form_fields"] = {
       .appendField("Clear form fields in");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(110);
+    this.setColour(170);
     this.setTooltip("Clear all input fields in a form.");
   },
 };
@@ -208,7 +208,7 @@ Blockly.Blocks["generate_id"] = {
       .appendField("Element ID:")
       .appendField(new Blockly.FieldTextInput("elId"), "elId");
     this.setOutput(true, "el_id_input");
-    this.setColour(230);
+    this.setColour(0);
     this.setTooltip("Enter the element ID.");
   },
 };
@@ -237,7 +237,7 @@ Blockly.Blocks['validate_and_handle_error'] = {
         .appendField(new Blockly.FieldTextInput(''), 'error_message');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(200); // Adjust the color as needed
+    this.setColour(260); // Adjust the color as needed
     this.setTooltip('Validate an input field based on a predefined condition and either allow adding input or handle errors with a custom message.');
   }
 };
@@ -269,7 +269,7 @@ Blockly.Blocks['custom_condition_input_length'] = {
     this.appendDummyInput()
         .appendField('Name is less than 20 characters and more than 2');
     this.setOutput(true, 'Boolean');
-    this.setColour(230);
+    this.setColour(160);
     this.setTooltip('Predefined condition: input.length <= 20');
   }
 };
@@ -294,7 +294,7 @@ Blockly.Blocks['change_form_background_color'] = {
         .appendField(new Blockly.FieldTextInput(''), 'color');
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(210);
+      this.setColour(700);
       this.setTooltip("Change the background color of a form element.");
   }
 };
@@ -330,7 +330,7 @@ Blockly.Blocks['show_data_in_alert_custom'] = {
 
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(230);
+      this.setColour(850);
       this.setTooltip("Show collected data in an alert.");
   }
 };
