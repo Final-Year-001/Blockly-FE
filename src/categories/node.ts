@@ -22,9 +22,5 @@ export const nodeCategory = {
       kind: "block",
       type: "get_request",
     },
-    {
-      kind: "block",
-      type: "controls_if"
-    }
   ],
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { nodeCategory } from "../../categories/node";
 import {javascriptGenerator} from "blockly/javascript";
@@ -10,6 +10,7 @@ interface BackendWorkspaceProps {
 
 function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
   const [xml, setXml] = useState<string>();
+  const workspaceWrapper  = useRef<HTMLDivElement>(null);
 
   const toolboxCategories = {
     kind: "categoryToolbox",
@@ -24,8 +25,14 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
     onCodeChange?.(code);
   }
 
+  /*useEffect(() => {
+    if(workspaceWrapper.current && !workspaceWrapper.current.shadowRoot){
+      workspaceWrapper.current.attachShadow({ mode: "open" });
+    }
+  }, [])*/
   return (
-    <BlocklyWorkspace
+    <div ref={workspaceWrapper} className="fill-height">
+      <BlocklyWorkspace
         toolboxConfiguration={toolboxCategories}
         initialXml={xml}
         onXmlChange={(xml) => setXml(xml)}
@@ -40,6 +47,7 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
         }}
         onWorkspaceChange={workspaceDidChange}
       />
+    </div>
   )
 }
 

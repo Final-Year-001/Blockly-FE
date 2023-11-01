@@ -32,14 +32,12 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
 
   // TODO: Assemble javascript into code variable.
   var code = `
-    const app = express();
-
     ${middleware}
 
     ${routes}
 
     app.use((err, req, res, next) => {
-      ${errorHandler}
+      ${errorHandler || "next()"}
     });
 
     ${startServer ? `app.listen(${port});` : ""}
