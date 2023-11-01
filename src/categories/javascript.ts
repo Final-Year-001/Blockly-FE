@@ -7,6 +7,10 @@ export const javascriptCategory = {
   contents: [
     {
       kind:"block",
+      type: "head_tag"
+    },
+    {
+      kind:"block",
       type: "javascript"
     },
     {
@@ -35,11 +39,19 @@ export const javascriptCategory = {
     }, 
     {
        kind: "block",
-      type: "validate_input",
-     }, 
+      type: "validate_and_handle_error", 
+     },  
+     {
+      kind: "block",
+      type: "custom_condition_input_length",
+    }, 
     {
       kind: "block",
-      type: "error_handling",
+      type: "change_form_background_color",
+    }, 
+    {
+      kind: "block",
+      type: "show_data_in_alert_custom",
     }, 
   ],
 };

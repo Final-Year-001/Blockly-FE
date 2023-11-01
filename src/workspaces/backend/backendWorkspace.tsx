@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { nodeCategory } from "../../categories/node";
-import {javascriptGenerator} from "blockly/javascript";
+import { javascriptGenerator } from "blockly/javascript";
+import { mathCategory } from "../../categories/math";
 import { commonCategory } from "../../categories/google_blocks";
 
 interface BackendWorkspaceProps {
@@ -14,16 +15,18 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
 
   const toolboxCategories = {
     kind: "categoryToolbox",
-    contents: [nodeCategory, commonCategory],
+    contents: [nodeCategory, mathCategory, commonCategory],
   };
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
-    console.log(workspace, "workspace")
-    javascriptGenerator.addReservedWords('code');
-    let code = javascriptGenerator.workspaceToCode(workspace)
+    console.log(workspace, "workspace");
+    javascriptGenerator.addReservedWords("code");
+    let code = javascriptGenerator.workspaceToCode(workspace);
     console.log(code, "Dfafd");
     onCodeChange?.(code);
-  }
+    // const code = generator.
+    // console.log(code, "code");
+  };
 
   /*useEffect(() => {
     if(workspaceWrapper.current && !workspaceWrapper.current.shadowRoot){

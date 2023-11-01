@@ -8,6 +8,18 @@ export const htmlCategory = {
   contents: [
     {
       kind: "block",
+      type: "html_html",
+    },
+    {
+      kind: "block",
+      type: "html_identifier",
+    },
+    {
+      kind: "block",
+      type: "html_label",
+    },
+    {
+      kind: "block",
       type: "html_button",
     },
     {
