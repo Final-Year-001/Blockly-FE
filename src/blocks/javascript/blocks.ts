@@ -96,7 +96,7 @@ javascriptGenerator.forBlock["submit_form_data"] = function (
       if (form) {
         var formData = new FormData(form);
 
-        fetch(${endpoint}, {
+        fetch('${endpoint}', {
           method: 'POST',
           body: formData
         })
@@ -140,7 +140,26 @@ javascriptGenerator.forBlock["callback_function"] = function (
   // Generate JavaScript code for the callback function
   var code = `
     function ${functionName}(data) {
-      // Your callback function code here
+      console.log("Received data:", data);
+      
+      var table = document.createElement("table");
+      var tbody = document.createElement("tbody");
+
+      // Assuming data is an object with 'name' and 'age' properties
+      var row = tbody.insertRow(0);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      cell1.innerHTML = "Name";
+      cell2.innerHTML = data.name;
+
+      row = tbody.insertRow(1);
+      cell1 = row.insertCell(0);
+      cell2 = row.insertCell(1);
+      cell1.innerHTML = "Age";
+      cell2.innerHTML = data.age;
+
+      table.appendChild(tbody);
+      document.body.appendChild(table);
     }
   `;
 
