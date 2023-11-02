@@ -1,15 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 // import App from './App.tsx'
-import './index.css'
-import { RecoilRoot } from 'recoil'
+import "./index.css";
+import { RecoilRoot } from "recoil";
+import { ThemeProvider } from "@material-tailwind/react";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import BackendPage from './pages/backend'
-import FrontendPage from './pages/fronted';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import BackendPage from "./pages/backend";
+import FrontendPage from "./pages/fronted";
 
 const router = createBrowserRouter([
   {
@@ -22,10 +20,12 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RecoilRoot>
-      <RouterProvider router={router} />
-    </RecoilRoot>
+    <ThemeProvider>
+      <RecoilRoot>
+        <RouterProvider router={router} />
+      </RecoilRoot>
+    </ThemeProvider>
   </React.StrictMode>
-)
+);
