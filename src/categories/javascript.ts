@@ -35,6 +35,10 @@ export const javascriptCategory = {
     }, 
     {
       kind: "block",
+      type: "auto_fill_form_fields",
+    }, 
+    {
+      kind: "block",
       type: "generate_id",
     }, 
     {
