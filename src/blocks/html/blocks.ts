@@ -90,9 +90,6 @@ Blockly.Blocks['html_button'] = {
     this.appendDummyInput()
         .appendField("Button Block");
     this.appendDummyInput()
-    .appendField(new Blockly.FieldCheckbox("TRUE"), "show");
-
-    this.appendDummyInput()
         .appendField(new Blockly.FieldCheckbox("TRUE"), "button_id")
         .appendField("ID")
         .appendField(new Blockly.FieldTextInput("default"), "id")
@@ -114,7 +111,6 @@ Blockly.Blocks['html_button'] = {
 
 
 JavaScript.javascriptGenerator.forBlock['html_button'] = function(block : any, generator : any) {
-  var checkbox_show = block.getFieldValue('show') === 'TRUE';
   var checkbox_button_id = block.getFieldValue('button_id') === 'TRUE';
   var text_id = block.getFieldValue('id');
   var checkbox_button_class = block.getFieldValue('button_class') === 'TRUE';
@@ -128,9 +124,7 @@ JavaScript.javascriptGenerator.forBlock['html_button'] = function(block : any, g
   if(checkbox_button_class){
     identifier = identifier + `class="` + text_class  + `"`
   }
-  if(!checkbox_show){
-    // showIdentifier = true;
-  }
+
 
   var code = `<button ` + identifier + `type="submit">` + removeParentheses(text_label) + '</button>';
  

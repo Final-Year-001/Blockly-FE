@@ -44,7 +44,7 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
     ${routes}
 
     app.use((err, req, res, next) => {
-      ${errorHandler}
+      ${errorHandler || "next()"}
     });
 
     ${startServer ? `app.listen(${port});` : ""}
