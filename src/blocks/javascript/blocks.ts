@@ -96,7 +96,7 @@ javascriptGenerator.forBlock["submit_form_data"] = function (
       if (form) {
         var formData = new FormData(form);
 
-        fetch(${endpoint}, {
+        fetch('${endpoint}', {
           method: 'POST',
           body: formData
         })
@@ -140,7 +140,26 @@ javascriptGenerator.forBlock["callback_function"] = function (
   // Generate JavaScript code for the callback function
   var code = `
     function ${functionName}(data) {
-      // Your callback function code here
+      console.log("Received data:", data);
+      
+      var table = document.createElement("table");
+      var tbody = document.createElement("tbody");
+
+      // Assuming data is an object with 'name' and 'age' properties
+      var row = tbody.insertRow(0);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      cell1.innerHTML = "Name";
+      cell2.innerHTML = data.name;
+
+      row = tbody.insertRow(1);
+      cell1 = row.insertCell(0);
+      cell2 = row.insertCell(1);
+      cell1.innerHTML = "Age";
+      cell2.innerHTML = data.age;
+
+      table.appendChild(tbody);
+      document.body.appendChild(table);
     }
   `;
 
@@ -174,7 +193,10 @@ Blockly.Blocks["clear_form_fields"] = {
   init: function () {
     this.appendValueInput("form")
       .setCheck("form_id_input")
-      .appendField("Clear form fields in");
+      .appendField("Clear form fields in, ID");
+    this.appendValueInput("rest_button_id")
+      .setCheck("el_id_input")
+      .appendField("Resrt From Button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(170);
@@ -187,13 +209,74 @@ javascriptGenerator.forBlock["clear_form_fields"] = function (
   generator: any
 ) {
   var formElement = generator.valueToCode(block, "form", 0);
+  var buttonElementId = generator.valueToCode(block, 'rest_button_id', 0)
 
   var code = `
     document.addEventListener("DOMContentLoaded", function() {
-      var form = ${formElement};
-      var inputElements = form.getElementsByTagName('input');
-      for (var i = 0; i < inputElements.length; i++) {
-        inputElements[i].value = '';
+      var form = document.getElementById(${formElement});
+      var Button = document.getElementById(${buttonElementId});
+      Button.addEventListener("click", function() {
+        var inputElements = form.getElementsByTagName('input');
+        for (var i = 0; i < inputElements.length; i++) {
+          inputElements[i].value = '';
+        }
+      });
+    });
+  `;
+
+  return code;
+};
+
+//block to auto fill the form
+Blockly.Blocks['auto_fill_form_fields'] = {
+  init: function() {
+      this.appendDummyInput()
+          .appendField("Auto fill");
+
+      this.appendValueInput("form")
+          .setCheck("form_id_input")
+          .appendField("Add auto input to the form, ID");
+
+      this.appendValueInput("name_element_id")
+          .setCheck("el_id_input")
+          .appendField("Name Input Element ID");
+
+      this.appendValueInput("age_element_id")
+          .setCheck("el_id_input")
+          .appendField("Age Input Element ID");
+      
+      this.appendValueInput("auto_button_id")
+          .setCheck("el_id_input")
+          .appendField("Auto Add Button Element ID");
+
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(70);
+      this.setTooltip("Add data to the form");
+  }
+};
+
+javascriptGenerator.forBlock['auto_fill_form_fields'] = function(block: any, generator:any) {
+  var formElementId = generator.valueToCode(block, 'form', 0);
+  var nameId = generator.valueToCode(block, 'name_element_id', 0);
+  var ageId = generator.valueToCode(block, 'age_element_id', 0);
+  var buttonElementId = generator.valueToCode(block, 'auto_button_id', 0)
+
+  var code = `
+    document.addEventListener("DOMContentLoaded", function() {
+      var form = document.getElementById(${formElementId});
+      var Button = document.getElementById(${buttonElementId});
+      var nameElement = document.getElementById(${nameId});
+      var ageElement = document.getElementById(${ageId});
+      
+      if (Button) {
+        Button.addEventListener("click", function(event) {
+          event.preventDefault(); // Prevent form submission
+          if (Button.id === ${buttonElementId}) {
+            nameElement.value = "John Doe";
+            ageElement.value = "30";
+          }
+        });
       }
     });
   `;
@@ -245,20 +328,28 @@ Blockly.Blocks['validate_and_handle_error'] = {
 javascriptGenerator.forBlock['validate_and_handle_error'] = function (
   block: any,
   generator: any) {
+    var nameElementId = generator.valueToCode(block, 'input', 0);
     var condition = generator.valueToCode(block, 'condition', 0);
     var errorMessage = block.getFieldValue('error_message');
   
     var code = `
+    function clearInputFields(elementId) {
+      var element = document.getElementById(elementId);
+      if (element) {
+        element.value = '';
+      }
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
-      var inputElement = document.getElementById("nameId");
-      if (inputElement) {
-        inputElement.addEventListener("input", function() {
-          var input = inputElement.value;
+      var nameElement = document.getElementById(${nameElementId});
+      if (nameElement) {
+        nameElement.addEventListener("input", function() {
+          var input = nameElement.value;
           if (${condition}) {
-            // Valid input, perform any additional actions here.
             console.log(input);
           } else {
             window.alert('${errorMessage}');
+            clearInputFields(${nameElementId});
           }
         });
       }
@@ -332,6 +423,10 @@ Blockly.Blocks['show_data_in_alert_custom'] = {
       this.appendValueInput("age_element_id")
           .setCheck("el_id_input")
           .appendField("Age Input Element ID");
+      
+      this.appendValueInput("submit_button_id")
+          .setCheck("el_id_input")
+          .appendField("Submit Button Element ID");
 
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -343,16 +438,21 @@ Blockly.Blocks['show_data_in_alert_custom'] = {
 javascriptGenerator.forBlock['show_data_in_alert_custom'] = function(block: any, generator: any) {
   var nameElementId = generator.valueToCode(block, 'name_element_id', 0);
   var ageElementId = generator.valueToCode(block, 'age_element_id', 0);
+  var buttonElementId = generator.valueToCode(block, 'submit_button_id', 0)
 
   var code = `
-  document.addEventListener("DOMContentLoaded", function() {
-    
-    var name = document.getElementById(${nameElementId}).value;
-    var age = document.getElementById(${ageElementId}).value;
+    document.addEventListener("DOMContentLoaded", function() {
+      var nameElement = document.getElementById(${nameElementId});
+      var ageElement = document.getElementById(${ageElementId});
+      var submitButton = document.getElementById(${buttonElementId});
 
-    
-    alert("Name: " + name + "\\nAge: " + age);
-  });
+      submitButton.addEventListener("click", function() {
+        var name = nameElement.value;
+        var age = ageElement.value;
+  
+        window.alert("Name: " + name + "\\nAge: " + age);
+      });
+    });
   `;
   return code;
 }
