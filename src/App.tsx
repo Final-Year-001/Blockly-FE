@@ -56,7 +56,7 @@ function App() {
         <button onClick={onClick}>increase</button>
       </div> */}
 
-      <h1>Frontend workspace</h1>
+      <h1 className="text-3xl font-bold mt-6 mb-4 text-indigo-400">Frontend workspace</h1>
 
       <div
         style={{
@@ -94,16 +94,21 @@ function App() {
               IFrame
             </button>
           </div>
-          {tabView === "code" && <code>{frontendCode}</code>}
+          <br /> {/* Add a line break here */}
+          {tabView === "code" && (
+            <div style={{ minHeight: "450px", maxHeight: "500px", overflowY: "auto", border: "1px solid #ccc", borderRadius: "4px", padding: "8px" }}>
+              <code>{frontendCode}</code>
+            </div>
+          )}
           {tabView === "iframe" && (
-            <div>
+            <div style={{ minHeight: "450px", border: "1px solid #ccc", borderRadius: "4px", padding: "8px" }}>
               <iframe ref={iframeRef} name="iframe1" />
             </div>
           )}
         </div>
       </div>
 
-      <h1>Backend workspace</h1>
+      <h1 className="text-3xl font-bold mt-6 mb-4 text-indigo-400">Backend workspace</h1>
 
       <div
         style={{

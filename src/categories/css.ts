@@ -7,7 +7,23 @@ export const cssCategory = {
   contents: [
     {
       kind: "block",
-      type: "html_buttonCSS",
+      type: "html_css",
+    },
+    {
+      kind: "block",
+      type: "style_block",
+    },
+    {
+      kind: "block",
+      type: "css_bg_color",
+    },
+    {
+      kind: "block",
+      type: "css_text_color",
+    },
+    {
+      kind: "block",
+      type: "css_font_size",
     },
   ],
 };

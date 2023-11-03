@@ -107,5 +107,22 @@ export const commonCategory = {
         'categorystyle': 'variable_category',
         'custom': 'VARIABLE',
       },
+      {
+        'kind': 'category',
+        'name': 'Text',
+        'categorystyle': 'text_category',
+        'contents': [
+          { kind: 'block', type: 'text' },
+          { kind: 'block', type: 'text_multiline' },
+          { kind: 'block', type: 'text_join' },
+          { kind: 'block', type: 'text_create_join_container' },
+          { kind: 'block', type: 'text_create_join_item' },
+          { kind: 'block', type: 'text_append' },
+          { kind: 'block', type: 'text_length' },
+          { kind: 'block', type: 'text_isEmpty' },
+          { kind: 'block', type: 'text_indexOf' },
+          { kind: 'block', type: 'text_charAt' }
+        ]
+      }
   ],
 };

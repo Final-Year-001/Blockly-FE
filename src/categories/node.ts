@@ -48,7 +48,7 @@ export const nodeCategory = {
     },
     {
       kind: "block",
-      type: "controls_if",
+      type: "respond_with_status",
     },
   ],
 };
