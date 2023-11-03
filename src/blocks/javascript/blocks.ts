@@ -131,16 +131,6 @@ javascriptGenerator.forBlock['alert_block'] = function(block: any, generator: an
   return code;
 };
 
-Blockly.Blocks["onsubmit_code"] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("On submit with alert");
-      this.setOutput(true, "form_onsubmit");
-    this.setColour(540);
-    this.setTooltip("Custom code with a window alert to run when the form is submitted");
-  },
-};
-
 Blockly.Blocks['fetch_block'] = {
   init: function() {
     this.appendValueInput("fetch")
@@ -167,7 +157,7 @@ Blockly.Blocks['fetch_block'] = {
   }
 };
 
-javascriptGenerator.forBlock['fetch_block'] = function(block, generator) {
+javascriptGenerator.forBlock['fetch_block'] = function(block: any, generator: any) {
   let value_fetch = generator.valueToCode(block, 'fetch', Order.ATOMIC);
   let dropdown_name = block.getFieldValue('method');
   let value_name = generator.valueToCode(block, 'NAME', Order.ATOMIC);
@@ -189,12 +179,6 @@ javascriptGenerator.forBlock['fetch_block'] = function(block, generator) {
     ${statements_on_error}
   })`;
   return code;
-};
-
-javascriptGenerator.forBlock['onsubmit_code'] = function (block:any , generator:any) {
-  return `
-window.alert("Form submitted!");
-`;
 };
 
 //clear form data
