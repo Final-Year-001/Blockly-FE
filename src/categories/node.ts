@@ -24,6 +24,22 @@ export const nodeCategory = {
     },
     {
       kind: "block",
+      type: "session_middleware",
+    },
+    {
+      kind: "block",
+      type: "create_session",
+    },
+    {
+      kind: "block",
+      type: "has_session",
+    },
+    {
+      kind: "block",
+      type: "end_session",
+    },
+    {
+      kind: "block",
       type: "respond_json",
     },
     {

@@ -104,8 +104,174 @@ javascriptGenerator.forBlock["compression_middleware"] = function (block: any) {
 
   var code = `
     import compression from 'compression';
-    app.use(helmet(${options}));
+    app.use(compression(${options}));
   `;
 
   return code;
+};
+
+Blockly.Blocks["session_middleware"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Session midleware");
+    this.appendDummyInput()
+      .appendField("Secret:")
+      .appendField(new Blockly.FieldTextInput(), "secret");
+    this.appendDummyInput()
+      .appendField("Options:")
+      .appendField(new Blockly.FieldTextInput(), "options");
+    this.setTooltip(
+      "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
+    );
+    this.setHelpUrl("");
+    this.setColour(130);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
+  var secret = block.getFieldValue("secret");
+  var options = block.getFieldValue("options");
+  // check whether the options are in expected type
+
+  var code = `
+    import session from 'express-session';
+    app.use(session(${
+      options
+        ? options
+        : `{secret: ${
+            secret || "ASKDJASINAAKSJD"
+          }, resave: false, saveUninitialized:false, }`
+    }));
+  `;
+
+  return code;
+};
+
+// // not correctly. only correct thing is block name
+// Blockly.Blocks["encrypt"] = {
+//   init: function () {
+//     this.appendDummyInput().appendField("Compress Responses");
+//     this.appendDummyInput()
+//       .appendField("Options:")
+//       .appendField(new Blockly.FieldTextInput(""), "options");
+//     this.setTooltip(
+//       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
+//     );
+//     this.setHelpUrl("");
+//     this.setColour(130);
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//   },
+// };
+
+// javascriptGenerator.forBlock["encrypt"] = function (block: any) {
+//   var options = block.getFieldValue("options");
+//   // check whether the options are in expected type
+
+//   var code = `
+//     import compression from 'compression';
+//     app.use(helmet(${options}));
+//   `;
+
+//   return code;
+// };
+
+// // not correctly. only correct thing is block name will have to get path to incomming value and database value
+// Blockly.Blocks["compareEncripted"] = {
+//   init: function () {
+//     this.appendDummyInput().appendField("Compress Responses");
+//     this.appendDummyInput()
+//       .appendField("Options:")
+//       .appendField(new Blockly.FieldTextInput(""), "options");
+//     this.setTooltip(
+//       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
+//     );
+//     this.setHelpUrl("");
+//     this.setColour(130);
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//   },
+// };
+
+// javascriptGenerator.forBlock["encrypt"] = function (block: any) {
+//   var options = block.getFieldValue("options");
+//   // check whether the options are in expected type
+
+//   var code = `
+//     import compression from 'compression';
+//     app.use(helmet(${options}));
+//   `;
+
+//   return code;
+// };
+
+Blockly.Blocks["create_session"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Create Session");
+    this.appendDummyInput()
+      .appendField("Path to user ID:")
+      .appendField(new Blockly.FieldTextInput(), "userIdPath");
+    this.setTooltip("this will create a session for the user");
+    this.setHelpUrl("");
+    this.setColour(130);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["create_session"] = function (block: any) {
+  var userIdPath = block.getFieldValue("userIdPath");
+  // check whether the options are in expected type
+
+  var code = `req.session.user = ${userIdPath}`;
+
+  return code;
+};
+
+Blockly.Blocks["has_session"] = {
+  init: function () {
+    this.appendDummyInput().appendField("IS A SESSION AVAILABLE?");
+    this.appendStatementInput("response if available")
+      .setCheck(null)
+      .appendField("available");
+    this.appendStatementInput("response if unavailable")
+      .setCheck(null)
+      .appendField("unavailable");
+    this.setHelpUrl("");
+    this.setColour(130);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["has_session"] = function (
+  block: any,
+  generator: any
+) {
+  const ifAvailable = generator.statementToCode(block, "available");
+  const ifUnavailable = generator.statementToCode(block, "unavailable");
+  // check whether the options are in expected type
+
+  var code = `if(req.session.user) {
+    return res.json(${ifAvailable})
+  } 
+  res.json(${ifUnavailable})
+  `;
+
+  return code;
+};
+
+Blockly.Blocks["end_session"] = {
+  init: function () {
+    this.appendDummyInput().appendField("END SESSION");
+    this.setHelpUrl("");
+    this.setColour(130);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["end_session"] = function () {
+  return `req.session.destroy()`;
 };
