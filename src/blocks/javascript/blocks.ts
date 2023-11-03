@@ -213,7 +213,7 @@ Blockly.Blocks["clear_form_fields"] = {
       .appendField("Clear form fields in, ID");
     this.appendValueInput("rest_button_id")
       .setCheck("el_id_input")
-      .appendField("Resrt From Button ID");
+      .appendField("Reset From Button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(170);
