@@ -109,3 +109,41 @@ javascriptGenerator.forBlock["compression_middleware"] = function (block: any) {
 
   return code;
 };
+
+Blockly.Blocks["session_middleware"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Session midleware");
+    this.appendDummyInput()
+      .appendField("Secret:")
+      .appendField(new Blockly.FieldTextInput(), "secret");
+    this.appendDummyInput()
+      .appendField("Options:")
+      .appendField(new Blockly.FieldTextInput(), "options");
+    this.setTooltip(
+      "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
+    );
+    this.setHelpUrl("");
+    this.setColour(130);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
+  var secret = block.getFieldValue("secret");
+  var options = block.getFieldValue("options");
+  // check whether the options are in expected type
+
+  var code = `
+    import session from 'express-session';
+    app.use(session(${
+      options
+        ? options
+        : `{secret: ${
+            secret || "ASKDJASINAAKSJD"
+          }, resave: false, saveUninitialized:false, }`
+    }));
+  `;
+
+  return code;
+};
