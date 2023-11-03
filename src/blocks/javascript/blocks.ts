@@ -1,5 +1,5 @@
 import Blockly from "blockly";
-import { javascriptGenerator } from "blockly/javascript";
+import { Order, javascriptGenerator } from "blockly/javascript";
 
 // Head Block
 Blockly.Blocks['head_tag'] = {
@@ -66,20 +66,12 @@ javascriptGenerator.forBlock["generate_form_id"] = function (
 // Handle form submission
 Blockly.Blocks["handle_form_submission"] = {
   init: function () {
-    this.appendDummyInput()
-      .appendField("When form is submitted");
     this.appendValueInput("form")
-      .setCheck("form_id_input")
-      .appendField("Form ID:");
-    this.appendDummyInput()
-      .appendField("HTTP Method:")
-      .appendField(new Blockly.FieldDropdown([["GET", "GET"], ["POST", "POST"], ["PUT", "PUT"], ["DELETE", "DELETE"]]), "method");
-    this.appendDummyInput()
-      .appendField("Action (URL):")
-      .appendField(new Blockly.FieldTextInput("/your-backend-endpoint"), "action");
-    this.appendValueInput("onsubmit")
-      .setCheck("form_onsubmit")
-      .appendField("Execute on submit");
+        .setCheck(null)
+        .appendField("Form controller ID");
+    this.appendStatementInput("on_submit")
+        .setCheck(null)
+        .appendField("on submit");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(110);
@@ -88,53 +80,55 @@ Blockly.Blocks["handle_form_submission"] = {
 };
 
 javascriptGenerator.forBlock['handle_form_submission'] = function (block : any, generator : any) {
-  var formId = generator.valueToCode(block, "form", generator.ORDER_ATOMIC);
-  var method = block.getFieldValue('method');
-  var action = block.getFieldValue('action');
-  var onsubmit = generator.statementToCode(block, 'onsubmit');
+  let formId = generator.valueToCode(block, 'form', Order.ATOMIC);
+  let on_submit_callback = generator.statementToCode(block, 'on_submit');
 
     var code = `
-    document.getElementById(${formId}).onsubmit = function(event) {
-      event.preventDefault(); 
-
-      var form = document.getElementById(${formId});
-      var method = "${method}";
-      var action = "${action}";
-
-      var elements = form.elements;
-
-      var formData = {};
-
-      for (var i = 0; i < elements.length; i++) {
-        var element = elements[i];
-        var elementValue = element.value;
-        formData[element.name || element.id] = elementValue;
-      }
-      var values = Object.values(formData);
-
-      window.alert("Form submitted! data: " + JSON.stringify(values));
-
-      ${onsubmit}
-      
-      fetch(action, {
-        method: method,
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      .then(function(response) {
-        if (!response.ok) {
-          throw new Error("Form submission failed");
-        }
-      })
-      .catch(function(error) {
-        console.error("Error sending data to the backend:", error);
-      });
-    };
+    let form = document.getElementById(${formId});
+    form.onsubmit = function(event) {
+      ${on_submit_callback}
+    }
     `;
 
     return code;
+};
+
+Blockly.Blocks['set_form_data_to'] = {
+  init: function() {
+    this.appendValueInput("var")
+        .setCheck(null)
+        .appendField("Set form data to");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascriptGenerator.forBlock['set_form_data_to'] = function(block: any, generator: any) {
+  var value_name = generator.valueToCode(block, 'var', Order.ATOMIC);
+  var code = `let ${value_name} = new FormData(form)\n`;
+  return code;
+};
+
+Blockly.Blocks['alert_block'] = {
+  init: function() {
+    this.appendValueInput("message")
+        .setCheck(null)
+        .appendField("Show alert");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascriptGenerator.forBlock['alert_block'] = function(block: any, generator: any) {
+  var message = generator.valueToCode(block, 'message', Order.ATOMIC);
+  var code = `alert(${message})\n`;
+  return code;
 };
 
 Blockly.Blocks["onsubmit_code"] = {
@@ -145,6 +139,56 @@ Blockly.Blocks["onsubmit_code"] = {
     this.setColour(540);
     this.setTooltip("Custom code with a window alert to run when the form is submitted");
   },
+};
+
+Blockly.Blocks['fetch_block'] = {
+  init: function() {
+    this.appendValueInput("fetch")
+        .setCheck(null)
+        .appendField("fetch url");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField("with method")
+        .appendField(new Blockly.FieldDropdown([["GET", "GET"], ["POST", "POST"], ["PUT", "PUT"], ["DELETE", "DELETE"]]), "method");
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("data from");
+    this.appendStatementInput("on_sucess")
+        .setCheck(null)
+        .appendField("on success");
+    this.appendStatementInput("on_error")
+        .setCheck(null)
+        .appendField("on error");
+    this.setColour(230);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascriptGenerator.forBlock['fetch_block'] = function(block, generator) {
+  let value_fetch = generator.valueToCode(block, 'fetch', Order.ATOMIC);
+  let dropdown_name = block.getFieldValue('method');
+  let value_name = generator.valueToCode(block, 'NAME', Order.ATOMIC);
+  let statements_on_sucess = generator.statementToCode(block, 'on_sucess');
+  let statements_on_error = generator.statementToCode(block, 'on_error');
+  // TODO: Assemble javascript into code variable.
+  var code = `fetch(${value_fetch},{
+    method: "${dropdown_name}",
+        body: JSON.stringify(${value_name}),
+        headers: {
+          "Content-Type": "application/json"
+        }
+  })
+  .then(res => res.json())
+  .then((res) => {
+    ${statements_on_sucess}
+  }).catch((error) => {
+    console.log(error);
+    ${statements_on_error}
+  })`;
+  return code;
 };
 
 javascriptGenerator.forBlock['onsubmit_code'] = function (block:any , generator:any) {

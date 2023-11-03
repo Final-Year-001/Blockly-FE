@@ -6,6 +6,14 @@ export const javascriptCategory = {
   colour: "#5CA699",
   contents: [
     {
+      kind: "block",
+      type: "alert_block"
+    },
+    {
+      kind: "block",
+      type: "fetch_block"
+    },
+    {
       kind:"block",
       type: "head_tag"
     },
@@ -52,6 +60,10 @@ export const javascriptCategory = {
     {
       kind: "block",
       type: "show_data_in_alert_custom",
+    },
+    {
+      kind: "block",
+      type: "set_form_data_to",
     }, 
   ],
 };
