@@ -14,20 +14,16 @@ export const javascriptCategory = {
       type: "javascript"
     },
     {
-      kind: "block",
-      type: "submit_form_data",
-    }, 
+      kind:"block",
+      type: "handle_form_submission"
+    },
     {
       kind: "block",
       type: "generate_form_id",
     }, 
     {
-      kind: "block",
-      type: "callback_function", 
-    }, 
-    {
-      kind: "block",
-      type: "server_endpoint", 
+      kind:"block",
+      type: "onsubmit_code"
     },
     {
       kind: "block",
@@ -50,7 +46,7 @@ export const javascriptCategory = {
       type: "custom_condition_input_length",
     }, 
     {
-      kind: "block",
+      kind: "block", 
       type: "change_form_background_color",
     }, 
     {
