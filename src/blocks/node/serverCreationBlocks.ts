@@ -205,3 +205,26 @@ javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
 
 //   return code;
 // };
+
+Blockly.Blocks["create_session"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Create Session");
+    this.appendDummyInput()
+      .appendField("Path to user ID:")
+      .appendField(new Blockly.FieldTextInput(), "userIdPath");
+    this.setTooltip("this will create a session for the user");
+    this.setHelpUrl("");
+    this.setColour(130);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["create_session"] = function (block: any) {
+  var userIdPath = block.getFieldValue("userIdPath");
+  // check whether the options are in expected type
+
+  var code = `req.session.user = ${userIdPath}`;
+
+  return code;
+};
