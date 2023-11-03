@@ -1,11 +1,13 @@
 import { useRef, useState } from 'react';
 import FrontendWorkspace from '../../workspaces/frontend/frontendWorkspace';
 import { ClipboardIcon  } from '@heroicons/react/24/solid';
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
 function FrontendPage() {
   const [frontendCode, setFrontendCode] = useState('');
   const [tabView, setTabView] = useState('code'); // "code" or "iframe"
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [codeCopied, setCodeCopied] = useState(false);
 
   const injectCode = (code: string) => {
     setFrontendCode(code);
@@ -25,6 +27,13 @@ function FrontendPage() {
     textField.select();
     document.execCommand('copy');
     document.body.removeChild(textField);
+
+    setCodeCopied(true);
+
+    // Reset the code copied indicator after a short delay (e.g., 3 seconds)
+    setTimeout(() => {
+      setCodeCopied(false);
+    }, 3000); // 3000 milliseconds (3 seconds)
   };
 
   return (
@@ -101,6 +110,24 @@ function FrontendPage() {
               >
                 <ClipboardIcon  className="w-5 h-5 text-indigo-600" />
               </button>
+              {codeCopied && (
+                <div
+                style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)', // Transparent background
+                  padding: '4px 8px',
+                  borderRadius: '4px',
+                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                  zIndex: 1,
+                  fontSize: '12px', 
+                  color: 'grey', 
+                }}
+                >
+                  <span>Code Copied!</span>
+                </div>
+              )}
             </div>
           )}
           {tabView === 'iframe' && (
