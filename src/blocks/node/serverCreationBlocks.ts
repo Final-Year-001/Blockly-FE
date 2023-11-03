@@ -228,3 +228,36 @@ javascriptGenerator.forBlock["create_session"] = function (block: any) {
 
   return code;
 };
+
+Blockly.Blocks["has_session"] = {
+  init: function () {
+    this.appendDummyInput().appendField("IS A SESSION AVAILABLE?");
+    this.appendStatementInput("response if available")
+      .setCheck(null)
+      .appendField("available");
+    this.appendStatementInput("response if unavailable")
+      .setCheck(null)
+      .appendField("unavailable");
+    this.setHelpUrl("");
+    this.setColour(130);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["has_session"] = function (
+  block: any,
+  generator: any
+) {
+  const ifAvailable = generator.statementToCode(block, "available");
+  const ifUnavailable = generator.statementToCode(block, "unavailable");
+  // check whether the options are in expected type
+
+  var code = `if(req.session.user) {
+    return res.json(${ifAvailable})
+  } 
+  res.json(${ifUnavailable})
+  `;
+
+  return code;
+};
