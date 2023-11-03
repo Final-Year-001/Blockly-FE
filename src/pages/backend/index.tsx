@@ -1,6 +1,6 @@
 import { useState } from "react";
 import BackendWorkspace from "../../workspaces/backend/backendWorkspace";
-import { Button } from "@material-tailwind/react";
+import SandboxTopBar from "../../components/sandboxTopBar";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -29,10 +29,8 @@ function BackendPage() {
   const [backendCode, setBackendCode] = useState("");
 
   return (
-    <div className="flex flex-col h-full">
-      <div> 
-        <Button variant="filled">Text</Button>
-      </div>
+    <div className="flex flex-col h-full w-full">
+      <SandboxTopBar />
       <div className="flex flex-row flex-grow">
         <div style={{ flex: 0.8 }}>
           <BackendWorkspace
@@ -51,7 +49,7 @@ function BackendPage() {
         >
           <code>{backendCode}</code>
         </div>
-      d</div>
+      </div>
     </div>
   );
 }

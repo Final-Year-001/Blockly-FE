@@ -8,6 +8,6 @@ export const databaseCategory = {
     {
       kind:"block",
       type: "insert_db"
-    }
+    },
   ],
 };
