@@ -1,13 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import App from './App.tsx'
 import "./index.css";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "@material-tailwind/react";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 import BackendPage from "./pages/backend";
 import FrontendPage from "./pages/fronted";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -22,10 +24,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <RecoilRoot>
-        <RouterProvider router={router} />
-      </RecoilRoot>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <RecoilRoot>
+          <RouterProvider router={router} />
+        </RecoilRoot>
+      </ThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

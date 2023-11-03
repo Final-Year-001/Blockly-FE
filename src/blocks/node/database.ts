@@ -1,67 +1,93 @@
-import Blockly, { MenuOption } from "blockly";
+import Blockly, { BlockSvg, MenuOption } from "blockly";
+import { MutatorIcon } from "blockly/core/icons/mutator_icon";
 import { javascriptGenerator, Order } from "blockly/javascript";
 
-Blockly.Blocks["insert_db"] = {
-  init: function () {
+Blockly.Blocks['insert_to_collection'] = {
+  init: function() {
+    this.appendValueInput("data")
+        .setCheck(null)
+        .appendField("Insert data to");
+    this.appendDummyInput();
     this.appendValueInput("collection")
-      .setCheck(null)
-      .appendField("Insert data from ")
-      .appendField(new Blockly.FieldVariable("item"), "var")
-      .appendField("to collection");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("from");
+    this.setOutput(true, null);
     this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  },
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
 };
 
-javascriptGenerator.forBlock["insert_db"] = function (
-  block: any,
-  generator: any
-) {
-  let collection_name = generator.nameDB_.getName(
-    block.getFieldValue("var"),
-    "VARIABLE"
-  );
-
-  let value_name = generator.valueToCode(block, "collection", Order.ATOMIC);
-
-  var code = `
-  import database from "./lib/database/database.js";
-  await database.add(${value_name},${collection_name}1);\n`;
-  return code;
-};
-
-Blockly.Blocks["respond_with_status"] = {
-  init: function () {
-    const statusOptions: MenuOption[] = [
-      ["OK (200)", "200"],
-      ["Created (201)", "201"],
-      ["Accepted (202)", "202"],
-      ["No Content (204)", "204"],
-      ["Bad Request (400)", "400"],
-      ["Unauthorized (401)", "401"],
-      ["Forbidden (403)", "403"],
-      ["Not Found (404)", "404"],
-      ["Internal Server Error (500)", "500"],
-    ];
+Blockly.Blocks['find_by_id_db'] = {
+  init: function() {
+    this.appendValueInput("collection")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField("Find data from collection");
     this.appendDummyInput()
-      .appendField("respond with")
-      .appendField(new Blockly.FieldDropdown(statusOptions), "status");
+        .appendField("with id");
+    this.appendValueInput("id")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_CENTRE);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascriptGenerator.forBlock['find_by_id_db'] = function(block: any, generator: any) {
+  var value_collection = generator.valueToCode(block, 'collection', Order.ATOMIC);
+  var value_id = generator.valueToCode(block, 'id', Order.ATOMIC);
+
+  let code = `await database.get(${value_collection}1,${value_id})`;
+  return [code, javascriptGenerator.ORDER_NONE];
+};
+
+Blockly.Blocks['find_with_filter'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Find in database");
+    this.appendStatementInput("filter")
+        .setCheck(null)
+        .appendField("Filter");
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascriptGenerator.forBlock['find_with_filter'] = function(block: any, generator: any) {
+  var statements_filter = generator.statementToCode(block, 'filter');
+  var code = '...';
+  return [code, javascriptGenerator.ORDER_NONE];
+};
+
+
+Blockly.Blocks['find_in_database_filter'] = {
+  init: function() {
+    this.appendValueInput("key")
+        .setCheck(null)
+        .appendField("find filter")
+        .appendField("key");
+    this.appendDummyInput()
+        .appendField("value");
+    this.appendValueInput("value")
+        .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  },
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
 };
 
-javascriptGenerator.forBlock["respond_with_status"] = function (
-  block: any,
-  generator: any
-) {
-  let dropdown_name = block.getFieldValue("status");
-  let code = `res.status(${dropdown_name});\n`;
+javascriptGenerator.forBlock['find_in_database_filter'] = function(block: any, generator: any) {
+  var value_key = generator.valueToCode(block, 'key', Order.ATOMIC);
+  var value_value = generator.valueToCode(block, 'value', Order.ATOMIC);
+  // TODO: Assemble javascript into code variable.
+  var code = '...\n';
   return code;
 };

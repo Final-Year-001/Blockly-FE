@@ -5,13 +5,15 @@ import { javascriptGenerator } from "blockly/javascript";
 import { mathCategory } from "../../categories/math";
 import { commonCategory } from "../../categories/google_blocks";
 import { databaseCategory } from "../../categories/database";
-
+import Blockly from "blockly";
 interface BackendWorkspaceProps {
   onCodeChange?: (code: string) => void;
 }
 
 function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
-  const [xml, setXml] = useState<string>();
+  // const [xml, setXml] = useState<string>();
+  const [json,setJson] = useState<string>();
+
   const workspaceWrapper  = useRef<HTMLDivElement>(null);
 
   const toolboxCategories = {
@@ -29,6 +31,10 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
     // console.log(code, "code");
   };
 
+  const onJsonChange = (json: object) => {
+    // Blockly.
+  }
+
   /*useEffect(() => {
     if(workspaceWrapper.current && !workspaceWrapper.current.shadowRoot){
       workspaceWrapper.current.attachShadow({ mode: "open" });
@@ -38,8 +44,9 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
     <div ref={workspaceWrapper} className="fill-height">
       <BlocklyWorkspace
         toolboxConfiguration={toolboxCategories}
-        initialXml={xml}
-        onXmlChange={(xml) => setXml(xml)}
+        // initialXml={xml}
+        // onXmlChange={(xml) => setXml(xml)}
+        onJsonChange={onJsonChange}
         className="fill-height"
         workspaceConfiguration={{
           grid: {
