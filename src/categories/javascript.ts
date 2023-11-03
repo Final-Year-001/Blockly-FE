@@ -23,6 +23,10 @@ export const javascriptCategory = {
         },
         {
           kind: "block",
+          type: "create_variable"
+        },
+        {
+          kind: "block",
           type: "generate_id",
         }, 
         {

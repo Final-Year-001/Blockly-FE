@@ -17,7 +17,10 @@ function FrontendPage() {
 
   const copyCodeToClipboard = (code: string) => {
     const textField = document.createElement('textarea');
-    textField.innerText = code;
+    textField.value = code; // Use 'value' instead of 'innerText'
+    textField.setAttribute('readonly', ''); // Make the textarea read-only
+    textField.style.position = 'absolute';
+    textField.style.left = '-9999px'; // Move the textarea off-screen
     document.body.appendChild(textField);
     textField.select();
     document.execCommand('copy');

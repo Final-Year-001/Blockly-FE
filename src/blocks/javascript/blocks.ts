@@ -93,10 +93,11 @@ javascriptGenerator.forBlock['handle_form_submission'] = function (block : any, 
     return code;
 };
 
+//set the form data
 Blockly.Blocks['set_form_data_to'] = {
   init: function() {
-    this.appendValueInput("var")
-        .setCheck(null)
+    this.appendStatementInput("var")
+        .setCheck("Variable")
         .appendField("Set form data to");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -107,11 +108,12 @@ Blockly.Blocks['set_form_data_to'] = {
 };
 
 javascriptGenerator.forBlock['set_form_data_to'] = function(block: any, generator: any) {
-  var value_name = generator.valueToCode(block, 'var', Order.ATOMIC);
+  var value_name = generator.statementToCode(block, 'var', Order.ATOMIC);
   var code = `let ${value_name} = new FormData(form)\n`;
   return code;
 };
 
+//showing an alert
 Blockly.Blocks['alert_block'] = {
   init: function() {
     this.appendValueInput("message")
@@ -131,6 +133,7 @@ javascriptGenerator.forBlock['alert_block'] = function(block: any, generator: an
   return code;
 };
 
+//fetch the form data
 Blockly.Blocks['fetch_block'] = {
   init: function() {
     this.appendValueInput("fetch")
@@ -140,7 +143,7 @@ Blockly.Blocks['fetch_block'] = {
         .setAlign(Blockly.ALIGN_CENTRE)
         .appendField("with method")
         .appendField(new Blockly.FieldDropdown([["GET", "GET"], ["POST", "POST"], ["PUT", "PUT"], ["DELETE", "DELETE"]]), "method");
-    this.appendValueInput("NAME")
+    this.appendStatementInput("NAME")
         .setCheck(null)
         .appendField("data from");
     this.appendStatementInput("on_sucess")
@@ -160,10 +163,10 @@ Blockly.Blocks['fetch_block'] = {
 javascriptGenerator.forBlock['fetch_block'] = function(block: any, generator: any) {
   let value_fetch = generator.valueToCode(block, 'fetch', Order.ATOMIC);
   let dropdown_name = block.getFieldValue('method');
-  let value_name = generator.valueToCode(block, 'NAME', Order.ATOMIC);
+  let value_name = generator.statementToCode(block, 'NAME', Order.ATOMIC);
   let statements_on_sucess = generator.statementToCode(block, 'on_sucess');
   let statements_on_error = generator.statementToCode(block, 'on_error');
-  // TODO: Assemble javascript into code variable.
+ 
   var code = `fetch(${value_fetch},{
     method: "${dropdown_name}",
         body: JSON.stringify(${value_name}),
@@ -181,6 +184,27 @@ javascriptGenerator.forBlock['fetch_block'] = function(block: any, generator: an
   return code;
 };
 
+//create a custom variable
+Blockly.Blocks['create_variable'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Create variable:")
+        .appendField(new Blockly.FieldTextInput("myVariable"), "VAR_NAME");
+        this.setPreviousStatement(true, null); 
+        this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("create a custome variable");
+  }
+};
+
+javascriptGenerator.forBlock['create_variable'] = function(block:any, generator:any) {
+  var variableName = block.getFieldValue('VAR_NAME');
+  var code = '';
+  code += '' + variableName + '\n';
+  return code;
+};
+
+
 //clear form data
 Blockly.Blocks["clear_form_fields"] = {
   init: function () {
@@ -189,7 +213,7 @@ Blockly.Blocks["clear_form_fields"] = {
       .appendField("Clear form fields in, ID");
     this.appendValueInput("rest_button_id")
       .setCheck("el_id_input")
-      .appendField("Resrt From Button ID");
+      .appendField("Reset From Button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(170);
