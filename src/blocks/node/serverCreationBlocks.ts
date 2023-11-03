@@ -261,3 +261,17 @@ javascriptGenerator.forBlock["has_session"] = function (
 
   return code;
 };
+
+Blockly.Blocks["end_session"] = {
+  init: function () {
+    this.appendDummyInput().appendField("END SESSION");
+    this.setHelpUrl("");
+    this.setColour(130);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["end_session"] = function () {
+  return `req.session.destroy()`;
+};
