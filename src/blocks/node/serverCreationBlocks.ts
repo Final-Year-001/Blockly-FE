@@ -147,3 +147,61 @@ javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
 
   return code;
 };
+
+// // not correctly. only correct thing is block name
+// Blockly.Blocks["encrypt"] = {
+//   init: function () {
+//     this.appendDummyInput().appendField("Compress Responses");
+//     this.appendDummyInput()
+//       .appendField("Options:")
+//       .appendField(new Blockly.FieldTextInput(""), "options");
+//     this.setTooltip(
+//       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
+//     );
+//     this.setHelpUrl("");
+//     this.setColour(130);
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//   },
+// };
+
+// javascriptGenerator.forBlock["encrypt"] = function (block: any) {
+//   var options = block.getFieldValue("options");
+//   // check whether the options are in expected type
+
+//   var code = `
+//     import compression from 'compression';
+//     app.use(helmet(${options}));
+//   `;
+
+//   return code;
+// };
+
+// // not correctly. only correct thing is block name will have to get path to incomming value and database value
+// Blockly.Blocks["compareEncripted"] = {
+//   init: function () {
+//     this.appendDummyInput().appendField("Compress Responses");
+//     this.appendDummyInput()
+//       .appendField("Options:")
+//       .appendField(new Blockly.FieldTextInput(""), "options");
+//     this.setTooltip(
+//       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
+//     );
+//     this.setHelpUrl("");
+//     this.setColour(130);
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//   },
+// };
+
+// javascriptGenerator.forBlock["encrypt"] = function (block: any) {
+//   var options = block.getFieldValue("options");
+//   // check whether the options are in expected type
+
+//   var code = `
+//     import compression from 'compression';
+//     app.use(helmet(${options}));
+//   `;
+
+//   return code;
+// };
