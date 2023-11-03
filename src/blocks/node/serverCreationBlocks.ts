@@ -104,7 +104,7 @@ javascriptGenerator.forBlock["compression_middleware"] = function (block: any) {
 
   var code = `
     import compression from 'compression';
-    app.use(helmet(${options}));
+    app.use(compression(${options}));
   `;
 
   return code;
