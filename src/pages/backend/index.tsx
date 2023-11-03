@@ -1,6 +1,14 @@
 import { useState } from "react";
 import BackendWorkspace from "../../workspaces/backend/backendWorkspace";
 import SandboxTopBar from "../../components/sandboxTopBar";
+import {
+  Tabs,
+  TabsHeader,
+  Tab,
+  TabsBody,
+  TabPanel,
+  Avatar,
+} from "@material-tailwind/react";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -27,27 +35,54 @@ function organizeImports(code: string) {
 
 function BackendPage() {
   const [backendCode, setBackendCode] = useState("");
+  const tabs = [
+    {
+      label: "Code",
+      value: "html",
+      desc: (
+        <div
+          className="whitespace-pre-line w-full h-full p-2"
+        >
+          <code>{backendCode}</code>
+        </div>
+      ),
+    },
+    {
+      label: "Console",
+      value: "react",
+      desc: `Because it's about motivating the doers. Because I'm here
+      to follow my dreams and inspire other people to follow their dreams, too.`,
+    },
+  ];
 
   return (
     <div className="flex flex-col h-full w-full">
       <SandboxTopBar />
-      <div className="flex flex-row flex-grow">
-        <div style={{ flex: 0.8 }}>
+      <div className="flex flex-row flex-grow px-6 pb-4">
+        <div className="flex-[0.7]">
           <BackendWorkspace
             onCodeChange={(code) => {
               setBackendCode(organizeImports(code));
             }}
           />
         </div>
-        <div
-          style={{
-            flex: 0.2,
-            backgroundColor: "#EDEDED",
-            padding: 20,
-            whiteSpace: "pre-line",
-          }}
-        >
-          <code>{backendCode}</code>
+        <div className="flex-[0.3] pl-6">
+          <Tabs value="html">
+            <TabsHeader>
+              {tabs.map(({ label, value }) => (
+                <Tab key={value} value={value}>
+                  {label}
+                </Tab>
+              ))}
+            </TabsHeader>
+            <TabsBody>
+              {tabs.map(({ value, desc }) => (
+                <TabPanel key={value} value={value}>
+                  {desc}
+                </TabPanel>
+              ))}
+            </TabsBody>
+          </Tabs>
         </div>
       </div>
     </div>
