@@ -1,5 +1,5 @@
 import Blockly from "blockly";
-import { javascriptGenerator } from "blockly/javascript";
+import { Order, javascriptGenerator } from "blockly/javascript";
 
 // Head Block
 Blockly.Blocks['head_tag'] = {
@@ -63,129 +63,122 @@ javascriptGenerator.forBlock["generate_form_id"] = function (
   return [code, generator.ORDER_ATOMIC]; // Return the code and precedence
 };
 
-//submit form data
-Blockly.Blocks["submit_form_data"] = {
+// Handle form submission
+Blockly.Blocks["handle_form_submission"] = {
   init: function () {
     this.appendValueInput("form")
-      .setCheck("form_id_input")
-      .appendField("Submit form data from");
-    this.appendValueInput("callback")
-      .setCheck("Function")
-      .appendField("and execute callback function");
-    this.appendValueInput("endpoint")
-      .setCheck("String")
-      .appendField("to server endpoint");
+        .setCheck(null)
+        .appendField("Form controller ID");
+    this.appendStatementInput("on_submit")
+        .setCheck(null)
+        .appendField("on submit");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(110);
-    this.setTooltip("Submit form data and execute a callback function.");
+    this.setTooltip("Handle form submission with specified method and action (URL).");
   },
 };
 
-javascriptGenerator.forBlock["submit_form_data"] = function (
-  block: any,
-  generator: any
-) {
-  var formElement = generator.valueToCode(block, "form", generator.ORDER_ATOMIC);
-  var callbackFunction = generator.valueToCode(block, "callback", generator.ORDER_ATOMIC);
-  var endpoint = generator.valueToCode(block, "endpoint", generator.ORDER_ATOMIC);
+javascriptGenerator.forBlock['handle_form_submission'] = function (block : any, generator : any) {
+  let formId = generator.valueToCode(block, 'form', Order.ATOMIC);
+  let on_submit_callback = generator.statementToCode(block, 'on_submit');
 
-  var code = `
-    document.addEventListener("DOMContentLoaded", function() {
-      var form = document.getElementById(${formElement});
-      if (form) {
-        var formData = new FormData(form);
+    var code = `
+    let form = document.getElementById(${formId});
+    form.onsubmit = function(event) {
+      ${on_submit_callback}
+    }
+    `;
 
-        fetch('${endpoint}', {
-          method: 'POST',
-          body: formData
-        })
-          .then(response => response.json())
-          .then(data => {
-            ${callbackFunction}(data);
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      } else {
-        console.error('Form not found with ID: ${formElement}');
-      }
-    });
-  `;
-  
+    return code;
+};
+
+Blockly.Blocks['set_form_data_to'] = {
+  init: function() {
+    this.appendValueInput("var")
+        .setCheck(null)
+        .appendField("Set form data to");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+javascriptGenerator.forBlock['set_form_data_to'] = function(block: any, generator: any) {
+  var value_name = generator.valueToCode(block, 'var', Order.ATOMIC);
+  var code = `let ${value_name} = new FormData(form)\n`;
   return code;
 };
 
-// Define the "callback_function" block
-Blockly.Blocks["callback_function"] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Callback function");
-    this.appendDummyInput()
-      .appendField("Function name:")
-      .appendField(new Blockly.FieldTextInput("myCallback"), "functionName");
-    this.setOutput(true, "Function"); // Set the output type to "Function"
-    this.setColour(370);
-    this.setTooltip("Define a callback function.");
-  },
+Blockly.Blocks['alert_block'] = {
+  init: function() {
+    this.appendValueInput("message")
+        .setCheck(null)
+        .appendField("Show alert");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
 };
 
-// Generate code for the "callback_function" block
-javascriptGenerator.forBlock["callback_function"] = function (
-  block: any,
-  generator: any
-) {
-  var functionName = block.getFieldValue("functionName");
-
-  // Generate JavaScript code for the callback function
-  var code = `
-    function ${functionName}(data) {
-      console.log("Received data:", data);
-      
-      var table = document.createElement("table");
-      var tbody = document.createElement("tbody");
-
-      // Assuming data is an object with 'name' and 'age' properties
-      var row = tbody.insertRow(0);
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      cell1.innerHTML = "Name";
-      cell2.innerHTML = data.name;
-
-      row = tbody.insertRow(1);
-      cell1 = row.insertCell(0);
-      cell2 = row.insertCell(1);
-      cell1.innerHTML = "Age";
-      cell2.innerHTML = data.age;
-
-      table.appendChild(tbody);
-      document.body.appendChild(table);
-    }
-  `;
-
-  return [code, generator.ORDER_FUNCTION_CALL]; // Return a tuple containing the code and the precedence
+javascriptGenerator.forBlock['alert_block'] = function(block: any, generator: any) {
+  var message = generator.valueToCode(block, 'message', Order.ATOMIC);
+  var code = `alert(${message})\n`;
+  return code;
 };
 
-// Server Endpoint
-Blockly.Blocks["server_endpoint"] = {
-  init: function () {
+Blockly.Blocks['fetch_block'] = {
+  init: function() {
+    this.appendValueInput("fetch")
+        .setCheck(null)
+        .appendField("fetch url");
     this.appendDummyInput()
-      .appendField("Server endpoint:")
-      .appendField(new Blockly.FieldTextInput("/your-server-endpoint"), "endpoint");
-    this.setOutput(true, "String"); // Set the output type to String
-    this.setColour(540);
-    this.setTooltip("Specify the server endpoint.");
-  },
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField("with method")
+        .appendField(new Blockly.FieldDropdown([["GET", "GET"], ["POST", "POST"], ["PUT", "PUT"], ["DELETE", "DELETE"]]), "method");
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("data from");
+    this.appendStatementInput("on_sucess")
+        .setCheck(null)
+        .appendField("on success");
+    this.appendStatementInput("on_error")
+        .setCheck(null)
+        .appendField("on error");
+    this.setColour(230);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
 };
 
-javascriptGenerator.forBlock["server_endpoint"] = function (
-  block: any,
-  generator: any
-) {
-  var endpoint = block.getFieldValue("endpoint");
-
-  // Return the server endpoint as a JavaScript string
-  return [endpoint, generator.ORDER_ATOMIC];
+javascriptGenerator.forBlock['fetch_block'] = function(block: any, generator: any) {
+  let value_fetch = generator.valueToCode(block, 'fetch', Order.ATOMIC);
+  let dropdown_name = block.getFieldValue('method');
+  let value_name = generator.valueToCode(block, 'NAME', Order.ATOMIC);
+  let statements_on_sucess = generator.statementToCode(block, 'on_sucess');
+  let statements_on_error = generator.statementToCode(block, 'on_error');
+  // TODO: Assemble javascript into code variable.
+  var code = `fetch(${value_fetch},{
+    method: "${dropdown_name}",
+        body: JSON.stringify(${value_name}),
+        headers: {
+          "Content-Type": "application/json"
+        }
+  })
+  .then(res => res.json())
+  .then((res) => {
+    ${statements_on_sucess}
+  }).catch((error) => {
+    console.log(error);
+    ${statements_on_error}
+  })`;
+  return code;
 };
 
 //clear form data
@@ -375,7 +368,6 @@ javascriptGenerator.forBlock['custom_condition_input_length'] = function (block:
   // Generate JavaScript code for the predefined condition
   return ['input.length <= 20 && input.length > 2', generator.ORDER_ATOMIC];
 };
-
 
 // Change Form Background Color Block
 Blockly.Blocks['change_form_background_color'] = {
