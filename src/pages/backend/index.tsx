@@ -10,7 +10,7 @@ import {
 import { useRecoilState } from "recoil";
 import { codeAtom } from "../../state/code";
 
-function organizeImports(code: string) {
+function organizeCode(code: string) {
   // Split the code into lines
   const lines = code.split("\n");
 
@@ -74,7 +74,7 @@ function BackendPage() {
         <div className="flex-[0.7]">
           <BackendWorkspace
             onCodeChange={(code) => {
-              setCode(organizeImports(code));
+              setCode(organizeCode(code));
             }}
           />
         </div>
