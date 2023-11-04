@@ -1,4 +1,5 @@
-import Blockly from "blockly";
+// import Blockly from "blockly";
+import * as Blockly from 'blockly';
 import * as JavaScript from "blockly/javascript";
 
 
@@ -380,3 +381,5 @@ JavaScript.javascriptGenerator.forBlock['css_text_align'] = function(block : any
   var code = 'text-align: '+ dropdown_align + '; ' 
   return code;
 };
+
+//////////////////////////////////////////////

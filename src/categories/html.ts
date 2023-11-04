@@ -121,7 +121,7 @@ export const htmlCategory = {
           type: "html_div",
         },       
       ],
-    }
+    },
   ],
 };
 
