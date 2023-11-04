@@ -1,5 +1,5 @@
-import Blockly from "blockly";
-import { javascriptGenerator } from "blockly/javascript";
+import Blockly, { MenuOption } from "blockly";
+import { Order, javascriptGenerator } from "blockly/javascript";
 
 Blockly.Blocks["api_method"] = {
   init: function () {
@@ -34,7 +34,6 @@ javascriptGenerator.forBlock["api_method"] = function (
   let path = block.getFieldValue("path");
   let statements_name = generator.statementToCode(block, "NAME");
 
-  // TODO: Assemble javascript into code variable.
   var code = `
     app.${dropdown_method}("${path}",(req, res) => {
       try {
@@ -80,9 +79,9 @@ javascriptGenerator.forBlock['get_request'] = function(block: any, generator: an
 
 Blockly.Blocks['respond_json'] = {
   init: function() {
-    this.appendDummyInput()
-        .appendField("respond with JSON")
-        .appendField(new Blockly.FieldVariable("item"), "var");
+    this.appendValueInput("var")
+        .setCheck(null)
+        .appendField("respond with");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
@@ -92,7 +91,39 @@ Blockly.Blocks['respond_json'] = {
 };
 
 javascriptGenerator.forBlock['respond_json'] = function(block: any, generator: any) {
-  var variable_name = generator.nameDB_.getName(block.getFieldValue('var'), 'VARIABLE');
+  var value_var = generator.valueToCode(block, 'var', Order.ATOMIC);
+  return `res.json(${value_var}1);\n`;
+};
 
-  return `res.json(${variable_name}1);\n`;
+Blockly.Blocks["respond_with_status"] = {
+  init: function () {
+    const statusOptions: MenuOption[] = [
+      ["OK (200)", "200"],
+      ["Created (201)", "201"],
+      ["Accepted (202)", "202"],
+      ["No Content (204)", "204"],
+      ["Bad Request (400)", "400"],
+      ["Unauthorized (401)", "401"],
+      ["Forbidden (403)", "403"],
+      ["Not Found (404)", "404"],
+      ["Internal Server Error (500)", "500"],
+    ];
+    this.appendDummyInput()
+      .appendField("respond with")
+      .appendField(new Blockly.FieldDropdown(statusOptions), "status");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+javascriptGenerator.forBlock["respond_with_status"] = function (
+  block: any,
+  generator: any
+) {
+  let dropdown_name = block.getFieldValue("status");
+  let code = `res.status(${dropdown_name});\n`;
+  return code;
 };
