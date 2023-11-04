@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import { javascriptCategory } from "../../categories/javascript";
 import { htmlCategory } from "../../categories/html";
 import { commonCategory } from "../../categories/google_blocks"
 import { cssCategory } from "../../categories/css"; 
-
+import { Card } from "@material-tailwind/react";
 
 interface FrontendWorkspaceProps {
     onCodeChange?: (code: string) => void;
@@ -14,9 +14,10 @@ interface FrontendWorkspaceProps {
 function FrontendWorkspace({ onCodeChange }: FrontendWorkspaceProps) {
   const [xml, setXml] = useState<string>();
 
+  const workspaceWrapper = useRef<HTMLDivElement>(null);
+
   const toolboxCategories = {
     kind: "categoryToolbox",
-
     contents: [htmlCategory, cssCategory, javascriptCategory, commonCategory],
   };
 
@@ -29,6 +30,10 @@ function FrontendWorkspace({ onCodeChange }: FrontendWorkspaceProps) {
   };
 
   return (
+    <Card
+      ref={workspaceWrapper}
+      className="fill-height border rounded-lg overflow-hidden border-r-8 border-t-[20px] border-l-8 border-b-8 border-gray-200"
+    >
     <BlocklyWorkspace
       toolboxConfiguration={toolboxCategories}
       initialXml={xml}
@@ -38,12 +43,13 @@ function FrontendWorkspace({ onCodeChange }: FrontendWorkspaceProps) {
         grid: {
           spacing: 20,
           length: 3,
-          colour: "#ccc",
+          colour: "#fff",
           snap: true,
         },
       }}
       onWorkspaceChange={workspaceDidChange}
     />
+    </Card>
   );
 }
 
