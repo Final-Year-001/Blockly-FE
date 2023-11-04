@@ -12,6 +12,7 @@ import {
 } from "@material-tailwind/react";
 import { useRecoilState } from "recoil";
 import { codeAtom } from "../../state/code";
+import FrontendTopBar from '../../components/FrontendTopBar';
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -101,7 +102,7 @@ function FrontendPage() {
       {/* <h1 className="text-3xl font-bold mt-6 mb-4 text-indigo-400">
         Frontend workspace
       </h1> */}
-
+<FrontendTopBar />
       <div
         className="flex flex-row flex-grow px-6 pb-4"
         style={{ height: "calc(100% - 400px)" }}
