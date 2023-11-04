@@ -7,8 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { PlayIcon, ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import LoadingIcon from "../components/loadingicon";
-import { useState } from "react";
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { httpClient } from "../helpers/axios";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { sandboxAtom } from "../state/stadbox";
@@ -18,14 +17,38 @@ function SandboxTopBar() {
   const [sandbox, setSandbox] = useRecoilState(sandboxAtom);
   const code = useRecoilValue(codeAtom);
 
-  const sandboxQuery = useQuery(["sandboxes"], () =>
-    httpClient.get("sandbox/all")
-  );
-  
-  const containers = sandboxQuery.data?.data?.containers || [];
+  const qc = useQueryClient();
+
+  const createSandboxMutation = useMutation({
+    mutationFn: async () => {
+      httpClient.post("sandbox/");
+    },
+    onSuccess: () => {
+      qc.invalidateQueries("sandbox");
+    },
+  });
+
+  const sandboxQuery = useQuery({
+    queryKey: ["sandbox"],
+    queryFn: () => httpClient.get("sandbox/all"),
+    onSuccess: (data) => {
+      let up = data?.data?.containers.filter((c: any) =>
+        c.status.toLowerCase().includes("up")
+      );
+
+      if (up?.length === 0) {
+        createSandboxMutation.mutate();
+      }
+    },
+  });
+
+  const containers =
+    sandboxQuery.data?.data?.containers.filter((c: any) =>
+      c.status.toLowerCase().includes("up")
+    ) || [];
 
   const codeMutation = useMutation({
-    mutationFn: async () =>{
+    mutationFn: async () => {
       let c = `
           const express = require('express')
           const app = express();
@@ -37,11 +60,11 @@ function SandboxTopBar() {
           app.listen("8999", () => {
               console.log("listen on 8999")
           })
-      `
+      `;
       httpClient.post("sandbox/" + sandbox.name, c, {
         headers: { "Content-Type": "text/plain" },
-      })
-    }
+      });
+    },
   });
 
   return (
