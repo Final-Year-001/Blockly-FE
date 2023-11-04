@@ -58,7 +58,7 @@ function FrontendPage() {
     }else if(workAreaSize == 'large'){
       setWorkSize(0.3);
       setOutput(0.7);
-    } 
+    }
   },[workAreaSize])
 
   const injectCode = (code: string) => {
@@ -126,7 +126,7 @@ function FrontendPage() {
           <FrontendWorkspace onCodeChange={injectCode} />
         </div>
         
-          <div className={`flex-[${outputSize}] pl-6 h-full `}>
+          <div className={`flex-[${outputSize}]  pl-6 h-full `}>
           <Tabs value="html" className="h-full pb-10">
             <TabsHeader>
               {tabs.map(({ label, value }) => (

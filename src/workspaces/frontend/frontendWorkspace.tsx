@@ -5,6 +5,7 @@ import { javascriptCategory } from "../../categories/javascript";
 import { htmlCategory } from "../../categories/html";
 import { commonCategory } from "../../categories/google_blocks"
 import { cssCategory } from "../../categories/css"; 
+import { Experimental } from "../../categories/experimental";
 import { Card } from "@material-tailwind/react";
 
 interface FrontendWorkspaceProps {
@@ -18,7 +19,7 @@ function FrontendWorkspace({ onCodeChange }: FrontendWorkspaceProps) {
 
   const toolboxCategories = {
     kind: "categoryToolbox",
-    contents: [htmlCategory, cssCategory, javascriptCategory, commonCategory],
+    contents: [htmlCategory, cssCategory, javascriptCategory, commonCategory, Experimental],
   };
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
