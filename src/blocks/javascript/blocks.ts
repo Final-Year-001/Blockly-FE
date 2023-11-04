@@ -182,6 +182,7 @@ javascriptGenerator.forBlock['fetch_block'] = function(block: any, generator: an
   .then(res => res.json())
   .then((res) => {
     ${statements_on_sucess}
+    console.log(res);
   }).catch((error) => {
     console.log(error);
     ${statements_on_error}
@@ -330,6 +331,9 @@ javascriptGenerator.forBlock["generate_id"] = function (
 // General-Purpose Validation and Error Handling Block
 Blockly.Blocks['validate_and_handle_error'] = {
   init: function() {
+    this.appendValueInput("auto_button_id")
+    .setCheck("el_id_input")
+    .appendField("Add Button Element ID");
     this.appendValueInput('input')
         .setCheck("el_id_input")
         .appendField('Validate input in');
@@ -353,6 +357,7 @@ javascriptGenerator.forBlock['validate_and_handle_error'] = function (
     var nameElementId = generator.valueToCode(block, 'input', 0);
     var condition = generator.valueToCode(block, 'condition', 0);
     var errorMessage = block.getFieldValue('error_message');
+    var buttonElementId = generator.valueToCode(block, 'auto_button_id', 0)
   
     var code = `
     function clearInputFields(elementId) {
@@ -363,17 +368,21 @@ javascriptGenerator.forBlock['validate_and_handle_error'] = function (
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-      var nameElement = document.getElementById(${nameElementId});
-      if (nameElement) {
-        nameElement.addEventListener("input", function() {
-          var input = nameElement.value;
-          if (${condition}) {
-            console.log(input);
-          } else {
-            window.alert('${errorMessage}');
-            clearInputFields(${nameElementId});
+      var buttonElement = document.getElementById(${buttonElementId});
+
+      if(buttonElement){
+        buttonElement.addEventListener("click", function () {
+          var nameElement = document.getElementById(${nameElementId});
+          if (nameElement) {
+            var input = nameElement.value;
+            if (${condition}) {
+              console.log(input);
+            } else {
+              window.alert('${errorMessage}');
+              clearInputFields(${nameElementId});
+            }
           }
-        });
+        })
       }
     });
   `;  
