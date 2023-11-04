@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { nodeCategory } from "../../categories/node";
 import { javascriptGenerator } from "blockly/javascript";
 import { mathCategory } from "../../categories/math";
 import { commonCategory } from "../../categories/google_blocks";
 import { databaseCategory } from "../../categories/database";
-import Blockly from "blockly";
 import { Card } from "@material-tailwind/react";
 interface BackendWorkspaceProps {
   onCodeChange?: (code: string) => void;
@@ -13,7 +12,7 @@ interface BackendWorkspaceProps {
 
 function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
   // const [xml, setXml] = useState<string>();
-  const [json, setJson] = useState<string>();
+  // const [json, setJson] = useState<string>();
 
   const workspaceWrapper = useRef<HTMLDivElement>(null);
 
