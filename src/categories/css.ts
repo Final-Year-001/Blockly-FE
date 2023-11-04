@@ -25,5 +25,29 @@ export const cssCategory = {
       kind: "block",
       type: "css_font_size",
     },
+    {
+      kind: "block",
+      type: "css_font_family",
+    },
+    {
+      kind: "block",
+      type: "css_height",
+    },
+    {
+      kind: "block",
+      type: "css_width",
+    },
+    {
+      kind: "block",
+      type: "css_padding",
+    },
+    {
+      kind: "block",
+      type: "css_margin",
+    },
+    {
+      kind: "block",
+      type: "css_text_align",
+    },
   ],
 };

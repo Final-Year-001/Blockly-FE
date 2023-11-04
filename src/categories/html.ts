@@ -81,6 +81,25 @@ export const htmlCategory = {
     },
     {
       kind: "category",
+      name: "Lists",
+      colour: "#5CA699",
+      contents: [
+        {
+          kind: "block",
+          type: "html_ol_list",
+        },   
+        {
+          kind: "block",
+          type: "html_ul_list",
+        },   
+        {
+          kind: "block",
+          type: "html_li",
+        },    
+      ],
+    },
+    {
+      kind: "category",
       name: "More",
       colour: "#5CA699",
       contents: [
@@ -96,7 +115,11 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "html_name",
-        },         
+        },   
+        {
+          kind: "block",
+          type: "html_div",
+        },       
       ],
     }
   ],
