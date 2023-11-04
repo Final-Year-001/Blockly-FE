@@ -1,4 +1,3 @@
-import { useState } from "react";
 import BackendWorkspace from "../../workspaces/backend/backendWorkspace";
 import SandboxTopBar from "../../components/sandboxTopBar";
 import {
@@ -7,11 +6,9 @@ import {
   Tab,
   TabsBody,
   TabPanel,
-  Avatar,
 } from "@material-tailwind/react";
 import { useRecoilState } from "recoil";
 import { codeAtom } from "../../state/code";
-import CopySandBoxUrl from "../../components/CopySandBoxUrl";
 
 function organizeImports(code: string) {
   // Split the code into lines
