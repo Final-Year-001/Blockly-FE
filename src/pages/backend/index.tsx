@@ -44,7 +44,7 @@ function BackendPage() {
       label: "Code",
       value: "html",
       desc: (
-        <div className="whitespace-pre-line w-full h-full p-2">
+        <div className="whitespace-pre-line w-full h-full p-2 text-white">
           <code>{code}</code>
         </div>
       ),
@@ -60,7 +60,10 @@ function BackendPage() {
   return (
     <div className="flex flex-col h-full w-full ">
       <SandboxTopBar />
-      <div className="flex flex-row flex-grow px-6 pb-4">
+      <div
+        className="flex flex-row flex-grow px-6 pb-4"
+        style={{ height: "calc(100% - 400px)" }}
+      >
         <div className="flex-[0.7]">
           <BackendWorkspace
             onCodeChange={(code) => {
@@ -68,8 +71,8 @@ function BackendPage() {
             }}
           />
         </div>
-        <div className="flex-[0.3] pl-6">
-          <Tabs value="html">
+        <div className="flex-[0.3] pl-6 h-full ">
+          <Tabs value="html" className="h-full pb-10">
             <TabsHeader>
               {tabs.map(({ label, value }) => (
                 <Tab key={value} value={value}>
@@ -77,7 +80,7 @@ function BackendPage() {
                 </Tab>
               ))}
             </TabsHeader>
-            <TabsBody>
+            <TabsBody className="h-full pb-10  bg-black border rounded-xl hover:overflow-auto">
               {tabs.map(({ value, desc }) => (
                 <TabPanel key={value} value={value}>
                   {desc}
