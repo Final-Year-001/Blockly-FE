@@ -30,6 +30,7 @@ Blockly.Blocks['javascript'] = {
  this.setHelpUrl("");
   // Allow connection to 'head_tag'
   this.setPreviousStatement(true, 'head_tag');
+  this.setTooltip('Define the script tag. JavaScipt code should be wrapped in this tag');
   }
 };
 
@@ -51,6 +52,7 @@ Blockly.Blocks["generate_form_id"] = {
     this.setOutput(true, "form_id_input");
     this.setColour(0);
     this.setTooltip("Enter the form ID.");
+    this.setTooltip('Add your formId');
   },
 };
 
@@ -75,7 +77,7 @@ Blockly.Blocks["handle_form_submission"] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(110);
-    this.setTooltip("Handle form submission with specified method and action (URL).");
+    this.setTooltip("Handle form submission. Match it with the formId you gave for the form block");
   },
 };
 
@@ -104,6 +106,7 @@ Blockly.Blocks['set_form_data_to'] = {
     this.setColour(230);
  this.setTooltip("");
  this.setHelpUrl("");
+ this.setTooltip('Set the form data to a variable');
   }
 };
 
@@ -124,6 +127,7 @@ Blockly.Blocks['alert_block'] = {
     this.setColour(230);
  this.setTooltip("");
  this.setHelpUrl("");
+ this.setTooltip('Generate custom alerts using this block');
   }
 };
 
@@ -157,6 +161,7 @@ Blockly.Blocks['fetch_block'] = {
     this.setNextStatement(true, null);
  this.setTooltip("");
  this.setHelpUrl("");
+ this.setTooltip('Copy the url from backend. Select a method from the dropdown. Add the form varaible. For alerts add your customized messages');
   }
 };
 
@@ -217,7 +222,7 @@ Blockly.Blocks["clear_form_fields"] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(170);
-    this.setTooltip("Clear all input fields in a form.");
+    this.setTooltip("Clear all input fields in a form. Remember to match the formId you gave for the form block");
   },
 };
 
@@ -269,7 +274,7 @@ Blockly.Blocks['auto_fill_form_fields'] = {
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(70);
-      this.setTooltip("Add data to the form");
+      this.setTooltip("Add the form id, element ids of age and name then a button id for auto-add button. Then click on the button to fill the form data automatically.");
   }
 };
 
@@ -309,7 +314,7 @@ Blockly.Blocks["generate_id"] = {
       .appendField(new Blockly.FieldTextInput("elId"), "elId");
     this.setOutput(true, "el_id_input");
     this.setColour(0);
-    this.setTooltip("Enter the element ID.");
+    this.setTooltip("Create an element ID.");
   },
 };
 
@@ -338,7 +343,7 @@ Blockly.Blocks['validate_and_handle_error'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(260); // Adjust the color as needed
-    this.setTooltip('Validate an input field based on a predefined condition and either allow adding input or handle errors with a custom message.');
+    this.setTooltip('Validate an input field based on a predefined condition');
   }
 };
 
@@ -383,7 +388,7 @@ Blockly.Blocks['custom_condition_input_length'] = {
         .appendField('Name is less than 20 characters and more than 2');
     this.setOutput(true, 'Boolean');
     this.setColour(160);
-    this.setTooltip('Predefined condition: input.length <= 20');
+    this.setTooltip('Predefined condition: name length should be greater than 2 and less than 20');
   }
 };
 
