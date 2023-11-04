@@ -33,7 +33,7 @@ function SandboxTopBar() {
     queryFn: () => httpClient.get("sandbox/all"),
     onSuccess: (data) => {
       let up = data?.data?.containers.filter((c: any) =>
-        c.status.toLowerCase().includes("up")
+        c?.status?.toLowerCase()?.includes("up")
       );
 
       if (up?.length === 0) {
@@ -43,8 +43,8 @@ function SandboxTopBar() {
   });
 
   const containers =
-    sandboxQuery.data?.data?.containers.filter((c: any) =>
-      c.status.toLowerCase().includes("up")
+    sandboxQuery.data?.data?.containers?.filter((c: any) =>
+      c?.status?.toLowerCase()?.includes("up")
     ) || [];
 
   const codeMutation = useMutation({
@@ -76,6 +76,7 @@ function SandboxTopBar() {
           onClick={() => {
             codeMutation.mutate();
           }}
+          disabled={!sandbox.name}
         >
           {codeMutation.isLoading ? (
             <LoadingIcon className="animate-spin h-4 w-" />
