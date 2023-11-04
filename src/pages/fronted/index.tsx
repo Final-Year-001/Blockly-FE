@@ -52,9 +52,6 @@ function FrontendPage() {
     if(workAreaSize == 'small'){
       setWorkSize(0.7);
       setOutput(0.3);
-    }else if (workAreaSize == 'medium'){
-      setWorkSize(0.5);
-      setOutput(0.5);
     }else if(workAreaSize == 'large'){
       setWorkSize(0.3);
       setOutput(0.7);

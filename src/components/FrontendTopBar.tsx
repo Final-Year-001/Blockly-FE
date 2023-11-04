@@ -28,7 +28,6 @@ function FrontendTopBar() {
       </div>
       <div className="flex gap-2">
         <Button onClick={()=>{setworkAreaSize("small")}}>Small</Button>
-        <Button onClick={()=>{setworkAreaSize("medium")}}>Medium</Button>
         <Button onClick={()=>{setworkAreaSize("large")}}>Large</Button>
       </div>
       <div>
