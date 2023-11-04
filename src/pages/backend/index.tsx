@@ -15,13 +15,23 @@ function organizeImports(code: string) {
   const lines = code.split("\n");
 
   // Extract import statements and other code
-  const importStatements = [];
+  const importStatements: any = [];
   const otherCode = [];
+
+  let emptyLineCount = 0; // Count consecutive empty lines
 
   for (const line of lines) {
     if (line.trim().startsWith("import ")) {
-      importStatements.push(line);
+      if (!importStatements.includes(line)) {
+        importStatements.push(line);
+      }
+    } else if (line.trim() === "") {
+      emptyLineCount++;
+      if (emptyLineCount <= 1) {
+        otherCode.push(line);
+      }
     } else {
+      emptyLineCount = 0;
       otherCode.push(line);
     }
   }
