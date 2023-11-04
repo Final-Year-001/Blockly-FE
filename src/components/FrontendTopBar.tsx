@@ -15,19 +15,22 @@ import { codeAtom } from "../state/code";
 import CopySandBoxUrl from "./CopySandBoxUrl";
 
 function FrontendTopBar() {
+  let [workAreaSize, setworkAreaSize] = useRecoilState(codeAtom);
+ 
 
   return (
     <div className="flex w-full justify-between items-center p-4">
       <div className="flex flex-row gap-3 px-2">
-        <Button
-          variant="filled"
-          className="flex flex-row gap-3 justify-center items-center text-white"
-        >
-          Run
-        </Button>
+          <h1 className="text-3xl font-bold text-indigo-400">
+        Frontend workspace
+      </h1>
         
       </div>
-      <CopySandBoxUrl />
+      <div className="flex gap-2">
+        <Button onClick={()=>{setworkAreaSize("small")}}>Small</Button>
+        <Button onClick={()=>{setworkAreaSize("medium")}}>Medium</Button>
+        <Button onClick={()=>{setworkAreaSize("large")}}>Large</Button>
+      </div>
       <div>
         <Avatar src="/img/cat default avatar.png" alt="avatar" size="md" />
       </div>
