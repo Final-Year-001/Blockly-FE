@@ -354,7 +354,7 @@ Blockly.Blocks['validate_and_handle_error'] = {
 javascriptGenerator.forBlock['validate_and_handle_error'] = function (
   block: any,
   generator: any) {
-    var nameElementId = generator.valueToCode(block, 'input', 0);
+    var inputElementId = generator.valueToCode(block, 'input', 0);
     var condition = generator.valueToCode(block, 'condition', 0);
     var errorMessage = block.getFieldValue('error_message');
     var buttonElementId = generator.valueToCode(block, 'auto_button_id', 0)
@@ -372,14 +372,14 @@ javascriptGenerator.forBlock['validate_and_handle_error'] = function (
 
       if(buttonElement){
         buttonElement.addEventListener("click", function () {
-          var nameElement = document.getElementById(${nameElementId});
-          if (nameElement) {
-            var input = nameElement.value;
+          var inputElement = document.getElementById(${inputElementId});
+          if (inputElement) {
+            var input = inputElement.value;
             if (${condition}) {
               console.log(input);
             } else {
               window.alert('${errorMessage}');
-              clearInputFields(${nameElementId});
+              clearInputFields(${inputElementId});
             }
           }
         })
@@ -405,6 +405,22 @@ Blockly.Blocks['custom_condition_input_length'] = {
 javascriptGenerator.forBlock['custom_condition_input_length'] = function (block: any, generator: any) {
   // Generate JavaScript code for the predefined condition
   return ['input.length <= 20 && input.length > 2', generator.ORDER_ATOMIC];
+};
+
+// Custom Condition Block
+Blockly.Blocks['custom_condition_age'] = {
+  init: function() {
+    this.appendDummyInput()
+    .appendField('Age is greater than 0 and less than 100');
+    this.setOutput(true, 'Boolean');
+    this.setColour(160);
+    this.setTooltip('Predefined condition: age should be greater than 0 and less than 100');
+  }
+};
+
+// Define a code generation function for the 'custom_condition_input_length' block
+javascriptGenerator.forBlock['custom_condition_age'] = function (block: any, generator: any) {
+  return ['input > 0 && input < 100', generator.ORDER_ATOMIC];
 };
 
 // Change Form Background Color Block
