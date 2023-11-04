@@ -6,6 +6,9 @@ Blockly.Blocks["express_server_creation"] = {
     this.appendDummyInput()
       .setAlign(Blockly.inputs.Align.RIGHT)
       .appendField("Create Server");
+    this.appendDummyInput()
+      .appendField("Maximum Body Size in MB (Optional):")
+      .appendField(new Blockly.FieldTextInput(), "maxBodySize");
     this.appendValueInput("PORT").setCheck("Number").appendField("Port");
     this.appendStatementInput("MIDDLEWARE")
       .setCheck(null)
@@ -27,10 +30,17 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
   block: any,
   generator: any
 ) {
-  let port = generator.valueToCode(block, "PORT", 0);
-  let middleware = generator.statementToCode(block, "MIDDLEWARE");
-  let routes = generator.statementToCode(block, "ROUTES");
-  let errorHandler = generator.valueToCode(block, "ERROR_HANDLER", 0);
+  const port = generator.valueToCode(block, "PORT", 0);
+  let maxBodySize = block.getFieldValue("maxBodySize");
+
+  if (isNaN(maxBodySize) || maxBodySize <= 0) {
+    maxBodySize = null; // Set default to 1MB
+    block.setFieldValue(undefined, "maxBodySize");
+  }
+
+  const middleware = generator.statementToCode(block, "MIDDLEWARE");
+  const routes = generator.statementToCode(block, "ROUTES");
+  const errorHandler = generator.valueToCode(block, "ERROR_HANDLER", 0);
   let startServer = generator.valueToCode(block, "START_SERVER", 0);
 
   // TODO: Assemble javascript into code variable.
@@ -39,6 +49,10 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
 
     const app = express();
 
+    app.use(express.json({ limit: ${
+      maxBodySize ? maxBodySize + "mb" : "1mb"
+    } }))
+    
     ${middleware}
 
     ${routes}
@@ -130,8 +144,8 @@ Blockly.Blocks["session_middleware"] = {
 };
 
 javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
-  var secret = block.getFieldValue("secret");
-  var options = block.getFieldValue("options");
+  const secret = block.getFieldValue("secret");
+  const options = block.getFieldValue("options");
   // check whether the options are in expected type
 
   var code = `
