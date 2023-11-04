@@ -174,7 +174,7 @@ javascriptGenerator.forBlock['fetch_block'] = function(block: any, generator: an
  
   var code = `fetch(${value_fetch},{
     method: "${dropdown_name}",
-        body: JSON.stringify(${value_name}),
+        body: JSON.stringify(Object.fromEntries(${value_name})),
         headers: {
           "Content-Type": "application/json"
         }

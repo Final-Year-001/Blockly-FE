@@ -145,7 +145,7 @@ function FrontendPage() {
                     onClick={() => { copyCodeToClipboard(frontendCode);}}  
                     title="Copy Code"
                   >
-                    <ClipboardIcon  className="w-5 h-5 text-indigo-600" />
+                    <ClipboardIcon  className="w-5 h-5 text-grey-600" />
                   </button>
                   }
                   {codeCopied && (
