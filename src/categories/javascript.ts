@@ -30,6 +30,10 @@ export const javascriptCategory = {
          type: "custom_condition_input_length",
        }, 
        {
+        kind: "block",
+        type: "custom_condition_age",
+      }, 
+       {
          kind: "block", 
          type: "change_form_background_color",
        }, 
