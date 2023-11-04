@@ -12,6 +12,7 @@ import { httpClient } from "../helpers/axios";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { sandboxAtom } from "../state/stadbox";
 import { codeAtom } from "../state/code";
+import CopySandBoxUrl from "./CopySandBoxUrl";
 
 function SandboxTopBar() {
   const [sandbox, setSandbox] = useRecoilState(sandboxAtom);
@@ -115,7 +116,7 @@ function SandboxTopBar() {
           </div>
         ) : null}
       </div>
-      <div></div>
+      <CopySandBoxUrl />
       <div>
         <Avatar src="/img/cat default avatar.png" alt="avatar" size="md" />
       </div>

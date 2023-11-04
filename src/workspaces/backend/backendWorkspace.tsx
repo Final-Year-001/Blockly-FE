@@ -6,15 +6,16 @@ import { mathCategory } from "../../categories/math";
 import { commonCategory } from "../../categories/google_blocks";
 import { databaseCategory } from "../../categories/database";
 import Blockly from "blockly";
+import { Card } from "@material-tailwind/react";
 interface BackendWorkspaceProps {
   onCodeChange?: (code: string) => void;
 }
 
 function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
   // const [xml, setXml] = useState<string>();
-  const [json,setJson] = useState<string>();
+  const [json, setJson] = useState<string>();
 
-  const workspaceWrapper  = useRef<HTMLDivElement>(null);
+  const workspaceWrapper = useRef<HTMLDivElement>(null);
 
   const toolboxCategories = {
     kind: "categoryToolbox",
@@ -33,7 +34,7 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
 
   const onJsonChange = (json: object) => {
     // Blockly.
-  }
+  };
 
   /*useEffect(() => {
     if(workspaceWrapper.current && !workspaceWrapper.current.shadowRoot){
@@ -41,7 +42,10 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
     }
   }, [])*/
   return (
-    <div ref={workspaceWrapper} className="fill-height">
+    <Card
+      ref={workspaceWrapper}
+      className="fill-height border rounded-lg overflow-hidden border-r-8 border-t-[20px] border-l-8 border-b-8 border-gray-200"
+    >
       <BlocklyWorkspace
         toolboxConfiguration={toolboxCategories}
         // initialXml={xml}
@@ -52,14 +56,14 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
           grid: {
             spacing: 20,
             length: 3,
-            colour: "#ccc",
+            colour: "#fff",
             snap: true,
           },
         }}
         onWorkspaceChange={workspaceDidChange}
       />
-    </div>
-  )
+    </Card>
+  );
 }
 
 export default BackendWorkspace;
