@@ -7,7 +7,7 @@ export const javascriptCategory = {
   contents: [
     {
       'kind': 'category',
-      'name': 'Main Blocks',
+      'name': 'Main Functions',
       'contents': [
         {
           kind:"block",
@@ -17,14 +17,6 @@ export const javascriptCategory = {
           kind: "block",
           type: "generate_form_id",
         }, 
-        {
-          kind: "block",
-          type: "alert_block"
-        },
-        {
-          kind: "block",
-          type: "create_variable"
-        },
         {
           kind: "block",
           type: "generate_id",
@@ -49,7 +41,7 @@ export const javascriptCategory = {
     },
     {
       'kind': 'category',
-      'name': 'Form Blocks',
+      'name': 'Form Functions',
       'contents': [
         {
           kind:"block",
@@ -65,12 +57,20 @@ export const javascriptCategory = {
         }, 
         {
           kind: "block",
+          type: "create_variable"
+        },
+        {
+          kind: "block",
           type: "clear_form_fields",
         }, 
         {
           kind: "block",
           type: "auto_fill_form_fields",
         }, 
+        {
+          kind: "block",
+          type: "alert_block"
+        },
       ]
     }
   ],
