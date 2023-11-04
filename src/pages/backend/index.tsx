@@ -9,6 +9,8 @@ import {
   TabPanel,
   Avatar,
 } from "@material-tailwind/react";
+import { useRecoilState } from "recoil";
+import { codeAtom } from "../../state/code";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -34,7 +36,8 @@ function organizeImports(code: string) {
 }
 
 function BackendPage() {
-  const [backendCode, setBackendCode] = useState("");
+  let [code, setCode] = useRecoilState(codeAtom);
+
   const tabs = [
     {
       label: "Code",
@@ -43,7 +46,7 @@ function BackendPage() {
         <div
           className="whitespace-pre-line w-full h-full p-2"
         >
-          <code>{backendCode}</code>
+          <code>{code}</code>
         </div>
       ),
     },
@@ -62,7 +65,7 @@ function BackendPage() {
         <div className="flex-[0.7]">
           <BackendWorkspace
             onCodeChange={(code) => {
-              setBackendCode(organizeImports(code));
+              setCode(organizeImports(code));
             }}
           />
         </div>

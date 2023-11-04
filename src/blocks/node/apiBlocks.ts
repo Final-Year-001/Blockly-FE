@@ -41,6 +41,7 @@ javascriptGenerator.forBlock["api_method"] = function (
       }catch(e){
         console.error(e);
       }
+      res.end(); 
     });
   `;
   return code;
