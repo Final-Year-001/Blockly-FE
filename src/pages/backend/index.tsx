@@ -11,6 +11,7 @@ import {
 } from "@material-tailwind/react";
 import { useRecoilState } from "recoil";
 import { codeAtom } from "../../state/code";
+import CopySandBoxUrl from "../../components/CopySandBoxUrl";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -43,9 +44,7 @@ function BackendPage() {
       label: "Code",
       value: "html",
       desc: (
-        <div
-          className="whitespace-pre-line w-full h-full p-2"
-        >
+        <div className="whitespace-pre-line w-full h-full p-2">
           <code>{code}</code>
         </div>
       ),
@@ -59,7 +58,7 @@ function BackendPage() {
   ];
 
   return (
-    <div className="flex flex-col h-full w-full">
+    <div className="flex flex-col h-full w-full ">
       <SandboxTopBar />
       <div className="flex flex-row flex-grow px-6 pb-4">
         <div className="flex-[0.7]">

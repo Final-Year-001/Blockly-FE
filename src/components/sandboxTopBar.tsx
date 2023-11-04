@@ -13,6 +13,7 @@ import { httpClient } from "../helpers/axios";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { sandboxAtom } from "../state/stadbox";
 import { codeAtom } from "../state/code";
+import CopySandBoxUrl from "./CopySandBoxUrl";
 
 function SandboxTopBar() {
   const [sandbox, setSandbox] = useRecoilState(sandboxAtom);
@@ -21,11 +22,11 @@ function SandboxTopBar() {
   const sandboxQuery = useQuery(["sandboxes"], () =>
     httpClient.get("sandbox/all")
   );
-  
+
   const containers = sandboxQuery.data?.data?.containers || [];
 
   const codeMutation = useMutation({
-    mutationFn: async () =>{
+    mutationFn: async () => {
       let c = `
           const express = require('express')
           const app = express();
@@ -37,11 +38,11 @@ function SandboxTopBar() {
           app.listen("8999", () => {
               console.log("listen on 8999")
           })
-      `
+      `;
       httpClient.post("sandbox/" + sandbox.name, c, {
         headers: { "Content-Type": "text/plain" },
-      })
-    }
+      });
+    },
   });
 
   return (
@@ -91,7 +92,7 @@ function SandboxTopBar() {
           </div>
         ) : null}
       </div>
-      <div></div>
+      <CopySandBoxUrl />
       <div>
         <Avatar src="/img/cat default avatar.png" alt="avatar" size="md" />
       </div>
