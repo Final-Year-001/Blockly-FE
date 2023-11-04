@@ -49,5 +49,9 @@ export const cssCategory = {
       kind: "block",
       type: "css_text_align",
     },
+    {
+      kind: "block",
+      type: "your_mutator_block",
+    },
   ],
 };
