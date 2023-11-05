@@ -34,6 +34,10 @@ export const javascriptCategory = {
           kind: "block",
           type: "generate_id",
         }, 
+        {
+          kind: "block",
+          type: "show_hidden_element", 
+        },
       ]
     },
     {
