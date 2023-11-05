@@ -80,7 +80,7 @@ function FrontendPage() {
     {
       label: "IFrame",
       value: "iframe",
-      desc: <iframe className='bg-white pb-10 rounded-lg w-full h-full' ref={iframeRef} name="iframe1" />
+      desc: <iframe className='bg-white pb-10 rounded-lg w-full h-full' ref={iframeRef} name="iframe1"/>
     },
     {
       label: "Console",
