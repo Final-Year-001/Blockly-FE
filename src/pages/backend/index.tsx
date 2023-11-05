@@ -7,14 +7,23 @@ import {
   TabsBody,
   TabPanel,
 } from "@material-tailwind/react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { codeAtom } from "../../state/code";
-import { useEffect, useState } from "react";
+import CopySandBoxUrl from "../../components/CopySandBoxUrl";
+import SandboxConsole from "../../components/SandboxConsole";
+import { useEffect, useRef, useState } from "react";
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
 } from "@heroicons/react/24/solid";
 import { is } from "@babel/types";
+import { WorkspaceSvg } from "blockly";
+import { useDebounce } from "@uidotdev/usehooks";
+import Blockly from "blockly";
+import { useMutation, useQuery } from "react-query";
+import { httpClient } from "../../helpers/axios";
+import { projectAtom } from "../../state/project";
+import { useParams } from "react-router-dom";
 
 function organizeCode(code: string) {
   // Split the code into lines
@@ -52,6 +61,24 @@ function organizeCode(code: string) {
 function BackendPage() {
   let [code, setCode] = useRecoilState(codeAtom);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [workSize, setWorkSize] = useState(0.7);
+  const [outputSize, setOutput] = useState(0.3);
+  const [workAreaSize] = useRecoilState(codeAtom);
+  const workspaceState = useRef<any>(null);
+  const workspaceRef = useRef<any>(null);
+
+  const debouncedWorkspace = useDebounce(workspaceState.current, 2000);
+  const params = useParams();
+
+  const saveMutation = useMutation({
+    mutationFn: (json) =>
+      httpClient.post("project/" + params.id || "?", { code: json }),
+  });
+
+  const getProjectQuery = useQuery({
+    queryKey: ["project"],
+    queryFn: () => httpClient.get("project/" + params.id || "?"),
+  });
 
   const tabs = [
     {
@@ -66,10 +93,20 @@ function BackendPage() {
     {
       label: "Console",
       value: "react",
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
+      desc: <SandboxConsole />,
     },
   ];
+
+  useEffect(() => {
+    if (
+      getProjectQuery.isSuccess &&
+      getProjectQuery.isFetched &&
+      debouncedWorkspace
+    ) {
+      console.log(debouncedWorkspace, "fsdfdsfdsfsdf");
+      saveMutation.mutate(debouncedWorkspace);
+    }
+  }, [debouncedWorkspace]);
 
   return (
     <div className="flex flex-col h-full w-full ">
@@ -86,9 +123,18 @@ function BackendPage() {
           }
         >
           <BackendWorkspace
-            onCodeChange={(code) => {
+            onCodeChange={(code, workspace) => {
               setCode(organizeCode(code));
+              workspaceRef.current = workspace;
+              try {
+                let json = Blockly.serialization.workspaces.save(workspace);
+                workspaceState.current = json;
+              } catch (e) {
+                console.error(e);
+              }
             }}
+            loaded={!getProjectQuery.isRefetching}
+            initialState={getProjectQuery.data?.data?.saveData}
           />
         </div>
         <div

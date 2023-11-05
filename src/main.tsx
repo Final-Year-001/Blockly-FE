@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import BackendPage from "./pages/backend";
 import FrontendPage from "./pages/fronted";
+import MyProjects from "./pages/myprojects/myprojects";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     path: "/frontend/:id",
     element: <FrontendPage />,
   },
+  {
+    path: "/my/projects",
+    element: <MyProjects />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

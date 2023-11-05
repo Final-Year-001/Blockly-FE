@@ -46,7 +46,7 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
   // TODO: Assemble javascript into code variable.
   var code = `
     import express from 'express'
-
+    import database from './lib/database/database.js';
     const app = express();
 
     app.use(express.json({ limit: '${

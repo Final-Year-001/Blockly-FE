@@ -19,6 +19,14 @@ Blockly.Blocks['insert_to_collection'] = {
   }
 };
 
+javascriptGenerator.forBlock['insert_to_collection'] = function(block: any, generator: any) {
+  let value_collection = generator.valueToCode(block, 'collection', Order.ATOMIC);
+  let value_id = generator.valueToCode(block, 'data', Order.ATOMIC);
+
+  let code = `await database.add(${value_id},${value_collection})\n`;
+  return [code, javascriptGenerator.ORDER_NONE];
+};
+
 Blockly.Blocks['find_by_id_db'] = {
   init: function() {
     this.appendValueInput("collection")
@@ -41,7 +49,7 @@ javascriptGenerator.forBlock['find_by_id_db'] = function(block: any, generator: 
   var value_collection = generator.valueToCode(block, 'collection', Order.ATOMIC);
   var value_id = generator.valueToCode(block, 'id', Order.ATOMIC);
 
-  let code = `await database.get(${value_collection}1,${value_id})`;
+  let code = `await database.get(${value_collection},${value_id})`;
   return [code, javascriptGenerator.ORDER_NONE];
 };
 
