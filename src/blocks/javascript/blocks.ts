@@ -88,6 +88,7 @@ javascriptGenerator.forBlock['handle_form_submission'] = function (block : any, 
     var code = `
     let form = document.getElementById(${formId});
     form.onsubmit = function(event) {
+      event.preventDefault();
       ${on_submit_callback}
     }
     `;
