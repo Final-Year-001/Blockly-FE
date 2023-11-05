@@ -9,7 +9,9 @@ function CopySandBoxUrl() {
   const [copied, setCopied] = useState(false);
 
   const getUrl = () => {
-    return `https://api.blockly.research.dev.dehemi.com/api/v1/sandbox/${sandbox.name}/proxy/`;
+    return sandbox.name
+      ? `https://api.blockly.research.dev.dehemi.com/api/v1/sandbox/${sandbox.name}/proxy/`
+      : "environment is not selected";
   };
 
   const handleCopy = () => {
@@ -26,6 +28,7 @@ function CopySandBoxUrl() {
         onClick={handleCopy}
         variant="filled"
         className="flex flex-row gap-3 justify-center items-center text-white mr-3"
+        disabled={!sandbox.name}
       >
         <ClipboardIcon className="w-4 h-4 text-white" />
         {copied ? "Copied!" : "Copy URL"}
