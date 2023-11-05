@@ -7,16 +7,23 @@ import {
   TabsBody,
   TabPanel,
 } from "@material-tailwind/react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { codeAtom } from "../../state/code";
 import CopySandBoxUrl from "../../components/CopySandBoxUrl";
 import SandboxConsole from "../../components/SandboxConsole";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
 } from "@heroicons/react/24/solid";
 import { is } from "@babel/types";
+import { WorkspaceSvg } from "blockly";
+import { useDebounce } from "@uidotdev/usehooks";
+import Blockly from "blockly";
+import { useMutation, useQuery } from "react-query";
+import { httpClient } from "../../helpers/axios";
+import { projectAtom } from "../../state/project";
+import { useParams } from "react-router-dom";
 
 function organizeCode(code: string) {
   // Split the code into lines
@@ -57,6 +64,21 @@ function BackendPage() {
   const [workSize, setWorkSize] = useState(0.7);
   const [outputSize, setOutput] = useState(0.3);
   const [workAreaSize] = useRecoilState(codeAtom);
+  const workspaceState = useRef<any>(null);
+  const workspaceRef = useRef<any>(null);
+
+  const debouncedWorkspace = useDebounce(workspaceState.current, 2000);
+  const params = useParams();
+
+  const saveMutation = useMutation({
+    mutationFn: (json) =>
+      httpClient.post("project/" + params.id || "?", { code: json }),
+  });
+
+  const getProjectQuery = useQuery({
+    queryKey: ["project"],
+    queryFn: () => httpClient.get("project/" + params.id || "?"),
+  });
 
   const tabs = [
     {
@@ -75,6 +97,17 @@ function BackendPage() {
     },
   ];
 
+  useEffect(() => {
+    if (
+      getProjectQuery.isSuccess &&
+      getProjectQuery.isFetched &&
+      debouncedWorkspace
+    ) {
+      console.log(debouncedWorkspace, "fsdfdsfdsfsdf");
+      saveMutation.mutate(debouncedWorkspace);
+    }
+  }, [debouncedWorkspace]);
+
   return (
     <div className="flex flex-col h-full w-full ">
       <SandboxTopBar />
@@ -84,9 +117,18 @@ function BackendPage() {
       >
         <div className={isExpanded ? "flex-[0.3]" : "flex-[0.7]"}>
           <BackendWorkspace
-            onCodeChange={(code) => {
+            onCodeChange={(code, workspace) => {
               setCode(organizeCode(code));
+              workspaceRef.current = workspace;
+              try {
+                let json = Blockly.serialization.workspaces.save(workspace);
+                workspaceState.current = json;
+              } catch (e) {
+                console.error(e);
+              }
             }}
+            loaded={!getProjectQuery.isRefetching}
+            initialState={getProjectQuery.data?.data?.saveData}
           />
         </div>
         <div
