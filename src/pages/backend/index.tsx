@@ -1,4 +1,3 @@
-import { useState } from "react";
 import BackendWorkspace from "../../workspaces/backend/backendWorkspace";
 import SandboxTopBar from "../../components/sandboxTopBar";
 import {
@@ -7,24 +6,32 @@ import {
   Tab,
   TabsBody,
   TabPanel,
-  Avatar,
 } from "@material-tailwind/react";
 import { useRecoilState } from "recoil";
 import { codeAtom } from "../../state/code";
-import CopySandBoxUrl from "../../components/CopySandBoxUrl";
 
-function organizeImports(code: string) {
+function organizeCode(code: string) {
   // Split the code into lines
   const lines = code.split("\n");
 
   // Extract import statements and other code
-  const importStatements = [];
+  const importStatements: any = [];
   const otherCode = [];
+
+  let emptyLineCount = 0; // Count consecutive empty lines
 
   for (const line of lines) {
     if (line.trim().startsWith("import ")) {
-      importStatements.push(line);
+      if (!importStatements.includes(line)) {
+        importStatements.push(line);
+      }
+    } else if (line.trim() === "") {
+      emptyLineCount++;
+      if (emptyLineCount <= 1) {
+        otherCode.push(line);
+      }
     } else {
+      emptyLineCount = 0;
       otherCode.push(line);
     }
   }
@@ -67,7 +74,7 @@ function BackendPage() {
         <div className="flex-[0.7]">
           <BackendWorkspace
             onCodeChange={(code) => {
-              setCode(organizeImports(code));
+              setCode(organizeCode(code));
             }}
           />
         </div>
