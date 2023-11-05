@@ -12,6 +12,7 @@ import {
 import { useRecoilState } from "recoil";
 import { codeAtom } from "../../state/code";
 import CopySandBoxUrl from "../../components/CopySandBoxUrl";
+import SandboxConsole from "../../components/SandboxConsole";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -52,8 +53,7 @@ function BackendPage() {
     {
       label: "Console",
       value: "react",
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
+      desc: <SandboxConsole />,
     },
   ];
 

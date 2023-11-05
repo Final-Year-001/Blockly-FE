@@ -51,8 +51,12 @@ function SandboxTopBar() {
   const codeMutation = useMutation({
     mutationFn: async () => {
       let c = `
-          const express = require('express')
+          import express from 'express';
+          import database from './lib/database/database.js';
+
           const app = express();
+          app.use(express.json());
+          
           ${code}
           app.get("/health", (req, res) => {
               res.json({ hello: "Hello world!" });

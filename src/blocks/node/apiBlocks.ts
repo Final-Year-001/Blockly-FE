@@ -35,10 +35,11 @@ javascriptGenerator.forBlock["api_method"] = function (
   let statements_name = generator.statementToCode(block, "NAME");
 
   var code = `
-    app.${dropdown_method}("${path}",(req, res) => {
+    app.${dropdown_method}("${path}",async (req, res) => {
       try {
         ${statements_name}
       }catch(e){
+        res.status(500).json(e)
         console.error(e);
       }
       res.end(); 
@@ -69,10 +70,10 @@ javascriptGenerator.forBlock['get_request'] = function(block: any, generator: an
   let code = ""
   switch(dropdown_name) {
     case "JSON":
-      code = `let ${variable_name}1 = res.body;\n`;
+      code = `${variable_name} = req.body;\n`;
       break;
     default:
-      code = `let ${variable_name}1 = res.body;\n`
+      code = `${variable_name} = req.body;\n`
   }
   return code;
 };
@@ -93,7 +94,7 @@ Blockly.Blocks['respond_json'] = {
 
 javascriptGenerator.forBlock['respond_json'] = function(block: any, generator: any) {
   var value_var = generator.valueToCode(block, 'var', Order.ATOMIC);
-  return `res.json(${value_var}1);\n`;
+  return `res.json(${value_var});\n`;
 };
 
 Blockly.Blocks["respond_with_status"] = {
