@@ -9,6 +9,12 @@ import {
 } from "@material-tailwind/react";
 import { useRecoilState } from "recoil";
 import { codeAtom } from "../../state/code";
+import { useEffect, useState } from "react";
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+} from "@heroicons/react/24/solid";
+import { is } from "@babel/types";
 
 function organizeCode(code: string) {
   // Split the code into lines
@@ -18,7 +24,7 @@ function organizeCode(code: string) {
   const importStatements: any = [];
   const otherCode = [];
 
-  let emptyLineCount = 0; // Count consecutive empty lines
+  let emptyLineCount = 0; // Count consecutive empty linea
 
   for (const line of lines) {
     if (line.trim().startsWith("import ")) {
@@ -45,6 +51,10 @@ function organizeCode(code: string) {
 
 function BackendPage() {
   let [code, setCode] = useRecoilState(codeAtom);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [workSize, setWorkSize] = useState(0.7);
+  const [outputSize, setOutput] = useState(0.3);
+  const [workAreaSize] = useRecoilState(codeAtom);
 
   const tabs = [
     {
@@ -71,14 +81,31 @@ function BackendPage() {
         className="flex flex-row flex-grow px-6 pb-4"
         style={{ height: "calc(100% - 400px)" }}
       >
-        <div className="flex-[0.7]">
+        <div className={isExpanded ? "flex-[0.3]" : "flex-[0.7]"}>
           <BackendWorkspace
             onCodeChange={(code) => {
               setCode(organizeCode(code));
             }}
           />
         </div>
-        <div className="flex-[0.3] pl-6 h-full ">
+        <div
+          className={
+            "flex-[0.3] pl-6 h-full relative " +
+            `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"}`
+          }
+        >
+          <div
+            className="absolute p-2 top-20 left-0  w-10 z-10 bg-black rounded-l-lg text-white"
+            onClick={() => {
+              setIsExpanded((prev) => !prev);
+            }}
+          >
+            {isExpanded ? (
+              <ChevronDoubleRightIcon />
+            ) : (
+              <ChevronDoubleLeftIcon />
+            )}
+          </div>
           <Tabs value="html" className="h-full pb-10">
             <TabsHeader>
               {tabs.map(({ label, value }) => (
