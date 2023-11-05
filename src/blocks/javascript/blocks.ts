@@ -117,27 +117,6 @@ javascriptGenerator.forBlock['set_form_data_to'] = function(block: any, generato
   return code;
 };
 
-//showing an alert
-Blockly.Blocks['alert_block'] = {
-  init: function() {
-    this.appendValueInput("message")
-        .setCheck(null)
-        .appendField("Show alert");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
- this.setTooltip('Generate custom alerts using this block');
-  }
-};
-
-javascriptGenerator.forBlock['alert_block'] = function(block: any, generator: any) {
-  var message = generator.valueToCode(block, 'message', Order.ATOMIC);
-  var code = `alert(${message})\n`;
-  return code;
-};
-
 //fetch the form data
 Blockly.Blocks['fetch_block'] = {
   init: function() {
@@ -157,7 +136,7 @@ Blockly.Blocks['fetch_block'] = {
     this.appendStatementInput("on_error")
         .setCheck(null)
         .appendField("on error");
-    this.setColour(230);
+    this.setColour(670);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
  this.setTooltip("");
@@ -608,48 +587,6 @@ javascriptGenerator.forBlock["myFunction"] = function (
   return code;
 };
 
-//add an event listener to an HTML element, such as a click event
-Blockly.Blocks["add_event_listener"] = {
-  init: function () {
-    this.appendValueInput("element")
-      .setCheck("Element")
-      .appendField("Add event listener to");
-    this.appendDummyInput()
-      .appendField("on event")
-      .appendField(
-        new Blockly.FieldDropdown([
-          ["click", "click"],
-          ["mouseover", "mouseover"],
-          ["change", "change"],
-        ]),
-        "event"
-      );
-    this.appendStatementInput("callback").setCheck(null).appendField("do");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
-    this.setTooltip("Add an event listener to an HTML element.");
-  },
-};
-
-javascriptGenerator.forBlock["add_event_listener"] = function (
-  block: any,
-  generator: any
-) {
-  var valueElement = generator.valueToCode(block, "element", 0);
-  var dropdownEvent = block.getFieldValue("event");
-  // This part contains the actions to be executed when the event occurs
-  var statementsCallback = generator.statementToCode(block, "callback");
-
-  var code = `
-    ${valueElement}.addEventListener('${dropdownEvent}', function(event) {
-      ${statementsCallback} 
-    });
-  `;
-  return code;
-};
-
 // removing an HTML element from the DOM
 Blockly.Blocks["remove_element"] = {
   init: function () {
@@ -720,49 +657,6 @@ javascriptGenerator.forBlock["show_hidden_element"] = function (
     }
 
     showOrHideElement('${dropdown_method}', '${elementId}');
-  `;
-
-  return code;
-};
-
-// fetch data from a REST API at a specified URL
-// and execute a custom callback when the data is received
-Blockly.Blocks["fetch_api_data"] = {
-  init: function () {
-    this.appendValueInput("url")
-      .setCheck("String")
-      .appendField("Fetch data from API at URL");
-    this.appendStatementInput("callback")
-      .setCheck(null)
-      .appendField("when data is received, do");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(90);
-    this.setTooltip(
-      "Fetch data from a REST API and execute a custom callback when data is received."
-    );
-  },
-};
-
-javascriptGenerator.forBlock["fetch_api_data"] = function (
-  block: any,
-  generator: any
-) {
-  var apiUrl = generator.valueToCode(block, "url", 0);
-  var callbackFunction = generator.statementToCode(block, "callback");
-
-  var code = `
-
-    var url = ${apiUrl};
-    
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        ${callbackFunction}
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
   `;
 
   return code;
