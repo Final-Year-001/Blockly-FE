@@ -1,30 +1,26 @@
 import "../blocks/node/apiBlocks";
 import "../blocks/node/serverCreationBlocks";
 
-export const nodeCategory = {
+export const sessionHandlingCategory = {
   kind: "category",
-  name: "Backend Main Components",
+  name: "Session Handling",
   colour: "#5CA699",
   contents: [
     {
       kind: "block",
-      type: "api_method",
+      type: "session_middleware",
     },
     {
       kind: "block",
-      type: "express_server_creation",
+      type: "create_session",
     },
     {
       kind: "block",
-      type: "respond_json",
+      type: "has_session",
     },
     {
       kind: "block",
-      type: "get_request",
-    },
-    {
-      kind: "block",
-      type: "respond_with_status",
+      type: "end_session",
     },
   ],
 };

@@ -6,6 +6,8 @@ import { mathCategory } from "../../categories/math";
 import { commonCategory } from "../../categories/google_blocks";
 import { databaseCategory } from "../../categories/database";
 import { Card } from "@material-tailwind/react";
+import { sessionHandlingCategory } from "../../categories/sessionHandling";
+import { generalMiddlewareCategory } from "../../categories/middlewares";
 interface BackendWorkspaceProps {
   onCodeChange?: (code: string) => void;
 }
@@ -18,7 +20,14 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
 
   const toolboxCategories = {
     kind: "categoryToolbox",
-    contents: [nodeCategory, databaseCategory, mathCategory, commonCategory],
+    contents: [
+      nodeCategory,
+      generalMiddlewareCategory,
+      sessionHandlingCategory,
+      databaseCategory,
+      mathCategory,
+      commonCategory,
+    ],
   };
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
