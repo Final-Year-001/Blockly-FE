@@ -115,7 +115,13 @@ function BackendPage() {
         className="flex flex-row flex-grow px-6 pb-4"
         style={{ height: "calc(100% - 400px)" }}
       >
-        <div className={isExpanded ? "flex-[0.3]" : "flex-[0.7]"}>
+        <div
+          className={
+            isExpanded
+              ? "flex-[0.3] duration-300 ease-in-out transition-all"
+              : "flex-[0.7] duration-300 ease-in-out transition-all"
+          }
+        >
           <BackendWorkspace
             onCodeChange={(code, workspace) => {
               setCode(organizeCode(code));
@@ -133,7 +139,7 @@ function BackendPage() {
         </div>
         <div
           className={
-            "flex-[0.3] pl-6 h-full relative " +
+            "flex-[0.3] pl-6 h-full relative transition-all duration-300 ease-in-out " +
             `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"}`
           }
         >

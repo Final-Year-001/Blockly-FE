@@ -29,7 +29,7 @@ Blockly.Blocks['alert_block'] = {
           .appendField("Show alert");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(230);
+      this.setColour(640);
    this.setTooltip("");
    this.setHelpUrl("");
    this.setTooltip('Generate custom alerts using this block');
@@ -72,4 +72,47 @@ javascriptGenerator.forBlock['event_listener'] = function (block:any, generator:
   
     return `document.getElementById(${element}).addEventListener('${event}', function(event) {\n${handler}});\n`;
 };
-  
+
+//show or hide an HTML element
+Blockly.Blocks["show_hidden_element"] = {
+  init: function () {
+    this.appendDummyInput()
+        .appendField("Show or Hide element")
+    this.appendValueInput("element_id")
+    .setCheck("el_id_input")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["Show", "show"],
+          ["Hide", "hide"],
+        ]),
+        "action"
+      )
+      .appendField("element with ID");
+    this.setColour(40);
+    this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+    this.setTooltip('Show or hide an HTML element with a specified ID.');
+  },
+};
+
+javascriptGenerator.forBlock["show_hidden_element"] = function (
+  block: any,
+  generator: any
+) {
+  var dropdown_action = block.getFieldValue('action');
+  var elementId = generator.valueToCode(block, 'element_id', generator.ORDER_ATOMIC);
+
+  var code = `
+    var element = document.getElementById(${elementId});
+    if (element) {
+      if ('${dropdown_action}' === 'show') {
+        element.style.display = 'block';
+      } else if ('${dropdown_action}' === 'hide') {
+        element.style.display = 'none';
+      }
+    }
+  `;
+
+  return code;
+};
+
