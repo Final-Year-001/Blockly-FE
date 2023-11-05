@@ -5,9 +5,9 @@ export const Experimental = {
   name: "Experimental",
   colour: "#5CA699",
   contents: [
-    {
-      kind: "block",
-      type: "html_html",
-    },
+    // {
+    //   kind: "block",
+    //   type: "html_html",
+    // },
   ],
 };
