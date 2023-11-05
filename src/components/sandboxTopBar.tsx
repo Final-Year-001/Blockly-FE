@@ -50,23 +50,21 @@ function SandboxTopBar() {
 
   const codeMutation = useMutation({
     mutationFn: async () => {
-      let c = `
-          import express from 'express';
-          import database from './lib/database/database.js';
+      // let c = `
+      //   import express from 'express'
+      //   import session from 'express-session'
+      //   //const session = require('express-session')
+      //   const app = express();
 
-          const app = express();
-          app.use(express.json());
-          
-          ${code}
-          app.get("/health", (req, res) => {
-              res.json({ hello: "Hello world!" });
-          })
-          
-          app.listen("8999", () => {
-              console.log("listen on 8999")
-          })
-      `;
-      httpClient.post("sandbox/" + sandbox.name, c, {
+      //   app.get("/health", (req, res) => {
+      //       res.json({ hello: "Hello world!" });
+      //   })
+
+      //   app.listen("8999", () => {
+      //       console.log("listen on 8999")
+      //   })
+      // `;
+      httpClient.post("sandbox/" + sandbox.name, code, {
         headers: { "Content-Type": "text/plain" },
       });
     },

@@ -12,33 +12,49 @@ function removeParentheses(str : any) {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-Blockly.Blocks['html_html'] = {
+Blockly.Blocks['html_table_comp'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Html Block");
-    this.appendStatementInput("html_head")
+        .appendField("Table Component");
+    this.appendDummyInput()
+        .appendField("Rows")
+        .appendField(new Blockly.FieldNumber(0, 0), "rows")
+        .appendField("Cols")
+        .appendField(new Blockly.FieldNumber(0, 0), "cols");
+    this.appendStatementInput("styles")
+        .setCheck(null)
+        .appendField("Styles");
+    this.appendValueInput("Table Data")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("head");
-    this.appendStatementInput("html_body")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("body");
+        .appendField("Table Data");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("This is the very first tag used");
+ this.setTooltip("");
  this.setHelpUrl("");
   }
 };
 
-JavaScript.javascriptGenerator.forBlock['html_html'] = function(block : any, generator : any) {
-  var statements_html_head = generator.statementToCode(block, 'html_head');
-  var statements_html_body = generator.statementToCode(block, 'html_body');
-  // note to senal - changed the order cause html should wrap everything and added line breaks
-  var code = "<html>\n" +
-             "  <head>\n" + statements_html_head + "  \n</head>\n" +
-             "  <body>\n" + statements_html_body + "  </body>\n" +
-             "</html>";
-  return code;
-};
-
-
+// JavaScript.javascriptGenerator.forBlock['html_table_comp'] = function(block: any, generator: any) {
+//   var number_rows = block.getFieldValue('rows');
+//   var number_cols = block.getFieldValue('cols');
+//   var statements_styles = generator.statementToCode(block, 'styles');
+//   var value_table_data = generator.valueToCode(block, 'Table Data', generator.ORDER_ATOMIC);
+  
+//   var tr = '';
+//   var td = '';
+//   for (let i = 0; i < number_rows; i++) {
+//     for (let i = 0; i < number_cols; i++) {
+//       td = td + '<td>' + 
+//     }
+//     tr = '<tr>' + 
+      
+//     + '</tr>'
+//   }
+ 
+//   var code = `<table style="` + statements_styles + `>`  
+//   + 
+//   + `</table>`;
+//   return code;
+// };

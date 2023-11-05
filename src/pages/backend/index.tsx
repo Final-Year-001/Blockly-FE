@@ -1,4 +1,3 @@
-import { useState } from "react";
 import BackendWorkspace from "../../workspaces/backend/backendWorkspace";
 import SandboxTopBar from "../../components/sandboxTopBar";
 import {
@@ -7,25 +6,40 @@ import {
   Tab,
   TabsBody,
   TabPanel,
-  Avatar,
 } from "@material-tailwind/react";
 import { useRecoilState } from "recoil";
 import { codeAtom } from "../../state/code";
 import CopySandBoxUrl from "../../components/CopySandBoxUrl";
 import SandboxConsole from "../../components/SandboxConsole";
+import { useEffect, useState } from "react";
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+} from "@heroicons/react/24/solid";
+import { is } from "@babel/types";
 
-function organizeImports(code: string) {
+function organizeCode(code: string) {
   // Split the code into lines
   const lines = code.split("\n");
 
   // Extract import statements and other code
-  const importStatements = [];
+  const importStatements: any = [];
   const otherCode = [];
+
+  let emptyLineCount = 0; // Count consecutive empty linea
 
   for (const line of lines) {
     if (line.trim().startsWith("import ")) {
-      importStatements.push(line);
+      if (!importStatements.includes(line)) {
+        importStatements.push(line);
+      }
+    } else if (line.trim() === "") {
+      emptyLineCount++;
+      if (emptyLineCount <= 1) {
+        otherCode.push(line);
+      }
     } else {
+      emptyLineCount = 0;
       otherCode.push(line);
     }
   }
@@ -39,6 +53,10 @@ function organizeImports(code: string) {
 
 function BackendPage() {
   let [code, setCode] = useRecoilState(codeAtom);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [workSize, setWorkSize] = useState(0.7);
+  const [outputSize, setOutput] = useState(0.3);
+  const [workAreaSize] = useRecoilState(codeAtom);
 
   const tabs = [
     {
@@ -64,14 +82,31 @@ function BackendPage() {
         className="flex flex-row flex-grow px-6 pb-4"
         style={{ height: "calc(100% - 400px)" }}
       >
-        <div className="flex-[0.7]">
+        <div className={isExpanded ? "flex-[0.3]" : "flex-[0.7]"}>
           <BackendWorkspace
             onCodeChange={(code) => {
-              setCode(organizeImports(code));
+              setCode(organizeCode(code));
             }}
           />
         </div>
-        <div className="flex-[0.3] pl-6 h-full ">
+        <div
+          className={
+            "flex-[0.3] pl-6 h-full relative " +
+            `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"}`
+          }
+        >
+          <div
+            className="absolute p-2 top-20 left-0  w-10 z-10 bg-black rounded-l-lg text-white"
+            onClick={() => {
+              setIsExpanded((prev) => !prev);
+            }}
+          >
+            {isExpanded ? (
+              <ChevronDoubleRightIcon />
+            ) : (
+              <ChevronDoubleLeftIcon />
+            )}
+          </div>
           <Tabs value="html" className="h-full pb-10">
             <TabsHeader>
               {tabs.map(({ label, value }) => (

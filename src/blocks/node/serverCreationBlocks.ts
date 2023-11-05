@@ -6,9 +6,12 @@ Blockly.Blocks["express_server_creation"] = {
     this.appendDummyInput()
       .setAlign(Blockly.inputs.Align.RIGHT)
       .appendField("Create Server");
+    this.appendDummyInput()
+      .appendField("Maximum Body Size in MB (Optional):")
+      .appendField(new Blockly.FieldTextInput(), "maxBodySize");
     this.appendValueInput("PORT").setCheck("Number").appendField("Port");
     this.appendStatementInput("MIDDLEWARE")
-      .setCheck(null)
+      .setCheck(["compression_middleware"])
       .appendField("Middleware");
     this.appendStatementInput("ROUTES").setCheck(null).appendField("Routes");
     this.appendValueInput("ERROR_HANDLER")
@@ -27,10 +30,17 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
   block: any,
   generator: any
 ) {
-  let port = generator.valueToCode(block, "PORT", 0);
-  let middleware = generator.statementToCode(block, "MIDDLEWARE");
-  let routes = generator.statementToCode(block, "ROUTES");
-  let errorHandler = generator.valueToCode(block, "ERROR_HANDLER", 0);
+  const port = generator.valueToCode(block, "PORT", 0);
+  let maxBodySize = block.getFieldValue("maxBodySize");
+
+  if (isNaN(maxBodySize) || maxBodySize <= 0) {
+    maxBodySize = null; // Set default to 1MB
+    block.setFieldValue(undefined, "maxBodySize");
+  }
+
+  const middleware = generator.statementToCode(block, "MIDDLEWARE");
+  const routes = generator.statementToCode(block, "ROUTES");
+  const errorHandler = generator.valueToCode(block, "ERROR_HANDLER", 0);
   let startServer = generator.valueToCode(block, "START_SERVER", 0);
 
   // TODO: Assemble javascript into code variable.
@@ -39,15 +49,25 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
 
     const app = express();
 
+    app.use(express.json({ limit: '${
+      maxBodySize ? maxBodySize + "mb" : "1mb"
+    }' }))
+    
     ${middleware}
 
     ${routes}
-
+    
     app.use((err, req, res, next) => {
       ${errorHandler || "next()"}
     });
 
-    ${startServer ? `app.listen(${port});` : ""}
+    ${
+      startServer
+        ? `app.listen("${port}", () => {
+      console.log("listen on ${port}")
+  });`
+        : ""
+    }
   `;
   return code;
 };
@@ -93,8 +113,8 @@ Blockly.Blocks["compression_middleware"] = {
     );
     this.setHelpUrl("");
     this.setColour(130);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "server_middleware");
+    this.setNextStatement(true, "server_middleware");
   },
 };
 
@@ -130,8 +150,8 @@ Blockly.Blocks["session_middleware"] = {
 };
 
 javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
-  var secret = block.getFieldValue("secret");
-  var options = block.getFieldValue("options");
+  const secret = block.getFieldValue("secret");
+  const options = block.getFieldValue("options");
   // check whether the options are in expected type
 
   var code = `
@@ -139,9 +159,8 @@ javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
     app.use(session(${
       options
         ? options
-        : `{secret: ${
-            secret || "ASKDJASINAAKSJD"
-          }, resave: false, saveUninitialized:false, }`
+        : `{secret: ${secret || "ASKDJASINAAKSJD"}, resave: false,
+           saveUninitialized: false, }`
     }));
   `;
 
@@ -224,7 +243,9 @@ javascriptGenerator.forBlock["create_session"] = function (block: any) {
   var userIdPath = block.getFieldValue("userIdPath");
   // check whether the options are in expected type
 
-  var code = `req.session.user = ${userIdPath}`;
+  var code = `req.session.user = ${userIdPath}
+  req.session.save();
+  `;
 
   return code;
 };
@@ -232,12 +253,12 @@ javascriptGenerator.forBlock["create_session"] = function (block: any) {
 Blockly.Blocks["has_session"] = {
   init: function () {
     this.appendDummyInput().appendField("IS A SESSION AVAILABLE?");
-    this.appendStatementInput("response if available")
+    this.appendStatementInput("available")
       .setCheck(null)
-      .appendField("available");
-    this.appendStatementInput("response if unavailable")
+      .appendField("if available");
+    this.appendStatementInput("unavailable")
       .setCheck(null)
-      .appendField("unavailable");
+      .appendField("if unavailable");
     this.setHelpUrl("");
     this.setColour(130);
     this.setPreviousStatement(true, null);
@@ -254,9 +275,11 @@ javascriptGenerator.forBlock["has_session"] = function (
   // check whether the options are in expected type
 
   var code = `if(req.session.user) {
-    return res.json(${ifAvailable})
+    ${ifAvailable}
+    res.end();
+    return;
   } 
-  res.json(${ifUnavailable})
+  ${ifUnavailable}
   `;
 
   return code;
@@ -273,5 +296,5 @@ Blockly.Blocks["end_session"] = {
 };
 
 javascriptGenerator.forBlock["end_session"] = function () {
-  return `req.session.destroy()`;
+  return `req.session.destroy();`;
 };
