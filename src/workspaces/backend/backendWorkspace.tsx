@@ -8,6 +8,7 @@ import { databaseCategory } from "../../categories/database";
 import { Card } from "@material-tailwind/react";
 import { sessionHandlingCategory } from "../../categories/sessionHandling";
 import { generalMiddlewareCategory } from "../../categories/middlewares";
+import { jwtCategory } from "../../categories/jwt";
 interface BackendWorkspaceProps {
   onCodeChange?: (code: string) => void;
 }
@@ -24,6 +25,7 @@ function BackendWorkspace({ onCodeChange }: BackendWorkspaceProps) {
       nodeCategory,
       generalMiddlewareCategory,
       sessionHandlingCategory,
+      jwtCategory,
       databaseCategory,
       mathCategory,
       commonCategory,
