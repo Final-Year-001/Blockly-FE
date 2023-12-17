@@ -15,10 +15,10 @@ interface ProjectCardProps {
     readonly description: string;
     readonly image: string;
     readonly id: string;
-    readonly varient: string;
+    readonly variant: string;
 }
 
-function ProjectCard({ name, description, image, id, varient }: ProjectCardProps) {
+function ProjectCard({ name, description, image, id, variant }: ProjectCardProps) {
   const navigate =  useNavigate();
 
   return (
@@ -39,7 +39,8 @@ function ProjectCard({ name, description, image, id, varient }: ProjectCardProps
       </CardBody>
       <CardFooter className="pt-0 flex gap-3">
         <Button onClick={() => {
-          if (varient == "fronted") {
+          console.log(variant, "dfdfdsfsdfdsdfdsfd")
+          if (variant == "frontend") {
             navigate("/frontend/" + id);
             return;
           }

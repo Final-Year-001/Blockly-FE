@@ -15,11 +15,13 @@ function MyProjects() {
   });
 
   const projectData = projectDataQuery.data?.data?.result?.map((c: any) => {
+    console.log(c, "dfafadsfd")
     return {
       name: c.name,
       description: c.desc,
       image: "",
       id: c._id,
+      variant: c.variant
     };
   }) || [];
   console.log(projectData, "dsdadsd")
@@ -30,7 +32,7 @@ function MyProjects() {
     onSuccess: async (res) => {
       await qc.invalidateQueries("project");
       const id = res.data._id;
-      if (res.data.varient == "fronted") {
+      if (res.data.variant == "frontend") {
         navigate("/frontend/" + id);
         return;
       }
@@ -39,13 +41,13 @@ function MyProjects() {
     },
   });
 
-  const onClickNewProject = (varient: string, name: string) => {
-    console.log(varient, name);
+  const onClickNewProject = (variant: string, name: string) => {
+    console.log(variant, name);
     qc.invalidateQueries("project");
     saveMutation.mutate({
       name,
-      varient,
-      desc: `New ${varient} project`,
+      variant: variant,
+      desc: `New ${variant} project`,
       saveData: {},
     });
   };

@@ -57,7 +57,7 @@ function NewProjectModal({ open, handler, onClick }: NewProjectModalProps) {
               <NewProjectVariantCard
                 title="Get started with a Frontend"
                 desc="Get started with a making a cool fronted to show your friends!"
-                onClick={() => _onClick?.("fronted")}
+                onClick={() => _onClick?.("frontend")}
               />
             </div>
           ) : null}
