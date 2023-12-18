@@ -4,7 +4,7 @@ import "./index.css";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "@material-tailwind/react";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import BackendPage from "./pages/backend";
 import FrontendPage from "./pages/fronted";
@@ -30,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/my/projects",
     element: <MyProjects />
+  },
+  {
+    path: "/*",
+    element: <Navigate to="/my/projects" replace />
   }
 ]);
 
