@@ -42,17 +42,8 @@ function BackendWorkspace({
     javascriptGenerator.addReservedWords("code");
     let code = javascriptGenerator.workspaceToCode(workspace);
     onCodeChange?.(code, workspace);
-    // const code = generator.
-    // console.log(code, "code");
   };
 
-  /*useEffect(() => {
-    if(workspaceWrapper.current && !workspaceWrapper.current.shadowRoot){
-      workspaceWrapper.current.attachShadow({ mode: "open" });
-    }
-  }, [])*/
-
-  console.log(initialState, "dfafdfdfafdfadfdsafafdaf====");
   return (
     <Card
       ref={workspaceWrapper}

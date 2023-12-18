@@ -9,20 +9,16 @@ import {
 } from "@material-tailwind/react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { codeAtom } from "../../state/code";
-import CopySandBoxUrl from "../../components/CopySandBoxUrl";
 import SandboxConsole from "../../components/SandboxConsole";
 import { useEffect, useRef, useState } from "react";
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
 } from "@heroicons/react/24/solid";
-import { is } from "@babel/types";
-import { WorkspaceSvg } from "blockly";
 import { useDebounce } from "@uidotdev/usehooks";
 import Blockly from "blockly";
 import { useMutation, useQuery } from "react-query";
 import { httpClient } from "../../helpers/axios";
-import { projectAtom } from "../../state/project";
 import { useParams } from "react-router-dom";
 
 function organizeCode(code: string) {
@@ -133,7 +129,7 @@ function BackendPage() {
                 console.error(e);
               }
             }}
-            loaded={!getProjectQuery.isRefetching}
+            loaded={!getProjectQuery.isFetching}
             initialState={getProjectQuery.data?.data?.saveData}
           />
         </div>
