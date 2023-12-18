@@ -10,7 +10,13 @@ import BackendPage from "./pages/backend";
 import FrontendPage from "./pages/fronted";
 import MyProjects from "./pages/myprojects/myprojects";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // default: true
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
