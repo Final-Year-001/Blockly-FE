@@ -17,6 +17,7 @@ import { useParams } from "react-router-dom";
 import { WorkspaceSvg } from "blockly";
 import Blockly from "blockly";
 import { useDebounce } from "@uidotdev/usehooks";
+import _ from "lodash";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -53,12 +54,31 @@ function FrontendPage() {
   const workspaceState = useRef<any>(null);
   const workspaceRef = useRef<any>(null);
   const debouncedWorkspace = useDebounce(workspaceState.current, 2000);
+  const [saveMessage, setSaveMessage] = useState<{
+    message: string;
+    show: boolean;
+    loading: boolean;
+  }>({ message: "", show: false, loading: false });
 
   const params = useParams();
 
   const saveMutation = useMutation({
     mutationFn: (json) =>
       httpClient.post("project/" + params.id || "?", { code: json }),
+    onMutate: () => {
+      setSaveMessage({
+        show: true,
+        message: "Your changes are being saved...",
+        loading: true,
+      });
+    },
+    onSuccess: () => {
+      setSaveMessage({
+        show: true,
+        message: "All the changes are saved.",
+        loading: false,
+      });
+    },
   });
 
   const getProjectQuery = useQuery({
@@ -88,8 +108,14 @@ function FrontendPage() {
     workspaceRef.current = workspace;
     try {
       let json = Blockly.serialization.workspaces.save(workspace);
-      console.log(json, "=============")
-      workspaceState.current = json;
+      if(!_.isEqual(json, workspaceState.current)){
+        setSaveMessage({
+          show: true,
+          message: 'New unsaved changes',
+          loading: false
+        })
+        workspaceState.current = json;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -227,6 +253,7 @@ function FrontendPage() {
           </Tabs>
         </div>
       </div>
+      <div className="flex flex-row px-6 pb-1">{ saveMessage.show ? <span>{saveMessage.message}</span> : <div>...</div> }</div>
     </div>
   );
 }
