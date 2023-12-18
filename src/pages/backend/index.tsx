@@ -16,10 +16,11 @@ import {
   ChevronDoubleRightIcon,
 } from "@heroicons/react/24/solid";
 import { useDebounce } from "@uidotdev/usehooks";
-import Blockly from "blockly";
+import Blockly, { WorkspaceSvg } from "blockly";
 import { useMutation, useQuery } from "react-query";
 import { httpClient } from "../../helpers/axios";
 import { useParams } from "react-router-dom";
+import _ from "lodash";
 
 function organizeCode(code: string) {
   // Split the code into lines
@@ -60,6 +61,8 @@ function BackendPage() {
   const [workSize, setWorkSize] = useState(0.7);
   const [outputSize, setOutput] = useState(0.3);
   const [workAreaSize] = useRecoilState(codeAtom);
+  const [saveMessage, setSaveMessage] = useState<{ message: string, show: boolean, loading: boolean }>({ message: '', show: false, loading: false });
+
   const workspaceState = useRef<any>(null);
   const workspaceRef = useRef<any>(null);
 
@@ -69,12 +72,44 @@ function BackendPage() {
   const saveMutation = useMutation({
     mutationFn: (json) =>
       httpClient.post("project/" + params.id || "?", { code: json }),
+    onMutate: () => {
+      setSaveMessage({
+        show: true,
+        message: 'Your changes are being saved...',
+        loading: true
+      })
+    },
+    onSuccess: () => {
+      setSaveMessage({
+        show: true,
+        message: 'All the changes are saved.',
+        loading: false
+      })
+    },
   });
 
   const getProjectQuery = useQuery({
     queryKey: ["project"],
     queryFn: () => httpClient.get("project/" + params.id || "?"),
   });
+
+  const onCodeChange = (code: string, workspace: WorkspaceSvg) => {
+    setCode(organizeCode(code));
+    workspaceRef.current = workspace;
+    try {
+      let json = Blockly.serialization.workspaces.save(workspace);
+      if(!_.isEqual(json, workspaceState.current)){
+        setSaveMessage({
+          show: true,
+          message: 'New unsaved changes',
+          loading: false
+        })
+        workspaceState.current = json;
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   const tabs = [
     {
@@ -119,16 +154,7 @@ function BackendPage() {
           }
         >
           <BackendWorkspace
-            onCodeChange={(code, workspace) => {
-              setCode(organizeCode(code));
-              workspaceRef.current = workspace;
-              try {
-                let json = Blockly.serialization.workspaces.save(workspace);
-                workspaceState.current = json;
-              } catch (e) {
-                console.error(e);
-              }
-            }}
+            onCodeChange={onCodeChange}
             loaded={!getProjectQuery.isFetching}
             initialState={getProjectQuery.data?.data?.saveData}
           />
@@ -169,6 +195,7 @@ function BackendPage() {
           </Tabs>
         </div>
       </div>
+      <div className="flex flex-row px-6 pb-1">{ saveMessage.show ? <span>{saveMessage.message}</span> : <div>...</div> }</div>
     </div>
   );
 }

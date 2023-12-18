@@ -38,7 +38,6 @@ function BackendWorkspace({
   };
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
-    console.log(workspace, "workspace");
     javascriptGenerator.addReservedWords("code");
     let code = javascriptGenerator.workspaceToCode(workspace);
     onCodeChange?.(code, workspace);
