@@ -17,7 +17,13 @@ import { useParams } from "react-router-dom";
 import { WorkspaceSvg } from "blockly";
 import Blockly from "blockly";
 import { useDebounce } from "@uidotdev/usehooks";
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+} from "@heroicons/react/24/solid";
+import Tour from 'reactour';
 import _ from "lodash";
+import ProductLogo from "../../assets/logo";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -53,12 +59,14 @@ function FrontendPage() {
   const [outputSize, setOutput] = useState(0.3);
   const workspaceState = useRef<any>(null);
   const workspaceRef = useRef<any>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
   const debouncedWorkspace = useDebounce(workspaceState.current, 2000);
   const [saveMessage, setSaveMessage] = useState<{
     message: string;
     show: boolean;
     loading: boolean;
   }>({ message: "", show: false, loading: false });
+  const [showTour, setShowTour] = useState<boolean>(true);
 
   const params = useParams();
 
@@ -180,14 +188,56 @@ function FrontendPage() {
     }, 3000); // 3000 milliseconds (3 seconds)
   };
 
+  const steps = [
+    {
+      selector: '#TopBar',
+      content: 'You can export your code from here.',
+    },
+    {
+      selector: '.blocklyToolboxDiv',
+      content: 'This is your block inventory!',
+    },
+    {
+      selector: '.blocklyMainBackground',
+      content: 'This is where you play with your blocks',
+    },
+    {
+      selector: '#outputSection',
+      content: 'This area shows what happens when you play with blocks',
+    },
+    {
+      selector: '#TabBtnCode',
+      content: 'You can see your code here.',
+    },
+    {
+      selector: '#TabBtnIFrame',
+      content: 'Visually see your creations.',
+    },
+    {
+      selector: '#TabBtnConsole',
+      content: <ProductLogo />,
+    },
+  ];
+
   return (
     <div className="flex flex-col h-full w-full ">
-      <FrontendTopBar />
+       <Tour steps={steps} isOpen={showTour} onRequestClose={() => {
+        setShowTour(false);
+       }}/>
+       <div id="TopBar">
+       <FrontendTopBar />
+       </div>
+      
       <div
         className="flex flex-row flex-grow px-6 pb-4"
         style={{ height: "calc(100% - 400px)" }}
       >
-        <div className={`flex-[${workSize}]`}>
+        <div 
+          className={
+            isExpanded
+              ? "flex-[0.3] duration-300 ease-in-out transition-all"
+              : "flex-[0.7] duration-300 ease-in-out transition-all"
+          } id="blockSideBar">
           <FrontendWorkspace
             onCodeChange={injectCode}
             loaded={!getProjectQuery.isFetching}
@@ -195,11 +245,29 @@ function FrontendPage() {
           />
         </div>
 
-        <div className={`flex-[${outputSize}]  pl-6 h-full `}>
-          <Tabs value="html" className="h-full pb-10">
-            <TabsHeader>
+
+        <div
+          className={
+            "flex-[0.3] pl-6 h-full relative transition-all duration-300 ease-in-out " +
+            `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"}`
+          }
+        >
+          <div
+            className="absolute p-2 top-20 left-0 w-10 z-10 bg-black rounded-l-lg text-white"
+            onClick={() => {
+              setIsExpanded((prev) => !prev);
+            }}
+          >
+            {isExpanded ? (
+              <ChevronDoubleRightIcon />
+            ) : (
+              <ChevronDoubleLeftIcon />
+            )}
+          </div>
+          <Tabs id="outputSection"  value="html" className="h-full pb-10">
+            <TabsHeader >
               {tabs.map(({ label, value }) => (
-                <Tab key={value} value={value}>
+                <Tab id={`TabBtn${label}`} key={value} value={value}>
                   {label}
                 </Tab>
               ))}
@@ -252,6 +320,10 @@ function FrontendPage() {
             </TabsBody>
           </Tabs>
         </div>
+
+        {/* <div className={`flex-[${outputSize}]  pl-6 h-full `}>
+          
+        </div> */}
       </div>
       <div className="flex flex-row px-6 pb-1">{ saveMessage.show ? <span>{saveMessage.message}</span> : <div>...</div> }</div>
     </div>
