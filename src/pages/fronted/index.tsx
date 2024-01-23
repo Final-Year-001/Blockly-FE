@@ -23,7 +23,7 @@ import {
 } from "@heroicons/react/24/solid";
 import Tour from 'reactour';
 import _ from "lodash";
-import ProductLogo from "../../assets/logo";
+import { TourSteps } from "./TourSteps";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -188,40 +188,11 @@ function FrontendPage() {
     }, 3000); // 3000 milliseconds (3 seconds)
   };
 
-  const steps = [
-    {
-      selector: '#TopBar',
-      content: 'You can export your code from here.',
-    },
-    {
-      selector: '.blocklyToolboxDiv',
-      content: 'This is your block inventory!',
-    },
-    {
-      selector: '.blocklyMainBackground',
-      content: 'This is where you play with your blocks',
-    },
-    {
-      selector: '#outputSection',
-      content: 'This area shows what happens when you play with blocks',
-    },
-    {
-      selector: '#TabBtnCode',
-      content: 'You can see your code here.',
-    },
-    {
-      selector: '#TabBtnIFrame',
-      content: 'Visually see your creations.',
-    },
-    {
-      selector: '#TabBtnConsole',
-      content: <ProductLogo />,
-    },
-  ];
+
 
   return (
     <div className="flex flex-col h-full w-full ">
-       <Tour steps={steps} isOpen={showTour} onRequestClose={() => {
+       <Tour steps={TourSteps} isOpen={showTour} onRequestClose={() => {
         setShowTour(false);
        }}/>
        <div id="TopBar">
