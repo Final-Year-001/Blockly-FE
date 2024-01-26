@@ -445,14 +445,14 @@ Blockly.Blocks['html_table'] = {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Border")
-        .appendField(new Blockly.FieldNumber(0, 0, 10), "border");
+        .appendField(new Blockly.FieldNumber(1, 0, 10), "border");
     this.appendStatementInput("rows")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Rows");
+        // .appendField("Rows");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(350);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -483,12 +483,12 @@ JavaScript.javascriptGenerator.forBlock['html_table'] = function(block: any, gen
 Blockly.Blocks['table_headings'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Table Heading");
+        .appendField("Headings Cell");
     this.appendStatementInput("data")
         .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(300);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -504,13 +504,12 @@ JavaScript.javascriptGenerator.forBlock['table_headings'] = function(block : any
 
 Blockly.Blocks['table_rows'] = {
   init: function() {
-    this.appendDummyInput()
-        .appendField("Table Row");
     this.appendStatementInput("data")
-        .setCheck(null);
+        .setCheck(null)
+        .appendField("New Row");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(255);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -526,12 +525,14 @@ JavaScript.javascriptGenerator.forBlock['table_rows'] = function(block : any, ge
 
 Blockly.Blocks['table_data'] = {
   init: function() {
+    this.appendDummyInput()
+        .appendField("Normal Cell");
     this.appendStatementInput("data")
         .setCheck(null)
-        .appendField("Table Data");
+    this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(300);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -738,5 +739,62 @@ JavaScript.javascriptGenerator.forBlock['html_li'] = function(block : any, gener
   }
 
   var code = `<li` + identifiers + ">" + statements_statement + `</li>` ;
+  return code;
+};
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['html_img'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Image Block");
+    this.appendDummyInput()
+        // .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("url:")
+        .appendField(new Blockly.FieldTextInput("add url here"), "imageUrl");
+    this.appendDummyInput()
+        // .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("name:")
+        .appendField(new Blockly.FieldTextInput("add image name"), "imageName");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("This is the image block");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['html_img'] = function(block : any, generator : any) {
+  var text_imageurl = block.getFieldValue('imageUrl');
+  var text_imagename = block.getFieldValue('imageName');
+  // TODO: Assemble javascript into code variable.
+  var code = `<img src='` + text_imageurl + "'"  + `alt="` +  text_imagename + `" ` +  `>` ;
+  return code;
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['html_a'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Link Block");
+    this.appendDummyInput()
+        .appendField("Add link")
+        .appendField(new Blockly.FieldTextInput("Add link here"), "link");
+    this.appendStatementInput("data")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['html_a'] = function(block : any, generator : any) {
+  var text_link = block.getFieldValue('link');
+  var statements_data = generator.statementToCode(block, 'data');
+  var code = `<a href='` + text_link + "'" + `>` +  statements_data + '</a>';
   return code;
 };
