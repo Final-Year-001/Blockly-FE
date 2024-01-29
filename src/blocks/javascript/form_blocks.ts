@@ -1,69 +1,6 @@
 import Blockly from "blockly";
 import { Order, javascriptGenerator } from "blockly/javascript";
-
-// Head Block
-Blockly.Blocks['head_tag'] = {
-  init: function () {
-      this.appendStatementInput('content')
-          .setCheck(null) // Allow any type of block to be nested
-          .appendField('Header');
-      this.setPreviousStatement(true, 'head_tag');
-      this.setColour(160);
-      this.setTooltip('Define the head section of the HTML document.');
-  }
-};
-
-javascriptGenerator.forBlock['head_tag'] = function (block : any, generator : any) {
-  var content = generator.statementToCode(block, 'content');
-  return '<head>\n' + content + '\n</head>';
-};
-
-//script tag
-Blockly.Blocks['javascript'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Javascript");
-    this.appendStatementInput("script")
-        .setCheck(null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  // Allow connection to 'head_tag'
-  this.setPreviousStatement(true, 'head_tag');
-  this.setTooltip('Define the script tag. JavaScipt code should be wrapped in this tag');
-  }
-};
-
-javascriptGenerator.forBlock['javascript'] = function(
-  block: any,
-  generator: any
-) {
-  var statements_script = generator.statementToCode(block, 'script');
-  var code = `<script>\n${statements_script}\n</script>`;
-  return code;
-};
-
-//generate id
-Blockly.Blocks["generate_form_id"] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Form ID:")
-      .appendField(new Blockly.FieldTextInput("formId"), "formId");
-    this.setOutput(true, "form_id_input");
-    this.setColour(0);
-    this.setTooltip("Enter the form ID.");
-    this.setTooltip('Add your formId');
-  },
-};
-
-javascriptGenerator.forBlock["generate_form_id"] = function (
-  block: any,
-  generator: any
-) {
-  var formId = block.getFieldValue("formId"); // Get the form ID value
-  var code = `\"${formId}\"`; // Wrap the formId in quotes to make it a string in the generated code
-  return [code, generator.ORDER_ATOMIC]; // Return the code and precedence
-};
+import './beginner';
 
 // Handle form submission
 Blockly.Blocks["handle_form_submission"] = {
@@ -170,32 +107,11 @@ javascriptGenerator.forBlock['fetch_block'] = function(block: any, generator: an
   return code;
 };
 
-//create a custom variable
-Blockly.Blocks['create_variable'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Create variable:")
-        .appendField(new Blockly.FieldTextInput("myVariable"), "VAR_NAME");
-        this.setPreviousStatement(true, null); 
-        this.setNextStatement(true, null);
-    this.setColour(230);
-    this.setTooltip("create a custome variable");
-  }
-};
-
-javascriptGenerator.forBlock['create_variable'] = function(block:any, generator:any) {
-  var variableName = block.getFieldValue('VAR_NAME');
-  var code = '';
-  code += '' + variableName + '\n';
-  return code;
-};
-
-
 //clear form data
 Blockly.Blocks["clear_form_fields"] = {
   init: function () {
     this.appendValueInput("form")
-      .setCheck("form_id_input")
+      .setCheck("el_id_input")
       .appendField("Clear form fields in, ID");
     this.appendValueInput("rest_button_id")
       .setCheck("el_id_input")
@@ -237,7 +153,7 @@ Blockly.Blocks['auto_fill_form_fields'] = {
           .appendField("Auto fill");
 
       this.appendValueInput("form")
-          .setCheck("form_id_input")
+          .setCheck("el_id_input")
           .appendField("Add auto input to the form, ID");
 
       this.appendValueInput("name_element_id")
@@ -285,27 +201,6 @@ javascriptGenerator.forBlock['auto_fill_form_fields'] = function(block: any, gen
   `;
 
   return code;
-};
-
-//generate id for input fields
-Blockly.Blocks["generate_id"] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Element ID:")
-      .appendField(new Blockly.FieldTextInput("elId"), "elId");
-    this.setOutput(true, "el_id_input");
-    this.setColour(0);
-    this.setTooltip("Create an element ID.");
-  },
-};
-
-javascriptGenerator.forBlock["generate_id"] = function (
-  block: any,
-  generator: any
-) {
-  var elId = block.getFieldValue("elId"); // Get the form ID value
-  var code = `\"${elId}\"`; // Wrap the formId in quotes to make it a string in the generated code
-  return [code, generator.ORDER_ATOMIC]; // Return the code and precedence
 };
 
 // General-Purpose Validation and Error Handling Block
@@ -409,7 +304,7 @@ Blockly.Blocks['change_form_background_color'] = {
       this.appendDummyInput()
           .appendField("Change the background color");
       this.appendValueInput("form")
-          .setCheck("form_id_input")
+          .setCheck("el_id_input")
           .appendField("of the form");
       this.appendDummyInput()
           .appendField('to color')
