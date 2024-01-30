@@ -1,5 +1,5 @@
 // import "../blocks/javascript/blocks";
-import "../blocks/html/blocks"
+import "../blocks/html/blocks";
 
 export const htmlCategory = {
   kind: "category",
@@ -14,19 +14,23 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "html_addtext",
-          }, 
+        },
+        {
+          kind: "block",
+          type: "html_textadd",
+        },
         {
           kind: "block",
           type: "html_h",
-          }, 
-          {
-            kind: "block",
-            type: "html_p",
-            },
+        },
+        {
+          kind: "block",
+          type: "html_p",
+        },
         {
           kind: "block",
           type: "html_br",
-          }, 
+        },
       ],
     },
     {
@@ -37,23 +41,19 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "html_table",
-          }, 
-          {
-            kind: "block",
-            type: "table_headings",
-            }, 
-            {
-              kind: "block",
-              type: "table_rows",
-              }, 
-              {
-                kind: "block",
-                type: "table_data",
-                }, 
-                {
-                  kind: "block",
-                  type: "html_textadd",
-                  }, 
+        },
+        {
+          kind: "block",
+          type: "table_rows",
+        },
+        {
+          kind: "block",
+          type: "table_headings",
+        },
+        {
+          kind: "block",
+          type: "table_data",
+        },
       ],
     },
     {
@@ -64,7 +64,7 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "html_form",
-          }, 
+        },
         {
           kind: "block",
           type: "html_label",
@@ -72,11 +72,11 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "html_input_field",
-          }, 
-          {
-            kind: "block",
-            type: "html_button",
-          },
+        },
+        {
+          kind: "block",
+          type: "html_button",
+        },
       ],
     },
     {
@@ -87,15 +87,15 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "html_ol_list",
-        },   
+        },
         {
           kind: "block",
           type: "html_ul_list",
-        },   
+        },
         {
           kind: "block",
           type: "html_li",
-        },    
+        },
       ],
     },
     {
@@ -111,20 +111,31 @@ export const htmlCategory = {
           kind: "block",
           type: "html_identifier",
         },
-        
+
         {
           kind: "block",
           type: "html_name",
-        },   
+        },
         {
           kind: "block",
           type: "html_div",
-        },       
+        },
+      ],
+    },
+    {
+      kind: "category",
+      name: "Multimedia",
+      colour: "#5CA699",
+      contents: [
+        {
+          kind: "block",
+          type: "html_img",
+        },
+        {
+          kind: "block",
+          type: "html_a",
+        },
       ],
     },
   ],
 };
-
-
-
-
