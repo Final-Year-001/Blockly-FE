@@ -44,6 +44,18 @@ export const javascriptCategory = {
           kind: "block",
           type: "show_hidden_element", 
         },
+        {
+          kind: "block",
+          type: "print_block",   
+        },
+        {
+          kind: "block",
+          type: "single_line_comment",  
+        },
+        {
+          kind: "block",
+          type: "multi_line_comment",  
+        },
       ]
     },
     {

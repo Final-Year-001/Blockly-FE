@@ -101,6 +101,38 @@ javascriptGenerator.forBlock['chnage_innerHTML'] = function(
     return code;
   };
 
+//print screen 
+Blockly.Blocks['print_block'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Print when button is clicked");
+    this.appendValueInput("button")
+        .setCheck("el_id_input")
+        .appendField("Button ID");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(0);
+    this.setTooltip('Print the document when a button is clicked');
+  }
+};
+
+javascriptGenerator.forBlock['print_block'] = function(block:any, generator:any) {
+  var buttonId = generator.valueToCode(block, 'button', Order.ATOMIC);
+
+  var code = `
+    document.addEventListener("DOMContentLoaded", function() {
+      var button = document.getElementById(${buttonId});
+      if (button) {
+        button.addEventListener("click", function() {
+          window.print();
+        });
+      }
+    });
+  `;
+
+  return code;
+};
+
   // Console Log Block
 Blockly.Blocks['console_log'] = {
   init: function () {
@@ -125,7 +157,10 @@ Blockly.Blocks['alert_block'] = {
   init: function() {
     this.appendValueInput("message")
         .setCheck(null)
-        .appendField("Show alert");
+        .appendField("Show alert when element is clicked");
+    this.appendValueInput("element")
+        .setCheck("el_id_input")
+        .appendField("Element ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(640);
@@ -137,7 +172,18 @@ Blockly.Blocks['alert_block'] = {
 
 javascriptGenerator.forBlock['alert_block'] = function(block: any, generator: any) {
   var message = generator.valueToCode(block, 'message', Order.ATOMIC);
-  var code = `alert(${message})\n`;
+  var elementId = generator.valueToCode(block, 'element', Order.ATOMIC);
+
+  var code = `
+    document.addEventListener("DOMContentLoaded", function() {
+      var element = document.getElementById(${elementId});
+      if (element) {
+        element.addEventListener("click", function() {
+          alert(${message});
+        });
+      }
+    });
+  `;
   return code;
 };
 
@@ -214,3 +260,43 @@ var code = `
 
 return code;
 };
+
+//single comment
+Blockly.Blocks['single_line_comment'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("//")
+        .appendField(new Blockly.FieldTextInput("Your comment here"), "COMMENT");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+    this.setTooltip('Add a single-line comment');
+  }
+};
+
+javascriptGenerator.forBlock['single_line_comment'] = function(block:any, generator:any) {
+  var commentText = block.getFieldValue('COMMENT');
+  var code = `// ${commentText}\n`;
+  return code;
+};
+
+//multiple line comment 
+Blockly.Blocks['multi_line_comment'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("/*")
+        .appendField(new Blockly.FieldTextInput("Your comment here"), "COMMENT")
+        .appendField("*/");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('Add a multi-line comment');
+  }
+};
+
+javascriptGenerator.forBlock['multi_line_comment'] = function(block:any, generator:any) {
+  var commentText = block.getFieldValue('COMMENT');
+  var code = `/* ${commentText} */\n`;
+  return code;
+};
+
