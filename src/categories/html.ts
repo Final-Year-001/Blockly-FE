@@ -4,12 +4,16 @@ import "../blocks/html/blocks";
 export const htmlCategory = {
   kind: "category",
   name: "html",
-  colour: "#5CA699",
+  colour: "#4295f5",
   contents: [
+    {
+      kind: "block",
+      type: "html_html",
+    },
     {
       kind: "category",
       name: "Text",
-      colour: "#5CA699",
+      colour: "#74aff2",
       contents: [
         {
           kind: "block",
@@ -36,7 +40,7 @@ export const htmlCategory = {
     {
       kind: "category",
       name: "Table",
-      colour: "#5CA699",
+      colour: "#74aff2",
       contents: [
         {
           kind: "block",
@@ -59,7 +63,7 @@ export const htmlCategory = {
     {
       kind: "category",
       name: "Form",
-      colour: "#5CA699",
+      colour: "#74aff2",
       contents: [
         {
           kind: "block",
@@ -82,7 +86,7 @@ export const htmlCategory = {
     {
       kind: "category",
       name: "Lists",
-      colour: "#5CA699",
+      colour: "#74aff2",
       contents: [
         {
           kind: "block",
@@ -101,17 +105,12 @@ export const htmlCategory = {
     {
       kind: "category",
       name: "More",
-      colour: "#5CA699",
+      colour: "#74aff2",
       contents: [
-        {
-          kind: "block",
-          type: "html_html",
-        },
         {
           kind: "block",
           type: "html_identifier",
         },
-
         {
           kind: "block",
           type: "html_name",
@@ -125,7 +124,7 @@ export const htmlCategory = {
     {
       kind: "category",
       name: "Multimedia",
-      colour: "#5CA699",
+      colour: "#74aff2",
       contents: [
         {
           kind: "block",
