@@ -13,6 +13,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { sandboxAtom } from "../state/stadbox";
 import { codeAtom } from "../state/code";
 import CopySandBoxUrl from "./CopySandBoxUrl";
+import ProductLogo from "../assets/Logo";
 
 function FrontendTopBar() {
   let [workAreaSize, setworkAreaSize] = useRecoilState(codeAtom);
@@ -39,20 +40,21 @@ function FrontendTopBar() {
 
   return (
     <div className="flex w-full justify-between items-center p-4">
-      <div className="flex flex-row gap-3 px-2">
-          <h1 className="text-3xl font-bold text-indigo-400">
-        Frontend workspace
-      </h1>
-        
+      <div className="flex flex-col  gap-3 px-2">
+        <ProductLogo TextSize={3}/>
       </div>
+
       <div className="flex gap-2">
-        <Button onClick={()=>{setworkAreaSize("small")}}>Small</Button>
-        <Button onClick={()=>{setworkAreaSize("large")}}>Large</Button>
-        <Button onClick={()=>{createHTMLFile("file")}}>Export</Button>
+      <h3 className="text-2xl font-bold text-indigo-400">
+        Frontend Builder
+      </h3>
       </div>
+
       <div>
+        <Button className="mr-4" onClick={()=>{createHTMLFile("file")}}>Export Code</Button>
         <Avatar src="/img/cat default avatar.png" alt="avatar" size="md" />
       </div>
+
     </div>
   );
 }

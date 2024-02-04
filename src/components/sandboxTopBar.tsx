@@ -13,9 +13,12 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { sandboxAtom } from "../state/stadbox";
 import { codeAtom } from "../state/code";
 import CopySandBoxUrl from "./CopySandBoxUrl";
+import { useRef } from "react";
 
 function SandboxTopBar() {
   const [sandbox, setSandbox] = useRecoilState(sandboxAtom);
+  const retryRef = useRef<number>(0);
+
   const code = useRecoilValue(codeAtom);
 
   const qc = useQueryClient();
@@ -38,7 +41,10 @@ function SandboxTopBar() {
       );
 
       if (up?.length === 0) {
-        createSandboxMutation.mutate();
+        if(retryRef.current < 3) {
+          createSandboxMutation.mutate();
+          retryRef.current++;
+        }
       }
     },
   });

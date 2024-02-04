@@ -15,7 +15,7 @@ function MyProjects() {
   });
 
   const projectData = projectDataQuery.data?.data?.result?.map((c: any) => {
-    console.log(c, "dfafadsfd")
+
     return {
       name: c.name,
       description: c.desc,
@@ -24,7 +24,7 @@ function MyProjects() {
       variant: c.variant
     };
   }) || [];
-  console.log(projectData, "dsdadsd")
+  
   const navigate = useNavigate();
 
   const saveMutation = useMutation({

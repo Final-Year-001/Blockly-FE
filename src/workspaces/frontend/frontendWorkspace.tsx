@@ -63,7 +63,7 @@ function FrontendWorkspace({
             grid: {
               spacing: 20,
               length: 3,
-              colour: "#fff",
+              colour: "#ffffff",
               snap: true,
             },
           }}
