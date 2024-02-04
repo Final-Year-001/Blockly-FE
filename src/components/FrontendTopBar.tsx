@@ -13,7 +13,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { sandboxAtom } from "../state/stadbox";
 import { codeAtom } from "../state/code";
 import CopySandBoxUrl from "./CopySandBoxUrl";
-import ProductLogo from "../assets/logo";
+import ProductLogo from "../assets/Logo";
 
 function FrontendTopBar() {
   let [workAreaSize, setworkAreaSize] = useRecoilState(codeAtom);
