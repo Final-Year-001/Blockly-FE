@@ -3,7 +3,11 @@ import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import { javascriptCategory } from "../../categories/javascript";
 import { htmlCategory } from "../../categories/html";
-import { commonCategory } from "../../categories/google_blocks";
+import { commonCategory } from "../../categories/google_blocks"; 
+import { loopsCategory } from "../../categories/google_blocks";
+import { variablesCategory } from "../../categories/google_blocks";
+import { textCategory } from "../../categories/google_blocks";
+import { mathCategory } from "../../categories/math";
 import { cssCategory } from "../../categories/css";
 import { Experimental } from "../../categories/experimental";
 import { Card } from "@material-tailwind/react";
@@ -29,6 +33,10 @@ function FrontendWorkspace({
       cssCategory,
       javascriptCategory,
       commonCategory,
+      loopsCategory,
+      variablesCategory,
+      textCategory,
+      mathCategory,
       Experimental,
     ],
   };
