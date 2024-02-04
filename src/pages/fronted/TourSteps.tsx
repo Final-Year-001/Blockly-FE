@@ -1,4 +1,4 @@
-import ProductLogo from "../../assets/logo";
+import ProductLogo from "../../assets/Logo";
 export const TourSteps = [
     {
       selector: '#TopBar',
