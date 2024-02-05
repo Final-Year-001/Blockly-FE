@@ -14,6 +14,8 @@ import { sandboxAtom } from "../state/stadbox";
 import { codeAtom } from "../state/code";
 import CopySandBoxUrl from "./CopySandBoxUrl";
 import { useRef } from "react";
+import { createSandbox, getAllSandBoxes } from "../api/sandbox";
+import { tokenAtom } from "../state/auth";
 
 function SandboxTopBar() {
   const [sandbox, setSandbox] = useRecoilState(sandboxAtom);
@@ -23,10 +25,10 @@ function SandboxTopBar() {
 
   const qc = useQueryClient();
 
+  const tokens = useRecoilValue(tokenAtom);
+
   const createSandboxMutation = useMutation({
-    mutationFn: async () => {
-      httpClient.post("sandbox/");
-    },
+    mutationFn: createSandbox.bind(null, tokens),
     onSuccess: () => {
       qc.invalidateQueries("sandbox");
     },
@@ -34,7 +36,7 @@ function SandboxTopBar() {
 
   const sandboxQuery = useQuery({
     queryKey: ["sandbox"],
-    queryFn: () => httpClient.get("sandbox/all"),
+    queryFn: () => getAllSandBoxes(tokens),
     onSuccess: (data) => {
       let up = data?.data?.containers.filter((c: any) =>
         c?.status?.toLowerCase()?.includes("up")

@@ -1,5 +1,5 @@
 const Config = {
-    baseURL: "https://api-blockly-research-dev.dehemi.com/api/v1",
+    baseURL: import.meta.env.VITE_API_ENDPOINT,
     getConsoleURL: (name: string) => `wss://api-blockly-research-dev.dehemi.com/api/v1/sandbox/${name}/log`
 }
 
