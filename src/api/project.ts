@@ -36,3 +36,16 @@ export async function getProjectById(tokens: Tokens, id: string) {
     
       return res;
 }
+
+export async function newProject(tokens: Tokens, data: any) {
+  let res = await httpClient.request({
+    headers: {
+      Authorization: `Bearer ${tokens.access_token}`,
+    },
+    url: "project/new",
+    data: data,
+    method: "POST"
+  });
+
+  return res;
+}

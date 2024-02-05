@@ -8,7 +8,7 @@ import { httpClient } from "../../helpers/axios";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { tokenAtom } from "../../state/auth";
-import { getAllProjects } from "../../api/project";
+import { getAllProjects, newProject } from "../../api/project";
 import APIError from "../../errors/api";
 import { AxiosError } from "axios";
 
@@ -40,9 +40,9 @@ function MyProjects() {
         variant: c.variant,
       };
     }) || [];
-
+  
   const saveMutation = useMutation({
-    mutationFn: (json: any) => httpClient.post("project/new", json),
+    mutationFn: (json: any) => newProject(tokens, json),
     onSuccess: async (res) => {
       await qc.invalidateQueries("project");
       const id = res.data._id;
