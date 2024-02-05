@@ -1,52 +1,32 @@
 import React, { useState } from "react";
-import {
-  Card,
-  Input,
-  Checkbox,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
+import { Input } from "@material-tailwind/react";
 import { useMutation } from "react-query";
-import { httpAuthClient } from "../../helpers/axios";
 import { useNavigate } from "react-router-dom";
-
-interface LoginParams {
-    username: string
-    password: string
-}
+import { loginWithUsernameAndPassword } from "../../api/auth";
+import { useRecoilState } from "recoil";
+import { tokenAtom } from "../../state/auth";
 
 function LoginPage() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const [_, setTokens] = useRecoilState(tokenAtom);
+
   const loginDisabled = !(username.length > 0 && password.length > 0);
-  
+
   const navigate = useNavigate();
 
   const loginMutation = useMutation({
-   mutationFn: async ({ username, password }: LoginParams) => { 
-    const params = new URLSearchParams();
+    mutationFn: loginWithUsernameAndPassword,
+    onSuccess: (res) => {
+      setTokens(res);
+      navigate("/my/project");
+    },
+  });
 
-    params.append('grant_type', 'password');
-    params.append('username', username);
-    params.append('password', password);
-    params.append('client_id', 'dvpn-dev');
-    params.append('scope', 'openid');
-
-    let res = await httpAuthClient.post("/realms/blockly/protocol/openid-connect/auth", params);
-
-    if(res.status != 200) {
-        throw new APIError(res.status);
-    }
-   },
-   onSuccess: () => {
-    navigate("/my/project")
-   }
-  })
-  
-  const login = ()  => {
-    loginMutation.mutate({username, password});
-  }
+  const login = () => {
+    loginMutation.mutate({ username, password });
+  };
 
   return (
     <div className="flex justify-center items-center w-full h-full">

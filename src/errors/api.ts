@@ -9,4 +9,14 @@ class APIError extends Error {
     getStatus() {
         return this.status;
     }
+
+    isUnauthorized() {
+        return this.status == 401;
+    }
+
+    isForbidden() {
+        return this.status == 403;
+    }
 }
+
+export default APIError;
