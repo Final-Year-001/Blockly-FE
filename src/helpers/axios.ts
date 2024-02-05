@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const httpClient = axios.create({
-    baseURL: "http://localhost:9091/api/v1",
+    baseURL: import.meta.env.VITE_API_ENDPOINT,
 });
 
 const httpAuthClient = axios.create({
-    baseURL: "https://auth-dev.dehemi.com"
+    baseURL: import.meta.env.VITE_AUTH_API_ENDPOIN
 })
 
 export { httpClient, httpAuthClient };

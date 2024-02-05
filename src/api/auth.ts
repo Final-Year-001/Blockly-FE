@@ -1,3 +1,4 @@
+import APIError from "../errors/api";
 import { httpAuthClient } from "../helpers/axios";
 
 interface LoginParams {

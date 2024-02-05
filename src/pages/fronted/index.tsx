@@ -8,7 +8,7 @@ import {
   TabsBody,
   TabPanel,
 } from "@material-tailwind/react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { codeAtom } from "../../state/code";
 import FrontendTopBar from "../../components/FrontendTopBar";
 import { useMutation, useQuery } from "react-query";
@@ -21,9 +21,11 @@ import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
 } from "@heroicons/react/24/solid";
-import Tour from 'reactour';
+import Tour from "reactour";
 import _ from "lodash";
 import { TourSteps } from "./TourSteps";
+import { getProjectById, saveProject } from "../../api/project";
+import { tokenAtom } from "../../state/auth";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -69,10 +71,10 @@ function FrontendPage() {
   const [showTour, setShowTour] = useState<boolean>(true);
 
   const params = useParams();
+  const tokens = useRecoilValue(tokenAtom);
 
   const saveMutation = useMutation({
-    mutationFn: (json) =>
-      httpClient.post("project/" + params.id || "?", { code: json }),
+    mutationFn: (json) => saveProject(tokens, params.id ?? "", json),
     onMutate: () => {
       setSaveMessage({
         show: true,
@@ -91,7 +93,7 @@ function FrontendPage() {
 
   const getProjectQuery = useQuery({
     queryKey: ["project"],
-    queryFn: () => httpClient.get("project/" + params.id || "?"),
+    queryFn: () => getProjectById(tokens, params.id ?? "?"),
   });
 
   useEffect(() => {
@@ -116,12 +118,12 @@ function FrontendPage() {
     workspaceRef.current = workspace;
     try {
       let json = Blockly.serialization.workspaces.save(workspace);
-      if(!_.isEqual(json, workspaceState.current)){
+      if (!_.isEqual(json, workspaceState.current)) {
         setSaveMessage({
           show: true,
-          message: 'New unsaved changes',
-          loading: false
-        })
+          message: "New unsaved changes",
+          loading: false,
+        });
         workspaceState.current = json;
       }
     } catch (e) {
@@ -188,34 +190,37 @@ function FrontendPage() {
     }, 3000); // 3000 milliseconds (3 seconds)
   };
 
-
-
   return (
     <div className="flex flex-col h-full w-full ">
-       <Tour steps={TourSteps} isOpen={showTour} onRequestClose={() => {
-        setShowTour(false);
-       }}/>
-       <div id="TopBar">
-       <FrontendTopBar />
-       </div>
-      
+      <Tour
+        steps={TourSteps}
+        isOpen={showTour}
+        onRequestClose={() => {
+          setShowTour(false);
+        }}
+      />
+      <div id="TopBar">
+        <FrontendTopBar />
+      </div>
+
       <div
         className="flex flex-row flex-grow px-6 pb-4"
         style={{ height: "calc(100% - 400px)" }}
       >
-        <div 
+        <div
           className={
             isExpanded
               ? "flex-[0.3] duration-300 ease-in-out transition-all"
               : "flex-[0.7] duration-300 ease-in-out transition-all"
-          } id="blockSideBar">
+          }
+          id="blockSideBar"
+        >
           <FrontendWorkspace
             onCodeChange={injectCode}
             loaded={!getProjectQuery.isFetching}
             initialState={getProjectQuery.data?.data?.saveData}
           />
         </div>
-
 
         <div
           className={
@@ -235,8 +240,8 @@ function FrontendPage() {
               <ChevronDoubleLeftIcon />
             )}
           </div>
-          <Tabs id="outputSection"  value="html" className="h-full pb-10">
-            <TabsHeader >
+          <Tabs id="outputSection" value="html" className="h-full pb-10">
+            <TabsHeader>
               {tabs.map(({ label, value }) => (
                 <Tab id={`TabBtn${label}`} key={value} value={value}>
                   {label}
@@ -296,7 +301,9 @@ function FrontendPage() {
           
         </div> */}
       </div>
-      <div className="flex flex-row px-6 pb-1">{ saveMessage.show ? <span>{saveMessage.message}</span> : <div>...</div> }</div>
+      <div className="flex flex-row px-6 pb-1">
+        {saveMessage.show ? <span>{saveMessage.message}</span> : <div>...</div>}
+      </div>
     </div>
   );
 }
