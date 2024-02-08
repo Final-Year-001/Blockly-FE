@@ -14,7 +14,7 @@ import { sandboxAtom } from "../state/stadbox";
 import { codeAtom } from "../state/code";
 import CopySandBoxUrl from "./CopySandBoxUrl";
 import { useRef } from "react";
-import { createSandbox, getAllSandBoxes } from "../api/sandbox";
+import { createSandbox, getAllSandBoxes, updateCode } from "../api/sandbox";
 import { tokenAtom } from "../state/auth";
 
 function SandboxTopBar() {
@@ -57,25 +57,7 @@ function SandboxTopBar() {
     ) || [];
 
   const codeMutation = useMutation({
-    mutationFn: async () => {
-      // let c = `
-      //   import express from 'express'
-      //   import session from 'express-session'
-      //   //const session = require('express-session')
-      //   const app = express();
-
-      //   app.get("/health", (req, res) => {
-      //       res.json({ hello: "Hello world!" });
-      //   })
-
-      //   app.listen("8999", () => {
-      //       console.log("listen on 8999")
-      //   })
-      // `;
-      httpClient.post("sandbox/" + sandbox.name, code, {
-        headers: { "Content-Type": "text/plain" },
-      });
-    },
+    mutationFn: () => updateCode(tokens, sandbox, code),
   });
 
   return (
