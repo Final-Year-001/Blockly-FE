@@ -10,7 +10,7 @@ function CopySandBoxUrl() {
 
   const getUrl = () => {
     return sandbox.name
-      ? `https://api-blockly-research-dev.dehemi.com/api/v1/sandbox/proxy/${sandbox.name}`
+      ? `https://${import.meta.env.VITE_API_ENDPOINT}/api/v1/sandbox/proxy/${sandbox.name}`
       : "environment is not selected";
   };
 
