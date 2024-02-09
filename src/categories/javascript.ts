@@ -10,7 +10,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "JS Beginner",
-      colour: "#FF007F",
+      colour: "#f9c975",
       contents: [
         {
           kind:"block",
@@ -61,7 +61,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "JS Form",
-      colour: "#800080",
+      colour: "#f9c975",
       contents: [
         {
           kind: "block",
@@ -108,7 +108,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "JS Todo",
-      colour: "#FFD700",
+      colour: "#f9c975",
       contents: [
         {
           kind:"block",
