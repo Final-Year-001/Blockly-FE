@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import BackendPage from "./pages/backend";
 import FrontendPage from "./pages/fronted";
 import MyProjects from "./pages/myprojects/myprojects";
+import LoginPage from "./pages/login/login";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/backend/:id",
     element: <BackendPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />
   },
   {
     path: "/frontend/:id",

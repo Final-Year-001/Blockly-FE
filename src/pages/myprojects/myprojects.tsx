@@ -6,29 +6,43 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { httpClient } from "../../helpers/axios";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { tokenAtom } from "../../state/auth";
+import { getAllProjects, newProject } from "../../api/project";
+import APIError from "../../errors/api";
+import { AxiosError } from "axios";
 
 function MyProjects() {
-  const [open, setOpen] = useState<boolean>(false);
-  const qc = useQueryClient();
-  const projectDataQuery = useQuery({
-    queryFn: () => httpClient.get("project"),
-  });
-
-  const projectData = projectDataQuery.data?.data?.result?.map((c: any) => {
-
-    return {
-      name: c.name,
-      description: c.desc,
-      image: "",
-      id: c._id,
-      variant: c.variant
-    };
-  }) || [];
-  
+  const tokens = useRecoilValue(tokenAtom);
   const navigate = useNavigate();
 
+  const [open, setOpen] = useState<boolean>(false);
+  const qc = useQueryClient();
+  const projectDataQuery = useQuery("projects", {
+    queryFn: getAllProjects.bind(null, tokens),
+    retry: (_, err) => {
+      if (err instanceof AxiosError && err.response?.status == 403) {
+        navigate("/login", { replace: true });
+        return false;
+      }
+
+      return true;
+    },
+  });
+
+  const projectData =
+    projectDataQuery.data?.result?.map((c: any) => {
+      return {
+        name: c.name,
+        description: c.desc,
+        image: "",
+        id: c._id,
+        variant: c.variant,
+      };
+    }) || [];
+  
   const saveMutation = useMutation({
-    mutationFn: (json: any) => httpClient.post("project/new", json),
+    mutationFn: (json: any) => newProject(tokens, json),
     onSuccess: async (res) => {
       await qc.invalidateQueries("project");
       const id = res.data._id;

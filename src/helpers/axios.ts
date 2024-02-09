@@ -1,8 +1,11 @@
 import axios from "axios";
 
 const httpClient = axios.create({
-    baseURL: "https://api-blockly-research-dev.dehemi.com/api/v1",
+    baseURL: import.meta.env.VITE_API_ENDPOINT,
 });
 
+const httpAuthClient = axios.create({
+    baseURL: import.meta.env.VITE_AUTH_API_ENDPOIN
+})
 
-export { httpClient };
+export { httpClient, httpAuthClient };
