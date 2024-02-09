@@ -10,7 +10,7 @@ function CopySandBoxUrl() {
 
   const getUrl = () => {
     return sandbox.name
-      ? `https://${import.meta.env.VITE_API_ENDPOINT}/api/v1/sandbox/proxy/${sandbox.name}`
+      ? `${import.meta.env.VITE_API_ENDPOINT}/sandbox/proxy/${sandbox.name}`
       : "environment is not selected";
   };
 
