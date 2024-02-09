@@ -21,6 +21,8 @@ import { useMutation, useQuery } from "react-query";
 import { httpClient } from "../../helpers/axios";
 import { useParams } from "react-router-dom";
 import _ from "lodash";
+import { getProjectById, saveProject } from "../../api/project";
+import { tokenAtom } from "../../state/auth";
 
 function organizeCode(code: string) {
   // Split the code into lines
@@ -68,10 +70,11 @@ function BackendPage() {
 
   const debouncedWorkspace = useDebounce(workspaceState.current, 2000);
   const params = useParams();
+  const tokens = useRecoilValue(tokenAtom);
 
   const saveMutation = useMutation({
     mutationFn: (json) =>
-      httpClient.post("project/" + params.id || "?", { code: json }),
+    saveProject(tokens, params.id ?? "", json),
     onMutate: () => {
       setSaveMessage({
         show: true,
@@ -90,7 +93,7 @@ function BackendPage() {
 
   const getProjectQuery = useQuery({
     queryKey: ["project"],
-    queryFn: () => httpClient.get("project/" + params.id || "?"),
+    queryFn: () => getProjectById(tokens, params.id ?? "?"),
   });
 
   const onCodeChange = (code: string, workspace: WorkspaceSvg) => {
