@@ -9,7 +9,9 @@ import { variablesCategory } from "../../categories/google_blocks";
 import { textCategory } from "../../categories/google_blocks";
 import { mathCategory } from "../../categories/math";
 import { cssCategory } from "../../categories/css";
-import { Experimental } from "../../categories/experimental";
+import { functionCategory } from "../../categories/google_blocks";
+import { listCategory } from "../../categories/google_blocks";
+import { colorCategory } from "../../categories/google_blocks";
 import { Card } from "@material-tailwind/react";
 
 interface FrontendWorkspaceProps {
@@ -37,7 +39,9 @@ function FrontendWorkspace({
       variablesCategory,
       textCategory,
       mathCategory,
-      Experimental,
+      functionCategory,
+      listCategory,
+      colorCategory,
     ],
   };
 

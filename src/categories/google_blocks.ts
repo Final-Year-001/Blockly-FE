@@ -120,5 +120,52 @@ export const textCategory = {
     { kind: 'block', type: 'text_isEmpty' },
     { kind: 'block', type: 'text_indexOf' },
     { kind: 'block', type: 'text_charAt' },
+    { kind: 'block', type: 'text_getSubstring' },
+    { kind: 'block', type: 'text_changeCase' },
+    { kind: 'block', type: 'text_trim' },
+    { kind: 'block', type: 'text_count' },
+    { kind: 'block', type: 'text_replace' },
+    { kind: 'block', type: 'text_reverse' },
+    { kind: 'block', type: 'text_prompt_ext' },
+  ],
+};
+
+export const functionCategory = {
+  kind: 'category',
+  name: 'Function',
+  colour: '#783fa1',
+  contents: [
+    { kind: 'block', type: 'procedures_defnoreturn' },
+    { kind: 'block', type: 'procedures_defreturn' },
+    { kind: 'block', type: 'procedures_ifreturn' },
+  ],
+};
+
+export const colorCategory = {
+  kind: 'category',
+  name: 'Colours',
+  colour: '#75604a',
+  contents: [
+    { kind: 'block', type: 'colour_random' },
+    { kind: 'block', type: 'colour_picker' },
+    { kind: 'block', type: 'colour_rgb' },
+    { kind: 'block', type: 'colour_blend' },
+  ],
+};
+
+export const listCategory = {
+  kind: 'category',
+  name: 'List',
+  colour: '#800080',
+  contents: [
+    { kind: 'block', type: 'lists_create_with' },
+    { kind: 'block', type: 'lists_repeat' },
+    { kind: 'block', type: 'lists_length' },
+    { kind: 'block', type: 'lists_isEmpty' },
+    { kind: 'block', type: 'lists_sort' },
+    { kind: 'block', type: 'lists_reverse' },
+    { kind: 'block', type: 'lists_indexOf' },
+    { kind: 'block', type: 'lists_setIndex' },
+    { kind: 'block', type: 'lists_split' },
   ],
 };

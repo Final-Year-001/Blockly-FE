@@ -14,47 +14,135 @@ export const javascriptCategory = {
       contents: [
         {
           kind:"block",
-          type: "javascript"
+          type: "javascript",
+          icons: {
+            comment: {
+              text: "JavaScript code should be wrapped in this tag",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
         },
         {
           kind:"block",
-          type: "create_variable"
+          type: "create_variable",
+          icons: {
+            comment: {
+              text: "Create a custom variable",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
         },
         {
           kind:"block",
-          type: "generate_id" 
+          type: "generate_id",
+          icons: {
+            comment: {
+              text: "Create an element ID",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
         },
         {
           kind: "block",
-          type: "chnage_innerHTML"
+          type: "chnage_innerHTML",
+          icons: {
+            comment: {
+              text: "Change the content of an HTML element by ID",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
         },
         {
           kind: "block",
-          type: "console_log"
+          type: "console_log",
+          icons: {
+            comment: {
+              text: "Log a message to the console",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
         },
         {
           kind: "block",
-          type: "alert_block"
+          type: "alert_block",
+          icons: {
+            comment: {
+              text: "Generate a custom alert",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
         },
         {
           kind: "block",
           type: "event_listener",
+          icons: {
+            comment: {
+              text: "Attach an event listener to an HTML element",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
         }, 
         {
           kind: "block",
-          type: "show_hidden_element", 
+          type: "show_hidden_element",
+          icons: {
+            comment: {
+              text: "Show or hide an HTML element",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
         },
         {
           kind: "block",
-          type: "print_block",   
+          type: "print_block",
+          icons: {
+            comment: {
+              text: "Print the page",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },  
         },
         {
           kind: "block",
-          type: "single_line_comment",  
+          type: "single_line_comment",
+          icons: {
+            comment: {
+              text: "Single-line comment",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },  
         },
         {
           kind: "block",
-          type: "multi_line_comment",  
+          type: "multi_line_comment",
+          icons: {
+            comment: {
+              text: "Multi-line comment",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          }, 
         },
       ]
     },
