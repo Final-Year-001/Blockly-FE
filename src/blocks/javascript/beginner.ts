@@ -13,7 +13,7 @@ Blockly.Blocks['javascript'] = {
     this.setNextStatement(true, null);
     this.setTooltip("");
     this.setHelpUrl("");
-    this.setTooltip('Define the script tag. JavaScipt code should be wrapped in this tag');
+    this.setTooltip('Define the script tag. JavaScript code should be wrapped in this tag'); 
   }
 };
 
@@ -35,7 +35,7 @@ Blockly.Blocks['create_variable'] = {
         this.setPreviousStatement(true, null); 
         this.setNextStatement(true, null);
     this.setColour(230);
-    this.setTooltip("create a custome variable");
+    this.setTooltip("create a custom variable");
   }
 };
 
