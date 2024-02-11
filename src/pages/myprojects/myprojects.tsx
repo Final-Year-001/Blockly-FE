@@ -5,7 +5,7 @@ import NewProjectModal from "../../components/NewProjectModal";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { httpClient } from "../../helpers/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { tokenAtom } from "../../state/auth";
 import { getAllProjects, newProject } from "../../api/project";
@@ -72,12 +72,19 @@ function MyProjects() {
       <div className="px-10">
         <div className="flex justify-between px-16 pb-4">
           <Typography variant="h1">My Projects</Typography>
+          <div className="flex gap-4">
           <Button
             onClick={() => setOpen(true)}
             className="h-12 flex gap-3 justify-center items-center"
           >
             <PlusIcon className="h-6 w-6" /> New Project
           </Button>
+          <Link to="/get-started">
+            <Button className="h-12 flex gap-3 justify-center items-center">
+              Documentation
+            </Button>
+          </Link>
+        </div>
         </div>
         <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
           {projectData.map((project: any) => (

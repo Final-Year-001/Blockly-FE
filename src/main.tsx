@@ -10,6 +10,7 @@ import BackendPage from "./pages/backend";
 import FrontendPage from "./pages/fronted";
 import MyProjects from "./pages/myprojects/myprojects";
 import LoginPage from "./pages/login/login";
+import GetStarted from "./pages/getstarted/getstarted";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/my/projects",
     element: <MyProjects />
+  },
+  {
+    path: "/get-started",
+    element: <GetStarted />
   },
   {
     path: "/*",
