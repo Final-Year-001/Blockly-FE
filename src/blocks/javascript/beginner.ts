@@ -300,3 +300,36 @@ javascriptGenerator.forBlock['multi_line_comment'] = function(block:any, generat
   return code;
 };
 
+//create a function
+Blockly.Blocks['custom_function'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("function")
+        .appendField(new Blockly.FieldTextInput("myFunction"), "FUNCTION_NAME")
+        .appendField("(")
+        .appendField(new Blockly.FieldTextInput("p1"), "PARAM1")
+        .appendField(",")
+        .appendField(new Blockly.FieldTextInput("p2"), "PARAM2")
+        .appendField(")");
+    this.appendStatementInput("STATEMENTS")
+        .setCheck(null)
+        .appendField("do");
+    this.setColour(160);
+    this.setTooltip('Create a custom function');
+  }
+};
+
+javascriptGenerator.forBlock['custom_function'] = function(block:any, generator:any) {
+  var functionName = block.getFieldValue('FUNCTION_NAME');
+  var param1 = block.getFieldValue('PARAM1');
+  var param2 = block.getFieldValue('PARAM2');
+  var statements = generator.statementToCode(block, 'STATEMENTS');
+
+  var code = `
+function ${functionName}(${param1}, ${param2}) {
+  ${statements}
+}
+`;
+
+  return code;
+};

@@ -108,11 +108,13 @@ function FrontendPage() {
   }, [workAreaSize]);
 
   const injectCode = (code: string, workspace: WorkspaceSvg) => {
+    // Exclude comments starting with "//" from the code
+    const cleanCode = code.replace(/\/\/(.*)/g, '');
     setCode(organizeImports(code));
-    setFrontendCode(code);
+    setFrontendCode(cleanCode);
     if (iframeRef.current) {
       const iframe = iframeRef.current;
-      iframe.srcdoc = code;
+      iframe.srcdoc = cleanCode;
     }
 
     workspaceRef.current = workspace;
