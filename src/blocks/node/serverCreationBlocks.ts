@@ -10,10 +10,10 @@ Blockly.Blocks["express_server_creation"] = {
       .appendField("Maximum Body Size in MB (Optional):")
       .appendField(new Blockly.FieldTextInput(), "maxBodySize");
     this.appendValueInput("PORT").setCheck("Number").appendField("Port");
-    this.appendStatementInput("MIDDLEWARE")
-      .setCheck(["compression_middleware"])
+    this.appendStatementInput("MIDDLEWARE").setCheck("middleware")
+      // .setCheck(["compression_middleware"])
       .appendField("Middleware");
-    this.appendStatementInput("ROUTES").setCheck(null).appendField("Routes");
+    this.appendStatementInput("ROUTES").setCheck("route").appendField("Routes");
     this.appendValueInput("ERROR_HANDLER")
       .setCheck(null)
       .appendField("Error handler");
@@ -85,8 +85,8 @@ Blockly.Blocks["server_helmet_guard"] = {
     );
     this.setHelpUrl("");
     this.setColour(130);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "middleware");
+    this.setNextStatement(true, "middleware");
   },
 };
 
@@ -113,8 +113,8 @@ Blockly.Blocks["compression_middleware"] = {
     );
     this.setHelpUrl("");
     this.setColour(130);
-    this.setPreviousStatement(true, "server_middleware");
-    this.setNextStatement(true, "server_middleware");
+    this.setPreviousStatement(true, "middleware");
+    this.setNextStatement(true, "middleware");
   },
 };
 
@@ -144,8 +144,8 @@ Blockly.Blocks["session_middleware"] = {
     );
     this.setHelpUrl("");
     this.setColour(130);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "middleware");
+    this.setNextStatement(true, "middleware");
   },
 };
 

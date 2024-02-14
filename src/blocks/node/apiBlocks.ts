@@ -18,8 +18,8 @@ Blockly.Blocks["api_method"] = {
     this.appendDummyInput()
       .appendField("Path")
       .appendField(new Blockly.FieldTextInput("/"), "path");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "route");
+    this.setNextStatement(true, "route");
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -48,52 +48,65 @@ javascriptGenerator.forBlock["api_method"] = function (
   return code;
 };
 
-Blockly.Blocks['get_request'] = {
-  init: function() {
+Blockly.Blocks["get_request"] = {
+  init: function () {
     this.appendDummyInput()
-        .appendField("Set request body to")
-        .appendField(new Blockly.FieldVariable("item"), "var")
-        .appendField("of type")
-        .appendField(new Blockly.FieldDropdown([["JSON","json"], ["XML","xml"], ["URL Form encoded","url_from_encoded"]]), "NAME");
+      .appendField("Set request body to")
+      .appendField(new Blockly.FieldVariable("item"), "var")
+      .appendField("of type")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["JSON", "json"],
+          ["XML", "xml"],
+          ["URL Form encoded", "url_from_encoded"],
+        ]),
+        "NAME"
+      );
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-javascriptGenerator.forBlock['get_request'] = function(block: any, generator: any) {
-  let variable_name = generator.nameDB_.getName(block.getFieldValue('var'), 'VARIABLE');
-  let dropdown_name = block.getFieldValue('NAME');
+javascriptGenerator.forBlock["get_request"] = function (
+  block: any,
+  generator: any
+) {
+  let variable_name = generator.nameDB_.getName(
+    block.getFieldValue("var"),
+    "VARIABLE"
+  );
+  let dropdown_name = block.getFieldValue("NAME");
 
-  let code = ""
-  switch(dropdown_name) {
+  let code = "";
+  switch (dropdown_name) {
     case "JSON":
       code = `${variable_name} = req.body;\n`;
       break;
     default:
-      code = `${variable_name} = req.body;\n`
+      code = `${variable_name} = req.body;\n`;
   }
   return code;
 };
 
-
-Blockly.Blocks['respond_json'] = {
-  init: function() {
-    this.appendValueInput("var")
-        .setCheck(null)
-        .appendField("respond with");
+Blockly.Blocks["respond_json"] = {
+  init: function () {
+    this.appendValueInput("var").setCheck(null).appendField("respond with");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-javascriptGenerator.forBlock['respond_json'] = function(block: any, generator: any) {
-  var value_var = generator.valueToCode(block, 'var', Order.ATOMIC);
+javascriptGenerator.forBlock["respond_json"] = function (
+  block: any,
+  generator: any
+) {
+  var value_var = generator.valueToCode(block, "var", Order.ATOMIC);
   return `res.json(${value_var});\n`;
 };
 

@@ -5,6 +5,9 @@ import { javascriptGenerator } from "blockly/javascript";
 import { mathCategory } from "../../categories/math";
 import { commonCategory } from "../../categories/google_blocks";
 import { databaseCategory } from "../../categories/database";
+import { loopsCategory } from "../../categories/google_blocks";
+import { variablesCategory } from "../../categories/google_blocks";
+import { textCategory } from "../../categories/google_blocks";
 import { Card } from "@material-tailwind/react";
 import { sessionHandlingCategory } from "../../categories/sessionHandling";
 import { generalMiddlewareCategory } from "../../categories/middlewares";
@@ -34,6 +37,9 @@ function BackendWorkspace({
       databaseCategory,
       mathCategory,
       commonCategory,
+      loopsCategory,
+      variablesCategory,
+      textCategory,
     ],
   };
 
