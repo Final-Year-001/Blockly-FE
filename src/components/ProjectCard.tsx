@@ -1,5 +1,5 @@
 import { PlayIcon } from "@heroicons/react/20/solid";
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import {
   Button,
   Card,
@@ -48,6 +48,7 @@ function ProjectCard({ name, description, image, id, variant }: ProjectCardProps
           navigate("/backend/" + id);
         }}><PencilSquareIcon className="w-5 h-5"/></Button>
         <Button><PlayIcon className="w-5 h-5"/></Button>
+        <Button><TrashIcon className="w-5 h-5" /></Button>
       </CardFooter>
     </Card>
   );

@@ -35,6 +35,7 @@ function FrontendWorkspace({
       htmlCategory,
       cssCategory,
       javascriptCategory,
+      { kind: "sep" },
       commonCategory,
       loopsCategory,
       variablesCategory,
