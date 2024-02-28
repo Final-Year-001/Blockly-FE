@@ -14,6 +14,7 @@ import { sandboxAtom } from "../state/stadbox";
 import { codeAtom } from "../state/code";
 import CopySandBoxUrl from "./CopySandBoxUrl";
 import ProductLogo from "../assets/Logo";
+import { Link } from "react-router-dom";
 
 function FrontendTopBar() {
   let [workAreaSize, setworkAreaSize] = useRecoilState(codeAtom);
@@ -41,7 +42,9 @@ function FrontendTopBar() {
   return (
     <div className="flex w-full justify-between items-center p-4">
       <div className="flex flex-col  gap-3 px-2">
+      <Link to="/my/projects">
         <ProductLogo TextSize={3}/>
+        </Link>
       </div>
 
       <div className="flex gap-2">
@@ -52,7 +55,7 @@ function FrontendTopBar() {
 
       <div>
         <Button className="mr-4" onClick={()=>{createHTMLFile("file")}}>Export Code</Button>
-        <Avatar src="/img/cat default avatar.png" alt="avatar" size="md" />
+        <Link to="/my/projects"><Avatar src="/img/cat default avatar.png" alt="avatar" size="md" /></Link>
       </div>
 
     </div>
