@@ -1,23 +1,25 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import { javascriptCategory } from "../../categories/javascript";
 import { htmlCategory } from "../../categories/html";
-import { commonCategory } from "../../categories/google_blocks"; 
-import { loopsCategory } from "../../categories/google_blocks";
-import { variablesCategory } from "../../categories/google_blocks";
-import { textCategory } from "../../categories/google_blocks";
+import {
+  commonCategory,
+  loopsCategory,
+  textCategory,
+  functionCategory,
+  listCategory,
+  colorCategory,
+  variablesCategory,
+} from "../../categories/google_blocks";
 import { mathCategory } from "../../categories/math";
 import { cssCategory } from "../../categories/css";
-import { functionCategory } from "../../categories/google_blocks";
-import { listCategory } from "../../categories/google_blocks";
-import { colorCategory } from "../../categories/google_blocks";
 import { Card } from "@material-tailwind/react";
 
 interface FrontendWorkspaceProps {
-  onCodeChange?: (code: string, workspace: WorkspaceSvg) => void;
-  initialState?: any;
-  loaded: boolean;
+  readonly onCodeChange?: (code: string, workspace: WorkspaceSvg) => void;
+  readonly initialState?: any;
+  readonly loaded: boolean;
 }
 
 function FrontendWorkspace({
@@ -25,7 +27,6 @@ function FrontendWorkspace({
   initialState,
   loaded,
 }: FrontendWorkspaceProps) {
-
   const workspaceWrapper = useRef<HTMLDivElement>(null);
 
   const toolboxCategories = {
@@ -46,10 +47,8 @@ function FrontendWorkspace({
   };
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
-    console.log(workspace, "workspace");
     javascriptGenerator.addReservedWords("code");
     let code = javascriptGenerator.workspaceToCode(workspace);
-    console.log("backend code - ", code);
     onCodeChange?.(code, workspace);
   };
 

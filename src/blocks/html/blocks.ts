@@ -798,3 +798,36 @@ JavaScript.javascriptGenerator.forBlock['html_a'] = function(block : any, genera
   var code = `<a href='` + text_link + "'" + `>` +  statements_data + '</a>';
   return code;
 };
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Blockly.Blocks['html_checkbox'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Checkbox");
+    this.appendDummyInput()
+        .appendField("ID")
+        .appendField(new Blockly.FieldTextInput("default"), "id")
+        .appendField("Name")
+        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField("Value")
+        .appendField(new Blockly.FieldTextInput("default"), "value");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['html_checkbox'] = function(block : any, generator : any) {
+  var text_id = block.getFieldValue('id');
+  var text_name = block.getFieldValue('name');
+  var text_value = block.getFieldValue('value');
+  // TODO: Assemble javascript into code variable.
+  // var code = "s"
+  var code = `<input type="checkbox" id="` + text_id  + `" name=" ` + text_name + `" value="`+ text_value +`">`;
+  return code;
+};
