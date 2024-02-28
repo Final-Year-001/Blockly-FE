@@ -192,22 +192,22 @@ JavaScript.javascriptGenerator.forBlock['html_addtext'] = function(block: any, g
 Blockly.Blocks['html_button'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Button Block");
+        .appendField("Button");
+    this.appendEndRowInput();
     this.appendDummyInput()
-        .appendField(new Blockly.FieldCheckbox("TRUE"), "button_id")
-        .appendField("ID")
-        .appendField(new Blockly.FieldTextInput("default"), "id")
-        .appendField(new Blockly.FieldCheckbox("TRUE"), "button_class")
-        .appendField("Class")
-        .appendField(new Blockly.FieldTextInput("default"), "class")
+        .appendField("Type")
+        .appendField(new Blockly.FieldTextInput("submit"), "type");
     this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Label")
-        .appendField(new Blockly.FieldTextInput("default"), "label");
+        .appendField("Name")
+        .appendField(new Blockly.FieldTextInput(""), "name");
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("   identifier");
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("This is a button block");
+ this.setTooltip("");
  this.setHelpUrl("");
   }
 };
@@ -215,22 +215,11 @@ Blockly.Blocks['html_button'] = {
 
 
 JavaScript.javascriptGenerator.forBlock['html_button'] = function(block : any, generator : any) {
-  var checkbox_button_id = block.getFieldValue('button_id') === 'TRUE';
-  var text_id = block.getFieldValue('id');
-  var checkbox_button_class = block.getFieldValue('button_class') === 'TRUE';
-  var text_class = block.getFieldValue('class');
-  var text_label = block.getFieldValue('label');
+  var text_type = block.getFieldValue('type');
+  var text_name = block.getFieldValue('name');
+  var value_name = generator.valueToCode(block, 'NAME', Order.ATOMIC);
 
-  var identifier = "";
-  if(checkbox_button_id){
-    identifier = `id="` + text_id  + `" `
-  }
-  if(checkbox_button_class){
-    identifier = identifier + `class="` + text_class  + `"`
-  }
-
-
-  var code = `<button ` + identifier + `type="submit">` + removeParentheses(text_label) + '</button>';
+  var code = `<button ` + value_name + ` type="`+text_type+`">` + removeParentheses(text_name) + '</button>';
  
   return code;
 };
@@ -765,13 +754,17 @@ Blockly.Blocks['html_checkbox'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Checkbox");
+    this.appendEndRowInput();
     this.appendDummyInput()
-        .appendField("ID")
-        .appendField(new Blockly.FieldTextInput("default"), "id")
         .appendField("Name")
-        .appendField(new Blockly.FieldTextInput("default"), "name")
-        .appendField("Value")
-        .appendField(new Blockly.FieldTextInput("default"), "value");
+        .appendField(new Blockly.FieldTextInput(""), "NAME");
+    this.appendDummyInput()
+        .appendField("  Value")
+        .appendField(new Blockly.FieldTextInput(""), "Value");
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("   identifier");
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
@@ -781,11 +774,11 @@ Blockly.Blocks['html_checkbox'] = {
 };
 
 JavaScript.javascriptGenerator.forBlock['html_checkbox'] = function(block : any, generator : any) {
-  var text_id = block.getFieldValue('id');
-  var text_name = block.getFieldValue('name');
-  var text_value = block.getFieldValue('value');
+  var text_name = block.getFieldValue('NAME');
+  var text_value = block.getFieldValue('Value');
+  var value_name = generator.valueToCode(block, 'NAME', Order.ATOMIC);
   // TODO: Assemble javascript into code variable.
   // var code = "s"
-  var code = `<input type="checkbox" id="` + text_id  + `" name=" ` + text_name + `" value="`+ text_value +`">`;
+  var code = `<input type="checkbox"` + value_name +  ` name="` + text_name + `" value="`+ text_value +`">`;
   return code;
 };
