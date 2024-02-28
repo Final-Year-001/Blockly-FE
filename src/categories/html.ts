@@ -79,6 +79,10 @@ export const htmlCategory = {
         },
         {
           kind: "block",
+          type: "html_checkbox",
+        },
+        {
+          kind: "block",
           type: "html_button",
         },
       ],
