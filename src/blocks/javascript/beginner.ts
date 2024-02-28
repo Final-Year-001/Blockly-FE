@@ -111,7 +111,7 @@ Blockly.Blocks['print_block'] = {
         .appendField("Button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(0);
+    this.setColour(230);
     this.setTooltip('Print the document when a button is clicked');
   }
 };
@@ -163,7 +163,7 @@ Blockly.Blocks['alert_block'] = {
         .appendField("Element ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(640);
+    this.setColour(40);
  this.setTooltip("");
  this.setHelpUrl("");
  this.setTooltip('Generate custom alerts using this block');
@@ -269,7 +269,7 @@ Blockly.Blocks['single_line_comment'] = {
         .appendField(new Blockly.FieldTextInput("Your comment here"), "COMMENT");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(110);
+    this.setColour(0);
     this.setTooltip('Add a single-line comment');
   }
 };
@@ -289,7 +289,7 @@ Blockly.Blocks['multi_line_comment'] = {
         .appendField("*/");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(110);
     this.setTooltip('Add a multi-line comment');
   }
 };
@@ -332,4 +332,127 @@ function ${functionName}(${param1}, ${param2}) {
 `;
 
   return code;
+};
+
+// Play Sound on Button Click Block
+Blockly.Blocks['play_sound_on_click'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Play Sound on Button Click");
+    this.appendValueInput("button_id")
+        .setCheck("el_id_input")
+        .appendField("Button ID");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('Play a sound when a button is clicked.');
+  }
+};
+
+javascriptGenerator.forBlock['play_sound_on_click'] = function(block:any, generator:any) {
+  var buttonId = generator.valueToCode(block, 'button_id', generator.ORDER_ATOMIC);
+
+  return `
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById(${buttonId}).addEventListener('click', function() {
+      var audio = new Audio('../src/sounds/button.mp3');
+      audio.play();
+    });
+  });
+  `;
+};
+
+// Upload and Display Image Block
+Blockly.Blocks['upload_display_image'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Upload and Display Image");
+    this.appendValueInput("button_id")
+        .setCheck("el_id_input")
+        .appendField("Button ID");
+    this.appendDummyInput()
+        .appendField("Image ID")
+        .appendField(new Blockly.FieldTextInput("img_id"), "image_id");
+    this.appendDummyInput()
+        this.appendValueInput("image_width")
+        .setCheck("Number")
+        .appendField("Width");
+    this.appendValueInput("image_height")
+        .setCheck("Number")
+        .appendField("Height");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(0);
+    this.setTooltip('Upload and display an image when a button is clicked.');
+  }
+};
+
+// JavaScript code generator for the block
+javascriptGenerator.forBlock['upload_display_image'] = function(block:any, generator:any) {
+  var buttonId = generator.valueToCode(block, 'button_id', generator.ORDER_ATOMIC);
+  var imageId = block.getFieldValue('image_id');
+  var imageWidth = generator.valueToCode(block, 'image_width', generator.ORDER_ATOMIC);
+  var imageHeight = generator.valueToCode(block, 'image_height', generator.ORDER_ATOMIC);
+
+  return `
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById(${buttonId}).addEventListener('click', function() {
+      var input = document.createElement('input');
+      input.type = 'file';
+
+      input.addEventListener('change', function() {
+        var file = this.files[0];
+        if (file) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            var image = document.createElement('img');
+            image.src = e.target.result;
+            image.id = '${imageId}';
+            image.style.width = ${imageWidth} + 'px'; ;
+            image.style.height = ${imageHeight} + 'px'; ;
+            document.body.appendChild(image);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      input.click();
+    });
+  });
+  `;
+};
+
+// Remove Image on Button Click Block
+Blockly.Blocks['remove_image_on_button_click'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Remove Image on Button Click");
+    this.appendValueInput("button_id")
+        .setCheck("el_id_input")
+        .appendField("Button ID");
+    this.appendValueInput("image_id")
+        .setCheck("String")
+        .appendField("Image ID");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+    this.setTooltip('Remove the image with the specified ID when a button is clicked.');
+  }
+};
+
+// JavaScript code generator for the Remove Image on Button Click block
+javascriptGenerator.forBlock['remove_image_on_button_click'] = function(block:any, generator:any) {
+  var buttonId = generator.valueToCode(block, 'button_id', generator.ORDER_ATOMIC);
+  var imageId = generator.valueToCode(block, 'image_id', generator.ORDER_ATOMIC);
+
+  return `
+  document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById(${buttonId}).addEventListener('click', function() {
+    var imageToRemove = document.getElementById(${imageId});
+    if (imageToRemove) {
+      imageToRemove.parentNode.removeChild(imageToRemove);
+    }
+  });
+});
+  `;
 };

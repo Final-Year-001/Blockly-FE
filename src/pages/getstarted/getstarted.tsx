@@ -8,7 +8,7 @@ function GetStartedPage() {
     <div className="px-10">
      <div className="flex justify-between items-center">
         <div> <br/>
-          <Typography variant="h1">Get Started with BLOCKME</Typography>
+          <Typography variant="h1">Get Started with Web Block Craft</Typography>
           <h1 style={{ color: 'red', fontWeight: 'bold' }}>COMPLETE THIS PAGEEEE</h1>
         </div>
         <div>
@@ -21,8 +21,8 @@ function GetStartedPage() {
       <div className="my-8">
         <Typography variant="h2">Overview</Typography>
         <p>
-          Welcome to BLOCKME, a Google Blockly framework-based application
-          designed to teach web programming to children and beginners. BlockMe
+          Welcome to Web Block Craft, a Google Blockly framework-based application
+          designed to teach web programming to children and beginners. Web Block Craft
           allows you to create both frontend and backend development projects
           separately and connect them through a URL.
         </p>

@@ -8,22 +8,22 @@ export const javascriptCategory = {
   colour: "#f39c12",
   contents: [
     {
+      kind:"block",
+      type: "javascript",
+      icons: { 
+        comment: {
+          text: "JavaScript code should be wrapped in this tag",
+          pinned: true,
+          height: 80,
+          width: 160
+        }
+      },
+    },
+    {
       kind: "category",
-      name: "JS Beginner",
+      name: "Get Started",
       colour: "#f9c975",
       contents: [
-        {
-          kind:"block",
-          type: "javascript",
-          icons: {
-            comment: {
-              text: "JavaScript code should be wrapped in this tag",
-              pinned: true,
-              height: 80,
-              width: 160
-            }
-          },
-        },
         {
           kind:"block",
           type: "create_variable",
@@ -50,58 +50,10 @@ export const javascriptCategory = {
         },
         {
           kind: "block",
-          type: "chnage_innerHTML",
-          icons: {
-            comment: {
-              text: "Change the content of an HTML element by ID",
-              pinned: true,
-              height: 80,
-              width: 160
-            }
-          },
-        },
-        {
-          kind: "block",
           type: "console_log",
           icons: {
             comment: {
               text: "Log a message to the console",
-              pinned: true,
-              height: 80,
-              width: 160
-            }
-          },
-        },
-        {
-          kind: "block",
-          type: "alert_block",
-          icons: {
-            comment: {
-              text: "Generate a custom alert",
-              pinned: true,
-              height: 80,
-              width: 160
-            }
-          },
-        },
-        {
-          kind: "block",
-          type: "event_listener",
-          icons: {
-            comment: {
-              text: "Attach an event listener to an HTML element",
-              pinned: true,
-              height: 80,
-              width: 160
-            }
-          },
-        }, 
-        {
-          kind: "block",
-          type: "show_hidden_element",
-          icons: {
-            comment: {
-              text: "Show or hide an HTML element",
               pinned: true,
               height: 80,
               width: 160
@@ -144,6 +96,61 @@ export const javascriptCategory = {
             }
           }, 
         },
+      ]
+    },
+    {
+      kind: "category",
+      name: "DOM Manipulation",
+      colour: "#f9c975",
+      contents: [
+        {
+          kind: "block",
+          type: "chnage_innerHTML",
+          icons: {
+            comment: {
+              text: "Change the content of an HTML element by ID",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
+        },
+        {
+          kind: "block",
+          type: "alert_block",
+          icons: {
+            comment: {
+              text: "Generate a custom alert",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
+        },
+        {
+          kind: "block",
+          type: "event_listener",
+          icons: {
+            comment: {
+              text: "Attach an event listener to an HTML element",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
+        }, 
+        {
+          kind: "block",
+          type: "show_hidden_element",
+          icons: {
+            comment: {
+              text: "Show or hide an HTML element",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          },
+        }, 
         {
           kind: "block",
           type: "custom_function",
@@ -160,7 +167,50 @@ export const javascriptCategory = {
     },
     {
       kind: "category",
-      name: "JS Form",
+      name: "Sounds & Images",
+      colour: "#f9c975",
+      contents: [
+        {
+          kind: "block",
+          type: "play_sound_on_click",
+          icons: {
+            comment: {
+              text: "Play a sound when a button is clicked",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          }, 
+        }, 
+        {
+          kind: "block",
+          type: "upload_display_image",
+          icons: {
+            comment: {
+              text: "Upload and display an image",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          }, 
+        },
+        {
+          kind: "block",
+          type: "remove_image_on_button_click",
+          icons: {
+            comment: {
+              text: "Remove the image with a button click",
+              pinned: true,
+              height: 80,
+              width: 160
+            }
+          }, 
+        },
+      ]
+    },
+    {
+      kind: "category",
+      name: "Form Manipulation",
       colour: "#f9c975",
       contents: [
         {
@@ -287,7 +337,7 @@ export const javascriptCategory = {
     },
     {
       kind: "category",
-      name: "JS Todo",
+      name: "Todo List",
       colour: "#f9c975",
       contents: [
         {
