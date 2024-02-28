@@ -11,6 +11,10 @@ export const htmlCategory = {
       type: "html_html",
     },
     {
+      kind: "block",
+      type: "block_identifier",
+    },
+    {
       kind: "category",
       name: "Text",
       colour: "#74aff2",
