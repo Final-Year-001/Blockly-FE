@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Blockly from "blockly";
 import { javascriptGenerator } from "blockly/javascript";
 
@@ -10,7 +11,8 @@ Blockly.Blocks["express_server_creation"] = {
       .appendField("Maximum Body Size in MB (Optional):")
       .appendField(new Blockly.FieldTextInput(), "maxBodySize");
     this.appendValueInput("PORT").setCheck("Number").appendField("Port");
-    this.appendStatementInput("MIDDLEWARE").setCheck("middleware")
+    this.appendStatementInput("MIDDLEWARE")
+      .setCheck("middleware")
       // .setCheck(["compression_middleware"])
       .appendField("Middleware");
     this.appendStatementInput("ROUTES").setCheck("route").appendField("Routes");
@@ -41,10 +43,10 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
   const middleware = generator.statementToCode(block, "MIDDLEWARE");
   const routes = generator.statementToCode(block, "ROUTES");
   const errorHandler = generator.valueToCode(block, "ERROR_HANDLER", 0);
-  let startServer = generator.valueToCode(block, "START_SERVER", 0);
+  const startServer = generator.valueToCode(block, "START_SERVER", 0);
 
   // TODO: Assemble javascript into code variable.
-  var code = `
+  const code = `
     import express from 'express'
     import database from './lib/database/database.js';
     const app = express();
@@ -91,10 +93,10 @@ Blockly.Blocks["server_helmet_guard"] = {
 };
 
 javascriptGenerator.forBlock["server_helmet_guard"] = function (block: any) {
-  var options = block.getFieldValue("options");
+  const options = block.getFieldValue("options");
   // check whether the options are in expected type
 
-  var code = `
+  const code = `
     import helmet from 'helmet';
     app.use(helmet(${options}));
   `;
@@ -119,10 +121,10 @@ Blockly.Blocks["compression_middleware"] = {
 };
 
 javascriptGenerator.forBlock["compression_middleware"] = function (block: any) {
-  var options = block.getFieldValue("options");
+  const options = block.getFieldValue("options");
   // check whether the options are in expected type
 
-  var code = `
+  const code = `
     import compression from 'compression';
     app.use(compression(${options}));
   `;
@@ -154,7 +156,7 @@ javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
   const options = block.getFieldValue("options");
   // check whether the options are in expected type
 
-  var code = `
+  const code = `
     import session from 'express-session';
     app.use(session(${
       options
@@ -240,10 +242,10 @@ Blockly.Blocks["create_session"] = {
 };
 
 javascriptGenerator.forBlock["create_session"] = function (block: any) {
-  var userIdPath = block.getFieldValue("userIdPath");
+  const userIdPath = block.getFieldValue("userIdPath");
   // check whether the options are in expected type
 
-  var code = `req.session.user = ${userIdPath}
+  const code = `req.session.user = ${userIdPath}
   req.session.save();
   `;
 
@@ -274,7 +276,7 @@ javascriptGenerator.forBlock["has_session"] = function (
   const ifUnavailable = generator.statementToCode(block, "unavailable");
   // check whether the options are in expected type
 
-  var code = `if(req.session.user) {
+  const code = `if(req.session.user) {
     ${ifAvailable}
     res.end();
     return;
