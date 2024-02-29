@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useRef } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { nodeCategory } from "../../categories/node";
 import { javascriptGenerator } from "blockly/javascript";
@@ -11,17 +12,17 @@ import { textCategory } from "../../categories/google_blocks";
 import { Card } from "@material-tailwind/react";
 import { sessionHandlingCategory } from "../../categories/sessionHandling";
 import { generalMiddlewareCategory } from "../../categories/middlewares";
-import Blockly from "blockly";
+import { jwtCategory } from "../../categories/jwt";
 interface BackendWorkspaceProps {
   onCodeChange?: (code: string, workspace: WorkspaceSvg) => void;
   initialState?: any;
-  loaded: boolean
+  loaded: boolean;
 }
 
 function BackendWorkspace({
   onCodeChange,
   initialState,
-  loaded
+  loaded,
 }: BackendWorkspaceProps) {
   // const [xml, setXml] = useState<string>();
   // const [json, setJson] = useState<string>();
@@ -34,6 +35,7 @@ function BackendWorkspace({
       nodeCategory,
       generalMiddlewareCategory,
       sessionHandlingCategory,
+      jwtCategory,
       databaseCategory,
       mathCategory,
       commonCategory,
@@ -45,7 +47,7 @@ function BackendWorkspace({
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
     javascriptGenerator.addReservedWords("code");
-    let code = javascriptGenerator.workspaceToCode(workspace);
+    const code = javascriptGenerator.workspaceToCode(workspace);
     onCodeChange?.(code, workspace);
   };
 
