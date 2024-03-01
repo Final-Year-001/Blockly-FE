@@ -45,7 +45,7 @@ Blockly.Blocks['html_html'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("body");
-    this.setColour(230);
+    // this.setColour(230);
  this.setTooltip("This is the very first tag used");
  this.setHelpUrl("");
   }
