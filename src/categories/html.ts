@@ -3,7 +3,7 @@ import "../blocks/html/blocks";
 
 export const htmlCategory = {
   kind: "category",
-  name: "html",
+  name: "HTML",
   colour: "#4295f5",
   contents: [
     {

@@ -4,7 +4,7 @@ import "../blocks/javascript/todo_blocks";
 
 export const javascriptCategory = {
   kind: "category",
-  name: "Javascript",
+  name: "JavaScript",
   colour: "#f39c12",
   contents: [
     {
