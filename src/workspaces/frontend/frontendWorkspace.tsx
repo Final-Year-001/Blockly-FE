@@ -15,6 +15,20 @@ import {
 import { mathCategory } from "../../categories/math";
 import { cssCategory } from "../../categories/css";
 import { Card } from "@material-tailwind/react";
+import BlocklyThemes from "blockly"; 
+import { FETheme } from "../../themes/FETheme";
+
+const workspaceConfiguration = {
+  theme: FETheme,
+            grid: {
+              spacing: 20,
+              length: 3,
+              // colour: "#ffffff",
+              colour: "#",
+              snap: true,
+            },
+};
+
 
 interface FrontendWorkspaceProps {
   readonly onCodeChange?: (code: string, workspace: WorkspaceSvg) => void;
@@ -63,14 +77,7 @@ function FrontendWorkspace({
           toolboxConfiguration={toolboxCategories}
           initialJson={initialState}
           className="fill-height"
-          workspaceConfiguration={{
-            grid: {
-              spacing: 20,
-              length: 3,
-              colour: "#ffffff",
-              snap: true,
-            },
-          }}
+          workspaceConfiguration={workspaceConfiguration}
           onWorkspaceChange={workspaceDidChange}
         />
       ) : null}
