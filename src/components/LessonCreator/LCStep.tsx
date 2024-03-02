@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 interface LCStepProps {
   readonly step: number;
   readonly state?: object;
+  readonly refresh?: boolean
   readonly onWorkspaceChange?: (json: object, step: number) => void;
   readonly description?: string;
   readonly onDescriptionChange?: (description: string, step: number) => void;
@@ -18,6 +19,7 @@ function LCStep({
   onWorkspaceChange,
   description,
   onDescriptionChange,
+  refresh
 }: LCStepProps) {
   const _onWorkspaceChanged = (workspace: Blockly.WorkspaceSvg) => {
     let json = Blockly.serialization.workspaces.save(workspace);
@@ -28,13 +30,13 @@ function LCStep({
 
   useEffect(() => {
     reloadWorkspace();
-  }, [state]);
+  }, [refresh]);
 
   const reloadWorkspace = () => {
     setReload(false);
-    setReload(true);
-    console.log(state);
-  }
+    setTimeout(() => setReload(true), 1);
+    console.log("state lcx", state);
+  };
 
   return (
     <div className="flex flex-col">

@@ -49,3 +49,28 @@ export async function newProject(tokens: Tokens, data: any) {
 
   return res;
 }
+
+export async function getLessonById(tokens: Tokens, id: string) {
+  let res = await httpClient.request({
+      headers: {
+        Authorization: `Bearer ${tokens.access_token}`,
+      },
+      url: "lesson/" + id,
+      method: "GET"
+    });
+  
+    return res;
+}
+
+export async function saveLesson(tokens: Tokens, id: string, steps: any) {
+  let res = await httpClient.request({
+    headers: {
+      Authorization: `Bearer ${tokens.access_token}`,
+    },
+    url: "lesson/" + id || "?",
+    data: { steps },
+    method: "POST"
+  });
+
+  return res.data;
+}

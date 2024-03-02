@@ -43,7 +43,7 @@ const router = createBrowserRouter([
     element: <GetStarted />
   },
   {
-    path: "/lesson-creator",
+    path: "/lesson-creator/:id",
     element: <LessonCreator />
   },
   {

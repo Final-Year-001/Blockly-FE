@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import LCStep from "../../components/LessonCreator/LCStep";
 import { Button } from "@material-tailwind/react";
 import _ from "lodash";
+import { useNavigate, useParams } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useRecoilValue } from "recoil";
+import { tokenAtom } from "../../state/auth";
+import { getLessonById, newProject, saveLesson } from "../../api/project";
 
 interface StepDefinition {
   description: string;
   workspaceState: object;
 }
-
-interface StepDefinitionWithState extends StepDefinition {}
-
-interface LessonDefinition {}
 
 function LessonCreator() {
   const [steps, setSteps] = useState<StepDefinition[]>([
@@ -19,6 +20,76 @@ function LessonCreator() {
       workspaceState: {},
     },
   ]);
+
+  const tokens = useRecoilValue(tokenAtom);
+  const params = useParams();
+
+  let lessonQuery = useQuery({
+    queryKey: ["lesson"],
+    queryFn: () => getLessonById(tokens, params.id ?? "?"),
+    onSuccess: (data) => {
+      setSteps(data?.data?.steps || []);
+      setRefreshSteps((prev) => !prev);
+    },
+  });
+
+  const [saveMessage, setSaveMessage] = useState<{
+    message: string;
+    show: boolean;
+    loading: boolean;
+  }>({ message: "", show: false, loading: false });
+
+  const [refreshSteps, setRefreshSteps] = useState<boolean>(false);
+
+  const saveMutation = useMutation({
+    mutationFn: (json) => saveLesson(tokens, params.id ?? "", json),
+    onMutate: () => {
+      setSaveMessage({
+        show: true,
+        message: "Your changes are being saved...",
+        loading: true,
+      });
+    },
+    onSuccess: () => {
+      setSaveMessage({
+        show: true,
+        message: "All the changes are saved.",
+        loading: false,
+      });
+    },
+  });
+
+  const navigate = useNavigate();
+
+  const qc = useQueryClient();
+
+  const newProjectMutation = useMutation({
+    mutationFn: (json: any) => newProject(tokens, json),
+    onSuccess: async (res) => {
+      await qc.invalidateQueries("project");
+      const id = res.data._id;
+      if (res.data.variant == "frontend") {
+        navigate("/frontend/" + id);
+        return;
+      }
+
+      navigate("/backend/" + id);
+    },
+  });
+
+  const variant = lessonQuery.data?.data?.variant;
+  const lessonId = lessonQuery.data?.data?._id;
+
+  const newProjectWithLesson = () => {
+    newProjectMutation.mutate({
+      name: "name",
+      variant: variant,
+      desc: `New ${variant} project`,
+      mode: "lesson",
+      lessonId,
+      saveData: {},
+    });
+  };
 
   const addStep = () => {
     let newSteps = _.cloneDeep(steps);
@@ -30,16 +101,8 @@ function LessonCreator() {
 
   const save = () => {
     console.log(steps);
-    // For testing
-    localStorage.setItem("lesson", JSON.stringify(steps));
+    saveMutation.mutate(steps as any);
   };
-
-  useEffect(() => {
-    let s = localStorage.getItem("lesson");
-    if (s) {
-        setSteps(JSON.parse(s));
-    }
-  }, []);
 
   return (
     <div className="flex flex-col gap-10 p-4">
@@ -48,7 +111,8 @@ function LessonCreator() {
           <LCStep
             key={index}
             step={index}
-            state={value.workspaceState}
+            refresh={refreshSteps}
+            state={value.workspaceState || {}}
             description={value.description}
             onDescriptionChange={(value) => {
               let newSteps = _.cloneDeep(steps);
@@ -70,9 +134,10 @@ function LessonCreator() {
       })}
       <Button onClick={addStep}>+ Add Step</Button>
       <Button onClick={save}>Save</Button>
+      <Button onClick={newProjectWithLesson}>New Project with lesson</Button>
     </div>
   );
 }
 
 export default LessonCreator;
-export type { StepDefinition }
+export type { StepDefinition };

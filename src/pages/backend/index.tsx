@@ -20,7 +20,7 @@ import Blockly, { WorkspaceSvg } from "blockly";
 import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import _ from "lodash";
-import { getProjectById, saveProject } from "../../api/project";
+import { getLessonById, getProjectById, saveProject } from "../../api/project";
 import { tokenAtom } from "../../state/auth";
 import HintComponent from "../../components/HintComponent";
 import { StepDefinition } from "../lesson-creator";
@@ -59,9 +59,9 @@ function organizeCode(code: string) {
   return organizedCode;
 }
 
-function BackendPage() {
-  let mode = "lesson";
+type PageMode = "default" | "lesson";
 
+function BackendPage() {
   let [code, setCode] = useRecoilState(codeAtom);
   const [isExpanded, setIsExpanded] = useState(false);
   const [saveMessage, setSaveMessage] = useState<{
@@ -69,17 +69,16 @@ function BackendPage() {
     show: boolean;
     loading: boolean;
   }>({ message: "", show: false, loading: false });
-  const [steps, setSteps] = useState<StepDefinition[]>([]);
+  
   const [currentStepNumber, setCurrentStepNumber] = useState<number>(0);
-  const currentStep = steps[currentStepNumber];
-
+  
   const workspaceState = useRef<any>(null);
   const workspaceRef = useRef<any>(null);
-
+  
   const debouncedWorkspace = useDebounce(workspaceState.current, 2000);
   const params = useParams();
   const tokens = useRecoilValue(tokenAtom);
-
+  
   const saveMutation = useMutation({
     mutationFn: (json) => saveProject(tokens, params.id ?? "", json),
     onMutate: () => {
@@ -97,11 +96,22 @@ function BackendPage() {
       });
     },
   });
-
+  
   const getProjectQuery = useQuery({
     queryKey: ["project"],
     queryFn: () => getProjectById(tokens, params.id ?? "?"),
   });
+  
+  const getLessonQuery = useQuery({
+    queryKey: ["lesson", getProjectQuery.data?.data?.lessonId],
+    queryFn: ({ queryKey }) => getLessonById(tokens, queryKey?.[1] ?? "?"),
+  });
+  
+  const steps = getLessonQuery.data?.data?.steps || [];
+
+  const currentStep = getLessonQuery.data?.data?.steps?.[currentStepNumber];
+  
+  const mode = getProjectQuery.data?.data?.mode ?? "default" as PageMode;
 
   const onCodeChange = (code: string, workspace: WorkspaceSvg) => {
     setCode(organizeCode(code));
@@ -109,7 +119,7 @@ function BackendPage() {
     try {
       let json = Blockly.serialization.workspaces.save(workspace);
       if (!_.isEqual(json, workspaceState.current)) {
-        checkIfStepComplete(json);
+        if (mode == "lesson") checkIfStepComplete(json);
         setSaveMessage({
           show: true,
           message: "New unsaved changes",
@@ -164,20 +174,11 @@ function BackendPage() {
     if (
       getProjectQuery.isSuccess &&
       getProjectQuery.isFetched &&
-      debouncedWorkspace &&
-      mode == "default"
+      debouncedWorkspace
     ) {
-      console.log(debouncedWorkspace, "fsdfdsfdsfsdf");
       saveMutation.mutate(debouncedWorkspace);
     }
   }, [debouncedWorkspace]);
-
-  useEffect(() => {
-    let s = localStorage.getItem("lesson");
-    if (s) {
-      setSteps(JSON.parse(s));
-    }
-  }, []);
 
   return (
     <div className="flex flex-col h-full w-full ">
