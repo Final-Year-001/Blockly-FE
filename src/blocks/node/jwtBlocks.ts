@@ -7,11 +7,13 @@ Blockly.Blocks["authenticationTocken_middleware"] = {
     this.appendDummyInput()
       .setAlign(Blockly.inputs.Align.LEFT)
       .appendField("Authenticate Tocken Middleware");
+    this.appendValueInput("token").setCheck(null).appendField("Token");
     this.appendValueInput("accessTokensecret")
       .setCheck("String")
       .appendField("Access Token Secret");
     this.setColour(295);
     this.setTooltip("Creates a new Express server instance.");
+    this.setOutput(true, null);
     this.setHelpUrl("");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -28,12 +30,20 @@ javascriptGenerator.forBlock["authenticationTocken_middleware"] = function (
     0
   );
 
+  const token = generator.valueToCode(block, "token", 0);
+
+  const codeWithToken = `const token = ${token}`;
+
   // TODO: Assemble javascript into code variable.
   const code = `
     (req, res, nex) => {
-    const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1];
-    if (!token) {
+    ${
+      token
+        ? codeWithToken
+        : "\nconst authHeader = req.headers['authorization'];" +
+          "\nconst token = authHeader && authHeader.split(' ')[1];"
+    }
+    \nif (!token) {
       res.sendStatus(401);
     }
   
