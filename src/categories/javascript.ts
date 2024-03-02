@@ -22,7 +22,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "Get Started",
-      colour: "#f9c975",
+      colour: "#E1AD01",
       contents: [
         {
           kind:"block",
@@ -101,7 +101,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "DOM Manipulation",
-      colour: "#f9c975",
+      colour: "#E1AD01",
       contents: [
         {
           kind: "block",
@@ -168,7 +168,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "Sounds & Images",
-      colour: "#f9c975",
+      colour: "#E1AD01",
       contents: [
         {
           kind: "block",
@@ -211,7 +211,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "Form Manipulation",
-      colour: "#f9c975",
+      colour: "#E1AD01",
       contents: [
         {
           kind: "block",
@@ -338,7 +338,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "Todo List",
-      colour: "#f9c975",
+      colour: "#E1AD01",
       contents: [
         {
           kind:"block",
