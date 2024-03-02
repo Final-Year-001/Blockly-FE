@@ -12,13 +12,13 @@ export async function getAllProjects(tokens: Tokens) {
   return res.data;
 }
 
-export async function saveProject(tokens: Tokens, id: string, code: any) {
+export async function saveProject(tokens: Tokens, id: string, code: any, lessonStep?: number) {
   let res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
     url: "project/" + id || "?",
-    data: { code },
+    data: { code, lessonStep },
     method: "POST"
   });
 

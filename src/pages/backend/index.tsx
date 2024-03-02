@@ -69,18 +69,19 @@ function BackendPage() {
     show: boolean;
     loading: boolean;
   }>({ message: "", show: false, loading: false });
-  
+
   const [currentStepNumber, setCurrentStepNumber] = useState<number>(0);
-  
+
   const workspaceState = useRef<any>(null);
   const workspaceRef = useRef<any>(null);
-  
+
   const debouncedWorkspace = useDebounce(workspaceState.current, 2000);
   const params = useParams();
   const tokens = useRecoilValue(tokenAtom);
-  
+
   const saveMutation = useMutation({
-    mutationFn: (json) => saveProject(tokens, params.id ?? "", json),
+    mutationFn: ({ code, stepNumber }: { code: any; stepNumber: number }) =>
+      saveProject(tokens, params.id ?? "", code, stepNumber),
     onMutate: () => {
       setSaveMessage({
         show: true,
@@ -96,22 +97,22 @@ function BackendPage() {
       });
     },
   });
-  
+
   const getProjectQuery = useQuery({
     queryKey: ["project"],
     queryFn: () => getProjectById(tokens, params.id ?? "?"),
   });
-  
+
   const getLessonQuery = useQuery({
     queryKey: ["lesson", getProjectQuery.data?.data?.lessonId],
     queryFn: ({ queryKey }) => getLessonById(tokens, queryKey?.[1] ?? "?"),
   });
-  
+
   const steps = getLessonQuery.data?.data?.steps || [];
 
   const currentStep = getLessonQuery.data?.data?.steps?.[currentStepNumber];
-  
-  const mode = getProjectQuery.data?.data?.mode ?? "default" as PageMode;
+
+  const mode = getProjectQuery.data?.data?.mode ?? ("default" as PageMode);
 
   const onCodeChange = (code: string, workspace: WorkspaceSvg) => {
     setCode(organizeCode(code));
@@ -176,7 +177,10 @@ function BackendPage() {
       getProjectQuery.isFetched &&
       debouncedWorkspace
     ) {
-      saveMutation.mutate(debouncedWorkspace);
+      saveMutation.mutate({
+        code: debouncedWorkspace,
+        stepNumber: currentStepNumber,
+      });
     }
   }, [debouncedWorkspace]);
 
