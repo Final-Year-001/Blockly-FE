@@ -13,5 +13,13 @@ export const jwtCategory = {
       kind: "block",
       type: "sign_jwt",
     },
+    {
+      kind: "block",
+      type: "get_hashed_password",
+    },
+    {
+      kind: "block",
+      type: "match_passwords",
+    },
   ],
 };
