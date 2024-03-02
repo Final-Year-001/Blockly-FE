@@ -49,11 +49,34 @@ javascriptGenerator.forBlock["authenticationTocken_middleware"] = function (
   return code;
 };
 
+Blockly.Blocks["get_hashed_password"] = {
+  init: function () {
+    this.appendDummyInput()
+      .setAlign(Blockly.inputs.Align.LEFT)
+      .appendField("Hash password");
+    this.appendDummyInput()
+      .appendField("Path to password:")
+      .appendField(new Blockly.FieldTextInput(), "password");
+    this.setOutput(true, null);
+    this.setColour(295);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+javascriptGenerator.forBlock["get_hashed_password"] = function (block: any) {
+  const password = block.getFieldValue("password");
+
+  const code = `await bcrypt.hash(${password}, await bcrypt.genSalt(10));`;
+
+  return [code, javascriptGenerator.ORDER_NONE];
+};
+
 Blockly.Blocks["sign_jwt"] = {
   init: function () {
     this.appendDummyInput()
       .setAlign(Blockly.inputs.Align.LEFT)
-      .appendField("Sign JWT");
+      .appendField("Create and get JWT token");
     this.appendDummyInput()
       .appendField("Path to user details:")
       .appendField(new Blockly.FieldTextInput(), "userDetailsPath");
@@ -63,11 +86,10 @@ Blockly.Blocks["sign_jwt"] = {
     this.appendValueInput("expresIn")
       .setCheck("String")
       .appendField("Expires In");
+    this.setOutput(true, null);
     this.setColour(295);
-    this.setTooltip("Creates a new Express server instance.");
+    this.setTooltip("");
     this.setHelpUrl("");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
   },
 };
 
@@ -85,9 +107,37 @@ javascriptGenerator.forBlock["sign_jwt"] = function (
 
   // TODO: Assemble javascript into code variable.
   const code = `
-    jwt.sign(${userDetailsPath}, ${accessTokensecret} ${
+    jwt.sign({user: JSON.stringify(${userDetailsPath})}, ${accessTokensecret} ${
     expresIn && `, {expiresIn: ${expresIn} }`
   } );
     `;
-  return code;
+
+  return [code, javascriptGenerator.ORDER_NONE];
+};
+
+Blockly.Blocks["match_passwords"] = {
+  init: function () {
+    this.appendDummyInput()
+      .setAlign(Blockly.inputs.Align.LEFT)
+      .appendField("Compayer hashed password");
+    this.appendDummyInput()
+      .appendField("Path to incomming password:")
+      .appendField(new Blockly.FieldTextInput(), "inPassPath");
+    this.appendDummyInput()
+      .appendField("Path to hashed stored password:")
+      .appendField(new Blockly.FieldTextInput(), "storedPassPath");
+    this.setOutput(true, null);
+    this.setColour(295);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+javascriptGenerator.forBlock["match_passwords"] = function (block: any) {
+  const inPassPath = block.getFieldValue("inPassPath");
+  const storedPassPath = block.getFieldValue("storedPassPath");
+
+  const code = `await bcrypt.compare(${inPassPath}, ${storedPassPath});`;
+
+  return [code, javascriptGenerator.ORDER_NONE];
 };
