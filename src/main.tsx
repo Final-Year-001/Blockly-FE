@@ -11,6 +11,7 @@ import FrontendPage from "./pages/fronted";
 import MyProjects from "./pages/myprojects/myprojects";
 import LoginPage from "./pages/login/login";
 import GetStarted from "./pages/getstarted/getstarted";
+import LessonCreator from "./pages/lesson-creator";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/get-started",
     element: <GetStarted />
+  },
+  {
+    path: "/lesson-creator",
+    element: <LessonCreator />
   },
   {
     path: "/*",

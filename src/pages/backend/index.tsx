@@ -18,11 +18,13 @@ import {
 import { useDebounce } from "@uidotdev/usehooks";
 import Blockly, { WorkspaceSvg } from "blockly";
 import { useMutation, useQuery } from "react-query";
-import { httpClient } from "../../helpers/axios";
 import { useParams } from "react-router-dom";
 import _ from "lodash";
 import { getProjectById, saveProject } from "../../api/project";
 import { tokenAtom } from "../../state/auth";
+import HintComponent from "../../components/HintComponent";
+import { StepDefinition } from "../lesson-creator";
+import { stripId } from "../../helpers/blockly";
 
 function organizeCode(code: string) {
   // Split the code into lines
@@ -58,12 +60,18 @@ function organizeCode(code: string) {
 }
 
 function BackendPage() {
+  let mode = "lesson";
+
   let [code, setCode] = useRecoilState(codeAtom);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [workSize, setWorkSize] = useState(0.7);
-  const [outputSize, setOutput] = useState(0.3);
-  const [workAreaSize] = useRecoilState(codeAtom);
-  const [saveMessage, setSaveMessage] = useState<{ message: string, show: boolean, loading: boolean }>({ message: '', show: false, loading: false });
+  const [saveMessage, setSaveMessage] = useState<{
+    message: string;
+    show: boolean;
+    loading: boolean;
+  }>({ message: "", show: false, loading: false });
+  const [steps, setSteps] = useState<StepDefinition[]>([]);
+  const [currentStepNumber, setCurrentStepNumber] = useState<number>(0);
+  const currentStep = steps[currentStepNumber];
 
   const workspaceState = useRef<any>(null);
   const workspaceRef = useRef<any>(null);
@@ -73,21 +81,20 @@ function BackendPage() {
   const tokens = useRecoilValue(tokenAtom);
 
   const saveMutation = useMutation({
-    mutationFn: (json) =>
-    saveProject(tokens, params.id ?? "", json),
+    mutationFn: (json) => saveProject(tokens, params.id ?? "", json),
     onMutate: () => {
       setSaveMessage({
         show: true,
-        message: 'Your changes are being saved...',
-        loading: true
-      })
+        message: "Your changes are being saved...",
+        loading: true,
+      });
     },
     onSuccess: () => {
       setSaveMessage({
         show: true,
-        message: 'All the changes are saved.',
-        loading: false
-      })
+        message: "All the changes are saved.",
+        loading: false,
+      });
     },
   });
 
@@ -101,18 +108,40 @@ function BackendPage() {
     workspaceRef.current = workspace;
     try {
       let json = Blockly.serialization.workspaces.save(workspace);
-      if(!_.isEqual(json, workspaceState.current)){
+      if (!_.isEqual(json, workspaceState.current)) {
+        checkIfStepComplete(json);
         setSaveMessage({
           show: true,
-          message: 'New unsaved changes',
-          loading: false
-        })
+          message: "New unsaved changes",
+          loading: false,
+        });
         workspaceState.current = json;
       }
     } catch (e) {
       console.error(e);
     }
-  }
+  };
+
+  const checkIfStepComplete = (workspace: object) => {
+    const curentStepToComplete = steps[currentStepNumber];
+    let lessonStepState = stripId(
+      _.cloneDeep(curentStepToComplete.workspaceState)
+    );
+    let currentWorkspace = stripId(_.cloneDeep(workspace));
+
+    console.log(
+      _.isEqual(lessonStepState, currentWorkspace),
+      lessonStepState,
+      currentWorkspace
+    );
+    if (_.isEqual(lessonStepState, currentWorkspace)) {
+      if (currentStepNumber < steps.length - 1) {
+        setCurrentStepNumber((prev) => {
+          return prev + 1;
+        });
+      }
+    }
+  };
 
   const tabs = [
     {
@@ -135,12 +164,20 @@ function BackendPage() {
     if (
       getProjectQuery.isSuccess &&
       getProjectQuery.isFetched &&
-      debouncedWorkspace
+      debouncedWorkspace &&
+      mode == "default"
     ) {
       console.log(debouncedWorkspace, "fsdfdsfdsfsdf");
       saveMutation.mutate(debouncedWorkspace);
     }
   }, [debouncedWorkspace]);
+
+  useEffect(() => {
+    let s = localStorage.getItem("lesson");
+    if (s) {
+      setSteps(JSON.parse(s));
+    }
+  }, []);
 
   return (
     <div className="flex flex-col h-full w-full ">
@@ -150,17 +187,22 @@ function BackendPage() {
         style={{ height: "calc(100% - 400px)" }}
       >
         <div
-          className={
-            isExpanded
-              ? "flex-[0.3] duration-300 ease-in-out transition-all"
-              : "flex-[0.7] duration-300 ease-in-out transition-all"
-          }
+          className={`flex flex-col gap-4 ${
+            isExpanded ? "flex-[0.3]" : "flex-[0.7]"
+          } duration-300 ease-in-out transition-all`}
         >
           <BackendWorkspace
             onCodeChange={onCodeChange}
             loaded={!getProjectQuery.isFetching}
             initialState={getProjectQuery.data?.data?.saveData}
           />
+          {mode == "lesson" && currentStep ? (
+            <HintComponent
+              stepPreview={currentStep.workspaceState}
+              step={currentStepNumber + 1}
+              hint={currentStep.description}
+            />
+          ) : null}
         </div>
         <div
           className={
@@ -198,7 +240,9 @@ function BackendPage() {
           </Tabs>
         </div>
       </div>
-      <div className="flex flex-row px-6 pb-1">{ saveMessage.show ? <span>{saveMessage.message}</span> : <div>...</div> }</div>
+      <div className="flex flex-row px-6 pb-1">
+        {saveMessage.show ? <span>{saveMessage.message}</span> : <div>...</div>}
+      </div>
     </div>
   );
 }
