@@ -280,7 +280,7 @@ JavaScript.javascriptGenerator.forBlock['html_input_field'] = function(block : a
   var dropdown_type = block.getFieldValue('type');
   var value_name = generator.valueToCode(block, 'NAME', Order.ATOMIC);
 
-  var code =`<input ` + removeParentheses(value_name) + ` name="` + removeParentheses(text_name) + `"` + ' type="'+ dropdown_type +`>` + `<br>`
+  var code =`<input ` + removeParentheses(value_name) + ` name="` + removeParentheses(text_name) + `"` + ' type="'+ dropdown_type +`">`
   ;
   return code;
 };

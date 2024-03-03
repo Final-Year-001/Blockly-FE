@@ -69,7 +69,7 @@ JavaScript.javascriptGenerator.forBlock['style_block'] = function(block : any, g
   }else if (dropdown_selector_type == 'class'){
     code = `.` + text_selector_name + `{` + statements_css_statement + `}`;
   }else if (dropdown_selector_type == 'tag'){
-    text_selector_name + `{` + statements_css_statement + `}`;
+    code = text_selector_name + `{` + statements_css_statement + `}`;
   }
   return code;
 };
@@ -222,7 +222,7 @@ JavaScript.javascriptGenerator.forBlock['css_width'] = function(block : any, gen
   var dropdown_type = block.getFieldValue('type');
   var number_number = block.getFieldValue('number');
 
-  var code = `width: "` + number_number + dropdown_type + '"; ';
+  var code = `width: ` + number_number + dropdown_type + '; ';
   return code;
 };
 
