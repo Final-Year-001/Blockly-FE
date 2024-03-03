@@ -11,6 +11,7 @@ import FrontendPage from "./pages/fronted";
 import MyProjects from "./pages/myprojects/myprojects";
 import LoginPage from "./pages/login/login";
 import GetStarted from "./pages/documents/getstarted";
+import LessonCreator from "./pages/lesson-creator";
 import JavascriptDoc from "./pages/documents/javascript";
 
 const queryClient = new QueryClient({
@@ -43,12 +44,16 @@ const router = createBrowserRouter([
     element: <GetStarted />
   },
   {
-    path: "/*",
-    element: <Navigate to="/my/projects" replace />
+    path: "/lesson-creator/:id",
+    element: <LessonCreator />
   },
   {
     path: "/doc-js",
     element: <JavascriptDoc />
+  },
+  {
+    path: "/*",
+    element: <Navigate to="/my/projects" replace />
   }
 ]);
 
