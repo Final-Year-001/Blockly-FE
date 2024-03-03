@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Typography, Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import TopBar from "./topBar";
-// import { FaArrowUp } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 
 function GetStartedPage() {
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import TopBar from "./topBar";
-// import { FaArrowUp } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 
 const blocks = [
   // Get started category
