@@ -1,22 +1,21 @@
-import React, { useRef } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useRef } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import { Card } from "@material-tailwind/react";
-import BlocklyThemes from "blockly"; 
 import { FETheme } from "../../themes/FETheme";
 import frontendToolboxCategories from "../../toolbox/frontend";
 
 const workspaceConfiguration = {
   theme: FETheme,
-            grid: {
-              spacing: 20,
-              length: 3,
-              // colour: "#ffffff",
-              colour: "#",
-              snap: true,
-            },
+  grid: {
+    spacing: 20,
+    length: 3,
+    // colour: "#ffffff",
+    colour: "#",
+    snap: true,
+  },
 };
-
 
 interface FrontendWorkspaceProps {
   readonly onCodeChange?: (code: string, workspace: WorkspaceSvg) => void;
