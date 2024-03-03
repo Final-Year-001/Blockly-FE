@@ -24,8 +24,10 @@ import {
 import Tour from "reactour";
 import _ from "lodash";
 import { TourSteps } from "./TourSteps";
-import { getProjectById, saveProject } from "../../api/project";
+import { getLessonById, getProjectById, saveProject } from "../../api/project";
 import { tokenAtom } from "../../state/auth";
+import { stripId } from "../../helpers/blockly";
+import HintComponent from "../../components/HintComponent";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -50,6 +52,8 @@ function organizeImports(code: string) {
   return organizedCode;
 }
 
+type PageMode = "default" | "lesson";
+
 function FrontendPage() {
   const [frontendCode, setFrontendCode] = useState("");
   const [tabView, setTabView] = useState("code"); // "code" or "iframe"
@@ -73,8 +77,11 @@ function FrontendPage() {
   const params = useParams();
   const tokens = useRecoilValue(tokenAtom);
 
+  const [currentStepNumber, setCurrentStepNumber] = useState<number>(0);
+
   const saveMutation = useMutation({
-    mutationFn: (json) => saveProject(tokens, params.id ?? "", json),
+    mutationFn: ({ code, stepNumber }: { code: any; stepNumber: number }) =>
+      saveProject(tokens, params.id ?? "", code, stepNumber),
     onMutate: () => {
       setSaveMessage({
         show: true,
@@ -91,10 +98,22 @@ function FrontendPage() {
     },
   });
 
+
   const getProjectQuery = useQuery({
     queryKey: ["project"],
     queryFn: () => getProjectById(tokens, params.id ?? "?"),
   });
+
+  const getLessonQuery = useQuery({
+    queryKey: ["lesson", getProjectQuery.data?.data?.lessonId],
+    queryFn: ({ queryKey }) => getLessonById(tokens, queryKey?.[1] ?? "?"),
+  });
+  
+  const steps = getLessonQuery.data?.data?.steps || [];
+
+  const currentStep = getLessonQuery.data?.data?.steps?.[currentStepNumber];
+
+  const mode = getProjectQuery.data?.data?.mode ?? ("default" as PageMode);
 
   useEffect(() => {
     console.log(workAreaSize);
@@ -106,6 +125,27 @@ function FrontendPage() {
       setOutput(0.7);
     }
   }, [workAreaSize]);
+
+  const checkIfStepComplete = (workspace: object) => {
+    const curentStepToComplete = steps[currentStepNumber];
+    let lessonStepState = stripId(
+      _.cloneDeep(curentStepToComplete.workspaceState)
+    );
+    let currentWorkspace = stripId(_.cloneDeep(workspace));
+
+    console.log(
+      _.isEqual(lessonStepState, currentWorkspace),
+      lessonStepState,
+      currentWorkspace
+    );
+    if (_.isEqual(lessonStepState, currentWorkspace)) {
+      if (currentStepNumber < steps.length - 1) {
+        setCurrentStepNumber((prev) => {
+          return prev + 1;
+        });
+      }
+    }
+  };
 
   const injectCode = (code: string, workspace: WorkspaceSvg) => {
     // Exclude comments starting with "//" from the code
@@ -121,6 +161,8 @@ function FrontendPage() {
     try {
       let json = Blockly.serialization.workspaces.save(workspace);
       if (!_.isEqual(json, workspaceState.current)) {
+        if (mode == "lesson") checkIfStepComplete(json);
+
         setSaveMessage({
           show: true,
           message: "New unsaved changes",
@@ -139,8 +181,10 @@ function FrontendPage() {
       getProjectQuery.isFetched &&
       debouncedWorkspace
     ) {
-      console.log(debouncedWorkspace, "fsdfdsfdsfsdf");
-      saveMutation.mutate(debouncedWorkspace);
+      saveMutation.mutate({
+        code: debouncedWorkspace,
+        stepNumber: currentStepNumber,
+      });
     }
   }, [debouncedWorkspace]);
 
@@ -209,19 +253,23 @@ function FrontendPage() {
         className="flex flex-row flex-grow px-6 pb-4"
         style={{ height: "calc(100% - 400px)" }}
       >
-        <div
-          className={
-            isExpanded
-              ? "flex-[0.3] duration-300 ease-in-out transition-all"
-              : "flex-[0.7] duration-300 ease-in-out transition-all"
-          }
-          id="blockSideBar"
+         <div
+          className={`flex flex-col gap-4 ${
+            isExpanded ? "flex-[0.3]" : "flex-[0.7]"
+          } duration-300 ease-in-out transition-all`}
         >
           <FrontendWorkspace
             onCodeChange={injectCode}
             loaded={!getProjectQuery.isFetching}
             initialState={getProjectQuery.data?.data?.saveData}
           />
+          {mode == "lesson" && currentStep ? (
+            <HintComponent
+              stepPreview={currentStep.workspaceState}
+              step={currentStepNumber + 1}
+              hint={currentStep.description}
+            />
+          ) : null}
         </div>
 
         <div
