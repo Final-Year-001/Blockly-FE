@@ -4,7 +4,7 @@ import "../blocks/javascript/todo_blocks";
 
 export const javascriptCategory = {
   kind: "category",
-  name: "Javascript",
+  name: "JavaScript",
   colour: "#f39c12",
   contents: [
     {
@@ -22,7 +22,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "Get Started",
-      colour: "#f9c975",
+      colour: "#E1AD01",
       contents: [
         {
           kind:"block",
@@ -101,7 +101,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "DOM Manipulation",
-      colour: "#f9c975",
+      colour: "#E1AD01",
       contents: [
         {
           kind: "block",
@@ -168,7 +168,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "Sounds & Images",
-      colour: "#f9c975",
+      colour: "#E1AD01",
       contents: [
         {
           kind: "block",
@@ -211,7 +211,7 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "Form Manipulation",
-      colour: "#f9c975",
+      colour: "#E1AD01",
       contents: [
         {
           kind: "block",
@@ -338,14 +338,14 @@ export const javascriptCategory = {
     {
       kind: "category",
       name: "Todo List",
-      colour: "#f9c975",
+      colour: "#E1AD01",
       contents: [
         {
           kind:"block",
           type: "create_task",
           icons: {
             comment: {
-              text: "Create a new task with the specified name",
+              text: "Create a new task",
               pinned: true,
               height: 80,
               width: 160
@@ -369,7 +369,7 @@ export const javascriptCategory = {
           type: "update_task",
           icons: {
             comment: {
-              text: "Update the task's name with a new one",
+              text: "Compeleted task will be striked through",
               pinned: true,
               height: 80,
               width: 160

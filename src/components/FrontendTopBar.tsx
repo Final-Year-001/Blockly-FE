@@ -54,8 +54,8 @@ function FrontendTopBar() {
       </div>
 
       <div>
-        <Button className="mr-4" onClick={()=>{createHTMLFile("file")}}>Export Code</Button>
-        <Link to="/my/projects"><Avatar src="/img/cat default avatar.png" alt="avatar" size="md" /></Link>
+        <Button className="mr-4" onClick={()=>{createHTMLFile("file")}}>Download Code</Button>
+        <Link to="/get-started"><Avatar src="/img/cat default avatar.png" alt="avatar" size="md" /></Link>
       </div>
 
     </div>

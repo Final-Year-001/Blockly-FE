@@ -10,8 +10,9 @@ import BackendPage from "./pages/backend";
 import FrontendPage from "./pages/fronted";
 import MyProjects from "./pages/myprojects/myprojects";
 import LoginPage from "./pages/login/login";
-import GetStarted from "./pages/getstarted/getstarted";
+import GetStarted from "./pages/documents/getstarted";
 import LessonCreator from "./pages/lesson-creator";
+import JavascriptDoc from "./pages/documents/javascript";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/lesson-creator/:id",
     element: <LessonCreator />
+  },
+  {
+    path: "/doc-js",
+    element: <JavascriptDoc />
   },
   {
     path: "/*",
