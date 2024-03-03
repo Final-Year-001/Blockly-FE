@@ -74,3 +74,27 @@ export async function saveLesson(tokens: Tokens, id: string, steps: any) {
 
   return res.data;
 }
+
+export async function newLesson(tokens: Tokens, data: any) {
+  let res = await httpClient.request({
+    headers: {
+      Authorization: `Bearer ${tokens.access_token}`,
+    },
+    url: "lesson/new",
+    data: data,
+    method: "POST"
+  });
+
+  return res;
+}
+
+export async function getAllLessons(tokens: Tokens) {
+  let res = await httpClient.request({
+    headers: {
+      Authorization: `Bearer ${tokens.access_token}`,
+    },
+    url: "lesson",
+  });
+
+  return res.data;
+}
