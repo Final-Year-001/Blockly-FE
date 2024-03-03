@@ -74,70 +74,10 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
   return code;
 };
 
-// helmet middleware
-
-Blockly.Blocks["server_helmet_guard"] = {
-  init: function () {
-    this.appendDummyInput().appendField("Server Helmet Guard");
-    this.appendDummyInput()
-      .appendField("Options:")
-      .appendField(new Blockly.FieldTextInput(""), "options");
-    this.setTooltip(
-      "This block will secure your server from various possible vulnarabilities by securing request headers "
-    );
-    this.setHelpUrl("");
-    this.setColour(130);
-    this.setPreviousStatement(true, "middleware");
-    this.setNextStatement(true, "middleware");
-  },
-};
-
-javascriptGenerator.forBlock["server_helmet_guard"] = function (block: any) {
-  const options = block.getFieldValue("options");
-  // check whether the options are in expected type
-
-  const code = `
-    import helmet from 'helmet';
-    app.use(helmet(${options}));
-  `;
-
-  return code;
-};
-
-Blockly.Blocks["compression_middleware"] = {
-  init: function () {
-    this.appendDummyInput().appendField("Compress Responses");
-    this.appendDummyInput()
-      .appendField("Options:")
-      .appendField(new Blockly.FieldTextInput(""), "options");
-    this.setTooltip(
-      "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
-    );
-    this.setHelpUrl("");
-    this.setColour(130);
-    this.setPreviousStatement(true, "middleware");
-    this.setNextStatement(true, "middleware");
-  },
-};
-
-javascriptGenerator.forBlock["compression_middleware"] = function (block: any) {
-  const options = block.getFieldValue("options");
-  // check whether the options are in expected type
-
-  const code = `
-    import compression from 'compression';
-    app.use(compression(${options}));
-  `;
-
-  return code;
-};
-
 Blockly.Blocks["session_middleware"] = {
   init: function () {
     this.appendDummyInput().appendField("Session midleware");
-    this.appendDummyInput()
-      .appendField("Secret:")
-      .appendField(new Blockly.FieldTextInput(), "secret");
+    this.appendValueInput("secret").setCheck("String").appendField("secret");
     this.appendDummyInput()
       .appendField("Options:")
       .appendField(new Blockly.FieldTextInput(), "options");
@@ -151,8 +91,11 @@ Blockly.Blocks["session_middleware"] = {
   },
 };
 
-javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
-  const secret = block.getFieldValue("secret");
+javascriptGenerator.forBlock["session_middleware"] = function (
+  block: any,
+  generator: any
+) {
+  const secret = generator.valueToCode(block, "secret", 0);
   const options = block.getFieldValue("options");
   // check whether the options are in expected type
 
@@ -168,64 +111,6 @@ javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
 
   return code;
 };
-
-// // not correctly. only correct thing is block name
-// Blockly.Blocks["encrypt"] = {
-//   init: function () {
-//     this.appendDummyInput().appendField("Compress Responses");
-//     this.appendDummyInput()
-//       .appendField("Options:")
-//       .appendField(new Blockly.FieldTextInput(""), "options");
-//     this.setTooltip(
-//       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
-//     );
-//     this.setHelpUrl("");
-//     this.setColour(130);
-//     this.setPreviousStatement(true, null);
-//     this.setNextStatement(true, null);
-//   },
-// };
-
-// javascriptGenerator.forBlock["encrypt"] = function (block: any) {
-//   var options = block.getFieldValue("options");
-//   // check whether the options are in expected type
-
-//   var code = `
-//     import compression from 'compression';
-//     app.use(helmet(${options}));
-//   `;
-
-//   return code;
-// };
-
-// // not correctly. only correct thing is block name will have to get path to incomming value and database value
-// Blockly.Blocks["compareEncripted"] = {
-//   init: function () {
-//     this.appendDummyInput().appendField("Compress Responses");
-//     this.appendDummyInput()
-//       .appendField("Options:")
-//       .appendField(new Blockly.FieldTextInput(""), "options");
-//     this.setTooltip(
-//       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
-//     );
-//     this.setHelpUrl("");
-//     this.setColour(130);
-//     this.setPreviousStatement(true, null);
-//     this.setNextStatement(true, null);
-//   },
-// };
-
-// javascriptGenerator.forBlock["encrypt"] = function (block: any) {
-//   var options = block.getFieldValue("options");
-//   // check whether the options are in expected type
-
-//   var code = `
-//     import compression from 'compression';
-//     app.use(helmet(${options}));
-//   `;
-
-//   return code;
-// };
 
 Blockly.Blocks["create_session"] = {
   init: function () {

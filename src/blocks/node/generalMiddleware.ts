@@ -13,8 +13,8 @@ Blockly.Blocks["server_helmet_guard"] = {
     );
     this.setHelpUrl("");
     this.setColour(160);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "middleware");
+    this.setNextStatement(true, "middleware");
   },
 };
 
@@ -41,8 +41,8 @@ Blockly.Blocks["compression_middleware"] = {
     );
     this.setHelpUrl("");
     this.setColour(160);
-    this.setPreviousStatement(true, "server_middleware");
-    this.setNextStatement(true, "server_middleware");
+    this.setPreviousStatement(true, "middleware");
+    this.setNextStatement(true, "middleware");
   },
 };
 
@@ -75,15 +75,29 @@ Blockly.Blocks["cors_middleware"] = {
     );
     this.setHelpUrl("");
     this.setColour(160);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "middleware");
+    this.setNextStatement(true, "middleware");
   },
 };
 
 javascriptGenerator.forBlock["cors_middleware"] = function (block: any) {
   const origin = block.getFieldValue("origin");
-  const methods = block.getFieldValue("methods");
+  let methods = block.getFieldValue("methods");
   const options = block.getFieldValue("options");
+  function isStringArray(str: string) {
+    // Regular expression to match a string array
+    // It looks for square brackets with strings inside, separated by commas
+    const regex =
+      // eslint-disable-next-line no-useless-escape
+      /^\s*\[\s*('.*?'|".*?"|[^\[\]'",]+)\s*(,\s*('.*?'|".*?"|[^\[\]'",]+)\s*)*\]\s*$/;
+
+    return regex.test(str);
+  }
+
+  if (!isStringArray(methods)) {
+    methods = null;
+    block.setFieldValue(undefined, "methods");
+  }
   // check whether the options are in expected type
 
   const code = `
@@ -93,7 +107,7 @@ javascriptGenerator.forBlock["cors_middleware"] = function (block: any) {
           ? options
           : `
           {origin: ${origin || "'*'"},
-            methods: ${methods || "[GET,PUT,POST,DELETE]}"}`
+            methods: ${methods || "['GET','PUT','POST','DELETE']}"}`
       }));
     `;
 
@@ -140,8 +154,8 @@ Blockly.Blocks["express_URLEncoder_middleware"] = {
     );
     this.setHelpUrl("");
     this.setColour(160);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "middleware");
+    this.setNextStatement(true, "middleware");
   },
 };
 
@@ -169,8 +183,8 @@ Blockly.Blocks["express_text_middleware"] = {
     );
     this.setHelpUrl("");
     this.setColour(160);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "middleware");
+    this.setNextStatement(true, "middleware");
   },
 };
 
@@ -198,8 +212,8 @@ Blockly.Blocks["express_raw_middleware"] = {
     );
     this.setHelpUrl("");
     this.setColour(160);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "middleware");
+    this.setNextStatement(true, "middleware");
   },
 };
 
@@ -209,43 +223,6 @@ javascriptGenerator.forBlock["express_raw_middleware"] = function (block: any) {
 
   const code = `
       app.use(express.raw(${options}));
-    `;
-
-  return code;
-};
-
-Blockly.Blocks["session_middleware"] = {
-  init: function () {
-    this.appendDummyInput().appendField("Session midleware");
-    this.appendDummyInput()
-      .appendField("Secret:")
-      .appendField(new Blockly.FieldTextInput(), "secret");
-    this.appendDummyInput()
-      .appendField("Custom Options (Optional):")
-      .appendField(new Blockly.FieldTextInput(), "options");
-    this.setTooltip(
-      "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
-    );
-    this.setHelpUrl("");
-    this.setColour(130);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-  },
-};
-
-javascriptGenerator.forBlock["session_middleware"] = function (block: any) {
-  const secret = block.getFieldValue("secret");
-  const options = block.getFieldValue("options");
-  // check whether the options are in expected type
-
-  const code = `
-      import session from 'express-session';
-      app.use(session(${
-        options
-          ? options
-          : `{secret: ${secret || "ASKDJASINAAKSJD"}, resave: false,
-             saveUninitialized: false, }`
-      }));
     `;
 
   return code;
