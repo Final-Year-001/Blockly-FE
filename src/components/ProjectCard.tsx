@@ -16,9 +16,10 @@ interface ProjectCardProps {
     readonly image: string;
     readonly id: string;
     readonly variant: string;
+    readonly lesson?: boolean
 }
 
-function ProjectCard({ name, description, image, id, variant }: ProjectCardProps) {
+function ProjectCard({ name, description, image, id, variant, lesson }: ProjectCardProps) {
   const navigate =  useNavigate();
 
   return (
@@ -39,7 +40,11 @@ function ProjectCard({ name, description, image, id, variant }: ProjectCardProps
       </CardBody>
       <CardFooter className="pt-0 flex gap-3">
         <Button onClick={() => {
-          console.log(variant, "dfdfdsfsdfdsdfdsfd")
+          if(lesson) {
+            navigate("/lesson-creator/" + id);
+            return;
+          } 
+
           if (variant == "frontend") {
             navigate("/frontend/" + id);
             return;
