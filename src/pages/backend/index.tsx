@@ -121,6 +121,7 @@ function BackendPage() {
       let json = Blockly.serialization.workspaces.save(workspace);
       if (!_.isEqual(json, workspaceState.current)) {
         if (mode == "lesson") checkIfStepComplete(json);
+        
         setSaveMessage({
           show: true,
           message: "New unsaved changes",
