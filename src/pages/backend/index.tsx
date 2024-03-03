@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import BackendWorkspace from "../../workspaces/backend/backendWorkspace";
 import SandboxTopBar from "../../components/sandboxTopBar";
 import {
@@ -23,8 +24,8 @@ import _ from "lodash";
 import { getLessonById, getProjectById, saveProject } from "../../api/project";
 import { tokenAtom } from "../../state/auth";
 import HintComponent from "../../components/HintComponent";
-import { StepDefinition } from "../lesson-creator";
 import { stripId } from "../../helpers/blockly";
+import BackendTopBar from "../../components/BackendTopBar";
 
 function organizeCode(code: string) {
   // Split the code into lines
@@ -62,7 +63,7 @@ function organizeCode(code: string) {
 type PageMode = "default" | "lesson";
 
 function BackendPage() {
-  let [code, setCode] = useRecoilState(codeAtom);
+  const [code, setCode] = useRecoilState(codeAtom);
   const [isExpanded, setIsExpanded] = useState(false);
   const [saveMessage, setSaveMessage] = useState<{
     message: string;
@@ -118,10 +119,10 @@ function BackendPage() {
     setCode(organizeCode(code));
     workspaceRef.current = workspace;
     try {
-      let json = Blockly.serialization.workspaces.save(workspace);
+      const json = Blockly.serialization.workspaces.save(workspace);
       if (!_.isEqual(json, workspaceState.current)) {
         if (mode == "lesson") checkIfStepComplete(json);
-        
+
         setSaveMessage({
           show: true,
           message: "New unsaved changes",
@@ -136,10 +137,10 @@ function BackendPage() {
 
   const checkIfStepComplete = (workspace: object) => {
     const curentStepToComplete = steps[currentStepNumber];
-    let lessonStepState = stripId(
+    const lessonStepState = stripId(
       _.cloneDeep(curentStepToComplete.workspaceState)
     );
-    let currentWorkspace = stripId(_.cloneDeep(workspace));
+    const currentWorkspace = stripId(_.cloneDeep(workspace));
 
     console.log(
       _.isEqual(lessonStepState, currentWorkspace),
@@ -187,6 +188,9 @@ function BackendPage() {
 
   return (
     <div className="flex flex-col h-full w-full ">
+      <div id="TopBar">
+        <BackendTopBar />
+      </div>
       <SandboxTopBar />
       <div
         className="flex flex-row flex-grow px-6 pb-4"
