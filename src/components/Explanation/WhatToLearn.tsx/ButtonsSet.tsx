@@ -8,7 +8,7 @@ function ButtonsSet() {
   return (
     <div className="flex flex-col gap-10 relative  w-60 mt-10">
       <Button
-        size="sm"
+        size="md"
         variant="filled"
         color="blue"
         className="absolute rounded-full left-10"
@@ -22,7 +22,7 @@ function ButtonsSet() {
         Server Creation
       </Button>
       <Button
-        size="sm"
+        size="md"
         variant="filled"
         color="red"
         className="absolute rounded-full left-0 top-12"
@@ -38,7 +38,7 @@ function ButtonsSet() {
       <Button
         variant="filled"
         color="orange"
-        size="sm"
+        size="md"
         className="absolute left-16 top-24 rounded-full text-white"
         onClick={() => {
           setVideoPlayerDialogState({
@@ -50,7 +50,7 @@ function ButtonsSet() {
         Session Handling
       </Button>
       <Button
-        size="sm"
+        size="md"
         variant="filled"
         color="green"
         className="absolute rounded-full left-30 top-40"
