@@ -111,6 +111,7 @@ function LessonCreator() {
           <LCStep
             key={index}
             step={index}
+            variant={variant}
             refresh={refreshSteps}
             state={value.workspaceState || {}}
             description={value.description}

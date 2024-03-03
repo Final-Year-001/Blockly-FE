@@ -3,6 +3,7 @@ import toolboxConfig from "../../toolbox/toolbox";
 import Blockly from "blockly";
 import { Button, Textarea } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
+import frontendToolboxCategories from "../../toolbox/frontend";
 
 interface LCStepProps {
   readonly step: number;
@@ -11,6 +12,7 @@ interface LCStepProps {
   readonly onWorkspaceChange?: (json: object, step: number) => void;
   readonly description?: string;
   readonly onDescriptionChange?: (description: string, step: number) => void;
+  readonly variant?: "frontend" | "backend" 
 }
 
 function LCStep({
@@ -19,7 +21,8 @@ function LCStep({
   onWorkspaceChange,
   description,
   onDescriptionChange,
-  refresh
+  refresh,
+  variant
 }: LCStepProps) {
   const _onWorkspaceChanged = (workspace: Blockly.WorkspaceSvg) => {
     let json = Blockly.serialization.workspaces.save(workspace);
@@ -44,7 +47,7 @@ function LCStep({
       <div className="flex flex-row h-[20em]">
         {reload ? (
           <BlocklyWorkspace
-            toolboxConfiguration={toolboxConfig}
+            toolboxConfiguration={variant == "backend" ? toolboxConfig : frontendToolboxCategories}
             initialJson={state}
             className="fill-height flex-[0.5]"
             workspaceConfiguration={{
