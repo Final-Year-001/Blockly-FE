@@ -345,7 +345,7 @@ export const javascriptCategory = {
           type: "create_task",
           icons: {
             comment: {
-              text: "Create a new task with the specified name",
+              text: "Create a new task",
               pinned: true,
               height: 80,
               width: 160
@@ -369,7 +369,7 @@ export const javascriptCategory = {
           type: "update_task",
           icons: {
             comment: {
-              text: "Update the task's name with a new one",
+              text: "Compeleted task will be striked through",
               pinned: true,
               height: 80,
               width: 160
