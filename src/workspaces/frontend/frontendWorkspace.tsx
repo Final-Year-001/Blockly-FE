@@ -1,22 +1,10 @@
 import React, { useRef } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { javascriptGenerator } from "blockly/javascript";
-import { javascriptCategory } from "../../categories/javascript";
-import { htmlCategory } from "../../categories/html";
-import {
-  commonCategory,
-  loopsCategory,
-  textCategory,
-  functionCategory,
-  listCategory,
-  colorCategory,
-  variablesCategory,
-} from "../../categories/google_blocks";
-import { mathCategory } from "../../categories/math";
-import { cssCategory } from "../../categories/css";
 import { Card } from "@material-tailwind/react";
 import BlocklyThemes from "blockly"; 
 import { FETheme } from "../../themes/FETheme";
+import frontendToolboxCategories from "../../toolbox/frontend";
 
 const workspaceConfiguration = {
   theme: FETheme,
@@ -43,25 +31,6 @@ function FrontendWorkspace({
 }: FrontendWorkspaceProps) {
   const workspaceWrapper = useRef<HTMLDivElement>(null);
 
-  const toolboxCategories = {
-    kind: "categoryToolbox",
-    contents: [
-      htmlCategory,
-      cssCategory,
-      javascriptCategory,
-      { kind: "sep" },
-      { kind: "sep" },
-      commonCategory,
-      loopsCategory,
-      variablesCategory,
-      textCategory,
-      mathCategory,
-      functionCategory,
-      listCategory,
-      colorCategory,
-    ],
-  };
-
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
     javascriptGenerator.addReservedWords("code");
     let code = javascriptGenerator.workspaceToCode(workspace);
@@ -75,7 +44,7 @@ function FrontendWorkspace({
     >
       {loaded ? (
         <BlocklyWorkspace
-          toolboxConfiguration={toolboxCategories}
+          toolboxConfiguration={frontendToolboxCategories}
           initialJson={initialState}
           className="fill-height"
           workspaceConfiguration={workspaceConfiguration}
