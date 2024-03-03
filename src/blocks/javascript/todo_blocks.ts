@@ -4,97 +4,118 @@ import { Order, javascriptGenerator } from "blockly/javascript";
 //Create Task Block
 Blockly.Blocks['create_task'] = {
   init: function() {
-    this.appendValueInput("task_name")
-        .setCheck("String")
-        .appendField("Add Task to Todo List");
+    this.appendDummyInput()
+        .appendField("Add Task on Button Click");
+        this.appendValueInput("button")
+        .setCheck("el_id_input")
+        .appendField("Add Button ID");
+        this.appendValueInput("checkboxId")
+      .setCheck("el_id_input")
+      .appendField("Checkbox ID");
+      this.appendValueInput("deletebtn")
+      .setCheck("el_id_input")
+      .appendField("Delete Button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
-    this.setTooltip("Add a new task to the todo list.");
+    this.setTooltip("Add a task when a button is clicked.");
   }
 };
 
 javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any) {
-  var taskName = generator.valueToCode(block, 'task_name', Order.ATOMIC);
-  var code = ` 
-  // Logic to add task to the todo list to backend: ${taskName}
-  var audio = new Audio('../src/sounds/add.wav');
-  audio.play();
-  `;
-  return code;
-};
+  var buttonId = generator.valueToCode(block, 'button', Order.ATOMIC);
+  var deletebtnId = generator.valueToCode(block, 'deletebtn', Order.ATOMIC);
+  var checkboxId = generator.valueToCode(block, 'checkboxId', Order.ATOMIC);
+  var code = `
+      document.addEventListener("DOMContentLoaded", function() {
+          document.getElementById(${buttonId}).addEventListener("click", function() {
+              var taskInput = document.getElementById("taskInput");
+              var taskList = document.getElementById("taskList");
 
-//Read Tasks Block
-Blockly.Blocks['read_tasks'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Read Tasks");
-    this.setOutput(true, "Array");
-    this.setColour(0);
-    this.setTooltip("Read all tasks.");
-  }
-};
+              if (taskInput.value === "") {
+                  alert("Please enter a task!");
+                  return;
+              }
 
-javascriptGenerator.forBlock['read_tasks'] = function(block:any, generator:any) {
-  var code = ` // Logic to read tasks and return an array of tasks`;
+              var li = document.createElement("li");
+              var checkbox = document.createElement("input");
+              checkbox.type = "checkbox";
+              checkbox.id = ${checkboxId};
+              var deleteButton = document.createElement("button");
+              deleteButton.textContent = "Delete";
+              deleteButton.id = ${deletebtnId};
+
+              li.appendChild(checkbox);
+              li.appendChild(document.createTextNode(taskInput.value + ' '));
+              li.appendChild(deleteButton);
+        
+              taskList.appendChild(li);
+              taskInput.value = "";
+
+              var audio = new Audio('../src/sounds/add.wav');
+              audio.play();
+          });
+      });
+      `;
   return code;
 };
 
 //Complete Task Block
-Blockly.Blocks['update_task'] = {
+Blockly.Blocks['toggle_checkbox'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Complete Task");
-    this.appendStatementInput("TASK")
-        .setCheck(null)
-        .appendField("Task");
-    this.setColour(110);
-    this.setTooltip("Complete a task by ticking the checkbox.");
+        .appendField("Toggle Checkbox on Click");
+    this.appendValueInput("checkbox")
+        .setCheck("el_id_input")
+        .appendField("Checkbox ID");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("Toggle a checkbox when clicked.");
   }
 };
 
-javascriptGenerator.forBlock['update_task'] = function(block:any, generator:any) {
-  var statements_task = generator.statementToCode(block, 'TASK');
-  return `
-  <span style="text-decoration: line-through;">${statements_task}</span>
+javascriptGenerator.forBlock['toggle_checkbox'] = function(block:any, generator:any) {
+  var checkboxId = generator.valueToCode(block, 'checkbox', Order.ATOMIC);
+
+  var code = `
+    var listItem = document.getElementById(${checkboxId}).parentNode;
+    if (document.getElementById(${checkboxId}).checked) {
+      listItem.style.textDecoration = "line-through";
+    } else {
+      listItem.style.textDecoration = "none";
+    }
   `;
+  
+  return code;
 };
 
 //Delete Task Block
 Blockly.Blocks['delete_task'] = {
   init: function() {
-    this.appendValueInput("task_id")
-        .setCheck(null)
-        .appendField("Delete Task with name");
+    this.appendDummyInput()
+        .appendField("Delete Task on Button Click");
+    this.appendValueInput("button")
+        .setCheck("el_id_input")
+        .appendField("Button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
-    this.setTooltip("Delete a task with the specified ID.");
+    this.setTooltip("Delete a task when a button is clicked.");
   }
 };
 
 javascriptGenerator.forBlock['delete_task'] = function(block:any, generator:any) {
-  var takeName = generator.valueToCode(block, 'task_id', Order.ATOMIC);
-  var code = `// Logic to delete task with ID ${takeName}
+  var buttonId = generator.valueToCode(block, 'button', Order.ATOMIC);
+
+  var code = `
+  var listItem = document.getElementById(${buttonId}).parentNode;
+  var taskList = listItem.parentNode;
+  taskList.removeChild(listItem);
+
   var audio = new Audio('../src/sounds/delete.wav');
   audio.play();
-  `;
-  return code;
-};
+`;
 
-//Search Task Block
-Blockly.Blocks['search_task'] = {
-  init: function() {
-    this.appendValueInput("search_term")
-        .setCheck("String")
-        .appendField("Search Task with Term");
-    this.setOutput(true, "Array");
-    this.setColour(0);
-    this.setTooltip("Search for tasks with the specified term.");
-  }
-};
-
-javascriptGenerator.forBlock['search_task'] = function(block:any, generator:any) {
-  var searchTerm = generator.valueToCode(block, 'search_term', Order.ATOMIC);
-  return `// Logic to search for tasks with the term: ${searchTerm}`;
+return code;
 };

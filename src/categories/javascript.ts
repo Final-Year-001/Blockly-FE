@@ -354,22 +354,10 @@ export const javascriptCategory = {
         },
         {
           kind:"block",
-          type: "read_tasks",
+          type: "toggle_checkbox",
           icons: {
             comment: {
-              text: "Read all tasks",
-              pinned: true,
-              height: 80,
-              width: 160
-            }
-          }, 
-        },
-        {
-          kind:"block",
-          type: "update_task",
-          icons: {
-            comment: {
-              text: "Compeleted task will be striked through",
+              text: "Striked through a task",
               pinned: true,
               height: 80,
               width: 160
@@ -381,19 +369,7 @@ export const javascriptCategory = {
           type: "delete_task",
           icons: {
             comment: {
-              text: "Delete a task with the specified ID",
-              pinned: true,
-              height: 80,
-              width: 160
-            }
-          }, 
-        },
-        {
-          kind:"block",
-          type: "search_task",
-          icons: {
-            comment: {
-              text: "Search for tasks with the specified term",
+              text: "Delete a task",
               pinned: true,
               height: 80,
               width: 160
