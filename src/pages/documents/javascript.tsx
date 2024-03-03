@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import TopBar from "./topBar";
-// import { FaArrowUp } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 
 const blocks = [
   // Get started category
@@ -165,26 +165,14 @@ const blocks = [
     category: "Todo blocks",
   },
   {
-    title: "Show all the tasks",
-    description: "Display all the tasks.",
-    image: "#",
-    category: "Todo blocks",
-  },
-  {
     title: "Completing a task",
-    description: "Compeleted task will be striked through.",
+    description: "Completed task will be striked through.",
     image: "#",
     category: "Todo blocks",
   },
   {
     title: "Delete a task",
     description: "The task will be deleted and a bin sound will be played.",
-    image: "#",
-    category: "Todo blocks",
-  },
-  {
-    title: "Search task",
-    description: "Search a task from the list.",
     image: "#",
     category: "Todo blocks",
   },
