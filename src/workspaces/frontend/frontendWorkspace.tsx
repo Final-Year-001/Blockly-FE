@@ -6,8 +6,12 @@ import BlocklyThemes from "blockly";
 import { FETheme } from "../../themes/FETheme";
 import frontendToolboxCategories from "../../toolbox/frontend";
 
+// Renderers = minimalist /zelos / thrasos / geras
+
 const workspaceConfiguration = {
   theme: FETheme,
+  // theme : "zelos",
+  renderer: "minimalist", 
             grid: {
               spacing: 20,
               length: 3,

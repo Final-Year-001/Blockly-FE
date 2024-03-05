@@ -1,4 +1,5 @@
 import Blockly from 'blockly';
+import { htmlCategory } from '../categories/html';
 // import DarkTheme from '@blockly/theme-dark';
 
 export const FETheme = Blockly.Theme.defineTheme('myCustomTheme', {
@@ -6,12 +7,17 @@ export const FETheme = Blockly.Theme.defineTheme('myCustomTheme', {
     'name': 'myCustomTheme',
     // Define block styles
     'blockStyles': {
-       'html_blocks': {
+       'HTML_blocks': {
           'colourPrimary': '#4a148c',
           'colourSecondary': '#AD7BE9',
           'colourTertiary': '#CDB6E9'
        },
-       'logic_blocks': {
+       'words_blocks': {
+         'colourPrimary': '#4a148c',
+         'colourSecondary': '#AD7BE9',
+         'colourTertiary': '#CDB6E9'
+      },
+       'table_blocks': {
           'colourPrimary': '#3498db',
           'colourSecondary': '#64C7FF',
           'colourTertiary': '#C5EAFF'

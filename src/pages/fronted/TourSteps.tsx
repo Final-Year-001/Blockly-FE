@@ -8,6 +8,7 @@ import outputImg from "../../assets/tourImages/output2.png"
 import codePng from "../../assets/tourImages/code.png"
 import consPng from "../../assets/tourImages/cons.png"
 import outPng from "../../assets/tourImages/out.png"
+import EndImg from "../../assets/tourImages/end.png"
 
 export const TourSteps = [
     {
@@ -41,5 +42,9 @@ export const TourSteps = [
     {
       selector: '#TabBtnConsole',
       content: <NormalCard title={'Console area'} imageUrl={consPng} description={'You get to see other information of you website here.'} size={'200px'} />
+    },
+    {
+      selector: '',
+      content: <NormalCard title={'Lets Go Make stuff'} imageUrl={EndImg} description={'Now you know where things are around here. Lets get building stuff!'} size={'200px'} />
     },
   ];

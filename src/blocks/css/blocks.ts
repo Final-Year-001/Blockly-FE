@@ -383,3 +383,25 @@ JavaScript.javascriptGenerator.forBlock['css_text_align'] = function(block : any
 };
 
 //////////////////////////////////////////////
+
+
+Blockly.Blocks['css_custom'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Custom CSS Demo");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput(""), "css");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(330);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_custom'] = function(block : any, generator : any) {
+  var text_css = block.getFieldValue('css');
+  // TODO: Assemble javascript into code variable.
+  var code = text_css;
+  return code;
+};

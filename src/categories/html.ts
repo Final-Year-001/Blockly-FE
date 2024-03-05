@@ -5,6 +5,7 @@ export const htmlCategory = {
   kind: "category",
   name: "HTML",
   colour: "#4295f5",
+  style: "HTML_blocks" ,
   contents: [
     {
       kind: "block",
@@ -16,7 +17,7 @@ export const htmlCategory = {
     },
     {
       kind: "category",
-      name: "Text",
+      name: "Words",
       colour: "#74aff2",
       contents: [
         {
@@ -30,6 +31,14 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "html_h",
+          icons: { 
+            comment: {
+              text: "JavaScript code should be wrapped in this tag",
+              pinned: false,
+              height: 80,
+              width: 160
+            }
+          },
         },
         {
           kind: "block",

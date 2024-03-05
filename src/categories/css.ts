@@ -101,6 +101,10 @@ export const cssCategory = {
           kind: "block",
           type: "css_bg_color",
         },
+        {
+          kind: "block",
+          type: "css_custom",
+        },
       ],
     },
   ],

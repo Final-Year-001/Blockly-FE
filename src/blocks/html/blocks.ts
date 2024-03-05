@@ -235,7 +235,8 @@ Blockly.Blocks['html_name'] = {
         .appendField(new Blockly.FieldTextInput("Text"), "html_input_name");
     this.setInputsInline(true);
     this.setOutput(true, null);
-    this.setColour(300);
+    console.log("Block color:", this.getColour());
+    // this.setColour(300);
  this.setTooltip("Use this to add text to other blocks");
  this.setHelpUrl("");
   }
@@ -502,7 +503,7 @@ Blockly.Blocks['html_textadd'] = {
         .appendField(new Blockly.FieldTextInput("default"), "data");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    // this.setColour(230);
  this.setTooltip("");
  this.setHelpUrl("");
   }
