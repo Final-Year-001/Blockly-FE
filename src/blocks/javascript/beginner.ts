@@ -50,7 +50,7 @@ javascriptGenerator.forBlock['create_variable'] = function(block:any, generator:
 Blockly.Blocks["generate_id"] = {
   init: function () {
     this.appendDummyInput()
-      .appendField("Element ID:")
+      .appendField("Create element ID:")
       .appendField(new Blockly.FieldTextInput("elId"), "elId");
     this.setOutput(true, "el_id_input");
     this.setColour(0);
@@ -74,11 +74,10 @@ Blockly.Blocks['chnage_innerHTML'] = {
             .appendField("Change Element Content");
         this.appendValueInput("elementId")
             .setCheck("el_id_input")
-            .appendField("Element ID:");
+            .appendField("Add the element ID:");
         this.appendValueInput("newContent")
             .setCheck("String")
-            .appendField("New Content:");
-        this.setInputsInline(true);
+            .appendField("Add the new content to replace the old content:");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(160);
@@ -108,7 +107,7 @@ Blockly.Blocks['print_block'] = {
         .appendField("Print when button is clicked");
     this.appendValueInput("button")
         .setCheck("el_id_input")
-        .appendField("Button ID");
+        .appendField("Enter the button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
@@ -138,7 +137,7 @@ Blockly.Blocks['console_log'] = {
   init: function () {
     this.appendValueInput('text')
       .setCheck(null) // Allow any value to be logged
-      .appendField('Console Log');
+      .appendField('Display content in the console log');
     this.setPreviousStatement(true, null); // Previous block can be of any type
     this.setNextStatement(true, null); // Next block can be of any type
     this.setColour(110); // Color for visual distinction
@@ -157,10 +156,10 @@ Blockly.Blocks['alert_block'] = {
   init: function() {
     this.appendValueInput("message")
         .setCheck(null)
-        .appendField("Show alert when element is clicked");
+        .appendField("Show alert when the button is clicked");
     this.appendValueInput("element")
         .setCheck("el_id_input")
-        .appendField("Element ID");
+        .appendField("Add the button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(40);
@@ -191,7 +190,7 @@ javascriptGenerator.forBlock['alert_block'] = function(block: any, generator: an
 Blockly.Blocks['event_listener'] = {
   init: function () {
     this.appendDummyInput()
-      .appendField("Add Event Listener to the button")
+      .appendField("Add event listener to a button")
       .appendField(new Blockly.FieldDropdown([
         ["click", "click"],
         ["mouseover", "mouseover"],
@@ -199,10 +198,10 @@ Blockly.Blocks['event_listener'] = {
       ]), "event");
     this.appendValueInput("element")
       .setCheck("el_id_input")
-      .appendField("to element ID");
+      .appendField("add the button ID");
     this.appendStatementInput("handler")
       .setCheck(null)
-      .appendField("do");
+      .appendField("tasks to perform after");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(160);
@@ -222,7 +221,7 @@ javascriptGenerator.forBlock['event_listener'] = function (block:any, generator:
 Blockly.Blocks["show_hidden_element"] = {
 init: function () {
   this.appendDummyInput()
-      .appendField("Show or Hide element")
+      .appendField("Show or hide an element")
   this.appendValueInput("element_id")
   .setCheck("el_id_input")
     .appendField(
@@ -232,7 +231,7 @@ init: function () {
       ]),
       "action"
     )
-    .appendField("element with ID");
+    .appendField("add the element ID");
   this.setColour(40);
   this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -304,7 +303,7 @@ javascriptGenerator.forBlock['multi_line_comment'] = function(block:any, generat
 Blockly.Blocks['custom_function'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("function")
+        .appendField("Create a function")
         .appendField(new Blockly.FieldTextInput("myFunction"), "FUNCTION_NAME")
         .appendField("(")
         .appendField(new Blockly.FieldTextInput("p1"), "PARAM1")
@@ -313,7 +312,7 @@ Blockly.Blocks['custom_function'] = {
         .appendField(")");
     this.appendStatementInput("STATEMENTS")
         .setCheck(null)
-        .appendField("do");
+        .appendField("What  to do in the function?");
     this.setColour(160);
     this.setTooltip('Create a custom function');
   }
@@ -338,10 +337,10 @@ function ${functionName}(${param1}, ${param2}) {
 Blockly.Blocks['play_sound_on_click'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Play Sound on Button Click");
+        .appendField("Play sound on button click");
     this.appendValueInput("button_id")
         .setCheck("el_id_input")
-        .appendField("Button ID");
+        .appendField("Add the button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
@@ -366,20 +365,20 @@ javascriptGenerator.forBlock['play_sound_on_click'] = function(block:any, genera
 Blockly.Blocks['upload_display_image'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Upload and Display Image");
+        .appendField("Upload and display an image");
     this.appendValueInput("button_id")
         .setCheck("el_id_input")
-        .appendField("Button ID");
+        .appendField("Add the button ID");
     this.appendDummyInput()
-        .appendField("Image ID")
+        .appendField("Give an image ID")
         .appendField(new Blockly.FieldTextInput("img_id"), "image_id");
     this.appendDummyInput()
         this.appendValueInput("image_width")
         .setCheck("Number")
-        .appendField("Width");
+        .appendField("Width of the image");
     this.appendValueInput("image_height")
         .setCheck("Number")
-        .appendField("Height");
+        .appendField("Height of the image");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);
@@ -426,13 +425,13 @@ javascriptGenerator.forBlock['upload_display_image'] = function(block:any, gener
 Blockly.Blocks['remove_image_on_button_click'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Remove Image on Button Click");
+        .appendField("Remove image on a button click");
     this.appendValueInput("button_id")
         .setCheck("el_id_input")
-        .appendField("Button ID");
+        .appendField("Add the button ID");
     this.appendValueInput("image_id")
         .setCheck("String")
-        .appendField("Image ID");
+        .appendField("Add the image ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(110);
