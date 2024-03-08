@@ -1,6 +1,7 @@
 import {Avatar } from "@material-tailwind/react";
 import ProductLogo from "../../assets/Logo";
 import { Link } from "react-router-dom";
+import { Button } from "@material-tailwind/react";
   
   function TopBar() {
   
@@ -13,7 +14,7 @@ import { Link } from "react-router-dom";
         </div>
   
         <div>
-          <Link to="/my/projects"><Avatar src="/img/cat default avatar.png" alt="avatar" size="md" /></Link>
+          <Link to="/my/projects"><Button className="mr-1">My Projects</Button> </Link>
         </div>
   
       </div>

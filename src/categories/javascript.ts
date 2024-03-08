@@ -263,10 +263,10 @@ export const javascriptCategory = {
         }, 
         {
           kind:"block",
-          type: "auto_fill_form_fields",
+          type: "change_form_background_color",
           icons: {
             comment: {
-              text: "Auto fill name and age",
+              text: "Change the background color of a form",
               pinned: true,
               height: 80,
               width: 160
@@ -309,30 +309,6 @@ export const javascriptCategory = {
           }
         }, 
       }, 
-       {
-         kind: "block", 
-         type: "change_form_background_color",
-         icons: {
-          comment: {
-            text: "Change the background color of a form",
-            pinned: true,
-            height: 80,
-            width: 160
-          }
-        }, 
-       }, 
-       {
-         kind: "block",
-         type: "show_data_in_alert_custom",
-         icons: {
-          comment: {
-            text: "Show collected data in an alert",
-            pinned: true,
-            height: 80,
-            width: 160
-          }
-        }, 
-       },
       ]
     },
     {
