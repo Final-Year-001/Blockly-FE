@@ -333,7 +333,7 @@ export const javascriptCategory = {
           type: "toggle_checkbox",
           icons: {
             comment: {
-              text: "Striked through a task",
+              text: "Strike through a task",
               pinned: true,
               height: 80,
               width: 160
