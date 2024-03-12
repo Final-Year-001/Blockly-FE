@@ -3,6 +3,7 @@ import "../blocks/css/blocks"
 export const cssCategory = {
   kind: "category",
   name: "CSS",
+  
   colour: "#f55142",
   contents: [
     {
@@ -100,6 +101,10 @@ export const cssCategory = {
         {
           kind: "block",
           type: "css_bg_color",
+        },
+        {
+          kind: "block",
+          type: "css_custom",
         },
       ],
     },
