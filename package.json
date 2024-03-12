@@ -26,6 +26,7 @@
     "react-player": "^2.15.1",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.18.0",
+    "react-toastify": "^10.0.4",
     "react-use-websocket": "^4.5.0",
     "reactour": "^1.19.2",
     "recoil": "^0.7.7"
