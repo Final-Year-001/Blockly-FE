@@ -15,3 +15,7 @@
 svg[display="none"] {
   display: none;
 }
+
+.blocklyMainBackground {
+  stroke: none !important;
+}

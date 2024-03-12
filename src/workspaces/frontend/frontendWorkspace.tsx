@@ -9,31 +9,25 @@ import '../../themes/renderer/CustomRender'
 
 // Renderers = minimalist /zelos / thrasos / geras
 
-
 const workspaceConfiguration = {
   theme: FETheme,
-  // theme : "zelos",
   renderer: "custom_renderer", 
-        grid: {
-          spacing: 20,
-          length: 3,
-          // colour: "#ffffff",
-          colour: "#",
-          snap: true,
-        },
-        zoom:{
-          controls: true,
-          wheel: true,
-          startScale: 0.8,
-          maxScale: 3,
-          customZoomIcons: {
-            zoomIn: '<svg width="60" height="50" viewBox="0 0 50 20"><path d="M...</path></svg>', // Replace with your SVG path
-            zoomOut: '<svg width="20" height="20" viewBox="0 0 20 20"><path d="M...</path></svg>', // Replace with your SVG path
-          },
-          minScale: 0.1,
-          scaleSpeed: 1.2,
-          pinch: true,
-          trashcan: true
+  grid: {
+    spacing: 20,
+    length: 3,
+    // colour: "#ffffff",
+    colour: "#",
+    snap: true,
+  },
+  zoom:{
+    controls: true,
+    wheel: true,
+    startScale: 0.8,
+    maxScale: 3,
+    minScale: 0.1,
+    scaleSpeed: 1.2,
+    pinch: true,
+    trashcan: true
     },
 };
 
@@ -59,7 +53,7 @@ function FrontendWorkspace({
   return (
     <Card
       ref={workspaceWrapper}
-      className="fill-height border rounded-lg overflow-hidden border-r-8 border-t-[20px] border-l-8 border-b-8 border-gray-200"
+      className="fill-height z-20 rounded-lg border-8 overflow-hidden border-gray-300"
     >
       {loaded ? (
         <BlocklyWorkspace
