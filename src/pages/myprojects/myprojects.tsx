@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Typography } from "@material-tailwind/react";
 import ProjectCard from "../../components/ProjectCard";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import NewProjectModal from "../../components/NewProjectModal";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { httpClient } from "../../helpers/axios";
 import { useNavigate, Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { tokenAtom } from "../../state/auth";
@@ -14,7 +14,6 @@ import {
   newLesson,
   newProject,
 } from "../../api/project";
-import APIError from "../../errors/api";
 import { AxiosError } from "axios";
 import NewLessonModal from "../../components/NewLessonModal";
 
@@ -69,7 +68,7 @@ function MyProjects() {
         image: "",
         id: c._id,
         variant: c.variant,
-        lesson: c.lesson
+        lesson: c.lesson,
       };
     }) || [];
 

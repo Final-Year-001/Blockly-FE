@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
-import { nodeCategory } from "../../categories/node";
 import { javascriptGenerator } from "blockly/javascript";
 
 import { Card } from "@material-tailwind/react";
