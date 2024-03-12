@@ -19,3 +19,51 @@ svg[display="none"] {
 .blocklyMainBackground {
   stroke: none !important;
 }
+
+.blocklyTreeLabel {
+  color: white;
+}
+.blocklyToolboxContents {
+
+}
+.blocklyTreeRow {
+  padding-bottom: 30px;
+  /* padding-top: 8px; */
+  /* background-color: rgb(28, 28, 28); */
+  /* margin-bottom: 2px; */
+  border-radius: 4px;
+}
+
+.blocklyToolboxCategory{
+  /* background-color: rgb(125, 125, 125); */
+  padding-left : 5px;
+  /* padding-right : 5px; */
+  padding-bottom : 5px;
+  /* background-color: red; */
+}
+
+.blocklyTreeRow input{
+  border: 1px solid #ccc;
+  padding: 3px;
+  width: auto;
+  border-style: none;
+  border-radius: 4px;
+  color: black;
+}
+
+.blocklyFlyoutBackground {
+  opacity: 0.9; /* Set opacity to 90% */
+  backdrop-filter: blur(10px);
+  
+}
+
+.blocklyToolboxDiv {
+  background-color: rgba(2, 16, 30, 0.744); 
+  /* background-color: rgba(0, 1, 2, 0.744);  */
+  backdrop-filter: blur(10px); /* Apply a blur effect */
+  border-radius: 10px;
+}
+
+.blocklyMainBackground {
+  border-radius: 10px;
+}

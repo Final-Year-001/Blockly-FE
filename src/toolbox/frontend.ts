@@ -11,15 +11,22 @@ import {
 import { htmlCategory } from "../categories/html";
 import { javascriptCategory } from "../categories/javascript";
 import { mathCategory } from "../categories/math";
+import '@blockly/toolbox-search';
 
 const frontendToolboxCategories = {
   kind: "categoryToolbox",
   contents: [
+    {
+      'kind': 'search',
+      'name': 'Search',
+      'contents': [],
+    },
+    { kind: "sep" },
     htmlCategory,
     cssCategory,
     javascriptCategory,
-    { kind: "sep" },
-    { kind: "sep" },
+    { kind: "sep"},
+    { kind: "sep"},
     commonCategory,
     loopsCategory,
     variablesCategory,
@@ -30,5 +37,7 @@ const frontendToolboxCategories = {
     colorCategory,
   ],
 };
+
+
 
 export default frontendToolboxCategories;
