@@ -1,5 +1,6 @@
 // import "../blocks/javascript/blocks";
 import "../blocks/html/blocks";
+import book from '../assets/statusImages/book.gif'
 
 export const htmlCategory = {
   kind: "category",

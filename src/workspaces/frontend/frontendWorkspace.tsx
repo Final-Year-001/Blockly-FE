@@ -6,12 +6,14 @@ import { Card } from "@material-tailwind/react";
 import { FETheme } from "../../themes/FETheme";
 import frontendToolboxCategories from "../../toolbox/frontend";
 import '../../themes/renderer/CustomRender'
+import CustomCategory from "../../themes/toolbox/customCats";
 
 // Renderers = minimalist /zelos / thrasos / geras
 
 const workspaceConfiguration = {
   theme: FETheme,
   renderer: "custom_renderer", 
+  toolbar: CustomCategory,
   grid: {
     spacing: 20,
     length: 3,
