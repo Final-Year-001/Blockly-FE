@@ -13,6 +13,7 @@ interface LCStepProps {
   readonly description?: string;
   readonly onDescriptionChange?: (description: string, step: number) => void;
   readonly variant?: "frontend" | "backend" 
+  readonly onMouseOver?: () => void;
 }
 
 function LCStep({
@@ -22,7 +23,8 @@ function LCStep({
   description,
   onDescriptionChange,
   refresh,
-  variant
+  variant,
+  onMouseOver
 }: LCStepProps) {
   const _onWorkspaceChanged = (workspace: Blockly.WorkspaceSvg) => {
     let json = Blockly.serialization.workspaces.save(workspace);
@@ -42,7 +44,7 @@ function LCStep({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" onMouseOver={onMouseOver}>
       <h2>Step {step + 1}</h2>
       <div className="flex flex-row h-[20em]">
         {reload ? (

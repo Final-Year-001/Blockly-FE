@@ -4,7 +4,7 @@ import "../blocks/node/serverCreationBlocks";
 export const nodeCategory = {
   kind: "category",
   name: "Backend Components",
-  colour: "#5CA699",
+  colour: "#4295f5",
   contents: [
     {
       kind: "block",

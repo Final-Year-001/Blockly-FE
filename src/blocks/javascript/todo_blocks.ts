@@ -5,16 +5,16 @@ import { Order, javascriptGenerator } from "blockly/javascript";
 Blockly.Blocks['create_task'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Add Task on Button Click");
+        .appendField("Add new task on button click");
         this.appendValueInput("button")
         .setCheck("el_id_input")
-        .appendField("Add Button ID");
+        .appendField("Add the button ID");
         this.appendValueInput("checkboxId")
       .setCheck("el_id_input")
-      .appendField("Checkbox ID");
+      .appendField("Add the checkbox ID");
       this.appendValueInput("deletebtn")
       .setCheck("el_id_input")
-      .appendField("Delete Button ID");
+      .appendField("Add the delete button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
@@ -64,13 +64,13 @@ javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any)
 Blockly.Blocks['toggle_checkbox'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Toggle Checkbox on Click");
+        .appendField("Toggle the checkbox on click");
     this.appendValueInput("checkbox")
         .setCheck("el_id_input")
-        .appendField("Checkbox ID");
+        .appendField("Add the checkbox ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(0);
     this.setTooltip("Toggle a checkbox when clicked.");
   }
 };
@@ -106,13 +106,13 @@ javascriptGenerator.forBlock['toggle_checkbox'] = function(block:any, generator:
 Blockly.Blocks['delete_task'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Delete Task on Button Click");
+        .appendField("Delete the task on button click");
     this.appendValueInput("button")
         .setCheck("el_id_input")
-        .appendField("Button ID");
+        .appendField("Add the delete button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(110);
     this.setTooltip("Delete a task when a button is clicked.");
   }
 };
