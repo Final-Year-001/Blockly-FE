@@ -5,19 +5,19 @@ import { Order, javascriptGenerator } from "blockly/javascript";
 Blockly.Blocks['create_task'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Add new task on button click");
+        .appendField("Make the button add the task");
         this.appendValueInput("button")
         .setCheck("el_id_input")
-        .appendField("Add the button ID");
+        .appendField("Name of the add button");
         this.appendValueInput("checkboxId")
       .setCheck("el_id_input")
-      .appendField("Add the checkbox ID");
+      .appendField("Name of the checkbox");
       this.appendValueInput("deletebtn")
       .setCheck("el_id_input")
-      .appendField("Add the delete button ID");
+      .appendField("Name of the delete button");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('JS_Step5');
     this.setTooltip("Add a task when a button is clicked.");
   }
 };
@@ -64,13 +64,13 @@ javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any)
 Blockly.Blocks['toggle_checkbox'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Toggle the checkbox on click");
+        .appendField("Make the box tick when clicked");
     this.appendValueInput("checkbox")
         .setCheck("el_id_input")
-        .appendField("Add the checkbox ID");
+        .appendField("Name of the checkbox");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(0);
+    this.setStyle('JS_Step5');
     this.setTooltip("Toggle a checkbox when clicked.");
   }
 };
@@ -78,14 +78,26 @@ Blockly.Blocks['toggle_checkbox'] = {
 javascriptGenerator.forBlock['toggle_checkbox'] = function(block:any, generator:any) {
   var checkboxId = generator.valueToCode(block, 'checkbox', Order.ATOMIC);
 
-  var code = `
-    var listItem = document.getElementById(${checkboxId}).parentNode;
-    if (document.getElementById(${checkboxId}).checked) {
-      listItem.style.textDecoration = "line-through";
-    } else {
-      listItem.style.textDecoration = "none";
+  // var code = `
+  //   var listItem = document.getElementById(${checkboxId}).parentNode;
+  //   if (document.getElementById(${checkboxId}).checked) {
+  //     listItem.style.textDecoration = "line-through";
+  //   } else {
+  //     listItem.style.textDecoration = "none";
+  //   }
+  // `;
+
+  var code =
+  `document.addEventListener("change", function(event) {
+    if (event.target && event.target.type === "checkbox") {
+      var listItem = event.target.parentNode;
+      if (event.target.checked) {
+        listItem.style.textDecoration = "line-through";
+      } else {
+        listItem.style.textDecoration = "none";
+      }
     }
-  `;
+  });`
   
   return code;
 };
@@ -94,13 +106,13 @@ javascriptGenerator.forBlock['toggle_checkbox'] = function(block:any, generator:
 Blockly.Blocks['delete_task'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Delete the task on button click");
+        .appendField("Make the button erase the task");
     this.appendValueInput("button")
         .setCheck("el_id_input")
-        .appendField("Add the delete button ID");
+        .appendField("Name of the delete button");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(110);
+    this.setStyle('JS_Step5');
     this.setTooltip("Delete a task when a button is clicked.");
   }
 };
@@ -108,14 +120,26 @@ Blockly.Blocks['delete_task'] = {
 javascriptGenerator.forBlock['delete_task'] = function(block:any, generator:any) {
   var buttonId = generator.valueToCode(block, 'button', Order.ATOMIC);
 
-  var code = `
-  var listItem = document.getElementById(${buttonId}).parentNode;
-  var taskList = listItem.parentNode;
-  taskList.removeChild(listItem);
+//   var code = `
+//   var listItem = document.getElementById(${buttonId}).parentNode;
+//   var taskList = listItem.parentNode;
+//   taskList.removeChild(listItem);
 
-  var audio = new Audio('../src/sounds/delete.wav');
-  audio.play();
-`;
+//   var audio = new Audio('../src/sounds/delete.wav');
+//   audio.play();
+// `;
+
+var code = 
+`document.addEventListener("click", function(event) {
+  if (event.target && event.target.id === ${buttonId}) {
+    var listItem = event.target.parentNode;
+    var taskList = listItem.parentNode;
+    taskList.removeChild(listItem);
+
+    var audio = new Audio('../src/sounds/delete.wav');
+    audio.play();
+  }
+});`
 
 return code;
 };

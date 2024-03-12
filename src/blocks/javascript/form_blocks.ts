@@ -7,13 +7,13 @@ Blockly.Blocks["handle_form_submission"] = {
   init: function () {
     this.appendValueInput("form")
         .setCheck(null)
-        .appendField("Add the form ID");
+        .appendField("Give the form name:");
     this.appendStatementInput("on_submit")
         .setCheck(null)
-        .appendField("Tasks to do when the form is submitted");
+        .appendField("What to do when the form is finished");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setStyle('JS_Step4');
     this.setTooltip("Handle form submission. Match it with the formId you gave for the form block");
   },
 };
@@ -38,10 +38,10 @@ Blockly.Blocks['set_form_data_to'] = {
   init: function() {
     this.appendStatementInput("var")
         .setCheck("Variable")
-        .appendField("Set form data to this variable");
+        .appendField("Pass form data to a label");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(40);
+    this.setStyle('JS_Step4');
  this.setTooltip("");
  this.setHelpUrl("");
  this.setTooltip('Set the form data to a variable');
@@ -59,21 +59,22 @@ Blockly.Blocks['fetch_block'] = {
   init: function() {
     this.appendValueInput("fetch")
         .setCheck(null)
-        .appendField("send the data to the backend using this URL");
+        .appendField("Send the data to the backend using this link");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_CENTRE)
-        .appendField("with method")
+        this.appendDummyInput()
+        .appendField("How to send the data")
         .appendField(new Blockly.FieldDropdown([["GET", "GET"], ["POST", "POST"], ["PUT", "PUT"], ["DELETE", "DELETE"]]), "method");
     this.appendStatementInput("NAME")
         .setCheck(null)
-        .appendField("Add the variable we passed the form data");
+        .appendField("Add the label we passed the form data to");
     this.appendStatementInput("on_sucess")
         .setCheck(null)
         .appendField("on success what to do");
     this.appendStatementInput("on_error")
         .setCheck(null)
         .appendField("on error what to do");
-    this.setColour(160);
+        this.setStyle('JS_Step4');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
  this.setTooltip("");
@@ -112,13 +113,13 @@ Blockly.Blocks["clear_form_fields"] = {
   init: function () {
     this.appendValueInput("form")
       .setCheck("el_id_input")
-      .appendField("Clear the form data in, form ID");
+      .appendField("Clear the form data in this form");
     this.appendValueInput("rest_button_id")
       .setCheck("el_id_input")
-      .appendField("Reset form button ID");
+      .appendField("Give the button name");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(40);
+    this.setStyle('JS_Step4');
     this.setTooltip("Clear all input fields in a form. Remember to match the formId you gave for the form block");
   },
 };
@@ -203,133 +204,133 @@ javascriptGenerator.forBlock["clear_form_fields"] = function (
 //   return code;
 // };
 
-// General-Purpose Validation and Error Handling Block
-Blockly.Blocks['validate_and_handle_error'] = {
-  init: function() {
-    this.appendValueInput("auto_button_id")
-    .setCheck("el_id_input")
-    .appendField("Add the form submit button ID");
-    this.appendValueInput('input')
-        .setCheck("el_id_input")
-        .appendField('Add the input field id for validation');
-    this.appendValueInput('condition')
-        .setCheck('Boolean')
-        .appendField('Pass if the condition is');
-    this.appendDummyInput()
-        .appendField('Else, handle errors with message');
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput(''), 'error_message');
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(40); // Adjust the color as needed
-    this.setTooltip('Validate an input field based on a predefined condition');
-  }
-};
+// // General-Purpose Validation and Error Handling Block
+// Blockly.Blocks['validate_and_handle_error'] = {
+//   init: function() {
+//     this.appendValueInput("auto_button_id")
+//     .setCheck("el_id_input")
+//     .appendField("Give the form button name");
+//     this.appendValueInput('input')
+//         .setCheck("el_id_input")
+//         .appendField('Add the input field id for validation');
+//     this.appendValueInput('condition')
+//         .setCheck('Boolean')
+//         .appendField('Pass if the condition is');
+//     this.appendDummyInput()
+//         .appendField('Else, handle errors with message');
+//     this.appendDummyInput()
+//         .appendField(new Blockly.FieldTextInput(''), 'error_message');
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//     this.setStyle('JS_Step4'); 
+//     this.setTooltip('Validate an input field based on a predefined condition');
+//   }
+// };
 
-javascriptGenerator.forBlock['validate_and_handle_error'] = function (
-  block: any,
-  generator: any) {
-    var inputElementId = generator.valueToCode(block, 'input', 0);
-    var condition = generator.valueToCode(block, 'condition', 0);
-    var errorMessage = block.getFieldValue('error_message');
-    var buttonElementId = generator.valueToCode(block, 'auto_button_id', 0)
+// javascriptGenerator.forBlock['validate_and_handle_error'] = function (
+//   block: any,
+//   generator: any) {
+//     var inputElementId = generator.valueToCode(block, 'input', 0);
+//     var condition = generator.valueToCode(block, 'condition', 0);
+//     var errorMessage = block.getFieldValue('error_message');
+//     var buttonElementId = generator.valueToCode(block, 'auto_button_id', 0)
   
-    var code = `
-    function clearInputFields(elementId) {
-      var element = document.getElementById(elementId);
-      if (element) {
-        element.value = '';
-      }
-    }
+//     var code = `
+//     function clearInputFields(elementId) {
+//       var element = document.getElementById(elementId);
+//       if (element) {
+//         element.value = '';
+//       }
+//     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-      var buttonElement = document.getElementById(${buttonElementId});
+//     document.addEventListener("DOMContentLoaded", function() {
+//       var buttonElement = document.getElementById(${buttonElementId});
 
-      if(buttonElement){
-        buttonElement.addEventListener("click", function () {
-          var inputElement = document.getElementById(${inputElementId});
-          if (inputElement) {
-            var input = inputElement.value;
-            if (${condition}) {
-              console.log(input);
-            } else {
-              window.alert('${errorMessage}');
-              clearInputFields(${inputElementId});
-            }
-          }
-        })
-      }
-    });
-  `;  
+//       if(buttonElement){
+//         buttonElement.addEventListener("click", function () {
+//           var inputElement = document.getElementById(${inputElementId});
+//           if (inputElement) {
+//             var input = inputElement.value;
+//             if (${condition}) {
+//               console.log(input);
+//             } else {
+//               window.alert('${errorMessage}');
+//               clearInputFields(${inputElementId});
+//             }
+//           }
+//         })
+//       }
+//     });
+//   `;  
   
-    return code;
-};
+//     return code;
+// };
 
-// Custom Condition Block
-Blockly.Blocks['custom_condition_input_length'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField('Name is less than 20 characters and more than 2');
-    this.setOutput(true, 'Boolean');
-    this.setColour(160);
-    this.setTooltip('Predefined condition: name length should be greater than 2 and less than 20');
-  }
-};
+// // Custom Condition Block
+// Blockly.Blocks['custom_condition_input_length'] = {
+//   init: function() {
+//     this.appendDummyInput()
+//         .appendField('Name is less than 20 characters and more than 2');
+//     this.setOutput(true, 'Boolean');
+//     this.setStyle('JS_Step4');
+//     this.setTooltip('Predefined condition: name length should be greater than 2 and less than 20');
+//   }
+// };
 
-// Define a code generation function for the 'custom_condition_input_length' block
-javascriptGenerator.forBlock['custom_condition_input_length'] = function (block: any, generator: any) {
-  // Generate JavaScript code for the predefined condition
-  return ['input.length <= 20 && input.length > 2', generator.ORDER_ATOMIC];
-};
+// // Define a code generation function for the 'custom_condition_input_length' block
+// javascriptGenerator.forBlock['custom_condition_input_length'] = function (block: any, generator: any) {
+//   // Generate JavaScript code for the predefined condition
+//   return ['input.length <= 20 && input.length > 2', generator.ORDER_ATOMIC];
+// };
 
-// Custom Condition Block
-Blockly.Blocks['custom_condition_age'] = {
-  init: function() {
-    this.appendDummyInput()
-    .appendField('Age is greater than 0 and less than 100');
-    this.setOutput(true, 'Boolean');
-    this.setColour(40);
-    this.setTooltip('Predefined condition: age should be greater than 0 and less than 100');
-  }
-};
+// // Custom Condition Block
+// Blockly.Blocks['custom_condition_age'] = {
+//   init: function() {
+//     this.appendDummyInput()
+//     .appendField('Age is greater than 0 and less than 100');
+//     this.setOutput(true, 'Boolean');
+//     this.setStyle('JS_Step4');
+//     this.setTooltip('Predefined condition: age should be greater than 0 and less than 100');
+//   }
+// };
 
-// Define a code generation function for the 'custom_condition_input_length' block
-javascriptGenerator.forBlock['custom_condition_age'] = function (block: any, generator: any) {
-  return ['input > 0 && input < 100', generator.ORDER_ATOMIC];
-};
+// // Define a code generation function for the 'custom_condition_input_length' block
+// javascriptGenerator.forBlock['custom_condition_age'] = function (block: any, generator: any) {
+//   return ['input > 0 && input < 100', generator.ORDER_ATOMIC];
+// };
 
-// Change Form Background Color Block
-Blockly.Blocks['change_form_background_color'] = {
-  init: function() {
-      this.appendDummyInput()
-          .appendField("Change the background color");
-      this.appendValueInput("form")
-          .setCheck("el_id_input")
-          .appendField("of the form");
-      this.appendDummyInput()
-          .appendField('to color')
-        .appendField(new Blockly.FieldTextInput(''), 'color');
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(160);
-      this.setTooltip("Change the background color of a form element.");
-  }
-};
+// // Change Form Background Color Block
+// Blockly.Blocks['change_form_background_color'] = {
+//   init: function() {
+//       this.appendDummyInput()
+//           .appendField("Change the background color");
+//       this.appendValueInput("form")
+//           .setCheck("el_id_input")
+//           .appendField("of the form");
+//       this.appendDummyInput()
+//           .appendField('to color')
+//         .appendField(new Blockly.FieldTextInput(''), 'color');
+//       this.setPreviousStatement(true, null);
+//       this.setNextStatement(true, null);
+//       this.setStyle('JS_Step4');
+//       this.setTooltip("Change the background color of a form element.");
+//   }
+// };
 
-javascriptGenerator.forBlock['change_form_background_color'] = function(block: any, generator: any) {
-  var formId = generator.valueToCode(block, 'form', 0);
-  var color = block.getFieldValue('color');
+// javascriptGenerator.forBlock['change_form_background_color'] = function(block: any, generator: any) {
+//   var formId = generator.valueToCode(block, 'form', 0);
+//   var color = block.getFieldValue('color');
 
-  var code = `
-    document.addEventListener("DOMContentLoaded", function() {
-        var form = document.getElementById(${formId});
-        if (form) {
-            form.style.backgroundColor = "${color}";
-        }
-    });
-  `;
-  return code;
-};
+//   var code = `
+//     document.addEventListener("DOMContentLoaded", function() {
+//         var form = document.getElementById(${formId});
+//         if (form) {
+//             form.style.backgroundColor = "${color}";
+//         }
+//     });
+//   `;
+//   return code;
+// };
 
 // // Show Data in Alert Block with Custom Element IDs
 // Blockly.Blocks['show_data_in_alert_custom'] = {

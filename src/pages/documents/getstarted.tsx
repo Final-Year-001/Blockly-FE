@@ -126,7 +126,7 @@ function GetStartedPage() {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "black",
             color: "white",
             padding: "10px",
             borderRadius: "50%",
