@@ -15,7 +15,7 @@ export const javascriptCategory = {
       icons: { 
         comment: {
           text: "JavaScript code should be wrapped in this tag",
-          pinned: true,
+          pinned: false,
           height: 80,
           width: 160
         }
@@ -33,7 +33,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Create a custom variable",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -45,7 +45,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Create an element ID",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -57,7 +57,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Log a message to the console",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -69,7 +69,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Print the page",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -81,7 +81,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Single-line comment",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -93,7 +93,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Multi-line comment",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -113,7 +113,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Change the content of an HTML element by ID",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -125,7 +125,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Generate a custom alert",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -137,7 +137,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Attach an event listener to an HTML element",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -149,7 +149,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Show or hide an HTML element",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -161,7 +161,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Create a custom function",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -181,7 +181,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Play a sound when a button is clicked",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -193,7 +193,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Upload and display an image",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -205,7 +205,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Remove the image with a button click",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -225,7 +225,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Handle form submission",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -237,7 +237,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Set the form data to a variable",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -249,7 +249,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Get the data to the backend",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -261,7 +261,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Clear all input fields in a form",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -329,7 +329,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Create a new task",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -341,7 +341,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Strike through a task",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -353,7 +353,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Delete a task",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
