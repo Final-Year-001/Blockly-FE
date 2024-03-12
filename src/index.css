@@ -37,7 +37,7 @@ svg[display="none"] {
 .blocklyToolboxCategory{
   /* background-color: rgb(125, 125, 125); */
   padding-left : 5px;
-  /* padding-right : 5px; */
+  padding-right : 5px;
   padding-bottom : 5px;
   /* background-color: red; */
 }
@@ -45,7 +45,7 @@ svg[display="none"] {
 .blocklyTreeRow input{
   border: 1px solid #ccc;
   padding: 3px;
-  width: auto;
+  width: 130px;
   border-style: none;
   border-radius: 4px;
   color: black;
@@ -54,16 +54,11 @@ svg[display="none"] {
 .blocklyFlyoutBackground {
   opacity: 0.9; /* Set opacity to 90% */
   backdrop-filter: blur(10px);
-  
 }
 
 .blocklyToolboxDiv {
   background-color: rgba(2, 16, 30, 0.744); 
   /* background-color: rgba(0, 1, 2, 0.744);  */
   backdrop-filter: blur(10px); /* Apply a blur effect */
-  border-radius: 10px;
-}
-
-.blocklyMainBackground {
-  border-radius: 10px;
+  border-radius: 5px;
 }
