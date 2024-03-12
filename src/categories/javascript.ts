@@ -215,7 +215,7 @@ export const javascriptCategory = {
     },
     {
       kind: "category",
-      name: "Create a form",
+      name: "Create A Form",
       colour: "#E1AD01",
       style: "JS_Step4" , 
       contents: [
@@ -319,7 +319,7 @@ export const javascriptCategory = {
     },
     {
       kind: "category",
-      name: "Create a Todo List",
+      name: "Create A Todo List",
       colour: "#E1AD01",
       style: "JS_Step5" , 
       contents: [
