@@ -6,10 +6,12 @@ export const javascriptCategory = {
   kind: "category",
   name: "JavaScript",
   colour: "#f39c12",
+  style: "JS_Beg" ,
   contents: [
     {
       kind:"block",
       type: "javascript",
+      style: "JS_Beg" , 
       icons: { 
         comment: {
           text: "JavaScript code should be wrapped in this tag",
@@ -23,6 +25,7 @@ export const javascriptCategory = {
       kind: "category",
       name: "Get Started",
       colour: "#E1AD01",
+      style: "JS_Step1" , 
       contents: [
         {
           kind:"block",
@@ -100,8 +103,9 @@ export const javascriptCategory = {
     },
     {
       kind: "category",
-      name: "DOM Manipulation",
+      name: "Action Blocks",
       colour: "#E1AD01",
+      style: "JS_Step2" , 
       contents: [
         {
           kind: "block",
@@ -169,6 +173,7 @@ export const javascriptCategory = {
       kind: "category",
       name: "Sounds & Images",
       colour: "#E1AD01",
+      style: "JS_Step3" , 
       contents: [
         {
           kind: "block",
@@ -210,8 +215,9 @@ export const javascriptCategory = {
     },
     {
       kind: "category",
-      name: "Form Manipulation",
+      name: "Create a form",
       colour: "#E1AD01",
+      style: "JS_Step4" , 
       contents: [
         {
           kind: "block",
@@ -261,60 +267,61 @@ export const javascriptCategory = {
             }
           }, 
         }, 
-        {
-          kind:"block",
-          type: "change_form_background_color",
-          icons: {
-            comment: {
-              text: "Change the background color of a form",
-              pinned: true,
-              height: 80,
-              width: 160
-            }
-          }, 
-        },
-        {
-          kind: "block",
-         type: "validate_and_handle_error", 
-         icons: {
-          comment: {
-            text: "Validate the name and age",
-            pinned: true,
-            height: 80,
-            width: 160
-          }
-        }, 
-        },  
-        {
-         kind: "block",
-         type: "custom_condition_input_length",
-         icons: {
-          comment: {
-            text: "Name condition",
-            pinned: true,
-            height: 80,
-            width: 160
-          }
-        }, 
-       }, 
-       {
-        kind: "block",
-        type: "custom_condition_age",
-        icons: {
-          comment: {
-            text: "Age condition",
-            pinned: true,
-            height: 80,
-            width: 160
-          }
-        }, 
-      }, 
+      //   {
+      //     kind:"block",
+      //     type: "change_form_background_color",
+      //     icons: {
+      //       comment: {
+      //         text: "Change the background color of a form",
+      //         pinned: true,
+      //         height: 80,
+      //         width: 160
+      //       }
+      //     }, 
+      //   },
+      //   {
+      //     kind: "block",
+      //    type: "validate_and_handle_error", 
+      //    icons: {
+      //     comment: {
+      //       text: "Validate the name and age",
+      //       pinned: true,
+      //       height: 80,
+      //       width: 160
+      //     }
+      //   }, 
+      //   },  
+      //   {
+      //    kind: "block",
+      //    type: "custom_condition_input_length",
+      //    icons: {
+      //     comment: {
+      //       text: "Name condition",
+      //       pinned: true,
+      //       height: 80,
+      //       width: 160
+      //     }
+      //   }, 
+      //  }, 
+      //  {
+      //   kind: "block",
+      //   type: "custom_condition_age",
+      //   icons: {
+      //     comment: {
+      //       text: "Age condition",
+      //       pinned: true,
+      //       height: 80,
+      //       width: 160
+      //     }
+      //   }, 
+      // }, 
       ]
     },
     {
       kind: "category",
-      name: "Todo List",
+      name: "Create a Todo List",
       colour: "#E1AD01",
+      style: "JS_Step5" , 
       contents: [
         {
           kind:"block",
@@ -333,7 +340,7 @@ export const javascriptCategory = {
           type: "toggle_checkbox",
           icons: {
             comment: {
-              text: "Striked through a task",
+              text: "Strike through a task",
               pinned: true,
               height: 80,
               width: 160

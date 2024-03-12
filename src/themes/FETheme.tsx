@@ -3,6 +3,7 @@ import { htmlCategory } from '../categories/html';
 import { HTMLBlockTheme } from './HTMLBlockStyle';
 import { GoogleBlockTheme } from './GoogleBlockSyles';
 import { CssBlockTheme } from './CssBlockStyles';
+import { JsBlockTheme } from './JsBlocklyStyles';
 // import DarkTheme from '@blockly/theme-dark';
 
 
@@ -15,7 +16,8 @@ export const FETheme = Blockly.Theme.defineTheme('myCustomTheme', {
     'blockStyles': {
       ...HTMLBlockTheme, 
       ...GoogleBlockTheme,
-      ...CssBlockTheme
+      ...CssBlockTheme,
+      ...JsBlockTheme
    },
 
    // Define category styles 
