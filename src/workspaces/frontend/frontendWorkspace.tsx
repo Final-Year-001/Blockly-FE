@@ -6,15 +6,20 @@ import { Card } from "@material-tailwind/react";
 import { FETheme } from "../../themes/FETheme";
 import frontendToolboxCategories from "../../toolbox/frontend";
 
+// Renderers = minimalist /zelos / thrasos / geras
+
+
 const workspaceConfiguration = {
   theme: FETheme,
-  grid: {
-    spacing: 20,
-    length: 3,
-    // colour: "#ffffff",
-    colour: "#",
-    snap: true,
-  },
+  // theme : "zelos",
+  renderer: "thrasos", 
+            grid: {
+              spacing: 20,
+              length: 3,
+              // colour: "#ffffff",
+              colour: "#",
+              snap: true,
+            },
 };
 
 interface FrontendWorkspaceProps {

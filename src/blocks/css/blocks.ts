@@ -21,7 +21,7 @@ Blockly.Blocks['html_css'] = {
         .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('CSS_Main');
  this.setTooltip("This is the CSS tag block where you include the css styling");
  this.setHelpUrl("");
   }
@@ -51,7 +51,7 @@ Blockly.Blocks['style_block'] = {
         .appendField("declarator");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(315);
+    this.setStyle('CSS_style');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -83,7 +83,7 @@ Blockly.Blocks['css_bg_color'] = {
         .appendField(new Blockly.FieldColour("#ff9900"), "bgcolor");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(255);
+    this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -105,7 +105,7 @@ Blockly.Blocks['css_text_color'] = {
         .appendField(new Blockly.FieldColour("#ff0000"), "color");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(255);
+    this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -127,7 +127,7 @@ Blockly.Blocks['css_font_size'] = {
         .appendField(new Blockly.FieldNumber(0, 1, 1000, 1), "size");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(255);
+    this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -155,7 +155,7 @@ Blockly.Blocks['css_font_family'] = {
         .appendField(new Blockly.FieldTextInput("default"), "customFont");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -188,7 +188,7 @@ Blockly.Blocks['css_height'] = {
         .appendField(new Blockly.FieldNumber(0, 0), "number");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -212,7 +212,7 @@ Blockly.Blocks['css_width'] = {
         .appendField(new Blockly.FieldNumber(0, 0), "number");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -254,7 +254,7 @@ Blockly.Blocks['css_padding'] = {
         .appendField(new Blockly.FieldNumber(0, 0), "rightNumber");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -321,7 +321,7 @@ JavaScript.javascriptGenerator.forBlock['css_padding'] = function(block : any, g
           .appendField(new Blockly.FieldNumber(0, 0), "rightNumber");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(230);
+      this.setStyle('CSS_blocks');
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -369,7 +369,7 @@ Blockly.Blocks['css_text_align'] = {
         .appendField(new Blockly.FieldDropdown([["Left","left"], ["Center","center"], ["Right","right"], ["Justify","justify"]]), "align");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -383,3 +383,25 @@ JavaScript.javascriptGenerator.forBlock['css_text_align'] = function(block : any
 };
 
 //////////////////////////////////////////////
+
+
+Blockly.Blocks['css_custom'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Custom CSS Demo");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput(""), "css");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle('CSS_blocks');
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_custom'] = function(block : any, generator : any) {
+  var text_css = block.getFieldValue('css');
+  // TODO: Assemble javascript into code variable.
+  var code = text_css;
+  return code;
+};
