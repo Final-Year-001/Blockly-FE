@@ -28,6 +28,13 @@ import { getLessonById, getProjectById, saveProject } from "../../api/project";
 import { tokenAtom } from "../../state/auth";
 import { stripId } from "../../helpers/blockly";
 import HintComponent from "../../components/HintComponent";
+// import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import StatusNoti from "./Status";
+
+
+
+
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -67,6 +74,8 @@ function FrontendPage() {
   const workspaceRef = useRef<any>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const debouncedWorkspace = useDebounce(workspaceState.current, 2000);
+  const [saveStatus, setSaveStatus] = useState('');
+  const [isVisible, setIsVisible] = useState(true);
   const [saveMessage, setSaveMessage] = useState<{
     message: string;
     show: boolean;
@@ -92,12 +101,20 @@ function FrontendPage() {
     onSuccess: () => {
       setSaveMessage({
         show: true,
-        message: "All the changes are saved.",
+        message: "All changes are saved.",
         loading: false,
       });
     },
   });
 
+  useEffect(() => {
+    setIsVisible(true);
+    const timeoutId = setTimeout(() => {
+      setIsVisible(false);
+    }, 5000);
+    return () => clearTimeout(timeoutId);
+  }, [saveMessage]);
+  
 
   const getProjectQuery = useQuery({
     queryKey: ["project"],
@@ -108,7 +125,7 @@ function FrontendPage() {
     queryKey: ["lesson", getProjectQuery.data?.data?.lessonId],
     queryFn: ({ queryKey }) => getLessonById(tokens, queryKey?.[1] ?? "?"),
   });
-  
+
   const steps = getLessonQuery.data?.data?.steps || [];
 
   const currentStep = getLessonQuery.data?.data?.steps?.[currentStepNumber];
@@ -125,6 +142,9 @@ function FrontendPage() {
       setOutput(0.7);
     }
   }, [workAreaSize]);
+
+
+
 
   const checkIfStepComplete = (workspace: object) => {
     const curentStepToComplete = steps[currentStepNumber];
@@ -149,7 +169,7 @@ function FrontendPage() {
 
   const injectCode = (code: string, workspace: WorkspaceSvg) => {
     // Exclude comments starting with "//" from the code
-    const cleanCode = code.replace(/\/\/(.*)/g, '');
+    const cleanCode = code.replace(/\/\/(.*)/g, "");
     setCode(organizeImports(code));
     setFrontendCode(cleanCode);
     if (iframeRef.current) {
@@ -245,16 +265,17 @@ function FrontendPage() {
           setShowTour(false);
         }}
       />
+
       <div id="TopBar">
         <FrontendTopBar />
       </div>
 
       <div
-        className="flex flex-row flex-grow px-6 pb-4"
+        className="flex flex-row flex-grow px-4 pb-3"
         style={{ height: "calc(100% - 400px)" }}
       >
-         <div
-          className={`flex flex-col gap-4 ${
+        <div
+          className={`flex  border-none flex-col gap-4 ${
             isExpanded ? "flex-[0.3]" : "flex-[0.7]"
           } duration-300 ease-in-out transition-all`}
         >
@@ -352,8 +373,12 @@ function FrontendPage() {
         </div> */}
       </div>
       <div className="flex flex-row px-6 pb-1">
-        {saveMessage.show ? <span>{saveMessage.message}</span> : <div>...</div>}
+        {saveMessage.show ? 
+        <StatusNoti message = {saveMessage.message}/> : ""
+        }
+     
       </div>
+     
     </div>
   );
 }
