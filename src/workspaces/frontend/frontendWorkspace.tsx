@@ -8,10 +8,11 @@ import frontendToolboxCategories from "../../toolbox/frontend";
 
 // Renderers = minimalist /zelos / thrasos / geras
 
+
 const workspaceConfiguration = {
   theme: FETheme,
   // theme : "zelos",
-  renderer: "minimalist", 
+  renderer: "thrasos", 
             grid: {
               spacing: 20,
               length: 3,

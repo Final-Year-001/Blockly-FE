@@ -20,7 +20,7 @@ Blockly.Blocks['html_br'] = {
         .appendField("Line Break");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('HTML_text');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -45,7 +45,7 @@ Blockly.Blocks['html_html'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("body");
-    // this.setColour(230);
+    this.setStyle('HTML_blocks');
  this.setTooltip("This is the very first tag used");
  this.setHelpUrl("");
   }
@@ -121,7 +121,7 @@ Blockly.Blocks['html_h'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('HTML_text');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -152,7 +152,7 @@ Blockly.Blocks['html_p'] = {
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('HTML_text');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -175,7 +175,7 @@ Blockly.Blocks['html_addtext'] = {
         .appendField("Type something")
         .appendField(new Blockly.FieldTextInput("default"), "value");
     this.setOutput(true, null);
-    this.setColour(165);
+    this.setStyle('HTML_text');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -206,7 +206,7 @@ Blockly.Blocks['html_button'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('HTML_form');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -236,7 +236,7 @@ Blockly.Blocks['html_name'] = {
     this.setInputsInline(true);
     this.setOutput(true, null);
     console.log("Block color:", this.getColour());
-    // this.setColour(300);
+    this.setStyle('HTML_more');
  this.setTooltip("Use this to add text to other blocks");
  this.setHelpUrl("");
   }
@@ -270,7 +270,7 @@ Blockly.Blocks['html_input_field'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('HTML_form');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -302,7 +302,7 @@ JavaScript.javascriptGenerator.forBlock['html_input_field'] = function(block : a
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(230);
+      this.setStyle('HTML_form');
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -328,7 +328,7 @@ Blockly.Blocks['block_identifier'] = {
         .appendField("Class")
         .appendField(new Blockly.FieldTextInput(""), "class");
     this.setOutput(true, null);
-    this.setColour(0);
+    this.setStyle('HTML_form');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -364,7 +364,7 @@ Blockly.Blocks['html_form'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(0);
+    this.setStyle('HTML_formMain');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -397,7 +397,7 @@ Blockly.Blocks['html_table'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);
+    this.setStyle('HTML_table');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -427,7 +427,7 @@ Blockly.Blocks['table_headings'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setStyle('HTML_tableSub');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -454,7 +454,7 @@ Blockly.Blocks['table_rows'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(255);
+    this.setStyle('HTML_table');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -480,7 +480,7 @@ Blockly.Blocks['table_data'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(300);
+    this.setStyle('HTML_tableSub');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -503,7 +503,7 @@ Blockly.Blocks['html_textadd'] = {
         .appendField(new Blockly.FieldTextInput("default"), "data");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    // this.setColour(230);
+    this.setStyle('HTML_text');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -532,7 +532,7 @@ Blockly.Blocks['html_div'] = {
         .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('HTML_Containers');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -577,7 +577,7 @@ Blockly.Blocks['html_ol_list'] = {
         .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('HTML_list');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -622,7 +622,7 @@ Blockly.Blocks['html_ul_list'] = {
         // .setCheck(null);
         this.setPreviousStatement(true, ['li']);
         this.setNextStatement(true, ['li']);
-    this.setColour(230);
+        this.setStyle('HTML_list');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -665,7 +665,7 @@ Blockly.Blocks['html_li'] = {
         .setCheck(null);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-    this.setColour(230);
+        this.setStyle('HTML_list');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -707,7 +707,7 @@ Blockly.Blocks['html_img'] = {
         .appendField(new Blockly.FieldTextInput("add image name"), "imageName");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('HTML_links');
  this.setTooltip("This is the image block");
  this.setHelpUrl("");
   }
@@ -734,7 +734,7 @@ Blockly.Blocks['html_a'] = {
         .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('HTML_links');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -768,7 +768,7 @@ Blockly.Blocks['html_checkbox'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('HTML_form');
  this.setTooltip("");
  this.setHelpUrl("");
   }

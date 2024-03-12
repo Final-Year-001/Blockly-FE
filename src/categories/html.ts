@@ -19,6 +19,7 @@ export const htmlCategory = {
       kind: "category",
       name: "Words",
       colour: "#74aff2",
+      style: "HTML_text" ,
       contents: [
         {
           kind: "block",
@@ -54,6 +55,7 @@ export const htmlCategory = {
       kind: "category",
       name: "Table",
       colour: "#74aff2",
+      style: "HTML_table" ,
       contents: [
         {
           kind: "block",
@@ -76,6 +78,7 @@ export const htmlCategory = {
     {
       kind: "category",
       name: "Form",
+      style: "HTML_form" ,
       colour: "#74aff2",
       contents: [
         {
@@ -103,7 +106,9 @@ export const htmlCategory = {
     {
       kind: "category",
       name: "Lists",
+      style: "HTML_list" ,
       colour: "#74aff2",
+      
       contents: [
         {
           kind: "block",
@@ -121,8 +126,37 @@ export const htmlCategory = {
     },
     {
       kind: "category",
+      name: "Containers",
+      colour: "#74aff2",
+      style: "HTML_Containers",
+      contents: [
+        {
+          kind: "block",
+          type: "html_div",
+        },
+      ],
+    },
+    {
+      kind: "category",
+      name: "Link",
+      style: "HTML_links" ,
+      colour: "#74aff2",
+      contents: [
+        {
+          kind: "block",
+          type: "html_img",
+        },
+        {
+          kind: "block",
+          type: "html_a",
+        },
+      ],
+    },
+    {
+      kind: "category",
       name: "More",
       colour: "#74aff2",
+      style: "HTML_more" ,
       contents: [
         {
           kind: "block",
@@ -135,21 +169,6 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "html_div",
-        },
-      ],
-    },
-    {
-      kind: "category",
-      name: "Multimedia",
-      colour: "#74aff2",
-      contents: [
-        {
-          kind: "block",
-          type: "html_img",
-        },
-        {
-          kind: "block",
-          type: "html_a",
         },
       ],
     },
