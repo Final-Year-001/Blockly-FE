@@ -17,7 +17,7 @@ Blockly.Blocks['create_task'] = {
       .appendField("Add the delete button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('JS_Step5');
     this.setTooltip("Add a task when a button is clicked.");
   }
 };
@@ -70,7 +70,7 @@ Blockly.Blocks['toggle_checkbox'] = {
         .appendField("Add the checkbox ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(0);
+    this.setStyle('JS_Step5');
     this.setTooltip("Toggle a checkbox when clicked.");
   }
 };
@@ -112,7 +112,7 @@ Blockly.Blocks['delete_task'] = {
         .appendField("Add the delete button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(110);
+    this.setStyle('JS_Step5');
     this.setTooltip("Delete a task when a button is clicked.");
   }
 };

@@ -13,7 +13,7 @@ Blockly.Blocks["handle_form_submission"] = {
         .appendField("Tasks to do when the form is submitted");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setStyle('JS_Step4');
     this.setTooltip("Handle form submission. Match it with the formId you gave for the form block");
   },
 };
@@ -41,7 +41,7 @@ Blockly.Blocks['set_form_data_to'] = {
         .appendField("Set form data to this variable");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(40);
+    this.setStyle('JS_Step4');
  this.setTooltip("");
  this.setHelpUrl("");
  this.setTooltip('Set the form data to a variable');
@@ -59,7 +59,7 @@ Blockly.Blocks['fetch_block'] = {
   init: function() {
     this.appendValueInput("fetch")
         .setCheck(null)
-        .appendField("send the data to the backend using this URL");
+        .appendField("Send the data to the backend using this URL");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_CENTRE)
         .appendField("with method")
@@ -73,7 +73,7 @@ Blockly.Blocks['fetch_block'] = {
     this.appendStatementInput("on_error")
         .setCheck(null)
         .appendField("on error what to do");
-    this.setColour(160);
+        this.setStyle('JS_Step4');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
  this.setTooltip("");
@@ -118,7 +118,7 @@ Blockly.Blocks["clear_form_fields"] = {
       .appendField("Reset form button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(40);
+    this.setStyle('JS_Step4');
     this.setTooltip("Clear all input fields in a form. Remember to match the formId you gave for the form block");
   },
 };
@@ -221,7 +221,7 @@ Blockly.Blocks['validate_and_handle_error'] = {
         .appendField(new Blockly.FieldTextInput(''), 'error_message');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(40); // Adjust the color as needed
+    this.setStyle('JS_Step4'); 
     this.setTooltip('Validate an input field based on a predefined condition');
   }
 };
@@ -271,7 +271,7 @@ Blockly.Blocks['custom_condition_input_length'] = {
     this.appendDummyInput()
         .appendField('Name is less than 20 characters and more than 2');
     this.setOutput(true, 'Boolean');
-    this.setColour(160);
+    this.setStyle('JS_Step4');
     this.setTooltip('Predefined condition: name length should be greater than 2 and less than 20');
   }
 };
@@ -288,7 +288,7 @@ Blockly.Blocks['custom_condition_age'] = {
     this.appendDummyInput()
     .appendField('Age is greater than 0 and less than 100');
     this.setOutput(true, 'Boolean');
-    this.setColour(40);
+    this.setStyle('JS_Step4');
     this.setTooltip('Predefined condition: age should be greater than 0 and less than 100');
   }
 };
@@ -311,7 +311,7 @@ Blockly.Blocks['change_form_background_color'] = {
         .appendField(new Blockly.FieldTextInput(''), 'color');
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour(160);
+      this.setStyle('JS_Step4');
       this.setTooltip("Change the background color of a form element.");
   }
 };

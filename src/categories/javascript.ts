@@ -6,10 +6,12 @@ export const javascriptCategory = {
   kind: "category",
   name: "JavaScript",
   colour: "#f39c12",
+  style: "JS_Beg" ,
   contents: [
     {
       kind:"block",
       type: "javascript",
+      style: "JS_Beg" , 
       icons: { 
         comment: {
           text: "JavaScript code should be wrapped in this tag",
@@ -23,6 +25,7 @@ export const javascriptCategory = {
       kind: "category",
       name: "Get Started",
       colour: "#E1AD01",
+      style: "JS_Step1" , 
       contents: [
         {
           kind:"block",
@@ -102,6 +105,7 @@ export const javascriptCategory = {
       kind: "category",
       name: "DOM Manipulation",
       colour: "#E1AD01",
+      style: "JS_Step2" , 
       contents: [
         {
           kind: "block",
@@ -169,6 +173,7 @@ export const javascriptCategory = {
       kind: "category",
       name: "Sounds & Images",
       colour: "#E1AD01",
+      style: "JS_Step3" , 
       contents: [
         {
           kind: "block",
@@ -212,6 +217,7 @@ export const javascriptCategory = {
       kind: "category",
       name: "Form Manipulation",
       colour: "#E1AD01",
+      style: "JS_Step4" , 
       contents: [
         {
           kind: "block",
@@ -315,6 +321,7 @@ export const javascriptCategory = {
       kind: "category",
       name: "Todo List",
       colour: "#E1AD01",
+      style: "JS_Step5" , 
       contents: [
         {
           kind:"block",

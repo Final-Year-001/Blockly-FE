@@ -8,7 +8,7 @@ Blockly.Blocks['javascript'] = {
         .appendField("Javascript");
     this.appendStatementInput("script")
         .setCheck(null);
-    this.setColour(230);
+        this.setStyle('JS_Beg');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip("");
@@ -34,7 +34,7 @@ Blockly.Blocks['create_variable'] = {
         .appendField(new Blockly.FieldTextInput("myVariable"), "VAR_NAME");
         this.setPreviousStatement(true, null); 
         this.setNextStatement(true, null);
-    this.setColour(230);
+        this.setStyle('JS_Step1');
     this.setTooltip("create a custom variable");
   }
 };
@@ -53,7 +53,7 @@ Blockly.Blocks["generate_id"] = {
       .appendField("Create element ID:")
       .appendField(new Blockly.FieldTextInput("elId"), "elId");
     this.setOutput(true, "el_id_input");
-    this.setColour(0);
+    this.setStyle('JS_Step1');
     this.setTooltip("Create an element ID.");
   },
 };
@@ -80,7 +80,7 @@ Blockly.Blocks['chnage_innerHTML'] = {
             .appendField("Add the new content to replace the old content:");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(160);
+        this.setStyle('JS_Step2');
         this.setTooltip('Change the content of an HTML element by ID');
     }
 };
@@ -110,7 +110,7 @@ Blockly.Blocks['print_block'] = {
         .appendField("Enter the button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('JS_Step1');
     this.setTooltip('Print the document when a button is clicked');
   }
 };
@@ -140,7 +140,7 @@ Blockly.Blocks['console_log'] = {
       .appendField('Display content in the console log');
     this.setPreviousStatement(true, null); // Previous block can be of any type
     this.setNextStatement(true, null); // Next block can be of any type
-    this.setColour(110); // Color for visual distinction
+    this.setStyle('JS_Step1');
     this.setTooltip('Log a message to the console.');
   }
 };
@@ -162,7 +162,7 @@ Blockly.Blocks['alert_block'] = {
         .appendField("Add the button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(40);
+    this.setStyle('JS_Step2');
  this.setTooltip("");
  this.setHelpUrl("");
  this.setTooltip('Generate custom alerts using this block');
@@ -204,7 +204,7 @@ Blockly.Blocks['event_listener'] = {
       .appendField("tasks to perform after");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setStyle('JS_Step2');
     this.setTooltip('Attach an event listener to an HTML element.');
   }
 };
@@ -232,7 +232,7 @@ init: function () {
       "action"
     )
     .appendField("add the element ID");
-  this.setColour(40);
+    this.setStyle('JS_Step2');
   this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   this.setTooltip('Show or hide an HTML element with a specified ID.');
@@ -268,7 +268,7 @@ Blockly.Blocks['single_line_comment'] = {
         .appendField(new Blockly.FieldTextInput("Your comment here"), "COMMENT");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(0);
+    this.setStyle('JS_Step1');
     this.setTooltip('Add a single-line comment');
   }
 };
@@ -288,7 +288,7 @@ Blockly.Blocks['multi_line_comment'] = {
         .appendField("*/");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(110);
+    this.setStyle('JS_Step1');
     this.setTooltip('Add a multi-line comment');
   }
 };
@@ -313,7 +313,7 @@ Blockly.Blocks['custom_function'] = {
     this.appendStatementInput("STATEMENTS")
         .setCheck(null)
         .appendField("What  to do in the function?");
-    this.setColour(160);
+        this.setStyle('JS_Step2');
     this.setTooltip('Create a custom function');
   }
 };
@@ -343,7 +343,7 @@ Blockly.Blocks['play_sound_on_click'] = {
         .appendField("Add the button ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('JS_Step3');
     this.setTooltip('Play a sound when a button is clicked.');
   }
 };
@@ -381,7 +381,7 @@ Blockly.Blocks['upload_display_image'] = {
         .appendField("Height of the image");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(0);
+    this.setStyle('JS_Step3');
     this.setTooltip('Upload and display an image when a button is clicked.');
   }
 };
@@ -434,7 +434,7 @@ Blockly.Blocks['remove_image_on_button_click'] = {
         .appendField("Add the image ID");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(110);
+    this.setStyle('JS_Step3');
     this.setTooltip('Remove the image with the specified ID when a button is clicked.');
   }
 };
