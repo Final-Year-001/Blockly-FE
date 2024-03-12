@@ -5,16 +5,16 @@ import { Order, javascriptGenerator } from "blockly/javascript";
 Blockly.Blocks['create_task'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Add new task on button click");
+        .appendField("Make the button add the task");
         this.appendValueInput("button")
         .setCheck("el_id_input")
-        .appendField("Add the button ID");
+        .appendField("Name of the add button");
         this.appendValueInput("checkboxId")
       .setCheck("el_id_input")
-      .appendField("Add the checkbox ID");
+      .appendField("Name of the checkbox");
       this.appendValueInput("deletebtn")
       .setCheck("el_id_input")
-      .appendField("Add the delete button ID");
+      .appendField("Name of the delete button");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('JS_Step5');
@@ -64,10 +64,10 @@ javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any)
 Blockly.Blocks['toggle_checkbox'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Toggle the checkbox on click");
+        .appendField("Make the box tick when clicked");
     this.appendValueInput("checkbox")
         .setCheck("el_id_input")
-        .appendField("Add the checkbox ID");
+        .appendField("Name of the checkbox");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('JS_Step5');
@@ -106,10 +106,10 @@ javascriptGenerator.forBlock['toggle_checkbox'] = function(block:any, generator:
 Blockly.Blocks['delete_task'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Delete the task on button click");
+        .appendField("Make the button erase the task");
     this.appendValueInput("button")
         .setCheck("el_id_input")
-        .appendField("Add the delete button ID");
+        .appendField("Name of the delete button");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('JS_Step5');
