@@ -16,7 +16,36 @@ const blocks = [
     image: "#",
     category: "Get Started",
   },
-
+  {
+    title: "Create an element ID",
+    description: "Create an element ID for a html element.",
+    image: "#",
+    category: "Get Started",
+  },
+  {
+    title: "Log a message to the console",
+    description: "Log a message to the console.",
+    image: "#",
+    category: "Get Started",
+  },
+  {
+    title: "Print the page",
+    description: "Print the page using a button click.",
+    image: "#",
+    category: "Get Started",
+  },
+  {
+    title: "Single-line comment",
+    description: "Single-line comment block.",
+    image: "#",
+    category: "Get Started",
+  },
+  {
+    title: "Multi-line comment",
+    description: "Multiple-line comment block.",
+    image: "#",
+    category: "Get Started",
+  },
   // DOM Manipulation category
   {
     title: "Change the content of an HTML element by ID",
@@ -30,7 +59,24 @@ const blocks = [
     image: "#",
     category: "DOM Manipulation",
   },
-  
+  {
+    title: "Attach an event listener to an HTML element",
+    description: "Attach an event listener to an HTML element.",
+    image: "#",
+    category: "DOM Manipulation",
+  },
+  {
+    title: "Show or hide an HTML element",
+    description: "Show or hide an HTML element.",
+    image: "#",
+    category: "DOM Manipulation",
+  },
+  {
+    title: "Create a custom function",
+    description: "Create a custom function.",
+    image: "#",
+    category: "DOM Manipulation",
+  },
   // Sounds & images category
   {
     title: "Play a sound when a button is clicked",
@@ -41,6 +87,12 @@ const blocks = [
   {
     title: "Upload and display an image",
     description: "Upload and display an image.",
+    image: "#",
+    category: "Sounds & Images",
+  },
+  {
+    title: "Remove the image with a button click",
+    description: "Remove the image with a button click.",
     image: "#",
     category: "Sounds & Images",
   },
@@ -57,6 +109,54 @@ const blocks = [
     image: "#",
     category: "Form Manipulation",
   },
+  {
+    title: "Get the data to the backend",
+    description: "Pass the data to the backend.",
+    image: "#",
+    category: "Form Manipulation",
+  },
+  {
+    title: "Clear all input fields in a form",
+    description: "Clear name and age fields in a form using a button click.",
+    image: "#",
+    category: "Form Manipulation",
+  },
+  {
+    title: "Auto-fill name and age",
+    description: "Auto fill name and age from a button click.",
+    image: "#",
+    category: "Form Manipulation",
+  },
+  {
+    title: "Validate the name and age",
+    description: "Validattion for the name and age.",
+    image: "#",
+    category: "Form Manipulation",
+  },
+  {
+    title: "Name condition validation",
+    description: "Validation condition for the name.",
+    image: "#",
+    category: "Form Manipulation",
+  },
+  {
+    title: "Age condition validation",
+    description: "Validation condition for the age.",
+    image: "#",
+    category: "Form Manipulation",
+  },
+  {
+    title: "Change the background color of a form",
+    description: "Changing the backgrounf color of the form.",
+    image: "#",
+    category: "Form Manipulation",
+  },
+  {
+    title: "Show collected data in an alert",
+    description: "Show collected data in an alert.",
+    image: "#",
+    category: "Form Manipulation",
+  },
    // ToDo blocks
    {
     title: "Adding a task",
@@ -64,9 +164,21 @@ const blocks = [
     image: "#",
     category: "Todo blocks",
   },
+  {
+    title: "Completing a task",
+    description: "Completed task will be striked through.",
+    image: "#",
+    category: "Todo blocks",
+  },
+  {
+    title: "Delete a task",
+    description: "The task will be deleted and a bin sound will be played.",
+    image: "#",
+    category: "Todo blocks",
+  },
 ];
 
-function HTMLDoc() {
+function CSSDoc() {
   // Group blocks by category
   const groupedBlocks = blocks.reduce((acc, block) => {
     acc[block.category] = acc[block.category] || [];
@@ -103,7 +215,7 @@ function HTMLDoc() {
       </div>
 
       <div style={{ textAlign: 'center', margin: '20px 0' }}>
-        <h1 style={{ fontSize: '1.6rem' }}>HTML Blocks</h1>
+        <h1 style={{ fontSize: '1.6rem' }}>Javascript Blocks</h1>
       </div>
 
       <div>
@@ -150,4 +262,4 @@ function HTMLDoc() {
   );
 }
 
-export default HTMLDoc;
+export default CSSDoc;

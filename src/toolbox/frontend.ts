@@ -21,7 +21,10 @@ const frontendToolboxCategories = {
       'name': 'Search',
       'contents': [],
     },
-    // { kind: "sep" },
+    { kind: "sep" ,
+    blockxml: "<block type='math_arithmetic'><field name='OP'>ADD</field></block>",
+    gap: 10
+  },
     htmlCategory,
     cssCategory,
     javascriptCategory,

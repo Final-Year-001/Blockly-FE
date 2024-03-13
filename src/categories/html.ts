@@ -2,6 +2,8 @@
 import "../blocks/html/blocks";
 import book from '../assets/statusImages/book.gif'
 
+
+
 export const htmlCategory = {
   kind: "category",
   name: "HTML",
@@ -167,11 +169,8 @@ export const htmlCategory = {
           kind: "block",
           type: "html_name",
         },
-        {
-          kind: "block",
-          type: "html_div",
-        },
       ],
     },
   ],
 };
+

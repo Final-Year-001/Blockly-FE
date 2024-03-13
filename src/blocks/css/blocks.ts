@@ -1,6 +1,7 @@
 // import Blockly from "blockly";
 import * as Blockly from 'blockly';
 import * as JavaScript from "blockly/javascript";
+import {FieldColourHsvSliders} from '@blockly/field-colour-hsv-sliders';
 
 
 function removeParentheses(str : any) {
@@ -83,7 +84,7 @@ Blockly.Blocks['style_block_inline'] = {
     this.appendStatementInput("NAME")
         .setCheck(null);
     this.setOutput(true, null);
-    this.setColour(230);
+    this.setStyle('CSS_Main');
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -103,7 +104,7 @@ Blockly.Blocks['css_bg_color'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Background Color")
-        .appendField(new Blockly.FieldColour("#ff9900"), "bgcolor");
+        .appendField(new FieldColourHsvSliders("#ff9900"), "bgcolor");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('CSS_blocks');
@@ -614,7 +615,7 @@ JavaScript.javascriptGenerator.forBlock['css_text_align'] = function(block : any
 Blockly.Blocks['css_custom'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Custom CSS Demo");
+        .appendField("Add Custom CSS to here.");
     this.appendDummyInput()
         .appendField(new Blockly.FieldTextInput(""), "css");
     this.setPreviousStatement(true, null);
