@@ -1,5 +1,8 @@
 // import "../blocks/javascript/blocks";
 import "../blocks/html/blocks";
+import book from '../assets/statusImages/book.gif'
+
+
 
 export const htmlCategory = {
   kind: "category",
@@ -132,7 +135,7 @@ export const htmlCategory = {
       contents: [
         {
           kind: "block",
-          type: "html_div",
+          type: "html_div1",
         },
       ],
     },
@@ -166,11 +169,8 @@ export const htmlCategory = {
           kind: "block",
           type: "html_name",
         },
-        {
-          kind: "block",
-          type: "html_div",
-        },
       ],
     },
   ],
 };
+

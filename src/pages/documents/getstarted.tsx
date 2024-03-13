@@ -68,13 +68,13 @@ function GetStartedPage() {
       <div className="my-8">
         <Typography variant="h4">Getting Started with Frontend</Typography> <br/>
         <div style={{ display: 'flex', gap: '10px' }}>
-          <Link to="#">
+          <Link to="/doc-html">
             <Button className="h-12 flex gap-3 justify-center items-center">
               HTML Tutorials
             </Button>
           </Link>
           
-          <Link to="#">
+          <Link to="/doc-css">
             <Button className="h-12 flex gap-3 justify-center items-center">
               CSS Tutorials
             </Button>
