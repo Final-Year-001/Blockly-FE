@@ -21,24 +21,18 @@ export const FETheme = Blockly.Theme.defineTheme('myCustomTheme', {
    },
 
    // Define category styles 
-   //  'categoryStyles': {
-   //     'list_category': {
-   //        'colour': '#4a148c'
-   //     },
-   //     'logic_category': {
-   //        'colour': '#019b1b'
-   //     },
-   //     'html_category': {
-   //      'colour': '#9b0151'
-   //   }
-   //  },
+    'categoryStyles': {
+       'search': {
+          'colour': '#4a148c'
+       },
+    },
 
     // Define component styles
     'componentStyles': {
        'workspaceBackgroundColour': '#dbe7e5ab',
-       'toolboxBackgroundColour': '#36454F',
-       'toolboxForegroundColour': '#fff',
-       'flyoutBackgroundColour': '#DDDDDD',
+      //  'toolboxBackgroundColour': '#36454ff0',
+       'toolboxForegroundColour': '#e2e2e2',
+       'flyoutBackgroundColour': '#dcdcdce9', 
        'flyoutForegroundColour': '#fff',
        'flyoutOpacity': 1,
        'scrollbarColour': '#FFA726',
@@ -46,7 +40,7 @@ export const FETheme = Blockly.Theme.defineTheme('myCustomTheme', {
        'insertionMarkerColour': '#fff',
        'insertionMarkerOpacity': 0.3,
        'markerColour': '#fff',
-       'cursorColour': '#fff'
+       'cursorColour': '#fff',
     },
     // Define font styles
     'fontStyle': {

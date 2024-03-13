@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@blockly/field-colour-hsv-sliders": "^4.2.1",
     "@blockly/theme-dark": "^6.0.5",
+    "@blockly/toolbox-search": "^1.2.6",
+    "@blockly/zoom-to-fit": "^5.0.12",
     "@heroicons/react": "^2.0.18",
     "@material-tailwind/react": "^2.1.4",
     "@uidotdev/usehooks": "^2.4.1",
@@ -20,6 +23,7 @@
     "lodash": "^4.17.21",
     "npm": "^10.2.2",
     "react": "^18.2.0",
+    "react-awesome-button": "^7.0.5",
     "react-blockly": "^8.1.1",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
@@ -27,6 +31,7 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.18.0",
     "react-toastify": "^10.0.4",
+    "react-type-animation": "^3.2.0",
     "react-use-websocket": "^4.5.0",
     "reactour": "^1.19.2",
     "recoil": "^0.7.7"

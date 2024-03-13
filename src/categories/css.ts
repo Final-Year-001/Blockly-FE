@@ -15,6 +15,10 @@ export const cssCategory = {
       type: "style_block",
     },
     {
+      kind: "block",
+      type: "style_block_inline",
+    },
+    {
       kind: "category",
       name: "Colors",
       colour: "#f28177",
@@ -26,6 +30,10 @@ export const cssCategory = {
         {
           kind: "block",
           type: "css_text_color",
+        },
+        {
+          kind: "block",
+          type: "css_border_color",
         },
       ],
     },
@@ -63,12 +71,8 @@ export const cssCategory = {
         },
         {
           kind: "block",
-          type: "css_padding",
-        },
-        {
-          kind: "block",
-          type: "css_margin",
-        },
+          type: "css_marginPadding",
+        }
       ],
     },
     {
@@ -89,7 +93,27 @@ export const cssCategory = {
       contents: [
         {
           kind: "block",
-          type: "css_bg_color",
+          type: "css_flexbox",
+        },
+        {
+          kind: "block",
+          type: "css_flexbox_wrap",
+        },
+        {
+          kind: "block",
+          type: "css_flexbox_justify",
+        },
+        {
+          kind: "block",
+          type: "css_flexbox_align",
+        },
+        {
+          kind: "block",
+          type: "css_flexbox_align_row",
+        },
+        {
+          kind: "block",
+          type: "css_flexbox_grow",
         },
       ],
     },
