@@ -27,6 +27,10 @@ export const cssCategory = {
           kind: "block",
           type: "css_text_color",
         },
+        {
+          kind: "block",
+          type: "css_border_color",
+        },
       ],
     },
     {
@@ -63,12 +67,8 @@ export const cssCategory = {
         },
         {
           kind: "block",
-          type: "css_padding",
-        },
-        {
-          kind: "block",
-          type: "css_margin",
-        },
+          type: "css_marginPadding",
+        }
       ],
     },
     {
