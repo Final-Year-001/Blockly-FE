@@ -8,6 +8,8 @@ import { tokenAtom } from "../../state/auth";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import ProductLogo from "../../assets/LogoB&W";
+import img from '../../assets/loginImg/loginimg.gif'
+import bgImg from '../../assets/loginImg/ttbg.jpg'
 
 function LoginPage() {
   const [username, setUsername] = useState<string>("");
@@ -32,23 +34,28 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center items-center w-full h-full">
+    <div className="flex justify-center  items-center w-full h-full  bg-repeat" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: '20%'}}>
       <div className="bg-amber-400 h-full w-full relative">
         <div className="min-h-screen flex items-center justify-center">
           <div className="absolute top-0 left-0 m-6">
             <ProductLogo />
           </div>
+          <img
+      src={img}
+      alt="Your Image"
+      className="w-96 h-96" // Adjust width and height as needed
+    />
         </div>
         <div className="absolute bottom-0 left-0 m-6 text-white">
-          <h1 className="text-7xl font-bold whitespace-normal">
-            Unlock Your Creativity, One <span className="text-9xl">Block</span>{" "}
+          {/* <h1 className="text-5xl font-bold whitespace-normal">
+            Unlock Your Creativity, One <span className="text-6xl">Block</span>{" "}
             at a Time
-          </h1>
+          </h1> */}
           {/* <h1 className="text-5xl whitespace-normal">WE BUILD. WE LEARN.</h1> */}
         </div>
       </div>
-      <div className="w-full flex justify-center ">
-        <div className="flex border-4 border-black flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border">
+      <div className="w-full bg-inherit flex justify-center ">
+        <div className="flex border-4 border-black flex-col text-gray-700 bg-white w-96 rounded-xl bg-clip-border">
           <div className="grid  ovetext-white  h-28 place-items-center rounded-xl  bg-inherit ">
             <h3 className="block  font-sans text-3xl antialiased font-semibold leading-snug tracking-normal text-black">
               Sign In
