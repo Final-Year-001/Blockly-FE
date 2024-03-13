@@ -78,15 +78,6 @@ Blockly.Blocks['toggle_checkbox'] = {
 javascriptGenerator.forBlock['toggle_checkbox'] = function(block:any, generator:any) {
   var checkboxId = generator.valueToCode(block, 'checkbox', Order.ATOMIC);
 
-  // var code = `
-  //   var listItem = document.getElementById(${checkboxId}).parentNode;
-  //   if (document.getElementById(${checkboxId}).checked) {
-  //     listItem.style.textDecoration = "line-through";
-  //   } else {
-  //     listItem.style.textDecoration = "none";
-  //   }
-  // `;
-
   var code =
   `document.addEventListener("change", function(event) {
     if (event.target && event.target.type === "checkbox") {
@@ -120,26 +111,17 @@ Blockly.Blocks['delete_task'] = {
 javascriptGenerator.forBlock['delete_task'] = function(block:any, generator:any) {
   var buttonId = generator.valueToCode(block, 'button', Order.ATOMIC);
 
-//   var code = `
-//   var listItem = document.getElementById(${buttonId}).parentNode;
-//   var taskList = listItem.parentNode;
-//   taskList.removeChild(listItem);
+  var code = 
+  `document.addEventListener("click", function(event) {
+    if (event.target && event.target.id === ${buttonId}) {
+      var listItem = event.target.parentNode;
+      var taskList = listItem.parentNode;
+      taskList.removeChild(listItem);
 
-//   var audio = new Audio('../src/sounds/delete.wav');
-//   audio.play();
-// `;
-
-var code = 
-`document.addEventListener("click", function(event) {
-  if (event.target && event.target.id === ${buttonId}) {
-    var listItem = event.target.parentNode;
-    var taskList = listItem.parentNode;
-    taskList.removeChild(listItem);
-
-    var audio = new Audio('../src/sounds/delete.wav');
-    audio.play();
-  }
-});`
+      var audio = new Audio('../src/sounds/delete.wav');
+      audio.play();
+    }
+  });`
 
 return code;
 };
