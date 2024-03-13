@@ -144,7 +144,7 @@ function MyProjects() {
         </div>
         <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
           {projectData.map((project: any) => (
-            <ProjectCard {...project} />
+            <ProjectCard key={project.id} {...project} />
           ))}
         </div>
         <div className="flex justify-between px-16 pb-4 pt-10">
@@ -152,7 +152,7 @@ function MyProjects() {
         </div>
         <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
           {lessonData.map((project: any) => (
-            <ProjectCard {...project} />
+            <ProjectCard key={project.id} {...project} />
           ))}
         </div>
       </div>
