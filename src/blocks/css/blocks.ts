@@ -118,6 +118,32 @@ JavaScript.javascriptGenerator.forBlock['css_text_color'] = function(block : any
   return code;
 };
 
+/////////////////////////////////////////////////////////////////////////
+
+
+Blockly.Blocks['css_border_color'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Border color")
+          .appendField(new Blockly.FieldColour("#ff0000"), "color")
+          .appendField("size")
+          .appendField(new Blockly.FieldNumber(0, 0, 100), "size");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setStyle('CSS_blocks');
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+JavaScript.javascriptGenerator.forBlock['css_border_color'] = function(block : any, generator : any) {
+var colour_color = block.getFieldValue('color');
+  var number_size = block.getFieldValue('size');
+  // TODO: Assemble javascript into code variable.
+  var code = `border:${number_size}px solid ${colour_color};\n`;
+  return code;
+};
+
 ////////////////////////////////////////////////////////////////////
 
 Blockly.Blocks['css_font_size'] = {
@@ -228,30 +254,149 @@ JavaScript.javascriptGenerator.forBlock['css_width'] = function(block : any, gen
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-Blockly.Blocks['css_padding'] = {
+// Blockly.Blocks['css_padding'] = {
+//   init: function() {
+//     this.appendDummyInput()
+//         .appendField("Padding");
+//     this.appendDummyInput()
+//         .appendField(new Blockly.FieldCheckbox("TRUE"), "topCheck")
+//         .appendField("Top")
+//         .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "topType")
+//         .appendField(new Blockly.FieldNumber(0, 0), "topNumber");
+//     this.appendDummyInput()
+//         .appendField(new Blockly.FieldCheckbox("TRUE"), "bottomCheck")
+//         .appendField("Bottom")
+//         .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "bottomType")
+//         .appendField(new Blockly.FieldNumber(0, 0), "bottomNumber");
+//     this.appendDummyInput()
+//         .appendField(new Blockly.FieldCheckbox("TRUE"), "leftCheck")
+//         .appendField("Left")
+//         .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "leftType")
+//         .appendField(new Blockly.FieldNumber(0, 0), "leftNumber");
+//     this.appendDummyInput()
+//         .appendField(new Blockly.FieldCheckbox("TRUE"), "rightCheck")
+//         .appendField("Right")
+//         .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "rightType")
+//         .appendField(new Blockly.FieldNumber(0, 0), "rightNumber");
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//     this.setStyle('CSS_blocks');
+//  this.setTooltip("");
+//  this.setHelpUrl("");
+//   }
+// };
+
+// JavaScript.javascriptGenerator.forBlock['css_padding'] = function(block : any, generator : any) {
+//   var checkbox_topcheck = block.getFieldValue('topCheck') === 'TRUE';
+//   var dropdown_toptype = block.getFieldValue('topType');
+//   var number_topnumber = block.getFieldValue('topNumber');
+//   var checkbox_bottomcheck = block.getFieldValue('bottomCheck') === 'TRUE';
+//   var dropdown_bottomtype = block.getFieldValue('bottomType');
+//   var number_bottomnumber = block.getFieldValue('bottomNumber');
+//   var checkbox_leftcheck = block.getFieldValue('leftCheck') === 'TRUE';
+//   var dropdown_lefttype = block.getFieldValue('leftType');
+//   var number_leftnumber = block.getFieldValue('leftNumber');
+//   var checkbox_rightcheck = block.getFieldValue('rightCheck') === 'TRUE';
+//   var dropdown_righttype = block.getFieldValue('rightType');
+//   var number_rightnumber = block.getFieldValue('rightNumber');
+  
+//   var padding = '';
+//   if(checkbox_topcheck){
+//     padding = `padding-top:` + number_topnumber + dropdown_toptype + '; ' 
+//   }
+//   if(checkbox_bottomcheck){
+//     padding = padding + `padding-bottom:` + number_bottomnumber + dropdown_bottomtype + '; ' 
+//   }
+//   if(checkbox_leftcheck){
+//     padding = padding +  `padding-left:` + number_leftnumber + dropdown_lefttype + '; ' 
+//   }
+//   if(checkbox_rightcheck){
+//     padding = padding +  `padding-right:` + number_rightnumber + dropdown_righttype + '; ' 
+//   }
+
+//   var code = padding;
+//   return code;
+// };
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+  
+  // Blockly.Blocks['css_margin'] = {
+  //   init: function() {
+  //     this.appendDummyInput()
+  //         .appendField("Margin");
+  //     this.appendDummyInput()
+  //         .appendField(new Blockly.FieldCheckbox("TRUE"), "topCheck")
+  //         .appendField("Top")
+  //         .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "topType")
+  //         .appendField(new Blockly.FieldNumber(0, 0), "topNumber");
+  //     this.appendDummyInput()
+  //         .appendField(new Blockly.FieldCheckbox("TRUE"), "bottomCheck")
+  //         .appendField("Bottom")
+  //         .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "bottomType")
+  //         .appendField(new Blockly.FieldNumber(0, 0), "bottomNumber");
+  //     this.appendDummyInput()
+  //         .appendField(new Blockly.FieldCheckbox("TRUE"), "leftCheck")
+  //         .appendField("Left")
+  //         .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "leftType")
+  //         .appendField(new Blockly.FieldNumber(0, 0), "leftNumber");
+  //     this.appendDummyInput()
+  //         .appendField(new Blockly.FieldCheckbox("TRUE"), "rightCheck")
+  //         .appendField("Right")
+  //         .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "rightType")
+  //         .appendField(new Blockly.FieldNumber(0, 0), "rightNumber");
+  //     this.setPreviousStatement(true, null);
+  //     this.setNextStatement(true, null);
+  //     this.setStyle('CSS_blocks');
+  //  this.setTooltip("");
+  //  this.setHelpUrl("");
+  //   }
+  // };
+  
+  
+  // JavaScript.javascriptGenerator.forBlock['css_margin'] = function(block : any, generator : any) {
+  //   var checkbox_topcheck = block.getFieldValue('topCheck') === 'TRUE';
+  //   var dropdown_toptype = block.getFieldValue('topType');
+  //   var number_topnumber = block.getFieldValue('topNumber');
+  //   var checkbox_bottomcheck = block.getFieldValue('bottomCheck') === 'TRUE';
+  //   var dropdown_bottomtype = block.getFieldValue('bottomType');
+  //   var number_bottomnumber = block.getFieldValue('bottomNumber');
+  //   var checkbox_leftcheck = block.getFieldValue('leftCheck') === 'TRUE';
+  //   var dropdown_lefttype = block.getFieldValue('leftType');
+  //   var number_leftnumber = block.getFieldValue('leftNumber');
+  //   var checkbox_rightcheck = block.getFieldValue('rightCheck') === 'TRUE';
+  //   var dropdown_righttype = block.getFieldValue('rightType');
+  //   var number_rightnumber = block.getFieldValue('rightNumber');
+    
+  //   var margin = '';
+  //   if(checkbox_topcheck){
+  //     margin = `margin-top:` + number_topnumber + dropdown_toptype + '; ' 
+  //   }
+  //   if(checkbox_bottomcheck){
+  //     margin = margin + `margin-bottom:` + number_bottomnumber + dropdown_bottomtype + '; ' 
+  //   }
+  //   if(checkbox_leftcheck){
+  //     margin = margin +  `margin-left:` + number_leftnumber + dropdown_lefttype + '; ' 
+  //   }
+  //   if(checkbox_rightcheck){
+  //     margin = margin +  `margin-right:` + number_rightnumber + dropdown_righttype + '; ' 
+  //   }
+  
+  //   var code = margin;
+  //   return code;
+  // };
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['css_marginPadding'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Padding");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldCheckbox("TRUE"), "topCheck")
-        .appendField("Top")
-        .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "topType")
-        .appendField(new Blockly.FieldNumber(0, 0), "topNumber");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldCheckbox("TRUE"), "bottomCheck")
-        .appendField("Bottom")
-        .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "bottomType")
-        .appendField(new Blockly.FieldNumber(0, 0), "bottomNumber");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldCheckbox("TRUE"), "leftCheck")
-        .appendField("Left")
-        .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "leftType")
-        .appendField(new Blockly.FieldNumber(0, 0), "leftNumber");
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldCheckbox("TRUE"), "rightCheck")
-        .appendField("Right")
-        .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "rightType")
-        .appendField(new Blockly.FieldNumber(0, 0), "rightNumber");
+        .appendField(new Blockly.FieldDropdown([["Add Padding","padding"], ["Add Margin","margin"]]), "selectType")
+        .appendField("To")
+        .appendField(new Blockly.FieldDropdown([["All",""], ["top","-top"], ["bottom","-bottom"], ["left","-left"], ["right","-right"]]),  "selectSide")
+        .appendField("Side")
+        .appendField(new Blockly.FieldNumber(0, 0, 100), "num")
+        .appendField(new Blockly.FieldDropdown([["Pixels","px"], ["Percentage","%"], ["em","em"]]), "selectNum");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('CSS_blocks');
@@ -260,105 +405,17 @@ Blockly.Blocks['css_padding'] = {
   }
 };
 
-JavaScript.javascriptGenerator.forBlock['css_padding'] = function(block : any, generator : any) {
-  var checkbox_topcheck = block.getFieldValue('topCheck') === 'TRUE';
-  var dropdown_toptype = block.getFieldValue('topType');
-  var number_topnumber = block.getFieldValue('topNumber');
-  var checkbox_bottomcheck = block.getFieldValue('bottomCheck') === 'TRUE';
-  var dropdown_bottomtype = block.getFieldValue('bottomType');
-  var number_bottomnumber = block.getFieldValue('bottomNumber');
-  var checkbox_leftcheck = block.getFieldValue('leftCheck') === 'TRUE';
-  var dropdown_lefttype = block.getFieldValue('leftType');
-  var number_leftnumber = block.getFieldValue('leftNumber');
-  var checkbox_rightcheck = block.getFieldValue('rightCheck') === 'TRUE';
-  var dropdown_righttype = block.getFieldValue('rightType');
-  var number_rightnumber = block.getFieldValue('rightNumber');
-  
-  var padding = '';
-  if(checkbox_topcheck){
-    padding = `padding-top:` + number_topnumber + dropdown_toptype + '; ' 
-  }
-  if(checkbox_bottomcheck){
-    padding = padding + `padding-bottom:` + number_bottomnumber + dropdown_bottomtype + '; ' 
-  }
-  if(checkbox_leftcheck){
-    padding = padding +  `padding-left:` + number_leftnumber + dropdown_lefttype + '; ' 
-  }
-  if(checkbox_rightcheck){
-    padding = padding +  `padding-right:` + number_rightnumber + dropdown_righttype + '; ' 
-  }
-
-  var code = padding;
+JavaScript.javascriptGenerator.forBlock['css_marginPadding'] = function(block : any, generator : any) {
+  var dropdown_selecttype = block.getFieldValue('selectType');
+  var dropdown_selectside = block.getFieldValue('selectSide');
+  var number_num = block.getFieldValue('num');
+  var dropdown_selectnum = block.getFieldValue('selectNum');
+  // TODO: Assemble javascript into code variable.
+  var code = `${dropdown_selecttype}${dropdown_selectside}: ${number_num}${dropdown_selectnum}; `;
   return code;
 };
 
-///////////////////////////////////////////////////////////////////////////////////////
 
-  
-  Blockly.Blocks['css_margin'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("Margin");
-      this.appendDummyInput()
-          .appendField(new Blockly.FieldCheckbox("TRUE"), "topCheck")
-          .appendField("Top")
-          .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "topType")
-          .appendField(new Blockly.FieldNumber(0, 0), "topNumber");
-      this.appendDummyInput()
-          .appendField(new Blockly.FieldCheckbox("TRUE"), "bottomCheck")
-          .appendField("Bottom")
-          .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "bottomType")
-          .appendField(new Blockly.FieldNumber(0, 0), "bottomNumber");
-      this.appendDummyInput()
-          .appendField(new Blockly.FieldCheckbox("TRUE"), "leftCheck")
-          .appendField("Left")
-          .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "leftType")
-          .appendField(new Blockly.FieldNumber(0, 0), "leftNumber");
-      this.appendDummyInput()
-          .appendField(new Blockly.FieldCheckbox("TRUE"), "rightCheck")
-          .appendField("Right")
-          .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "rightType")
-          .appendField(new Blockly.FieldNumber(0, 0), "rightNumber");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setStyle('CSS_blocks');
-   this.setTooltip("");
-   this.setHelpUrl("");
-    }
-  };
-  
-  
-  JavaScript.javascriptGenerator.forBlock['css_margin'] = function(block : any, generator : any) {
-    var checkbox_topcheck = block.getFieldValue('topCheck') === 'TRUE';
-    var dropdown_toptype = block.getFieldValue('topType');
-    var number_topnumber = block.getFieldValue('topNumber');
-    var checkbox_bottomcheck = block.getFieldValue('bottomCheck') === 'TRUE';
-    var dropdown_bottomtype = block.getFieldValue('bottomType');
-    var number_bottomnumber = block.getFieldValue('bottomNumber');
-    var checkbox_leftcheck = block.getFieldValue('leftCheck') === 'TRUE';
-    var dropdown_lefttype = block.getFieldValue('leftType');
-    var number_leftnumber = block.getFieldValue('leftNumber');
-    var checkbox_rightcheck = block.getFieldValue('rightCheck') === 'TRUE';
-    var dropdown_righttype = block.getFieldValue('rightType');
-    var number_rightnumber = block.getFieldValue('rightNumber');
-    
-    var margin = '';
-    if(checkbox_topcheck){
-      margin = `margin-top:` + number_topnumber + dropdown_toptype + '; ' 
-    }
-    if(checkbox_bottomcheck){
-      margin = margin + `margin-bottom:` + number_bottomnumber + dropdown_bottomtype + '; ' 
-    }
-    if(checkbox_leftcheck){
-      margin = margin +  `margin-left:` + number_leftnumber + dropdown_lefttype + '; ' 
-    }
-    if(checkbox_rightcheck){
-      margin = margin +  `margin-right:` + number_rightnumber + dropdown_righttype + '; ' 
-    }
-  
-    var code = margin;
-    return code;
-  };
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -405,3 +462,6 @@ JavaScript.javascriptGenerator.forBlock['css_custom'] = function(block : any, ge
   var code = text_css;
   return code;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
