@@ -74,6 +74,29 @@ JavaScript.javascriptGenerator.forBlock['style_block'] = function(block : any, g
   return code;
 };
 
+//////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['style_block_inline'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Add style Dirrectly");
+    this.appendStatementInput("NAME")
+        .setCheck(null);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['style_block_inline'] = function(block: any, generator: any) {
+  var statements_name = generator.statementToCode(block, 'NAME');
+  // TODO: Assemble javascript into code variable.
+  var code = `style="${statements_name}"`;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, generator.ORDER_ATOMIC];
+};
+
 /////////////////////////////////////////////////////////////////////////////////////
 
 Blockly.Blocks['css_bg_color'] = {
@@ -540,6 +563,28 @@ JavaScript.javascriptGenerator.forBlock['css_flexbox_align_row'] =  function(blo
   return [code, generator.ORDER_NONE];
 };
 
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['css_flexbox_grow'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Box grow size")
+        .appendField(new Blockly.FieldNumber(0, 0, 200), "NAME");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_flexbox_grow'] = function(block: any, generator: any) {
+  var number_name = block.getFieldValue('NAME');
+  // TODO: Assemble javascript into code variable.
+  var code = `flex-grow: ${number_name}; `;
+  return code;
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////
 

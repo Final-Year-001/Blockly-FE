@@ -605,47 +605,73 @@ JavaScript.javascriptGenerator.forBlock["html_textadd"] = function (
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-Blockly.Blocks["html_div"] = {
-  init: function () {
-    this.appendDummyInput().appendField("Box (div)");
+Blockly.Blocks['html_div1'] = {
+  init: function() {
     this.appendDummyInput()
-      .appendField(new Blockly.FieldCheckbox("FALSE"), "checkID")
-      .appendField("ID")
-      .appendField(new Blockly.FieldTextInput("default"), "id")
-      .appendField(new Blockly.FieldCheckbox("FALSE"), "checkClass")
-      .appendField("Class")
-      .appendField(new Blockly.FieldTextInput("default"), "class");
-    this.appendStatementInput("div").setCheck(null);
+        .appendField("Box container (div) ");
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("identify");
+    this.appendStatementInput("statementName")
+        .setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle("HTML_Containers");
-    this.setTooltip("");
-    this.setHelpUrl("");
-  },
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
 };
 
-JavaScript.javascriptGenerator.forBlock["html_div"] = function (
-  block: any,
-  generator: any
-) {
-  var checkbox_checkid = block.getFieldValue("checkID") === "TRUE";
-  var text_id = block.getFieldValue("id");
-  var checkbox_checkclass = block.getFieldValue("checkClass") === "TRUE";
-  var text_class = block.getFieldValue("class");
-  var statements_div = generator.statementToCode(block, "div");
-
-  var identifiers = "";
-  if (checkbox_checkid) {
-    identifiers = ` id="` + removeParentheses(text_id) + `"`;
-  }
-  if (checkbox_checkclass) {
-    identifiers =
-      identifiers + ` class="` + removeParentheses(text_class) + `"`;
-  }
-
-  var code = `<div ` + identifiers + ">" + statements_div + "</div>";
+JavaScript.javascriptGenerator.forBlock['html_div1'] = function(block: any, generator: any) {
+  var value_name = generator.valueToCode(block, 'NAME', generator.ORDER_ATOMIC);
+  var statements_name = generator.statementToCode(block, 'statementName');
+  // TODO: Assemble javascript into code variable.
+  var code = `<div ` + value_name + ">" + statements_name + "</div>";
   return code;
 };
+
+// Blockly.Blocks["html_div"] = {
+//   init: function () {
+//     this.appendDummyInput().appendField("Box (div)");
+//     this.appendDummyInput()
+//       .appendField(new Blockly.FieldCheckbox("FALSE"), "checkID")
+//       .appendField("ID")
+//       .appendField(new Blockly.FieldTextInput("default"), "id")
+//       .appendField(new Blockly.FieldCheckbox("FALSE"), "checkClass")
+//       .appendField("Class")
+//       .appendField(new Blockly.FieldTextInput("default"), "class");
+//     this.appendStatementInput("div").setCheck(null);
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//     this.setStyle("HTML_Containers");
+//     this.setTooltip("");
+//     this.setHelpUrl("");
+//   },
+// };
+
+// JavaScript.javascriptGenerator.forBlock["html_div"] = function (
+//   block: any,
+//   generator: any
+// ) {
+//   var checkbox_checkid = block.getFieldValue("checkID") === "TRUE";
+//   var text_id = block.getFieldValue("id");
+//   var checkbox_checkclass = block.getFieldValue("checkClass") === "TRUE";
+//   var text_class = block.getFieldValue("class");
+//   var statements_div = generator.statementToCode(block, "div");
+
+//   var identifiers = "";
+//   if (checkbox_checkid) {
+//     identifiers = ` id="` + removeParentheses(text_id) + `"`;
+//   }
+//   if (checkbox_checkclass) {
+//     identifiers =
+//       identifiers + ` class="` + removeParentheses(text_class) + `"`;
+//   }
+
+//   var code = `<div ` + identifiers + ">" + statements_div + "</div>";
+//   return code;
+// };
 
 ///////////////////////////////////////////////////////////////////////////////////
 
