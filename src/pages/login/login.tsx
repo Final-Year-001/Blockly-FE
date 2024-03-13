@@ -8,8 +8,9 @@ import { tokenAtom } from "../../state/auth";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import ProductLogo from "../../assets/LogoB&W";
-import img from '../../assets/loginImg/loginimg.gif'
-import bgImg from '../../assets/loginImg/ttbg.jpg'
+import img from "../../assets/loginImg/loginimg.gif";
+import bgImg from "../../assets/loginImg/ttbg.jpg";
+import { TypeAnimation } from "react-type-animation";
 
 function LoginPage() {
   const [username, setUsername] = useState<string>("");
@@ -34,24 +35,45 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center  items-center w-full h-full  bg-repeat" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: '20%'}}>
+    <div
+      className="flex justify-center  items-center w-full h-full  bg-repeat"
+      style={{ backgroundImage: `url(${bgImg})`, backgroundSize: "30%" }}
+    >
       <div className="bg-amber-400 h-full w-full relative">
         <div className="min-h-screen flex items-center justify-center">
           <div className="absolute top-0 left-0 m-6">
             <ProductLogo />
           </div>
-          <img
-      src={img}
-      alt="Your Image"
-      className="w-96 h-96" // Adjust width and height as needed
-    />
+          <div>
+            <div>
+              <img
+                src={img}
+                alt="Your Image"
+                className="w-96 h-96" // Adjust width and height as needed
+              />
+            </div>
+          </div>
         </div>
-        <div className="absolute bottom-0 left-0 m-6 text-white">
-          {/* <h1 className="text-5xl font-bold whitespace-normal">
-            Unlock Your Creativity, One <span className="text-6xl">Block</span>{" "}
-            at a Time
-          </h1> */}
-          {/* <h1 className="text-5xl whitespace-normal">WE BUILD. WE LEARN.</h1> */}
+        <div className="absolute bottom-20 left-0 right-0 flex justify-center">
+          <div className="m-6">
+            <TypeAnimation
+              sequence={[
+                // Same substring at the start will only be typed out once, initially
+                "Lets Learn",
+                2000, // wait 1s before replacing "Mice" with "Hamsters"
+                "Lets Imagine",
+                2000,
+                "Lets Build",
+                2000,
+                "Lets Code",
+                2000,
+              ]}
+              wrapper="span"
+              speed={50}
+              style={{ fontSize: "2em", display: "inline-block" }}
+              repeat={Infinity}
+            />
+          </div>
         </div>
       </div>
       <div className="w-full bg-inherit flex justify-center ">
