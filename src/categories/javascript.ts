@@ -266,55 +266,7 @@ export const javascriptCategory = {
               width: 160
             }
           }, 
-        }, 
-      //   {
-      //     kind:"block",
-      //     type: "change_form_background_color",
-      //     icons: {
-      //       comment: {
-      //         text: "Change the background color of a form",
-      //         pinned: true,
-      //         height: 80,
-      //         width: 160
-      //       }
-      //     }, 
-      //   },
-      //   {
-      //     kind: "block",
-      //    type: "validate_and_handle_error", 
-      //    icons: {
-      //     comment: {
-      //       text: "Validate the name and age",
-      //       pinned: true,
-      //       height: 80,
-      //       width: 160
-      //     }
-      //   }, 
-      //   },  
-      //   {
-      //    kind: "block",
-      //    type: "custom_condition_input_length",
-      //    icons: {
-      //     comment: {
-      //       text: "Name condition",
-      //       pinned: true,
-      //       height: 80,
-      //       width: 160
-      //     }
-      //   }, 
-      //  }, 
-      //  {
-      //   kind: "block",
-      //   type: "custom_condition_age",
-      //   icons: {
-      //     comment: {
-      //       text: "Age condition",
-      //       pinned: true,
-      //       height: 80,
-      //       width: 160
-      //     }
-      //   }, 
-      // }, 
+        },
       ]
     },
     {
