@@ -35,22 +35,16 @@ function LoginPage() {
   };
 
   return (
-    <div
-      className="flex justify-center  items-center w-full h-full  bg-repeat"
-      style={{ backgroundImage: `url(${bgImg})`, backgroundSize: "30%" }}
-    >
-      <div className="bg-amber-400 h-full w-full relative">
+    <div className="flex justify-center items-center w-full h-full bg-repeat" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: "30%" }}>
+      {/* Conditional rendering based on screen size */}
+      <div className="hidden md:block bg-amber-400 h-full w-full relative">
         <div className="min-h-screen flex items-center justify-center">
           <div className="absolute top-0 left-0 m-6">
             <ProductLogo />
           </div>
           <div>
             <div>
-              <img
-                src={img}
-                alt="Your Image"
-                className="w-96 h-96" // Adjust width and height as needed
-              />
+              <img src={img} alt="Your Image" className="w-96 h-96" />
             </div>
           </div>
         </div>
@@ -58,9 +52,8 @@ function LoginPage() {
           <div className="m-6">
             <TypeAnimation
               sequence={[
-                // Same substring at the start will only be typed out once, initially
                 "Lets Learn",
-                2000, // wait 1s before replacing "Mice" with "Hamsters"
+                2000,
                 "Lets Imagine",
                 2000,
                 "Lets Build",
@@ -126,12 +119,12 @@ function LoginPage() {
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       stroke="currentColor"
-                      stroke-width="1"
+                      strokeWidth="1"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       ></path>
                     </svg>
                   </span>
