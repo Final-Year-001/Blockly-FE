@@ -57,6 +57,7 @@ JavaScript.javascriptGenerator.forBlock["html_html"] = function (
   var statements_html_head = generator.statementToCode(block, "html_head");
   var statements_html_body = generator.statementToCode(block, "html_body");
   // note to senal - changed the order cause html should wrap everything and added line breaks
+  // tanks!!!
   var code =
     "<html>\n" +
     "  <head>\n" +

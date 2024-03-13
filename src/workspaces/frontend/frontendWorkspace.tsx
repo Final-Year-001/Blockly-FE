@@ -32,7 +32,12 @@ const workspaceConfiguration = {
     pinch: true,
     trashcan: true
     },
+
+    toolboxConfiguration: {
+      hidden: true // Hide the toolbox
+    }
 };
+
 
 
 interface FrontendWorkspaceProps {
@@ -53,6 +58,8 @@ function FrontendWorkspace({
     let code = javascriptGenerator.workspaceToCode(workspace);
     onCodeChange?.(code, workspace);
   };
+
+ 
 
   
 
