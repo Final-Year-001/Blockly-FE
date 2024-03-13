@@ -415,6 +415,130 @@ JavaScript.javascriptGenerator.forBlock['css_marginPadding'] = function(block : 
   return code;
 };
 
+///////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['css_flexbox'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Flexbox");
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Arange Boxes as a")
+        .appendField(new Blockly.FieldDropdown([["Row","row"], ["Column","column"]]), "NAME");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle('CSS_blocks');
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_flexbox'] = function(block : any, generator : any) {
+  var dropdown_name = block.getFieldValue('NAME');
+  var value_name = removeParentheses(generator.valueToCode(block, 'NAME', generator.ORDER_ATOMIC));
+  // TODO: Assemble javascript into code variable.
+  var code = `display: flex; flex-direction: ${dropdown_name}; ${value_name}`;
+
+  return code;
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['css_flexbox_wrap'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("wrap boxes")
+        .appendField(new Blockly.FieldDropdown([["wrap","wrap"], ["no wrap","nowrap"], ["wrap reverse","wrap-reverse"], ["row wrap","row wrap"]]), "NAME");
+    this.setOutput(true, null);
+    this.setStyle('CSS_blocks');
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_flexbox_wrap'] =  function(block : any, generator : any) {
+  var dropdown_name = block.getFieldValue('NAME');
+  var value_name = removeParentheses(generator.valueToCode(block, 'NAME', generator.ORDER_ATOMIC));
+  // TODO: Assemble javascript into code variable.
+  var code = `flex-wrap: ${dropdown_name}; ${value_name}`;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, generator.ORDER_NONE];
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['css_flexbox_justify'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("Justify boxes")
+        .appendField(new Blockly.FieldDropdown([["Beginning","flex-start"], ["Middle","center"], ["At the end","flex-end"], ["Space around","space-around"], ["Space between","space-between"]]), "NAME");
+    this.setOutput(true, null);
+    this.setStyle('CSS_blocks');
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_flexbox_justify'] =  function(block : any, generator : any) {
+  var dropdown_name = block.getFieldValue('NAME');
+  var value_name = removeParentheses(generator.valueToCode(block, 'NAME', generator.ORDER_ATOMIC));
+  // TODO: Assemble javascript into code variable.
+  var code = `justify-content: ${dropdown_name}; ${value_name}`;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, generator.ORDER_NONE];
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['css_flexbox_align'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("Align boxes")
+        .appendField(new Blockly.FieldDropdown([["Stretch","stretch"], ["Top","flex-start"], ["Middle","center"], ["Bottom","flex-end"]]), "NAME");
+    this.setOutput(true, null);
+    this.setStyle('CSS_blocks');
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_flexbox_align'] =  function(block : any, generator : any) {
+  var dropdown_name = block.getFieldValue('NAME');
+  var value_name = removeParentheses(generator.valueToCode(block, 'NAME', generator.ORDER_ATOMIC));
+  // TODO: Assemble javascript into code variable.
+  var code = `align-items: ${dropdown_name}; ${value_name}`;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, generator.ORDER_NONE];
+};
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['css_flexbox_align_row'] = {
+  init: function() {
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("Align rows")
+        .appendField(new Blockly.FieldDropdown([["space-between","space-between"], ["space-around","space-around"], ["stretch","stretch"], ["center","center"], ["flex-start","flex-start"], ["flex-end","flex-end"]]), "NAME");
+    this.setOutput(true, null);
+    this.setStyle('CSS_blocks');
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_flexbox_align_row'] =  function(block : any, generator : any) {
+  var dropdown_name = block.getFieldValue('NAME');
+  var value_name = removeParentheses(generator.valueToCode(block, 'NAME', generator.ORDER_ATOMIC));
+  // TODO: Assemble javascript into code variable.
+  var code = `align-items: ${dropdown_name}; ${value_name}`;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, generator.ORDER_NONE];
+};
 
 
 //////////////////////////////////////////////////////////////////////////////////////////

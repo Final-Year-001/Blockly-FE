@@ -89,7 +89,23 @@ export const cssCategory = {
       contents: [
         {
           kind: "block",
-          type: "css_bg_color",
+          type: "css_flexbox",
+        },
+        {
+          kind: "block",
+          type: "css_flexbox_wrap",
+        },
+        {
+          kind: "block",
+          type: "css_flexbox_justify",
+        },
+        {
+          kind: "block",
+          type: "css_flexbox_align",
+        },
+        {
+          kind: "block",
+          type: "css_flexbox_align_row",
         },
       ],
     },
