@@ -133,7 +133,7 @@ export const htmlCategory = {
       contents: [
         {
           kind: "block",
-          type: "html_div",
+          type: "html_div1",
         },
       ],
     },

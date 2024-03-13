@@ -15,6 +15,10 @@ export const cssCategory = {
       type: "style_block",
     },
     {
+      kind: "block",
+      type: "style_block_inline",
+    },
+    {
       kind: "category",
       name: "Colors",
       colour: "#f28177",
@@ -106,6 +110,10 @@ export const cssCategory = {
         {
           kind: "block",
           type: "css_flexbox_align_row",
+        },
+        {
+          kind: "block",
+          type: "css_flexbox_grow",
         },
       ],
     },
