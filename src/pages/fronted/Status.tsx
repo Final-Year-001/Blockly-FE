@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import save from '../../assets/statusImages/save.gif';
 import book from '../../assets/statusImages/book.gif'
+import clock from '../../assets/statusImages/clock.gif'
 
 function StatusNoti({ message }: { message: string }) {
   const [show, setShow] = useState(true);
@@ -16,7 +17,7 @@ function StatusNoti({ message }: { message: string }) {
   return (
     <div>
       {show && (
-        <div className="fixed bottom-4 left-4 shadow-md rounded-lg z-50">
+        <div className="fixed bottom-4 left-3 shadow-md z-50 border-2 border-gray-900 ">
           <div className="flex items-center h-full bg-white">
             
             <div className={`p-3 text-white ${message === "New unsaved changes" ? 'bg-amber-500' : message === "All changes are saved." ? 'bg-green-400' : 'bg-amber-500'}`}>
@@ -26,7 +27,7 @@ function StatusNoti({ message }: { message: string }) {
           
 
             <div className="px-3">
-              <img src={message === "All changes are saved." ? save : book} alt="Save GIF"  style={{ width: "40px", height: "40px" }} />
+              <img src={message === "All changes are saved." ? save : message === "New unsaved changes." ? book : clock } alt="Save GIF"  style={{ width: "40px", height: "40px" }} />
             </div> 
           
           </div>

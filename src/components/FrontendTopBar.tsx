@@ -40,7 +40,7 @@ function FrontendTopBar() {
   }
 
   return (
-    <div className="flex w-full justify-between items-center p-4">
+    <div className="flex w-full justify-between items-center p-3">
       <div className="flex flex-col  gap-3 px-2">
       <Link to="/my/projects">
         <ProductLogo TextSize={3}/>

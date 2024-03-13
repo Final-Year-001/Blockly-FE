@@ -21,7 +21,7 @@ const frontendToolboxCategories = {
       'name': 'Search',
       'contents': [],
     },
-    { kind: "sep" },
+    // { kind: "sep" },
     htmlCategory,
     cssCategory,
     javascriptCategory,

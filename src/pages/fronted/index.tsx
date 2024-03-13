@@ -271,7 +271,7 @@ function FrontendPage() {
       </div>
 
       <div
-        className="flex flex-row flex-grow px-4 pb-3"
+        className="flex flex-row flex-grow px-3 pb-3"
         style={{ height: "calc(100% - 400px)" }}
       >
         <div
@@ -376,7 +376,6 @@ function FrontendPage() {
         {saveMessage.show ? 
         <StatusNoti message = {saveMessage.message}/> : ""
         }
-     
       </div>
      
     </div>
