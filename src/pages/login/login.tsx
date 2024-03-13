@@ -7,10 +7,18 @@ import { useRecoilState } from "recoil";
 import { tokenAtom } from "../../state/auth";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
-import ProductLogo from "../../assets/LogoB&W";
+import ProductLogo from "../../assets/Logo";
 import img from "../../assets/loginImg/loginimg.gif";
 import bgImg from "../../assets/loginImg/ttbg.jpg";
 import { TypeAnimation } from "react-type-animation";
+
+const elements = document.querySelectorAll('.index-module_type__E-SaG');
+
+elements.forEach((element: HTMLElement) => {
+  if (element.textContent.includes('build')) {
+    element.style.color = 'red';
+  }
+});
 
 function LoginPage() {
   const [username, setUsername] = useState<string>("");
@@ -37,7 +45,7 @@ function LoginPage() {
   return (
     <div className="flex justify-center items-center w-full h-full bg-repeat" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: "30%" }}>
       {/* Conditional rendering based on screen size */}
-      <div className="hidden md:block bg-amber-400 h-full w-full relative">
+      <div className="hidden md:block bg-white h-full w-full relative">
         <div className="min-h-screen flex items-center justify-center">
           <div className="absolute top-0 left-0 m-6">
             <ProductLogo />
@@ -50,7 +58,7 @@ function LoginPage() {
         </div>
         <div className="absolute bottom-20 left-0 right-0 flex justify-center">
           <div className="m-6">
-            <TypeAnimation
+            <TypeAnimation className="Typewriter"
               sequence={[
                 "Lets Learn",
                 2000,
@@ -142,11 +150,11 @@ function LoginPage() {
             <AwesomeButton
               className="block w-full"
               style={{
-                "--button-primary-color": "#FFCA28",
-                "--button-primary-color-dark": "#c0940f",
+                "--button-primary-color": "#3399ff",
+                "--button-primary-color-dark": "#096dd2",
                 "--button-primary-color-light": "#ffffff",
-                "--button-primary-color-hover": "#f4c53b",
-                "--button-primary-color-active": "#e5b31b",
+                "--button-primary-color-hover": "#3399ff",
+                "--button-primary-color-active": "#3399ff",
                 "--button-default-border-radius": "8px",
               }}
               onMouseUp={login}

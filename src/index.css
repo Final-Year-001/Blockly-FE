@@ -95,3 +95,7 @@ svg[display="none"] {
   --button-danger-color-active: #af2929;
   --button-danger-border: none;
   }
+
+  .index-module_type__E-SaG::first-word {
+    color: red;
+  }
