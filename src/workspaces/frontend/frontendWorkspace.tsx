@@ -8,6 +8,7 @@ import frontendToolboxCategories from "../../toolbox/frontend";
 import '../../themes/renderer/CustomRender'
 import CustomCategory from "../../themes/toolbox/customCats";
 
+
 // Renderers = minimalist /zelos / thrasos / geras
 
 const workspaceConfiguration = {
@@ -33,6 +34,7 @@ const workspaceConfiguration = {
     },
 };
 
+
 interface FrontendWorkspaceProps {
   readonly onCodeChange?: (code: string, workspace: WorkspaceSvg) => void;
   readonly initialState?: any;
@@ -51,6 +53,8 @@ function FrontendWorkspace({
     let code = javascriptGenerator.workspaceToCode(workspace);
     onCodeChange?.(code, workspace);
   };
+
+  
 
   return (
     <Card
