@@ -1,53 +1,34 @@
 import React from "react";
 import CodeEditors from "./CodeEditor";
 import BgImg from '../../assets/loginImg/ttbg.jpg'
+import { FEOutAtom } from "../../state/FEOutputCode";
+import { useRecoilValue } from "recoil";
 
-const TestCaller: React.FC = () => {
-  const sampleHtmlCode = `
-  <html>
-  <head>
-  <style>  #table1{  border:0px solid #ff0000;
-    }</style>
-  <script>
-    
-    
-    
+const CodeSplitter: React.FC = () => {
 
-        document.addEventListener("DOMContentLoaded", function() {
-          var element = document.getElementById();
-          if (element) {
-            element.addEventListener("click", function() {
-              alert();
-            });
-          }
-        });
-
-  </script>
-</head>
-  <body>
-  <table border=1 id="table1">  <tr>  <th>  Hello</th><th>  sadfws</th><th>  efwsf</th></tr><tr>  <td>  sefsf</td><td>  wefwsf</td><td>  wsefwsef</td></tr></table>  </body>
-</html>
-  `;
+ const FEoutCode = useRecoilValue(FEOutAtom);
 
   // Function to extract HTML, CSS, and JavaScript code from the provided HTML code
-  const extractCodeFromHtml = (
-    htmlCode: string
-  ): { html: string; css: string; js: string } => {
+  const extractCodeFromHtml = (htmlCode: string): { html: string; css: string; js: string } => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlCode, "text/html");
-
+  
     let cssCode = "";
     const styleTags = doc.head.querySelectorAll("style");
     styleTags.forEach((styleTag) => {
       cssCode += styleTag.textContent || "";
     });
-
+  
     let jsCode = "";
-    const scriptTags = doc.head.querySelectorAll("script");
+    const scriptTags = doc.querySelectorAll("script"); // Select all script tags
+    
     scriptTags.forEach((scriptTag) => {
-      jsCode += scriptTag.textContent || "";
+      // Check if the script tag is inside the head or body
+      if (scriptTag.parentElement === doc.head || scriptTag.parentElement === doc.body) {
+        jsCode += scriptTag.textContent || "";
+      }
     });
-
+  
     // Remove extracted CSS and JavaScript code from the HTML code
     let cleanedHtmlCode = htmlCode;
     styleTags.forEach((styleTag) => {
@@ -56,20 +37,21 @@ const TestCaller: React.FC = () => {
     scriptTags.forEach((scriptTag) => {
       cleanedHtmlCode = cleanedHtmlCode.replace(scriptTag.outerHTML, "");
     });
-
+  
     return {
       html: cleanedHtmlCode.trim(),
       css: cssCode.trim(),
       js: jsCode.trim(),
     };
   };
+  
 
   // Extract HTML, CSS, and JavaScript code from the sample HTML code
   const {
     html: initialHtmlCode,
     css: initialCssCode,
     js: initialJsCode,
-  } = extractCodeFromHtml(sampleHtmlCode);
+  } = extractCodeFromHtml(FEoutCode);
 
   return (
     // <div className="w-full h-full bg-repeat " style={{ backgroundImage: `url(${BgImg})`, backgroundSize: "30%" }}>
@@ -84,4 +66,4 @@ const TestCaller: React.FC = () => {
   );
 };
 
-export default TestCaller;
+export default CodeSplitter;

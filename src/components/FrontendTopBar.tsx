@@ -17,6 +17,7 @@ import ProductLogo from "../assets/Logo";
 import { Link } from "react-router-dom";
 import { AwesomeButton, AwesomeButtonProgress} from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
+import { useNavigate } from "react-router-dom";
 
 function logout(){
   console.log("Works");
@@ -27,6 +28,7 @@ function logout(){
 function FrontendTopBar() {
   let [workAreaSize, setworkAreaSize] = useRecoilState(codeAtom);
   let [code, setCode] = useRecoilState(codeAtom);
+  const navigate = useNavigate();
 
   function createHTMLFile(fileName : any) {
     // Create a Blob with the HTML content
@@ -78,7 +80,8 @@ function FrontendTopBar() {
            height: '37px',   
            marginRight: '10px'        
         }} 
-        onReleased={()=>{createHTMLFile("file")}}
+        // onReleased={()=>{createHTMLFile("file")}}
+        onReleased={()=>{navigate("/crunchCode")}}
         type="primary">
           Preview Code
         </AwesomeButton>

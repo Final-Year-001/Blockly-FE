@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Editor from '@monaco-editor/react';
 import { Monaco } from '@monaco-editor/react';
 
-
 interface CodeEditorProps {
     initialHtmlCode: string;
     initialCssCode: string;
@@ -31,16 +30,12 @@ const CodeEditors: React.FC<CodeEditorProps> = ({
   };
 
 
-
-  
-
   return (
     <div className="flex flex-wrap">
       <div className="w-full bg-red-300 md:w-1/3 px-4">
         <h2 className="text-lg font-semibold">HTML</h2>
         {/* <textarea className="w-full h-32 border rounded-md p-2" value={htmlCode} onChange={handleHtmlChange} /> */}
         <Editor  height="50vh" theme='vs-dark' defaultLanguage="html" defaultValue={htmlCode} />
-      
       
       
       </div>
@@ -51,7 +46,8 @@ const CodeEditors: React.FC<CodeEditorProps> = ({
       </div>
       <div className="w-full md:w-1/3 px-4">
         <h2 className="text-lg font-semibold">JavaScript</h2>
-        <textarea className="w-full h-32 border rounded-md p-2" value={jsCode} onChange={handleJsChange} />
+        {/* <textarea className="w-full h-32 border rounded-md p-2" value={jsCode} onChange={handleJsChange} /> */}
+        <Editor  height="50vh" theme='vs-dark' defaultLanguage="javascript" defaultValue={jsCode} />
       </div>
       <div className="w-full px-4 mt-4">
         <h2 className="text-lg font-semibold">Preview</h2>

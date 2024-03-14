@@ -15,7 +15,7 @@ import LessonCreator from "./pages/lesson-creator";
 import JavascriptDoc from "./pages/documents/javascript";
 import HTMLDoc from "./pages/documents/html";
 import CSSDoc from "./pages/documents/css";
-import TestCaller from "./pages/codeExplain/TestCaller";
+import CodeSplitter from "./pages/codeExplain/CodeSplitter";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -63,8 +63,8 @@ const router = createBrowserRouter([
     element: <CSSDoc />
   },
   {
-    path: "/senalTesting",
-    element: <TestCaller />
+    path: "/crunchCode",
+    element: <CodeSplitter />
   },
   {
     path: "/*",
