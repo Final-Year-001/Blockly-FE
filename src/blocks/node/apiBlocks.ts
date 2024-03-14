@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Blockly, { MenuOption } from "blockly";
 import { Order, javascriptGenerator } from "blockly/javascript";
 
@@ -30,11 +31,11 @@ javascriptGenerator.forBlock["api_method"] = function (
   block: any,
   generator: any
 ) {
-  let dropdown_method = block.getFieldValue("api_method_name");
-  let path = block.getFieldValue("path");
-  let statements_name = generator.statementToCode(block, "NAME");
+  const dropdown_method = block.getFieldValue("api_method_name");
+  const path = block.getFieldValue("path");
+  const statements_name = generator.statementToCode(block, "NAME");
 
-  var code = `
+  const code = `
     app.${dropdown_method}("${path}",async (req, res) => {
       try {
         ${statements_name}
@@ -74,11 +75,11 @@ javascriptGenerator.forBlock["get_request"] = function (
   block: any,
   generator: any
 ) {
-  let variable_name = generator.nameDB_.getName(
+  const variable_name = generator.nameDB_.getName(
     block.getFieldValue("var"),
     "VARIABLE"
   );
-  let dropdown_name = block.getFieldValue("NAME");
+  const dropdown_name = block.getFieldValue("NAME");
 
   let code = "";
   switch (dropdown_name) {
@@ -106,7 +107,7 @@ javascriptGenerator.forBlock["respond_json"] = function (
   block: any,
   generator: any
 ) {
-  var value_var = generator.valueToCode(block, "var", Order.ATOMIC);
+  const value_var = generator.valueToCode(block, "var", Order.ATOMIC);
   return `res.json(${value_var});\n`;
 };
 
@@ -134,11 +135,8 @@ Blockly.Blocks["respond_with_status"] = {
   },
 };
 
-javascriptGenerator.forBlock["respond_with_status"] = function (
-  block: any,
-  generator: any
-) {
-  let dropdown_name = block.getFieldValue("status");
-  let code = `res.status(${dropdown_name});\n`;
+javascriptGenerator.forBlock["respond_with_status"] = function (block: any) {
+  const dropdown_name = block.getFieldValue("status");
+  const code = `res.status(${dropdown_name});\n`;
   return code;
 };
