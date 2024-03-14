@@ -104,7 +104,7 @@ javascriptGenerator.forBlock["session_middleware"] = function (
     app.use(session(${
       options
         ? options
-        : `{secret: ${secret || "ASKDJASINAAKSJD"}, resave: false,
+        : `{secret: ${secret || '"ASKDJASINAAKSJD"'}, resave: false,
            saveUninitialized: false, }`
     }));
   `;
@@ -115,9 +115,9 @@ javascriptGenerator.forBlock["session_middleware"] = function (
 Blockly.Blocks["create_session"] = {
   init: function () {
     this.appendDummyInput().appendField("Create Session");
-    this.appendDummyInput()
-      .appendField("Path to user ID:")
-      .appendField(new Blockly.FieldTextInput(), "userIdPath");
+    this.appendValueInput("userDetails")
+      .setCheck(null)
+      .appendField("user details");
     this.setTooltip("this will create a session for the user");
     this.setHelpUrl("");
     this.setColour(130);
@@ -126,14 +126,43 @@ Blockly.Blocks["create_session"] = {
   },
 };
 
-javascriptGenerator.forBlock["create_session"] = function (block: any) {
-  const userIdPath = block.getFieldValue("userIdPath");
+javascriptGenerator.forBlock["create_session"] = function (
+  block: any,
+  generator: any
+) {
+  const userDetails = generator.valueToCode(block, "userDetails", 0);
   // check whether the options are in expected type
 
-  const code = `req.session.user = ${userIdPath}
+  const code = `req.session.user = ${userDetails};
   req.session.save();
   `;
 
+  return code;
+};
+
+Blockly.Blocks["set_session_to_variable"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Set session to")
+      .appendField(new Blockly.FieldVariable("item"), "var");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(130);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+javascriptGenerator.forBlock["set_session_to_variable"] = function (
+  block: any,
+  generator: any
+) {
+  const variable_name = generator.nameDB_.getName(
+    block.getFieldValue("var"),
+    "VARIABLE"
+  );
+
+  const code = `${variable_name} = req.session;\n`;
   return code;
 };
 
@@ -170,6 +199,20 @@ javascriptGenerator.forBlock["has_session"] = function (
   `;
 
   return code;
+};
+
+Blockly.Blocks["save_session"] = {
+  init: function () {
+    this.appendDummyInput().appendField("SAVE SESSION");
+    this.setHelpUrl("");
+    this.setColour(130);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["save_session"] = function () {
+  return `req.session.save();`;
 };
 
 Blockly.Blocks["end_session"] = {
