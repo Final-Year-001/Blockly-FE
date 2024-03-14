@@ -99,3 +99,20 @@ svg[display="none"] {
   .index-module_type__E-SaG::first-word {
     color: red;
   }
+
+
+  .blocklyCommentTextarea {
+    background-color: rgba(255, 255, 255, 0.4); /* Transparent white color */
+    font-size: 20px;
+    color: black;
+    border-radius: 5px;
+    pointer-events: none;
+    user-select: none;
+    
+}
+
+
+rect{
+  background-color: black;
+  border-radius: 30px;
+}

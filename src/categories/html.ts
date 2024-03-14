@@ -1,6 +1,7 @@
 // import "../blocks/javascript/blocks";
 import "../blocks/html/blocks";
 import book from '../assets/statusImages/book.gif'
+import ProductLogo from "../assets/Logo";
 
 
 
@@ -39,8 +40,8 @@ export const htmlCategory = {
             comment: {
               text: "JavaScript code should be wrapped in this tag",
               pinned: false,
-              height: 80,
-              width: 160
+              height: 200,
+              width: 360
             }
           },
         },
