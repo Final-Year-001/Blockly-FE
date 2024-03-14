@@ -65,30 +65,14 @@ function FrontendTopBar() {
         {/* <Button className="mr-4" onClick={()=>{createHTMLFile("file")}}>Preview Code</Button> */}
         {/* <Link to="/get-started"><Button className="mr-4">Tutorial Guide</Button> </Link> */}
         {/* <Button className="mr-4" onClick={()=>logout()} >Logout</Button> */}
+    
         <AwesomeButton 
         style={{ 
-          '--button-primary-color': '#494949',
-          '--button-primary-color-dark': '#0d0d0d',
+          '--button-primary-color': '#33cc33',
+          '--button-primary-color-dark': '#18a418',
           '--button-primary-color-light': '#ffffff',
-          '--button-primary-color-hover': '#787878',
-          '--button-primary-color-active': '#323232',
-          '--button-default-border-radius': '8px',
-           width: '140px',
-           height: '37px',   
-           marginRight: '10px'        
-        }} 
-        onReleased={()=>{createHTMLFile("file")}}
-        type="primary">
-          Preview Code
-        </AwesomeButton>
-
-        <AwesomeButton 
-        style={{ 
-          '--button-primary-color': '#ff605d',
-          '--button-primary-color-dark': '#d44643',
-          '--button-primary-color-light': '#ffffff',
-          '--button-primary-color-hover': '#fd6e6b',
-          '--button-primary-color-active': '#d44643',
+          '--button-primary-color-hover': '#33cc33',
+          '--button-primary-color-active': '#1aa81a',
           '--button-default-border-radius': '8px',
            width: '140px',
            height: '37px',   
