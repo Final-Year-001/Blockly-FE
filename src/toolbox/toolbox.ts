@@ -5,6 +5,7 @@ import {
   textCategory,
   variablesCategory,
 } from "../categories/google_blocks";
+import { jsonCategory } from "../categories/json";
 import { jwtCategory } from "../categories/jwt";
 import { mathCategory } from "../categories/math";
 import { generalMiddlewareCategory } from "../categories/middlewares";
@@ -26,6 +27,7 @@ const toolboxConfig = {
     loopsCategory,
     variablesCategory,
     textCategory,
+    jsonCategory,
   ],
 };
 

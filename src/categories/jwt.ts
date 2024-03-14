@@ -2,7 +2,7 @@ import "../blocks/node/jwtBlocks";
 
 export const jwtCategory = {
   kind: "category",
-  name: "JWT",
+  name: "JWT Authentication",
   colour: "#000000",
   contents: [
     {
@@ -20,6 +20,10 @@ export const jwtCategory = {
     {
       kind: "block",
       type: "match_passwords",
+    },
+    {
+      kind: "block",
+      type: "get_auth_object",
     },
   ],
 };
