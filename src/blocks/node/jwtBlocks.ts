@@ -13,7 +13,6 @@ Blockly.Blocks["authenticationTocken_middleware"] = {
       .appendField("Access Token Secret");
     this.setColour(295);
     this.setTooltip("Creates a new Express server instance.");
-    this.setOutput(true, null);
     this.setHelpUrl("");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -36,27 +35,64 @@ javascriptGenerator.forBlock["authenticationTocken_middleware"] = function (
 
   // TODO: Assemble javascript into code variable.
   const code = `
-    (req, res, nex) => {
-    ${
-      token
-        ? codeWithToken
-        : "\nconst authHeader = req.headers['authorization'];" +
-          "\nconst token = authHeader && authHeader.split(' ')[1];"
-    }
-    \nif (!token) {
-      res.sendStatus(401);
-    }
-  
-    jwt.verify(token, ${accessTokensecret}, (err, user) => {
-      if (err) {
-        res.sendStatus(403);
+    import jwt from 'jsonwebtoken'
+    const app = express();
+
+    app.use(
+      (req, res, next) => {
+        ${
+          token
+            ? codeWithToken
+            : "\nconst authHeader = req.headers['authorization'];" +
+              "\nconst token = authHeader && authHeader.split(' ')[1];"
+        }
+        \nif (!token) {
+          req.auth = {
+            token,
+            valid: false,
+          };
+          next();
+        }
+      
+        jwt.verify(token, ${accessTokensecret}, (err, user) => {
+          if (err) {
+            req.auth = {
+              token,
+              valid: false,
+            };
+            next();
+          } else {
+            req.auth = {
+              token,
+              valid: true,
+              user: user,
+            };
+            next();
+          }
+        });
       }
-      req.user = user;
-      nex();
-    });
-  }
+    )
+    
   `;
   return code;
+};
+
+Blockly.Blocks["get_auth_object"] = {
+  init: function () {
+    this.appendDummyInput()
+      .setAlign(Blockly.inputs.Align.LEFT)
+      .appendField("JWT auth object");
+    this.setOutput(true, null);
+    this.setColour(295);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+javascriptGenerator.forBlock["get_auth_object"] = function () {
+  const code = `req.auth`;
+
+  return [code, javascriptGenerator.ORDER_NONE];
 };
 
 Blockly.Blocks["get_hashed_password"] = {
