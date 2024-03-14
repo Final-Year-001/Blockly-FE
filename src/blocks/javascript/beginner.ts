@@ -341,6 +341,9 @@ Blockly.Blocks['play_sound_on_click'] = {
     this.appendValueInput("button_id")
         .setCheck("el_id_input")
         .appendField("Name of the button");
+    this.appendValueInput("sound")
+        .setCheck("String")
+        .appendField("Link to the sound file:");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('JS_Step3');
@@ -350,16 +353,18 @@ Blockly.Blocks['play_sound_on_click'] = {
 
 javascriptGenerator.forBlock['play_sound_on_click'] = function(block:any, generator:any) {
   var buttonId = generator.valueToCode(block, 'button_id', generator.ORDER_ATOMIC);
+  var soundUrl = generator.valueToCode(block, 'sound', generator.ORDER_ATOMIC);
 
   return `
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById(${buttonId}).addEventListener('click', function() {
-      var audio = new Audio('../src/sounds/button.mp3');
+      var audio = new Audio(${soundUrl});
       audio.play();
     });
   });
   `;
 };
+
 
 // Upload and Display Image Block
 Blockly.Blocks['upload_display_image'] = {

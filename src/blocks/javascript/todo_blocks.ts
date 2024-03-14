@@ -51,9 +51,6 @@ javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any)
         
               taskList.appendChild(li);
               taskInput.value = "";
-
-              var audio = new Audio('../src/sounds/add.wav');
-              audio.play();
           });
       });
       `;
@@ -117,11 +114,10 @@ javascriptGenerator.forBlock['delete_task'] = function(block:any, generator:any)
       var listItem = event.target.parentNode;
       var taskList = listItem.parentNode;
       taskList.removeChild(listItem);
-
-      var audio = new Audio('../src/sounds/delete.wav');
-      audio.play();
     }
   });`
 
+  // var audio = new Audio('../src/sounds/delete.mp3');
+  // audio.play();
 return code;
 };
