@@ -106,13 +106,17 @@ svg[display="none"] {
     font-size: 20px;
     color: black;
     border-radius: 5px;
-    pointer-events: none;
-    user-select: none;
-    
+    /* caret-color: transparent; */
 }
 
-
-rect{
-  background-color: black;
-  border-radius: 30px;
+.blocklyCommentTextarea {
+  background-color: rgba(255, 255, 255, 0.4); /* Transparent white color */
+  font-size: 20px;
+  color: black;
+  border-radius: 5px;
+  pointer-events: none; /* Disable pointer events */
+  user-select: none; /* Disable user selection */
+  caret-color: transparent;
+  overflow: hidden; /* Hide scrollbar */
 }
+

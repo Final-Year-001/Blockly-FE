@@ -4,7 +4,6 @@ import book from '../assets/statusImages/book.gif'
 import ProductLogo from "../assets/Logo";
 
 
-
 export const htmlCategory = {
   kind: "category",
   name: "HTML",

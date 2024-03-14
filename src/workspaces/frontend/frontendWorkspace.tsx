@@ -7,6 +7,8 @@ import { FETheme } from "../../themes/FETheme";
 import frontendToolboxCategories from "../../toolbox/frontend";
 import '../../themes/renderer/CustomRender'
 import CustomCategory from "../../themes/toolbox/customCats";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { FEOutAtom } from "../../state/FEOutputCode";
 
 
 // Renderers = minimalist /zelos / thrasos / geras
@@ -52,16 +54,19 @@ function FrontendWorkspace({
   loaded,
 }: FrontendWorkspaceProps) {
   const workspaceWrapper = useRef<HTMLDivElement>(null);
+  const [FEoutCode, SetFEoutCode] = useRecoilState(FEOutAtom);
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
     javascriptGenerator.addReservedWords("code");
     let code = javascriptGenerator.workspaceToCode(workspace);
+    
+    SetFEoutCode(code);
+    // console.log("FROM FEWORKSPACE", FEoutCode)
+
     onCodeChange?.(code, workspace);
   };
 
- 
 
-  
 
   return (
     <Card
