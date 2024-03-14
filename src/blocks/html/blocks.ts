@@ -35,7 +35,7 @@ JavaScript.javascriptGenerator.forBlock["html_br"] = function (
 
 Blockly.Blocks["html_html"] = {
   init: function () {
-    this.appendDummyInput().appendField("Html Block");
+    this.appendDummyInput().appendField("Main Html Block");
     this.appendStatementInput("html_head")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
