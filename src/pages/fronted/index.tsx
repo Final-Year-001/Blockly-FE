@@ -31,10 +31,8 @@ import HintComponent from "../../components/HintComponent";
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import StatusNoti from "./Status";
-
-
-
-
+import { useChildEvents } from "../../lib/iframe-communication/iframe-communication";
+import { ConsoleLogger, LogEvent } from "../../components/ConsoleLogger";
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -57,6 +55,29 @@ function organizeImports(code: string) {
     importStatements.join("\n") + "\n" + otherCode.join("\n");
 
   return organizedCode;
+}
+
+function injectIframeCommunicator(cleanCode: string) {
+  let index = cleanCode.indexOf("<head>");
+  let dividePoint = index + "<head>".length;
+
+  if (index >= 0) {
+    let top = cleanCode.slice(0, dividePoint);
+    let bottom = cleanCode.slice(dividePoint, cleanCode.length);
+
+    return `
+      ${top}
+        <script src="/js/iframe.js"></script>
+        <script>
+          console.log("Hello from the IFrame previewer. Your console.logs will appear here!")
+          console.warn("Hello from the IFrame previewer. Your console.warn will appear here!")
+          console.error("Hello from the IFrame previewer. Your console.error will appear here!")
+        </script>
+      ${bottom}
+    `;
+  }
+
+  return cleanCode;
 }
 
 type PageMode = "default" | "lesson";
@@ -82,6 +103,7 @@ function FrontendPage() {
     loading: boolean;
   }>({ message: "", show: false, loading: false });
   const [showTour, setShowTour] = useState<boolean>(true);
+  const [logs, setLogs] = useState<LogEvent[]>([]);
 
   const params = useParams();
   const tokens = useRecoilValue(tokenAtom);
@@ -168,28 +190,31 @@ function FrontendPage() {
   };
 
   const injectCode = (code: string, workspace: WorkspaceSvg) => {
+    let json = Blockly.serialization.workspaces.save(workspace);
+
+    if (_.isEqual(json, workspaceState.current)) return;
+
+    setLogs([])
+
     // Exclude comments starting with "//" from the code
     const cleanCode = code.replace(/\/\/(.*)/g, "");
     setCode(organizeImports(code));
     setFrontendCode(cleanCode);
     if (iframeRef.current) {
       const iframe = iframeRef.current;
-      iframe.srcdoc = cleanCode;
+      iframe.srcdoc = injectIframeCommunicator(cleanCode);
     }
 
     workspaceRef.current = workspace;
     try {
-      let json = Blockly.serialization.workspaces.save(workspace);
-      if (!_.isEqual(json, workspaceState.current)) {
-        if (mode == "lesson") checkIfStepComplete(json);
+      if (mode == "lesson") checkIfStepComplete(json);
 
-        setSaveMessage({
-          show: true,
-          message: "New unsaved changes",
-          loading: false,
-        });
-        workspaceState.current = json;
-      }
+      setSaveMessage({
+        show: true,
+        message: "New unsaved changes",
+        loading: false,
+      });
+      workspaceState.current = json;
     } catch (e) {
       console.error(e);
     }
@@ -223,6 +248,7 @@ function FrontendPage() {
       value: "iframe",
       desc: (
         <iframe
+          title="preview"
           className="bg-white pb-10 rounded-lg w-full h-full"
           ref={iframeRef}
           name="iframe1"
@@ -232,8 +258,7 @@ function FrontendPage() {
     {
       label: "Console",
       value: "react",
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
+      desc: <ConsoleLogger logs={logs} />,
     },
   ];
 
@@ -255,6 +280,10 @@ function FrontendPage() {
       setCodeCopied(false);
     }, 3000); // 3000 milliseconds (3 seconds)
   };
+
+  useChildEvents<any, LogEvent>(iframeRef, (event) => {
+    setLogs((prev) => [...prev, event]);
+  });
 
   return (
     <div className="flex flex-col h-full w-full ">
