@@ -12,14 +12,14 @@ export const javascriptCategory = {
       kind:"block",
       type: "javascript",
       style: "JS_Beg" , 
-      icons: { 
-        comment: {
-          text: "JavaScript code should be wrapped in this tag",
-          pinned: false,
-          height: 80,
-          width: 160
-        }
-      },
+      // icons: { 
+      //   comment: {
+      //     text: "JavaScript code should be wrapped in this tag",
+      //     pinned: false,
+      //     height: 80,
+      //     width: 160
+      //   }
+      // },
     },
     {
       kind: "category",

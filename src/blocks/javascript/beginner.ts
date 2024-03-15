@@ -198,7 +198,7 @@ Blockly.Blocks['event_listener'] = {
       ]), "event");
     this.appendValueInput("element")
       .setCheck("el_id_input")
-      .appendField("On this button(give name)");
+      .appendField("To this button(add the name)");
     this.appendStatementInput("handler")
       .setCheck(null)
       .appendField("What happens after");
