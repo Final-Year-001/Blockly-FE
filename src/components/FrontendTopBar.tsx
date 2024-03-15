@@ -33,25 +33,6 @@ function FrontendTopBar() {
   const [showCodeEditor, setShowCodeEditor] = useState(false);
   const navigate = useNavigate();
 
-  function createHTMLFile(fileName : any) {
-    // Create a Blob with the HTML content
-    const blob = new Blob([code], { type: 'text/html' });
-  
-    // Create an object URL for the Blob
-    const url = URL.createObjectURL(blob);
-  
-    // Create an anchor element to trigger the download
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = fileName;
-  
-    // Simulate a click on the anchor to trigger the download
-    a.click();
-  
-    // Revoke the object URL to free up resources
-    // URL.revokeObjectURL(url);
-  }
-
   return (
     <div className="flex w-full justify-between items-center p-3">
       <div className="flex flex-col  gap-3 px-2">

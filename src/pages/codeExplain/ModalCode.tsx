@@ -3,30 +3,68 @@ import CodeSplitter from "./CodeSplitter";
 import { Link } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
 import ProductLogo from "../../assets/LogoB&W";
+import { TypeAnimation } from "react-type-animation";
+import { useRecoilValue } from "recoil";
+import { FEOutAtom } from "../../state/FEOutputCode";
+
 
 interface ModalProps {
   setShowCodeEditor: (bool: boolean) => void;
 }
 
+
+
 const ModalCodeEdit: React.FC<ModalProps> = ({ setShowCodeEditor }) => {
+    const FEoutCode = useRecoilValue(FEOutAtom);
+
+    function createHTMLFile(fileName : any) {
+        // Create a Blob with the HTML content
+        const blob = new Blob([FEoutCode], { type: 'text/html' });
+      
+        // Create an object URL for the Blob
+        const url = URL.createObjectURL(blob);
+      
+        // Create an anchor element to trigger the download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+      
+        // Simulate a click on the anchor to trigger the download
+        a.click();
+      
+        // Revoke the object URL to free up resources
+        // URL.revokeObjectURL(url);
+      }
   return (
     <div
-      className={`fixed z-50 inset-0 overflow-y-auto backdrop-blur-2xl bg-blue-900/40`}
+      className={`fixed z-50 inset-0 overflow-y-auto backdrop-blur-2xl bg-blue-800/60`}
     >
       <div className="relative mx-auto w-full  ">
-        <div className="flex justify-between mx-4 mt-4 mb-4">
+        <div className="flex justify-between mx-4  mb-4">
           <div className="flex">
-            <div >
+            <div className="mt-4">
               <ProductLogo />
             </div>
-            <div>
-              <h1 className="text-3xl flex text-center mt-1 ml-4 text-blue-900 font-semibold">
-                //Code Editor
-              </h1>
+            <div className="mt-4 ml-10">
+            <TypeAnimation className="Typewriter"
+              sequence={[
+                "Code Editor",
+                2000,
+                "Code Editor HTML",
+                2000,
+                "Code Editor CSS",
+                2000,
+                "Code Editor JS",
+                2000,
+              ]}
+              wrapper="span"
+              speed={50}
+              style={{ fontSize: "30px", color: '#0e3b82', fontWeight: 'bold'}}
+              repeat={Infinity}
+            />
             </div>
           </div>
-          <div></div>
-          <div className="flex">
+          <div className="flex mt-4">
             <div>
               <AwesomeButton
                 style={{
@@ -44,7 +82,7 @@ const ModalCodeEdit: React.FC<ModalProps> = ({ setShowCodeEditor }) => {
                 // onReleased={()=>{createHTMLFile("file")}}
                 // onReleased={()=>{navigate("/crunchCode")}}
                 onPress={() => {
-                  setShowCodeEditor(false);
+                   createHTMLFile("file")
                 }}
                 type="primary"
               >
