@@ -64,6 +64,7 @@ function SandboxTopBar() {
             codeMutation.mutate();
           }}
           disabled={!sandbox.name}
+          id="ServerRunButton"
         >
           {codeMutation.isLoading ? (
             <LoadingIcon className="animate-spin h-4 w-" />
