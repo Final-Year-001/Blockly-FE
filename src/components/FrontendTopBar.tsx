@@ -18,6 +18,8 @@ import { Link } from "react-router-dom";
 import { AwesomeButton, AwesomeButtonProgress} from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import { useNavigate } from "react-router-dom";
+import ModalCodeEdit from "../pages/codeExplain/ModalCode";
+import { useState } from "react";
 
 function logout(){
   console.log("Works");
@@ -28,26 +30,8 @@ function logout(){
 function FrontendTopBar() {
   let [workAreaSize, setworkAreaSize] = useRecoilState(codeAtom);
   let [code, setCode] = useRecoilState(codeAtom);
+  const [showCodeEditor, setShowCodeEditor] = useState(false);
   const navigate = useNavigate();
-
-  function createHTMLFile(fileName : any) {
-    // Create a Blob with the HTML content
-    const blob = new Blob([code], { type: 'text/html' });
-  
-    // Create an object URL for the Blob
-    const url = URL.createObjectURL(blob);
-  
-    // Create an anchor element to trigger the download
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = fileName;
-  
-    // Simulate a click on the anchor to trigger the download
-    a.click();
-  
-    // Revoke the object URL to free up resources
-    // URL.revokeObjectURL(url);
-  }
 
   return (
     <div className="flex w-full justify-between items-center p-3">
@@ -81,7 +65,8 @@ function FrontendTopBar() {
            marginRight: '10px'        
         }} 
         // onReleased={()=>{createHTMLFile("file")}}
-        onReleased={()=>{navigate("/crunchCode")}}
+        // onReleased={()=>{navigate("/crunchCode")}}
+        onPress={()=>{setShowCodeEditor(true)}}
         type="primary">
           Preview Code
         </AwesomeButton>
@@ -120,6 +105,7 @@ function FrontendTopBar() {
           Logout
         </AwesomeButton>
       </div>
+      {showCodeEditor && <ModalCodeEdit setShowCodeEditor={setShowCodeEditor}/>}
     </div>
   );
 }

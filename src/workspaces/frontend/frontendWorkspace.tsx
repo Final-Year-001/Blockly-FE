@@ -5,17 +5,16 @@ import { javascriptGenerator } from "blockly/javascript";
 import { Card } from "@material-tailwind/react";
 import { FETheme } from "../../themes/FETheme";
 import frontendToolboxCategories from "../../toolbox/frontend";
-import '../../themes/renderer/CustomRender'
+import "../../themes/renderer/CustomRender";
 import CustomCategory from "../../themes/toolbox/customCats";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { FEOutAtom } from "../../state/FEOutputCode";
-
 
 // Renderers = minimalist /zelos / thrasos / geras
 
 const workspaceConfiguration = {
   theme: FETheme,
-  renderer: "custom_renderer", 
+  renderer: "custom_renderer",
   toolbar: CustomCategory,
   grid: {
     spacing: 20,
@@ -24,7 +23,7 @@ const workspaceConfiguration = {
     colour: "#",
     snap: true,
   },
-  zoom:{
+  zoom: {
     controls: true,
     wheel: true,
     startScale: 0.8,
@@ -32,15 +31,13 @@ const workspaceConfiguration = {
     minScale: 0.1,
     scaleSpeed: 1.2,
     pinch: true,
-    trashcan: true
-    },
+    trashcan: true,
+  },
 
-    toolboxConfiguration: {
-      hidden: true // Hide the toolbox
-    }
+  toolboxConfiguration: {
+    hidden: true, // Hide the toolbox
+  },
 };
-
-
 
 interface FrontendWorkspaceProps {
   readonly onCodeChange?: (code: string, workspace: WorkspaceSvg) => void;
@@ -58,15 +55,13 @@ function FrontendWorkspace({
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
     javascriptGenerator.addReservedWords("code");
-    let code = javascriptGenerator.workspaceToCode(workspace);
-    
+    const code = javascriptGenerator.workspaceToCode(workspace);
+
     SetFEoutCode(code);
     // console.log("FROM FEWORKSPACE", FEoutCode)
 
     onCodeChange?.(code, workspace);
   };
-
-
 
   return (
     <Card

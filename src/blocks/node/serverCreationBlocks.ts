@@ -22,9 +22,9 @@ Blockly.Blocks["express_server_creation"] = {
     this.appendValueInput("START_SERVER")
       .setCheck("Boolean")
       .appendField("Start server?");
-    this.setColour(65);
     this.setTooltip("Creates a new Express server instance.");
     this.setHelpUrl("");
+    this.setStyle("Backend_Components_blocks");
   },
 };
 
@@ -85,7 +85,7 @@ Blockly.Blocks["session_middleware"] = {
       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
     );
     this.setHelpUrl("");
-    this.setColour(130);
+    this.setStyle("Session_Handling_blocks");
     this.setPreviousStatement(true, "middleware");
     this.setNextStatement(true, "middleware");
   },
@@ -104,7 +104,7 @@ javascriptGenerator.forBlock["session_middleware"] = function (
     app.use(session(${
       options
         ? options
-        : `{secret: ${secret || "ASKDJASINAAKSJD"}, resave: false,
+        : `{secret: ${secret || '"ASKDJASINAAKSJD"'}, resave: false,
            saveUninitialized: false, }`
     }));
   `;
@@ -115,25 +115,54 @@ javascriptGenerator.forBlock["session_middleware"] = function (
 Blockly.Blocks["create_session"] = {
   init: function () {
     this.appendDummyInput().appendField("Create Session");
-    this.appendDummyInput()
-      .appendField("Path to user ID:")
-      .appendField(new Blockly.FieldTextInput(), "userIdPath");
+    this.appendValueInput("userDetails")
+      .setCheck(null)
+      .appendField("user details");
     this.setTooltip("this will create a session for the user");
     this.setHelpUrl("");
-    this.setColour(130);
+    this.setStyle("Session_Handling_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
 };
 
-javascriptGenerator.forBlock["create_session"] = function (block: any) {
-  const userIdPath = block.getFieldValue("userIdPath");
+javascriptGenerator.forBlock["create_session"] = function (
+  block: any,
+  generator: any
+) {
+  const userDetails = generator.valueToCode(block, "userDetails", 0);
   // check whether the options are in expected type
 
-  const code = `req.session.user = ${userIdPath}
+  const code = `req.session.user = ${userDetails};
   req.session.save();
   `;
 
+  return code;
+};
+
+Blockly.Blocks["set_session_to_variable"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Set session to")
+      .appendField(new Blockly.FieldVariable("item"), "var");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle("Session_Handling_blocks");
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+javascriptGenerator.forBlock["set_session_to_variable"] = function (
+  block: any,
+  generator: any
+) {
+  const variable_name = generator.nameDB_.getName(
+    block.getFieldValue("var"),
+    "VARIABLE"
+  );
+
+  const code = `${variable_name} = req.session;\n`;
   return code;
 };
 
@@ -147,7 +176,7 @@ Blockly.Blocks["has_session"] = {
       .setCheck(null)
       .appendField("if unavailable");
     this.setHelpUrl("");
-    this.setColour(130);
+    this.setStyle("Session_Handling_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -172,11 +201,25 @@ javascriptGenerator.forBlock["has_session"] = function (
   return code;
 };
 
+Blockly.Blocks["save_session"] = {
+  init: function () {
+    this.appendDummyInput().appendField("SAVE SESSION");
+    this.setHelpUrl("");
+    this.setStyle("Session_Handling_blocks");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["save_session"] = function () {
+  return `req.session.save();`;
+};
+
 Blockly.Blocks["end_session"] = {
   init: function () {
     this.appendDummyInput().appendField("END SESSION");
     this.setHelpUrl("");
-    this.setColour(130);
+    this.setStyle("Session_Handling_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },

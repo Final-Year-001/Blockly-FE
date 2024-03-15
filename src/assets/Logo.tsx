@@ -1,4 +1,4 @@
-import logoImage from "./logo.png";
+import logoImage from "./logoTrans.png";
 
 const defailtText = 3;
 

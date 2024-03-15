@@ -16,11 +16,19 @@ export const sessionHandlingCategory = {
     },
     {
       kind: "block",
-      type: "has_session",
+      type: "set_session_to_variable",
+    },
+    {
+      kind: "block",
+      type: "save_session",
     },
     {
       kind: "block",
       type: "end_session",
+    },
+    {
+      kind: "block",
+      type: "has_session",
     },
   ],
 };
