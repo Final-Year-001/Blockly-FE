@@ -192,7 +192,7 @@ function FrontendPage() {
   const injectCode = (code: string, workspace: WorkspaceSvg) => {
     let json = Blockly.serialization.workspaces.save(workspace);
 
-    if (_.isEqual(json, workspaceState.current)) return;
+    if (_.isEqual(stripId(json), stripId(workspaceState.current))) return;
 
     setLogs([])
 
