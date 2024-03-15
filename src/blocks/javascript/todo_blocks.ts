@@ -6,15 +6,21 @@ Blockly.Blocks['create_task'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Make the button add the task");
-        this.appendValueInput("button")
+    this.appendValueInput("button")
         .setCheck("el_id_input")
         .appendField("Name of the add button");
-        this.appendValueInput("checkboxId")
-      .setCheck("el_id_input")
-      .appendField("Name of the checkbox");
-      this.appendValueInput("deletebtn")
-      .setCheck("el_id_input")
-      .appendField("Name of the delete button");
+    this.appendDummyInput()
+        .appendField("Match the input-box id")
+        .appendField(new Blockly.FieldTextInput('taskInputId'), 'taskInputId');
+    this.appendDummyInput()
+        .appendField("Match the list id")
+        .appendField(new Blockly.FieldTextInput('taskListId'), 'taskListId');
+    this.appendDummyInput()
+        .appendField("Name of the checkbox")
+        .appendField(new Blockly.FieldTextInput('checkboxId'), 'checkboxId');
+    this.appendDummyInput()
+        .appendField("Name of the delete button")
+        .appendField(new Blockly.FieldTextInput('deleteButtonId'), 'deletebtn');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('JS_Step5');
@@ -24,13 +30,15 @@ Blockly.Blocks['create_task'] = {
 
 javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any) {
   var buttonId = generator.valueToCode(block, 'button', Order.ATOMIC);
-  var deletebtnId = generator.valueToCode(block, 'deletebtn', Order.ATOMIC);
-  var checkboxId = generator.valueToCode(block, 'checkboxId', Order.ATOMIC);
+  var taskInputId = block.getFieldValue('taskInputId');
+  var taskListId = block.getFieldValue('taskListId');
+  var checkboxId = block.getFieldValue('checkboxId');
+  var deletebtnId = block.getFieldValue('deletebtn');
   var code = `
       document.addEventListener("DOMContentLoaded", function() {
           document.getElementById(${buttonId}).addEventListener("click", function() {
-              var taskInput = document.getElementById("taskInput");
-              var taskList = document.getElementById("taskList");
+              var taskInput = document.getElementById('${taskInputId}');
+              var taskList = document.getElementById('${taskListId}');
 
               if (taskInput.value === "") {
                   alert("Please enter a task!");
@@ -40,10 +48,10 @@ javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any)
               var li = document.createElement("li");
               var checkbox = document.createElement("input");
               checkbox.type = "checkbox";
-              checkbox.id = ${checkboxId};
+              checkbox.id = '${checkboxId}';
               var deleteButton = document.createElement("button");
               deleteButton.textContent = "Delete";
-              deleteButton.id = ${deletebtnId};
+              deleteButton.id = '${deletebtnId}';
 
               li.appendChild(checkbox);
               li.appendChild(document.createTextNode(taskInput.value + ' '));
@@ -57,6 +65,7 @@ javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any)
   return code;
 };
 
+
 //Complete Task Block
 Blockly.Blocks['toggle_checkbox'] = {
   init: function() {
@@ -64,7 +73,7 @@ Blockly.Blocks['toggle_checkbox'] = {
         .appendField("Make the box tick when clicked");
     this.appendValueInput("checkbox")
         .setCheck("el_id_input")
-        .appendField("Name of the checkbox");
+        .appendField("Match the checkbox name");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('JS_Step5');
@@ -97,7 +106,7 @@ Blockly.Blocks['delete_task'] = {
         .appendField("Make the button erase the task");
     this.appendValueInput("button")
         .setCheck("el_id_input")
-        .appendField("Name of the delete button");
+        .appendField("Match the delete button name");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('JS_Step5');
