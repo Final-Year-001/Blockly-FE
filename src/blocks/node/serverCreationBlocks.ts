@@ -22,9 +22,9 @@ Blockly.Blocks["express_server_creation"] = {
     this.appendValueInput("START_SERVER")
       .setCheck("Boolean")
       .appendField("Start server?");
-    this.setColour(65);
     this.setTooltip("Creates a new Express server instance.");
     this.setHelpUrl("");
+    this.setStyle("Backend_Components_blocks");
   },
 };
 
@@ -85,7 +85,7 @@ Blockly.Blocks["session_middleware"] = {
       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
     );
     this.setHelpUrl("");
-    this.setColour(130);
+    this.setStyle("Session_Handling_blocks");
     this.setPreviousStatement(true, "middleware");
     this.setNextStatement(true, "middleware");
   },
@@ -120,7 +120,7 @@ Blockly.Blocks["create_session"] = {
       .appendField("user details");
     this.setTooltip("this will create a session for the user");
     this.setHelpUrl("");
-    this.setColour(130);
+    this.setStyle("Session_Handling_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -147,7 +147,7 @@ Blockly.Blocks["set_session_to_variable"] = {
       .appendField(new Blockly.FieldVariable("item"), "var");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(130);
+    this.setStyle("Session_Handling_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },
@@ -176,7 +176,7 @@ Blockly.Blocks["has_session"] = {
       .setCheck(null)
       .appendField("if unavailable");
     this.setHelpUrl("");
-    this.setColour(130);
+    this.setStyle("Session_Handling_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -205,7 +205,7 @@ Blockly.Blocks["save_session"] = {
   init: function () {
     this.appendDummyInput().appendField("SAVE SESSION");
     this.setHelpUrl("");
-    this.setColour(130);
+    this.setStyle("Session_Handling_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -219,7 +219,7 @@ Blockly.Blocks["end_session"] = {
   init: function () {
     this.appendDummyInput().appendField("END SESSION");
     this.setHelpUrl("");
-    this.setColour(130);
+    this.setStyle("Session_Handling_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },

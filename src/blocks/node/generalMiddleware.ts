@@ -12,7 +12,7 @@ Blockly.Blocks["server_helmet_guard"] = {
       "This block will secure your server from various possible vulnarabilities by securing request headers "
     );
     this.setHelpUrl("");
-    this.setColour(160);
+    this.setStyle("General_Middlewares_blocks");
     this.setPreviousStatement(true, "middleware");
     this.setNextStatement(true, "middleware");
   },
@@ -40,7 +40,7 @@ Blockly.Blocks["compression_middleware"] = {
       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
     );
     this.setHelpUrl("");
-    this.setColour(160);
+    this.setStyle("General_Middlewares_blocks");
     this.setPreviousStatement(true, "middleware");
     this.setNextStatement(true, "middleware");
   },
@@ -74,7 +74,7 @@ Blockly.Blocks["cors_middleware"] = {
       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
     );
     this.setHelpUrl("");
-    this.setColour(160);
+    this.setStyle("General_Middlewares_blocks");
     this.setPreviousStatement(true, "middleware");
     this.setNextStatement(true, "middleware");
   },
@@ -124,7 +124,7 @@ Blockly.Blocks["express_json_middleware"] = {
       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
     );
     this.setHelpUrl("");
-    this.setColour(160);
+    this.setStyle("General_Middlewares_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -153,7 +153,7 @@ Blockly.Blocks["express_URLEncoder_middleware"] = {
       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
     );
     this.setHelpUrl("");
-    this.setColour(160);
+    this.setStyle("General_Middlewares_blocks");
     this.setPreviousStatement(true, "middleware");
     this.setNextStatement(true, "middleware");
   },
@@ -182,7 +182,7 @@ Blockly.Blocks["express_text_middleware"] = {
       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
     );
     this.setHelpUrl("");
-    this.setColour(160);
+    this.setStyle("General_Middlewares_blocks");
     this.setPreviousStatement(true, "middleware");
     this.setNextStatement(true, "middleware");
   },
@@ -211,7 +211,7 @@ Blockly.Blocks["express_raw_middleware"] = {
       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
     );
     this.setHelpUrl("");
-    this.setColour(160);
+    this.setStyle("General_Middlewares_blocks");
     this.setPreviousStatement(true, "middleware");
     this.setNextStatement(true, "middleware");
   },
