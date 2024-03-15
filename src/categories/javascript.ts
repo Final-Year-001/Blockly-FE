@@ -6,14 +6,16 @@ export const javascriptCategory = {
   kind: "category",
   name: "JavaScript",
   colour: "#f39c12",
+  style: "JS_Beg" ,
   contents: [
     {
       kind:"block",
       type: "javascript",
+      style: "JS_Beg" , 
       icons: { 
         comment: {
           text: "JavaScript code should be wrapped in this tag",
-          pinned: true,
+          pinned: false,
           height: 80,
           width: 160
         }
@@ -23,6 +25,7 @@ export const javascriptCategory = {
       kind: "category",
       name: "Get Started",
       colour: "#E1AD01",
+      style: "JS_Step1" , 
       contents: [
         {
           kind:"block",
@@ -30,7 +33,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Create a custom variable",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -42,7 +45,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Create an element ID",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -54,7 +57,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Log a message to the console",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -66,7 +69,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Print the page",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -78,7 +81,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Single-line comment",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -90,7 +93,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Multi-line comment",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -100,8 +103,9 @@ export const javascriptCategory = {
     },
     {
       kind: "category",
-      name: "DOM Manipulation",
+      name: "Action Blocks",
       colour: "#E1AD01",
+      style: "JS_Step2" , 
       contents: [
         {
           kind: "block",
@@ -109,7 +113,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Change the content of an HTML element by ID",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -121,7 +125,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Generate a custom alert",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -133,7 +137,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Attach an event listener to an HTML element",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -145,7 +149,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Show or hide an HTML element",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -157,7 +161,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Create a custom function",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -169,6 +173,7 @@ export const javascriptCategory = {
       kind: "category",
       name: "Sounds & Images",
       colour: "#E1AD01",
+      style: "JS_Step3" , 
       contents: [
         {
           kind: "block",
@@ -176,7 +181,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Play a sound when a button is clicked",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -188,7 +193,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Upload and display an image",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -200,7 +205,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Remove the image with a button click",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -210,8 +215,9 @@ export const javascriptCategory = {
     },
     {
       kind: "category",
-      name: "Form Manipulation",
+      name: "Create A Form",
       colour: "#E1AD01",
+      style: "JS_Step4" , 
       contents: [
         {
           kind: "block",
@@ -219,7 +225,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Handle form submission",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -231,7 +237,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Set the form data to a variable",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -243,7 +249,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Get the data to the backend",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -255,90 +261,19 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Clear all input fields in a form",
-              pinned: true,
-              height: 80,
-              width: 160
-            }
-          }, 
-        }, 
-        {
-          kind:"block",
-          type: "auto_fill_form_fields",
-          icons: {
-            comment: {
-              text: "Auto fill name and age",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
           }, 
         },
-        {
-          kind: "block",
-         type: "validate_and_handle_error", 
-         icons: {
-          comment: {
-            text: "Validate the name and age",
-            pinned: true,
-            height: 80,
-            width: 160
-          }
-        }, 
-        },  
-        {
-         kind: "block",
-         type: "custom_condition_input_length",
-         icons: {
-          comment: {
-            text: "Name condition",
-            pinned: true,
-            height: 80,
-            width: 160
-          }
-        }, 
-       }, 
-       {
-        kind: "block",
-        type: "custom_condition_age",
-        icons: {
-          comment: {
-            text: "Age condition",
-            pinned: true,
-            height: 80,
-            width: 160
-          }
-        }, 
-      }, 
-       {
-         kind: "block", 
-         type: "change_form_background_color",
-         icons: {
-          comment: {
-            text: "Change the background color of a form",
-            pinned: true,
-            height: 80,
-            width: 160
-          }
-        }, 
-       }, 
-       {
-         kind: "block",
-         type: "show_data_in_alert_custom",
-         icons: {
-          comment: {
-            text: "Show collected data in an alert",
-            pinned: true,
-            height: 80,
-            width: 160
-          }
-        }, 
-       },
       ]
     },
     {
       kind: "category",
-      name: "Todo List",
+      name: "Create A Todo List",
       colour: "#E1AD01",
+      style: "JS_Step5" , 
       contents: [
         {
           kind:"block",
@@ -346,7 +281,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Create a new task",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -357,8 +292,8 @@ export const javascriptCategory = {
           type: "toggle_checkbox",
           icons: {
             comment: {
-              text: "Striked through a task",
-              pinned: true,
+              text: "Strike through a task",
+              pinned: false,
               height: 80,
               width: 160
             }
@@ -370,7 +305,7 @@ export const javascriptCategory = {
           icons: {
             comment: {
               text: "Delete a task",
-              pinned: true,
+              pinned: false,
               height: 80,
               width: 160
             }

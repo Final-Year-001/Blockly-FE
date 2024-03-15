@@ -59,7 +59,7 @@ function LessonCreator() {
     onSuccess: () => {
       setSaveMessage({
         show: true,
-        message: "All the changes are saved.",
+        message: "All changes are saved.",
         loading: false,
       });
     },

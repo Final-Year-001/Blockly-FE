@@ -15,3 +15,108 @@
 svg[display="none"] {
   display: none;
 }
+
+.blocklyMainBackground {
+  stroke: none !important;
+}
+
+.blocklyTreeLabel {
+  color: white;
+}
+.blocklyToolboxContents {
+
+}
+.blocklyTreeRow {
+  padding-bottom: 27px;
+  padding-top: 5px;
+  /* background-color: rgb(28, 28, 28); */
+  /* margin-bottom: 2px; */
+  border-radius: 4px;
+}
+
+.blocklyToolboxCategory{
+  /* background-color: rgb(125, 125, 125); */
+  padding-left : 5px;
+  padding-right : 5px;
+  padding-bottom : 2px;
+  /* background-color: red; */
+}
+
+.blocklyTreeRow input{
+  border: 1px solid #ccc;
+  padding: 3px;
+  width: 130px;
+  border-style: none;
+  border-radius: 4px;
+  color: black;
+}
+
+.blocklyFlyoutBackground {
+  backdrop-filter: blur(10px);
+}
+
+.blocklyToolboxDiv {
+  background-color: rgba(2, 16, 30, 0.744); 
+  /* background-color: rgba(0, 1, 2, 0.744);  */
+  backdrop-filter: blur(10px); /* Apply a blur effect */
+  border-radius: 5px;
+}
+
+.aws-btn {
+  --button-default-height: 38px;
+  --button-default-font-size: 16px;
+  --button-default-border-radius: 8px;
+  --button-horizontal-padding: 16px;
+  --button-raise-level: 5px;
+  --button-hover-pressure: 1;
+  --transform-speed: 0.15s;
+  --button-primary-color: #39e51e;
+  --button-primary-color-dark: #1360a4;
+  --button-primary-color-light: #ffffff;
+  --button-primary-color-hover: #187bd1;
+  --button-primary-color-active: #166dba;
+  --button-primary-border: none;
+  --button-secondary-color: #f2f6f9;
+  --button-secondary-color-dark: #1360a4;
+  --button-secondary-color-light: #1e88e5;
+  --button-secondary-color-hover: #e1eaf1;
+  --button-secondary-color-active: #cfdee9;
+  --button-secondary-border: 2px solid #1e88e5;
+  --button-anchor-color: #0e4f88;
+  --button-anchor-color-dark: #072743;
+  --button-anchor-color-light: #ffffff;
+  --button-anchor-color-hover: #0d4a7f;
+  --button-anchor-color-active: #0c4271;
+  --button-anchor-border: none;
+  --button-danger-color: #c42e2e;
+  --button-danger-color-dark: #861f1f;
+  --button-danger-color-light: #ffffff;
+  --button-danger-color-hover: #bc2c2c;
+  --button-danger-color-active: #af2929;
+  --button-danger-border: none;
+  }
+
+  .index-module_type__E-SaG::first-word {
+    color: red;
+  }
+
+
+  .blocklyCommentTextarea {
+    background-color: rgba(255, 255, 255, 0.4); /* Transparent white color */
+    font-size: 20px;
+    color: black;
+    border-radius: 5px;
+    /* caret-color: transparent; */
+}
+
+.blocklyCommentTextarea {
+  background-color: rgba(255, 255, 255, 0.4); /* Transparent white color */
+  font-size: 20px;
+  color: black;
+  border-radius: 5px;
+  pointer-events: none; /* Disable pointer events */
+  user-select: none; /* Disable user selection */
+  caret-color: transparent;
+  overflow: hidden; /* Hide scrollbar */
+}
+

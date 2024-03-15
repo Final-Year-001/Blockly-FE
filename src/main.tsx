@@ -13,6 +13,9 @@ import LoginPage from "./pages/login/login";
 import GetStarted from "./pages/documents/getstarted";
 import LessonCreator from "./pages/lesson-creator";
 import JavascriptDoc from "./pages/documents/javascript";
+import HTMLDoc from "./pages/documents/html";
+import CSSDoc from "./pages/documents/css";
+import CodeSplitter from "./pages/codeExplain/CodeSplitter";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -50,6 +53,18 @@ const router = createBrowserRouter([
   {
     path: "/doc-js",
     element: <JavascriptDoc />
+  },
+  {
+    path: "/doc-html",
+    element: <HTMLDoc />
+  },
+  {
+    path: "/doc-cdd",
+    element: <CSSDoc />
+  },
+  {
+    path: "/crunchCode",
+    element: <CodeSplitter />
   },
   {
     path: "/*",

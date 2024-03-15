@@ -5,32 +5,40 @@ import { Order, javascriptGenerator } from "blockly/javascript";
 Blockly.Blocks['create_task'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Add Task on Button Click");
-        this.appendValueInput("button")
+        .appendField("Make the button add the task");
+    this.appendValueInput("button")
         .setCheck("el_id_input")
-        .appendField("Add Button ID");
-        this.appendValueInput("checkboxId")
-      .setCheck("el_id_input")
-      .appendField("Checkbox ID");
-      this.appendValueInput("deletebtn")
-      .setCheck("el_id_input")
-      .appendField("Delete Button ID");
+        .appendField("Name of the add button");
+    this.appendDummyInput()
+        .appendField("Match the input-box id")
+        .appendField(new Blockly.FieldTextInput('taskInputId'), 'taskInputId');
+    this.appendDummyInput()
+        .appendField("Match the list id")
+        .appendField(new Blockly.FieldTextInput('taskListId'), 'taskListId');
+    this.appendDummyInput()
+        .appendField("Name of the checkbox")
+        .appendField(new Blockly.FieldTextInput('checkboxId'), 'checkboxId');
+    this.appendDummyInput()
+        .appendField("Name of the delete button")
+        .appendField(new Blockly.FieldTextInput('deleteButtonId'), 'deletebtn');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('JS_Step5');
     this.setTooltip("Add a task when a button is clicked.");
   }
 };
 
 javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any) {
   var buttonId = generator.valueToCode(block, 'button', Order.ATOMIC);
-  var deletebtnId = generator.valueToCode(block, 'deletebtn', Order.ATOMIC);
-  var checkboxId = generator.valueToCode(block, 'checkboxId', Order.ATOMIC);
+  var taskInputId = block.getFieldValue('taskInputId');
+  var taskListId = block.getFieldValue('taskListId');
+  var checkboxId = block.getFieldValue('checkboxId');
+  var deletebtnId = block.getFieldValue('deletebtn');
   var code = `
       document.addEventListener("DOMContentLoaded", function() {
           document.getElementById(${buttonId}).addEventListener("click", function() {
-              var taskInput = document.getElementById("taskInput");
-              var taskList = document.getElementById("taskList");
+              var taskInput = document.getElementById('${taskInputId}');
+              var taskList = document.getElementById('${taskListId}');
 
               if (taskInput.value === "") {
                   alert("Please enter a task!");
@@ -40,10 +48,10 @@ javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any)
               var li = document.createElement("li");
               var checkbox = document.createElement("input");
               checkbox.type = "checkbox";
-              checkbox.id = ${checkboxId};
+              checkbox.id = '${checkboxId}';
               var deleteButton = document.createElement("button");
               deleteButton.textContent = "Delete";
-              deleteButton.id = ${deletebtnId};
+              deleteButton.id = '${deletebtnId}';
 
               li.appendChild(checkbox);
               li.appendChild(document.createTextNode(taskInput.value + ' '));
@@ -51,26 +59,24 @@ javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any)
         
               taskList.appendChild(li);
               taskInput.value = "";
-
-              var audio = new Audio('../src/sounds/add.wav');
-              audio.play();
           });
       });
       `;
   return code;
 };
 
+
 //Complete Task Block
 Blockly.Blocks['toggle_checkbox'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Toggle Checkbox on Click");
+        .appendField("Make the box tick when clicked");
     this.appendValueInput("checkbox")
         .setCheck("el_id_input")
-        .appendField("Checkbox ID");
+        .appendField("Match the checkbox name");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('JS_Step5');
     this.setTooltip("Toggle a checkbox when clicked.");
   }
 };
@@ -78,14 +84,17 @@ Blockly.Blocks['toggle_checkbox'] = {
 javascriptGenerator.forBlock['toggle_checkbox'] = function(block:any, generator:any) {
   var checkboxId = generator.valueToCode(block, 'checkbox', Order.ATOMIC);
 
-  var code = `
-    var listItem = document.getElementById(${checkboxId}).parentNode;
-    if (document.getElementById(${checkboxId}).checked) {
-      listItem.style.textDecoration = "line-through";
-    } else {
-      listItem.style.textDecoration = "none";
+  var code =
+  `document.addEventListener("change", function(event) {
+    if (event.target && event.target.type === "checkbox") {
+      var listItem = event.target.parentNode;
+      if (event.target.checked) {
+        listItem.style.textDecoration = "line-through";
+      } else {
+        listItem.style.textDecoration = "none";
+      }
     }
-  `;
+  });`
   
   return code;
 };
@@ -94,13 +103,13 @@ javascriptGenerator.forBlock['toggle_checkbox'] = function(block:any, generator:
 Blockly.Blocks['delete_task'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Delete Task on Button Click");
+        .appendField("Make the button erase the task");
     this.appendValueInput("button")
         .setCheck("el_id_input")
-        .appendField("Button ID");
+        .appendField("Match the delete button name");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle('JS_Step5');
     this.setTooltip("Delete a task when a button is clicked.");
   }
 };
@@ -108,14 +117,16 @@ Blockly.Blocks['delete_task'] = {
 javascriptGenerator.forBlock['delete_task'] = function(block:any, generator:any) {
   var buttonId = generator.valueToCode(block, 'button', Order.ATOMIC);
 
-  var code = `
-  var listItem = document.getElementById(${buttonId}).parentNode;
-  var taskList = listItem.parentNode;
-  taskList.removeChild(listItem);
+  var code = 
+  `document.addEventListener("click", function(event) {
+    if (event.target && event.target.id === ${buttonId}) {
+      var listItem = event.target.parentNode;
+      var taskList = listItem.parentNode;
+      taskList.removeChild(listItem);
+    }
+  });`
 
-  var audio = new Audio('../src/sounds/delete.wav');
-  audio.play();
-`;
-
+  // var audio = new Audio('../src/sounds/delete.mp3');
+  // audio.play();
 return code;
 };
