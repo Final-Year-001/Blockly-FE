@@ -11,25 +11,27 @@ import {
 import { htmlCategory } from "../categories/html";
 import { javascriptCategory } from "../categories/javascript";
 import { mathCategory } from "../categories/math";
-import '@blockly/toolbox-search';
+import "@blockly/toolbox-search";
 
 const frontendToolboxCategories = {
   kind: "categoryToolbox",
   contents: [
     {
-      'kind': 'search',
-      'name': 'Search',
-      'contents': [],
+      kind: "search",
+      name: "Search",
+      contents: [],
     },
-    { kind: "sep" ,
-    blockxml: "<block type='math_arithmetic'><field name='OP'>ADD</field></block>",
-    gap: 10
-  },
+    {
+      kind: "sep",
+      blockxml:
+        "<block type='math_arithmetic'><field name='OP'>ADD</field></block>",
+      gap: 10,
+    },
     htmlCategory,
     cssCategory,
     javascriptCategory,
-    { kind: "sep"},
-    { kind: "sep"},
+    { kind: "sep" },
+    { kind: "sep" },
     commonCategory,
     loopsCategory,
     variablesCategory,
@@ -40,7 +42,5 @@ const frontendToolboxCategories = {
     colorCategory,
   ],
 };
-
-
 
 export default frontendToolboxCategories;
