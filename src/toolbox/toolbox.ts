@@ -11,10 +11,22 @@ import { mathCategory } from "../categories/math";
 import { generalMiddlewareCategory } from "../categories/middlewares";
 import { nodeCategory } from "../categories/node";
 import { sessionHandlingCategory } from "../categories/sessionHandling";
+import "@blockly/toolbox-search";
 
 const toolboxConfig = {
   kind: "categoryToolbox",
   contents: [
+    {
+      kind: "search",
+      name: "Search",
+      contents: [],
+    },
+    {
+      kind: "sep",
+      blockxml:
+        "<block type='math_arithmetic'><field name='OP'>ADD</field></block>",
+      gap: 10,
+    },
     nodeCategory,
     generalMiddlewareCategory,
     sessionHandlingCategory,

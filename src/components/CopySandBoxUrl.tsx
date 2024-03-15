@@ -23,7 +23,10 @@ function CopySandBoxUrl() {
     setTimeout(() => setCopied(false), 1000);
   };
   return (
-    <div className="px-1 py-2 bg flex justify-between items-center">
+    <div
+      id="GetUrlSection"
+      className="px-1 py-2 bg flex justify-between items-center"
+    >
       <Button
         onClick={handleCopy}
         variant="filled"
