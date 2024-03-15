@@ -10,7 +10,6 @@ import CustomCategory from "../../themes/toolbox/customCats";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { FEOutAtom } from "../../state/FEOutputCode";
 
-
 // Renderers = minimalist /zelos / thrasos / geras
 
 const workspaceConfiguration = {

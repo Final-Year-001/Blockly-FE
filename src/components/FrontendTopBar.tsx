@@ -18,6 +18,8 @@ import { Link } from "react-router-dom";
 import { AwesomeButton, AwesomeButtonProgress} from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import { useNavigate } from "react-router-dom";
+import ModalCodeEdit from "../pages/codeExplain/ModalCode";
+import { useState } from "react";
 
 function logout(){
   console.log("Works");
@@ -28,6 +30,7 @@ function logout(){
 function FrontendTopBar() {
   let [workAreaSize, setworkAreaSize] = useRecoilState(codeAtom);
   let [code, setCode] = useRecoilState(codeAtom);
+  const [showCodeEditor, setShowCodeEditor] = useState(false);
   const navigate = useNavigate();
 
   function createHTMLFile(fileName : any) {
@@ -81,7 +84,8 @@ function FrontendTopBar() {
            marginRight: '10px'        
         }} 
         // onReleased={()=>{createHTMLFile("file")}}
-        onReleased={()=>{navigate("/crunchCode")}}
+        // onReleased={()=>{navigate("/crunchCode")}}
+        onPress={()=>{setShowCodeEditor(true)}}
         type="primary">
           Preview Code
         </AwesomeButton>
@@ -120,6 +124,7 @@ function FrontendTopBar() {
           Logout
         </AwesomeButton>
       </div>
+      {showCodeEditor && <ModalCodeEdit setShowCodeEditor={setShowCodeEditor}/>}
     </div>
   );
 }
