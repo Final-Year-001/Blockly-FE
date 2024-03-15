@@ -21,7 +21,7 @@ Blockly.Blocks["api_method"] = {
       .appendField(new Blockly.FieldTextInput("/"), "path");
     this.setPreviousStatement(true, "route");
     this.setNextStatement(true, "route");
-    this.setColour(230);
+    this.setStyle("Backend_Components_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },
@@ -65,7 +65,7 @@ Blockly.Blocks["get_request"] = {
       );
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle("Backend_Components_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },
@@ -97,7 +97,7 @@ Blockly.Blocks["respond_json"] = {
     this.appendValueInput("var").setCheck(null).appendField("respond with");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle("Backend_Components_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },
@@ -129,7 +129,7 @@ Blockly.Blocks["respond_with_status"] = {
       .appendField(new Blockly.FieldDropdown(statusOptions), "status");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setStyle("Backend_Components_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },

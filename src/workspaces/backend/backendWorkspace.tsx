@@ -2,9 +2,37 @@
 import { useRef } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { javascriptGenerator } from "blockly/javascript";
-
+import CustomCategory from "../../themes/toolbox/customCats";
 import { Card } from "@material-tailwind/react";
 import toolboxConfig from "../../toolbox/toolbox";
+import { BETheme } from "../../themes/BETheme";
+
+const workspaceConfiguration = {
+  theme: BETheme,
+  renderer: "custom_renderer",
+  toolbar: CustomCategory,
+  grid: {
+    spacing: 20,
+    length: 3,
+    // colour: "#ffffff",
+    colour: "#",
+    snap: true,
+  },
+  zoom: {
+    controls: true,
+    wheel: true,
+    startScale: 0.8,
+    maxScale: 3,
+    minScale: 0.1,
+    scaleSpeed: 1.2,
+    pinch: true,
+    trashcan: true,
+  },
+
+  toolboxConfiguration: {
+    hidden: true, // Hide the toolbox
+  },
+};
 interface BackendWorkspaceProps {
   onCodeChange?: (code: string, workspace: WorkspaceSvg) => void;
   initialState?: any;
@@ -37,15 +65,8 @@ function BackendWorkspace({
           toolboxConfiguration={toolboxConfig}
           initialJson={initialState}
           className="fill-height"
-          workspaceConfiguration={{
-            grid: {
-              spacing: 20,
-              length: 3,
-              colour: "#fff",
-              snap: true,
-            },
-          }}
           onWorkspaceChange={workspaceDidChange}
+          workspaceConfiguration={workspaceConfiguration}
         />
       ) : null}
     </Card>

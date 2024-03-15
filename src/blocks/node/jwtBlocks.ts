@@ -11,7 +11,7 @@ Blockly.Blocks["authenticationTocken_middleware"] = {
     this.appendValueInput("accessTokensecret")
       .setCheck("String")
       .appendField("Access Token Secret");
-    this.setColour(295);
+    this.setStyle("JWT_Authentication_blocks");
     this.setTooltip("Creates a new Express server instance.");
     this.setHelpUrl("");
     this.setPreviousStatement(true, null);
@@ -83,7 +83,7 @@ Blockly.Blocks["get_auth_object"] = {
       .setAlign(Blockly.inputs.Align.LEFT)
       .appendField("JWT auth object");
     this.setOutput(true, null);
-    this.setColour(295);
+    this.setStyle("JWT_Authentication_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },
@@ -104,7 +104,7 @@ Blockly.Blocks["get_hashed_password"] = {
       .appendField("Path to password:")
       .appendField(new Blockly.FieldTextInput(), "password");
     this.setOutput(true, null);
-    this.setColour(295);
+    this.setStyle("JWT_Authentication_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },
@@ -133,7 +133,7 @@ Blockly.Blocks["sign_jwt"] = {
       .setCheck("String")
       .appendField("Expires In");
     this.setOutput(true, null);
-    this.setColour(295);
+    this.setStyle("JWT_Authentication_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },
@@ -173,7 +173,7 @@ Blockly.Blocks["match_passwords"] = {
       .appendField("Path to hashed stored password:")
       .appendField(new Blockly.FieldTextInput(), "storedPassPath");
     this.setOutput(true, null);
-    this.setColour(295);
+    this.setStyle("JWT_Authentication_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },
