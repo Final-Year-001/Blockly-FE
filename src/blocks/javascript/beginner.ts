@@ -156,7 +156,7 @@ Blockly.Blocks['alert_block'] = {
   init: function() {
     this.appendValueInput("message")
         .setCheck(null)
-        .appendField("Show an alert when the button is clicked");
+        .appendField("Show this message when the button is clicked");
     this.appendValueInput("element")
         .setCheck("el_id_input")
         .appendField("Name of the button:");
@@ -190,7 +190,7 @@ javascriptGenerator.forBlock['alert_block'] = function(block: any, generator: an
 Blockly.Blocks['event_listener'] = {
   init: function () {
     this.appendDummyInput()
-      .appendField("Wait for something on the screen")
+      .appendField("Do this")
       .appendField(new Blockly.FieldDropdown([
         ["click", "click"],
         ["mouseover", "mouseover"],
@@ -198,10 +198,10 @@ Blockly.Blocks['event_listener'] = {
       ]), "event");
     this.appendValueInput("element")
       .setCheck("el_id_input")
-      .appendField("Name of the button");
+      .appendField("To this button(add the name)");
     this.appendStatementInput("handler")
       .setCheck(null)
-      .appendField("tasks to perform after");
+      .appendField("What happens after");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('JS_Step2');
