@@ -1,6 +1,12 @@
 import { useRef, useState, useEffect } from "react";
 import FrontendWorkspace from "../../workspaces/frontend/frontendWorkspace";
 import { ClipboardIcon } from "@heroicons/react/24/solid";
+import Editor from "@monaco-editor/react";
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-html";
+import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/ext-language_tools";
 import {
   Tabs,
   TabsHeader,
@@ -31,8 +37,10 @@ import HintComponent from "../../components/HintComponent";
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import StatusNoti from "./Status";
+
 import { useChildEvents } from "../../lib/iframe-communication/iframe-communication";
 import { ConsoleLogger, LogEvent } from "../../components/ConsoleLogger";
+
 
 function organizeImports(code: string) {
   // Split the code into lines
@@ -95,7 +103,7 @@ function FrontendPage() {
   const workspaceRef = useRef<any>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const debouncedWorkspace = useDebounce(workspaceState.current, 2000);
-  const [saveStatus, setSaveStatus] = useState('');
+  const [saveStatus, setSaveStatus] = useState("");
   const [isVisible, setIsVisible] = useState(true);
   const [saveMessage, setSaveMessage] = useState<{
     message: string;
@@ -136,7 +144,6 @@ function FrontendPage() {
     }, 5000);
     return () => clearTimeout(timeoutId);
   }, [saveMessage]);
-  
 
   const getProjectQuery = useQuery({
     queryKey: ["project"],
@@ -164,9 +171,6 @@ function FrontendPage() {
       setOutput(0.7);
     }
   }, [workAreaSize]);
-
-
-
 
   const checkIfStepComplete = (workspace: object) => {
     const curentStepToComplete = steps[currentStepNumber];
@@ -238,8 +242,23 @@ function FrontendPage() {
       label: "Code",
       value: "html",
       desc: (
-        <div className="whitespace-pre-line w-full h-full p-2 text-white">
-          <code>{code}</code>
+        <div className="whitespace-pre-line w-full h-full p-2">
+          {/* <code>{code}</code> */}
+
+          <AceEditor
+            height="100%"
+            width="100%"
+            value={code}
+            mode="html"
+            theme="monokai"
+            fontSize="20px"
+            highlightActiveLine={true}
+            setOptions={{
+              enableLiveAutocompletion: true,
+              showLineNumbers: true,
+              tabSize: 2,
+            }}
+          />
         </div>
       ),
     },
@@ -348,6 +367,7 @@ function FrontendPage() {
                 </Tab>
               ))}
             </TabsHeader>
+            {/* <TabsBody className="h-full   bg-black border rounded-xl hover:overflow-auto"> */}
             <TabsBody className="h-full   bg-black border rounded-xl hover:overflow-auto">
               {tabs.map(({ value, desc }) => (
                 <TabPanel className="m-0 p-1 h-full" key={value} value={value}>
@@ -402,11 +422,8 @@ function FrontendPage() {
         </div> */}
       </div>
       <div className="flex flex-row px-6 pb-1">
-        {saveMessage.show ? 
-        <StatusNoti message = {saveMessage.message}/> : ""
-        }
+        {saveMessage.show ? <StatusNoti message={saveMessage.message} /> : ""}
       </div>
-     
     </div>
   );
 }

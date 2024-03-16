@@ -48,13 +48,13 @@ const ModalCodeEdit: React.FC<ModalProps> = ({ setShowCodeEditor }) => {
             <div className="mt-4 ml-10">
             <TypeAnimation className="Typewriter"
               sequence={[
-                "Code Editor",
+                "Code Viewer",
                 2000,
-                "Code Editor HTML",
+                "Code Viewer HTML",
                 2000,
-                "Code Editor CSS",
+                "Code Viewer CSS",
                 2000,
-                "Code Editor JS",
+                "Code Viewer JS",
                 2000,
               ]}
               wrapper="span"
