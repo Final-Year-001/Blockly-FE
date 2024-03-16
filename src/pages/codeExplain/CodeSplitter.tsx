@@ -22,10 +22,13 @@ const CodeSplitter: React.FC = () => {
 
  
     let jsCode = "";
-    const scriptTags = doc.head.querySelectorAll("script"); // Select all script tags
-  
+    const scriptTags = doc.querySelectorAll("script"); // Select all script tags
+    
     scriptTags.forEach((scriptTag) => {
-      jsCode += scriptTag.textContent || "";
+      // Check if the script tag is inside the head or body
+      if (scriptTag.parentElement === doc.head || scriptTag.parentElement === doc.body) {
+        jsCode += scriptTag.textContent || "";
+      }
     });
 
     // Remove extracted CSS and JavaScript code from the HTML code

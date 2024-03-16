@@ -19,8 +19,8 @@ Blockly.Blocks['html_css'] = {
     this.appendDummyInput()
         .appendField("CSS Block");
     this.appendStatementInput("css_statement")
-        .setCheck(null);
-    this.setPreviousStatement(true, null);
+        .setCheck("cssStatement");
+    this.setPreviousStatement(true, "css");
     this.setNextStatement(true, null);
     this.setStyle('CSS_Main');
  this.setTooltip("This is the CSS tag block where you include the css styling");
@@ -50,7 +50,7 @@ Blockly.Blocks['style_block'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("declarator");
-    this.setPreviousStatement(true, null);
+    this.setPreviousStatement(true, "cssStatement");
     this.setNextStatement(true, null);
     this.setStyle('CSS_style');
  this.setTooltip("");
@@ -105,8 +105,8 @@ Blockly.Blocks['css_bg_color'] = {
     this.appendDummyInput()
         .appendField("Background Color")
         .appendField(new FieldColourHsvSliders("#ff9900"), "bgcolor");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "css_bg_color");
+    this.setNextStatement(true, "css_bg_color");
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
