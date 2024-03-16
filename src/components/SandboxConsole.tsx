@@ -19,6 +19,10 @@ function SandboxConsole() {
 
     console.log(readyState, "rs", connectionStatus)
     useEffect(() => {
+      setLogHistory([]);
+    }, [sandbox])
+
+    useEffect(() => {
         if(readyState == ReadyState.OPEN) {
             console.log("message")
             sendJsonMessage({lol: "log"})
@@ -27,9 +31,10 @@ function SandboxConsole() {
             }
         }
       }, [lastMessage]);
-
+    
     return (
         <div className="whitespace-pre-line w-full h-full p-2 text-white">
+          <div>Connection Status - {connectionStatus}</div>
           <code>{logHistory.map((l,i) => <div key={i}>{l.data || null}</div>)}</code>
         </div>
     )

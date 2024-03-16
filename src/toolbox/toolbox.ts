@@ -32,6 +32,7 @@ const toolboxConfig = {
     sessionHandlingCategory,
     jwtCategory,
     databaseCategory,
+    jsonCategory,
     { kind: "sep" },
     { kind: "sep" },
     mathCategory,
@@ -39,7 +40,6 @@ const toolboxConfig = {
     loopsCategory,
     variablesCategory,
     textCategory,
-    jsonCategory,
   ],
 };
 
