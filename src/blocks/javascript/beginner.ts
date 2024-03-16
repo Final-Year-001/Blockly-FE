@@ -96,7 +96,10 @@ javascriptGenerator.forBlock['chnage_innerHTML'] = function(
         return '';
     }
 
-    var code = `document.getElementById(${value_elementId}).innerHTML = ${value_newContent};\n`;
+    var code = `document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById(${value_elementId}).innerHTML = ${value_newContent};
+    });
+    `;
     return code;
   };
 
@@ -214,7 +217,10 @@ javascriptGenerator.forBlock['event_listener'] = function (block:any, generator:
   const element = generator.valueToCode(block, 'element', generator.ORDER_ATOMIC);
   const handler = generator.statementToCode(block, 'handler');
 
-  return `document.getElementById(${element}).addEventListener('${event}', function(event) {\n${handler}});\n`;
+  return `document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById(${element}).addEventListener('${event}', function(event) {\n${handler}});
+    });
+    `;
 };
 
 //show or hide an HTML element
@@ -246,7 +252,7 @@ generator: any
 var dropdown_action = block.getFieldValue('action');
 var elementId = generator.valueToCode(block, 'element_id', generator.ORDER_ATOMIC);
 
-var code = `
+var code = `document.addEventListener("DOMContentLoaded", function() {
   var element = document.getElementById(${elementId});
   if (element) {
     if ('${dropdown_action}' === 'show') {
@@ -255,6 +261,7 @@ var code = `
       element.style.display = 'none';
     }
   }
+  });
 `;
 
 return code;
@@ -324,10 +331,11 @@ javascriptGenerator.forBlock['custom_function'] = function(block:any, generator:
   var param2 = block.getFieldValue('PARAM2');
   var statements = generator.statementToCode(block, 'STATEMENTS');
 
-  var code = `
-function ${functionName}(${param1}, ${param2}) {
-  ${statements}
-}
+  var code = `document.addEventListener("DOMContentLoaded", function() {
+    function ${functionName}(${param1}, ${param2}) {
+      ${statements}
+    }
+  });
 `;
 
   return code;
