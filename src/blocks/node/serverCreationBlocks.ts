@@ -10,11 +10,13 @@ Blockly.Blocks["express_server_creation"] = {
     this.appendDummyInput()
       .appendField("Maximum Body Size in MB (Optional):")
       .appendField(new Blockly.FieldTextInput(), "maxBodySize");
-    this.appendValueInput("PORT").setCheck("Number").appendField("Port");
+    this.appendValueInput("PORT")
+      .setCheck("Number")
+      .appendField("Port (Optional)");
     this.appendStatementInput("MIDDLEWARE")
       .setCheck("middleware")
       // .setCheck(["compression_middleware"])
-      .appendField("Middleware");
+      .appendField("Middleware (Optional)");
     this.appendStatementInput("ROUTES").setCheck("route").appendField("Routes");
     this.appendValueInput("ERROR_HANDLER")
       .setCheck(null)
