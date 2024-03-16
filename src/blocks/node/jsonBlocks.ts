@@ -27,7 +27,7 @@ javascriptGenerator.forBlock["extract_value"] = function (
   );
   const key = generator.valueToCode(block, "Key", 0);
 
-  const code = `${variableName}.${key}`;
+  const code = `${variableName}?.${key}`;
 
   return [code, javascriptGenerator.ORDER_NONE];
 };
@@ -58,7 +58,7 @@ javascriptGenerator.forBlock["key_chain"] = function (
   const key = block.getFieldValue("key");
   const chainKey = generator.valueToCode(block, "chainKey", 0);
 
-  const code = `${key}${chainKey && "."}${chainKey}`;
+  const code = `${key}${chainKey && "?."}${chainKey}`;
 
   return [code, Order.ATOMIC];
 };
