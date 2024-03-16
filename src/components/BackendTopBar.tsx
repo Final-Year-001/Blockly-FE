@@ -27,6 +27,7 @@ function BackendTopBar() {
             onClick={() => {
               setWhatToLearnState(true);
             }}
+            id="HaveNoIdea"
           >
             Have No idea?
           </Button>
