@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Blockly from "blockly";
+import Blockly, { MenuOption } from "blockly";
 import { javascriptGenerator, Order } from "blockly/javascript";
 
 Blockly.Blocks["extract_value"] = {
@@ -61,4 +61,68 @@ javascriptGenerator.forBlock["key_chain"] = function (
   const code = `${key}${chainKey && "."}${chainKey}`;
 
   return [code, Order.ATOMIC];
+};
+
+Blockly.Blocks["set_value_to_key"] = {
+  init: function () {
+    this.appendDummyInput();
+    this.appendDummyInput().appendField("Set value");
+    this.appendValueInput("value").setCheck(null);
+    this.appendValueInput("Key").setCheck("String").appendField("Key chain:");
+    this.setTooltip(
+      "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
+    );
+    this.setHelpUrl("");
+    this.setColour(295);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setInputsInline(true);
+  },
+};
+
+javascriptGenerator.forBlock["set_value_to_key"] = function (
+  block: any,
+  generator: any
+) {
+  const value = generator.valueToCode(block, "value", 0);
+  const key = generator.valueToCode(block, "Key", 0);
+  // check whether the options are in expected type
+
+  const code = `${key} = ${value};\n`;
+
+  return code;
+};
+
+Blockly.Blocks["create_json_object"] = {
+  init: function () {
+    const varOptions: MenuOption[] = [
+      ["const", "const"],
+      ["let", "let"],
+      ["var", "var"],
+    ];
+    this.appendDummyInput()
+      .setAlign(Blockly.inputs.Align.LEFT)
+      .appendField("Declare JSON Object");
+    this.appendDummyInput().appendField(
+      new Blockly.FieldDropdown(varOptions),
+      "varType"
+    );
+    this.appendDummyInput()
+      .appendField("Variable name")
+      .appendField(new Blockly.FieldTextInput(), "varName");
+    this.setHelpUrl("");
+    this.setColour(295);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+
+javascriptGenerator.forBlock["create_json_object"] = function (block: any) {
+  const varType = block.getFieldValue("varType");
+  const varName = block.getFieldValue("varName");
+  // check whether the options are in expected type
+
+  const code = `${varType} ${varName} = {};\n`;
+
+  return code;
 };

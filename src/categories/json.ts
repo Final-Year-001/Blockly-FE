@@ -13,5 +13,13 @@ export const jsonCategory = {
       kind: "block",
       type: "key_chain",
     },
+    {
+      kind: "block",
+      type: "set_value_to_key",
+    },
+    {
+      kind: "block",
+      type: "create_json_object",
+    },
   ],
 };
