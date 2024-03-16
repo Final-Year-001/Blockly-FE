@@ -35,14 +35,14 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "html_h",
-          icons: { 
-            comment: {
-              text: "JavaScript code should be wrapped in this tag",
-              pinned: false,
-              height: 200,
-              width: 360
-            }
-          },
+          // icons: { 
+          //   comment: {
+          //     text: "JavaScript code should be wrapped in this tag",
+          //     pinned: false,
+          //     height: 200,
+          //     width: 360
+          //   }
+          // },
         },
         {
           kind: "block",

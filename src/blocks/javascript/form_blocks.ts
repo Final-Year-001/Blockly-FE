@@ -70,10 +70,10 @@ Blockly.Blocks['fetch_block'] = {
         .appendField("Add the label we passed the form data to");
     this.appendStatementInput("on_sucess")
         .setCheck(null)
-        .appendField("on success what to do");
+        .appendField("On success what to do");
     this.appendStatementInput("on_error")
         .setCheck(null)
-        .appendField("on error what to do");
+        .appendField("On error what to do");
         this.setStyle('JS_Step4');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
