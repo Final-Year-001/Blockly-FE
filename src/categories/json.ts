@@ -3,7 +3,7 @@ import "../blocks/node/jsonBlocks";
 export const jsonCategory = {
   kind: "category",
   name: "Json hanldlers",
-  colour: "#000000",
+  colour: "#b28dff",
   contents: [
     {
       kind: "block",
@@ -12,6 +12,14 @@ export const jsonCategory = {
     {
       kind: "block",
       type: "key_chain",
+    },
+    {
+      kind: "block",
+      type: "set_value_to_key",
+    },
+    {
+      kind: "block",
+      type: "create_json_object",
     },
   ],
 };

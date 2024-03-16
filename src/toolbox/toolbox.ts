@@ -1,3 +1,4 @@
+import { customCategory } from "../categories/custom";
 import { databaseCategory } from "../categories/database";
 import {
   commonCategory,
@@ -32,6 +33,8 @@ const toolboxConfig = {
     sessionHandlingCategory,
     jwtCategory,
     databaseCategory,
+    jsonCategory,
+    customCategory,
     { kind: "sep" },
     { kind: "sep" },
     mathCategory,
@@ -39,7 +42,6 @@ const toolboxConfig = {
     loopsCategory,
     variablesCategory,
     textCategory,
-    jsonCategory,
   ],
 };
 

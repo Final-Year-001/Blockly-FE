@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 
-
+// these are the splitted code.
 interface CodeEditorProps {
   initialHtmlCode: string;
   initialCssCode: string;
@@ -17,17 +17,7 @@ const CodeEditors: React.FC<CodeEditorProps> = ({
   const [cssCode, setCssCode] = useState(initialCssCode);
   const [jsCode, setJsCode] = useState(initialJsCode);
 
-  const handleHtmlChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setHtmlCode(e.target.value);
-  };
 
-  const handleCssChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCssCode(e.target.value);
-  };
-
-  const handleJsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setJsCode(e.target.value);
-  };
 
   return (
     <div className="flex flex-wrap">
@@ -39,6 +29,7 @@ const CodeEditors: React.FC<CodeEditorProps> = ({
           theme="light"
           defaultLanguage="html"
           defaultValue={htmlCode}
+          onChange={(value) => setHtmlCode(value || "")}
         />
       </div>
       <div className="w-full md:w-1/3 px-4">
@@ -49,6 +40,7 @@ const CodeEditors: React.FC<CodeEditorProps> = ({
           theme="light"
           defaultLanguage="css"
           defaultValue={cssCode}
+          onChange={(value) => setCssCode(value || "")}
         />
       </div>
       <div className="w-full md:w-1/3 px-4">
@@ -59,6 +51,7 @@ const CodeEditors: React.FC<CodeEditorProps> = ({
           theme="light"
           defaultLanguage="javascript"
           defaultValue={jsCode}
+          onChange={(value) => setJsCode(value || "")}
         />
       </div>
       <div className="w-full px-4 mt-4">
