@@ -4,6 +4,7 @@ import Blockly from "blockly";
 import { Button, Textarea } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import frontendToolboxCategories from "../../toolbox/frontend";
+import { removeSearch } from "../../helpers/blockly";
 
 interface LCStepProps {
   readonly step: number;
@@ -49,7 +50,7 @@ function LCStep({
       <div className="flex flex-row h-[20em]">
         {reload ? (
           <BlocklyWorkspace
-            toolboxConfiguration={variant == "backend" ? toolboxConfig : frontendToolboxCategories}
+            toolboxConfiguration={variant == "backend" ? removeSearch(toolboxConfig) : removeSearch(frontendToolboxCategories)}
             initialJson={state}
             className="fill-height flex-[0.5]"
             workspaceConfiguration={{
