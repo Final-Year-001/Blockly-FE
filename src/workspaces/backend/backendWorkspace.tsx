@@ -7,7 +7,8 @@ import { Card } from "@material-tailwind/react";
 import toolboxConfig from "../../toolbox/toolbox";
 import { BETheme } from "../../themes/BETheme";
 
-const workspaceConfiguration = {
+// eslint-disable-next-line react-refresh/only-export-components
+export const workspaceConfiguration = {
   theme: BETheme,
   renderer: "custom_renderer",
   toolbar: CustomCategory,

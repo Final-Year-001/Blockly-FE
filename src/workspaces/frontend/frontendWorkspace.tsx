@@ -12,7 +12,8 @@ import { FEOutAtom } from "../../state/FEOutputCode";
 
 // Renderers = minimalist /zelos / thrasos / geras
 
-const workspaceConfiguration = {
+// eslint-disable-next-line react-refresh/only-export-components
+export const workspaceConfiguration = {
   theme: FETheme,
   renderer: "custom_renderer",
   toolbar: CustomCategory,

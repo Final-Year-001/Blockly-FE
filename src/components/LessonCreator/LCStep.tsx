@@ -1,19 +1,21 @@
 import { BlocklyWorkspace } from "react-blockly";
 import toolboxConfig from "../../toolbox/toolbox";
 import Blockly from "blockly";
-import { Button, Textarea } from "@material-tailwind/react";
+import { Textarea } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import frontendToolboxCategories from "../../toolbox/frontend";
 import { removeSearch } from "../../helpers/blockly";
+import { workspaceConfiguration as workspaceConfigurationBackend } from "../../workspaces/backend/backendWorkspace";
+import { workspaceConfiguration as workspaceConfigurationFrontend } from "../../workspaces/frontend/frontendWorkspace";
 
 interface LCStepProps {
   readonly step: number;
   readonly state?: object;
-  readonly refresh?: boolean
+  readonly refresh?: boolean;
   readonly onWorkspaceChange?: (json: object, step: number) => void;
   readonly description?: string;
   readonly onDescriptionChange?: (description: string, step: number) => void;
-  readonly variant?: "frontend" | "backend" 
+  readonly variant?: "frontend" | "backend";
   readonly onMouseOver?: () => void;
 }
 
@@ -25,7 +27,7 @@ function LCStep({
   onDescriptionChange,
   refresh,
   variant,
-  onMouseOver
+  onMouseOver,
 }: LCStepProps) {
   const _onWorkspaceChanged = (workspace: Blockly.WorkspaceSvg) => {
     let json = Blockly.serialization.workspaces.save(workspace);
@@ -50,17 +52,18 @@ function LCStep({
       <div className="flex flex-row h-[20em]">
         {reload ? (
           <BlocklyWorkspace
-            toolboxConfiguration={variant == "backend" ? removeSearch(toolboxConfig) : removeSearch(frontendToolboxCategories)}
+            toolboxConfiguration={
+              variant == "backend"
+                ? removeSearch(toolboxConfig)
+                : removeSearch(frontendToolboxCategories)
+            }
             initialJson={state}
             className="fill-height flex-[0.5]"
-            workspaceConfiguration={{
-              grid: {
-                spacing: 20,
-                length: 3,
-                colour: "#fff",
-                snap: true,
-              },
-            }}
+            workspaceConfiguration={
+              variant == "backend"
+                ? workspaceConfigurationBackend
+                : workspaceConfigurationFrontend
+            }
             onWorkspaceChange={_onWorkspaceChanged}
           />
         ) : (
