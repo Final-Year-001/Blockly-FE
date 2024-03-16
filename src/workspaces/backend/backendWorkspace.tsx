@@ -35,9 +35,9 @@ export const workspaceConfiguration = {
   },
 };
 interface BackendWorkspaceProps {
-  onCodeChange?: (code: string, workspace: WorkspaceSvg) => void;
-  initialState?: any;
-  loaded: boolean;
+  readonly onCodeChange?: (code: string, workspace: WorkspaceSvg) => void;
+  readonly initialState?: any;
+  readonly loaded: boolean;
 }
 
 function BackendWorkspace({
