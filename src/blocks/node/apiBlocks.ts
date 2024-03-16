@@ -21,7 +21,7 @@ Blockly.Blocks["api_method"] = {
       .appendField(new Blockly.FieldTextInput("/"), "path");
     this.setPreviousStatement(true, "route");
     this.setNextStatement(true, "route");
-    this.setStyle("Backend_Components_blocks");
+    this.setStyle("General_Middlewares_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },

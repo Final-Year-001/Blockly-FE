@@ -8,11 +8,11 @@ export const nodeCategory = {
   contents: [
     {
       kind: "block",
-      type: "api_method",
+      type: "express_server_creation",
     },
     {
       kind: "block",
-      type: "express_server_creation",
+      type: "api_method",
     },
     {
       kind: "block",
