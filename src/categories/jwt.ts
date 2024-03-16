@@ -3,7 +3,7 @@ import "../blocks/node/jwtBlocks";
 export const jwtCategory = {
   kind: "category",
   name: "JWT Authentication",
-  colour: "#000000",
+  colour: "#6590df",
   contents: [
     {
       kind: "block",

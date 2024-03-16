@@ -5,7 +5,7 @@ import "../blocks/node/generalMiddleware";
 export const generalMiddlewareCategory = {
   kind: "category",
   name: "General Middlewares",
-  colour: "#f55142",
+  colour: "#1fc59b",
   contents: [
     {
       kind: "block",

@@ -24,4 +24,15 @@ export const BackendBlocksTheme = {
     colourSecondary: "#64C7FF",
     colourTertiary: "#89bc2b",
   },
+  Custom_blocks: {
+    colourPrimary: "#ffb5eb" /* Light pink primary color */,
+    colourSecondary: "#ffd5e5" /* Lighter pink for emphasis */,
+    colourTertiary: "#f585c2" /* Slightly darker pink for contrast */,
+  },
+  Json_blocks: {
+    colourPrimary: "#b28dff" /* Blue-violet primary color */,
+    colourSecondary: "#c2b0f2" /* Lighter blue-violet for emphasis */,
+    colourTertiary: "#877bcf" /* Darker blue-violet for contrast */,
+    colourAccent: "#7f6ad8" /* Vivid blue-violet for highlights */,
+  },
 };

@@ -3,7 +3,7 @@ import "../blocks/node/jsonBlocks";
 export const jsonCategory = {
   kind: "category",
   name: "Json hanldlers",
-  colour: "#000000",
+  colour: "#b28dff",
   contents: [
     {
       kind: "block",
