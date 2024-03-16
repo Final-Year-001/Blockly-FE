@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Blockly from "blockly";
 import * as JavaScript from "blockly/javascript";
-import { Order, javascriptGenerator } from "blockly/javascript";
+import { Order } from "blockly/javascript";
 
 function removeParentheses(str: any) {
   // Check if the string starts and ends with parentheses
@@ -23,11 +24,8 @@ Blockly.Blocks["html_br"] = {
   },
 };
 
-JavaScript.javascriptGenerator.forBlock["html_br"] = function (
-  block: any,
-  generator: any
-) {
-  var code = "<br />";
+JavaScript.javascriptGenerator.forBlock["html_br"] = function () {
+  const code = "<br />";
   return code;
 };
 
@@ -54,11 +52,11 @@ JavaScript.javascriptGenerator.forBlock["html_html"] = function (
   block: any,
   generator: any
 ) {
-  var statements_html_head = generator.statementToCode(block, "html_head");
-  var statements_html_body = generator.statementToCode(block, "html_body");
+  const statements_html_head = generator.statementToCode(block, "html_head");
+  const statements_html_body = generator.statementToCode(block, "html_body");
   // note to senal - changed the order cause html should wrap everything and added line breaks
   // tanks!!!
-  var code =
+  const code =
     "<html>\n" +
     "  <head>\n" +
     statements_html_head +
@@ -97,13 +95,13 @@ JavaScript.javascriptGenerator.forBlock["html_identifier"] = function (
   block: any,
   generator: any
 ) {
-  var checkbox_id_checkbox = block.getFieldValue("id_checkbox") === "TRUE";
-  var text_id_name = block.getFieldValue("id_name");
-  var checkbox_class_checkbox =
+  const checkbox_id_checkbox = block.getFieldValue("id_checkbox") === "TRUE";
+  const text_id_name = block.getFieldValue("id_name");
+  const checkbox_class_checkbox =
     block.getFieldValue("class_checkbox") === "TRUE";
-  var text_class_name = block.getFieldValue("class_name");
+  const text_class_name = block.getFieldValue("class_name");
   // TODO: Assemble javascript into code variable.
-  var code = "";
+  let code = "";
   if (checkbox_id_checkbox) {
     code = `id="` + text_id_name + `" `;
   }
@@ -151,19 +149,19 @@ JavaScript.javascriptGenerator.forBlock["html_h"] = function (
   block: any,
   generator: any
 ) {
-  var dropdown_size = block.getFieldValue("size");
-  var value_identify = generator.valueToCode(
+  const dropdown_size = block.getFieldValue("size");
+  const value_identify = generator.valueToCode(
     block,
     "text",
     generator.ORDER_ATOMIC
   );
-  var value_text = generator.valueToCode(
+  const value_text = generator.valueToCode(
     block,
     "identify",
     generator.ORDER_ATOMIC
   );
 
-  var code =
+  const code =
     `<` +
     dropdown_size +
     removeParentheses(value_identify) +
@@ -174,8 +172,6 @@ JavaScript.javascriptGenerator.forBlock["html_h"] = function (
     ">";
   return code;
 };
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -203,18 +199,18 @@ JavaScript.javascriptGenerator.forBlock["html_p"] = function (
   block: any,
   generator: any
 ) {
-  var value_identify = generator.valueToCode(
+  const value_identify = generator.valueToCode(
     block,
     "text",
     generator.ORDER_ATOMIC
   );
-  var value_text = generator.valueToCode(
+  const value_text = generator.valueToCode(
     block,
     "identify",
     generator.ORDER_ATOMIC
   );
 
-  var code =
+  const code =
     `<p` +
     removeParentheses(value_identify) +
     `> ` +
@@ -241,8 +237,8 @@ JavaScript.javascriptGenerator.forBlock["html_addtext"] = function (
   block: any,
   generator: any
 ) {
-  var text_value = block.getFieldValue("value");
-  var code = text_value;
+  const text_value = block.getFieldValue("value");
+  const code = text_value;
   return [code, generator.ORDER_NONE];
 };
 
@@ -272,11 +268,11 @@ JavaScript.javascriptGenerator.forBlock["html_button"] = function (
   block: any,
   generator: any
 ) {
-  var text_type = block.getFieldValue("type");
-  var text_name = block.getFieldValue("name");
-  var value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
+  const text_type = block.getFieldValue("type");
+  const text_name = block.getFieldValue("name");
+  const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
 
-  var code =
+  const code =
     `<button ` +
     value_name +
     ` type="` +
@@ -310,9 +306,9 @@ JavaScript.javascriptGenerator.forBlock["html_name"] = function (
   block: any,
   generator: any
 ) {
-  var text_html_input_name = block.getFieldValue("html_input_name");
+  const text_html_input_name = block.getFieldValue("html_input_name");
   // TODO: Assemble javascript into code variable.
-  var code = text_html_input_name;
+  const code = text_html_input_name;
 
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, generator.ORDER_NONE];
@@ -351,11 +347,11 @@ JavaScript.javascriptGenerator.forBlock["html_input_field"] = function (
   block: any,
   generator: any
 ) {
-  var text_name = block.getFieldValue("NAME");
-  var dropdown_type = block.getFieldValue("type");
-  var value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
+  const text_name = block.getFieldValue("NAME");
+  const dropdown_type = block.getFieldValue("type");
+  const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
 
-  var code =
+  const code =
     `<input ` +
     removeParentheses(value_name) +
     ` name="` +
@@ -389,10 +385,10 @@ JavaScript.javascriptGenerator.forBlock["html_label"] = function (
   block: any,
   generator: any
 ) {
-  var text_name = block.getFieldValue("NAME");
-  var value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
+  const text_name = block.getFieldValue("NAME");
+  const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
 
-  var code =
+  const code =
     `<label` + value_name + `>` + removeParentheses(text_name) + `</label>`;
   return code;
 };
@@ -417,10 +413,10 @@ JavaScript.javascriptGenerator.forBlock["block_identifier"] = function (
   block: any,
   generator: any
 ) {
-  var text_id = block.getFieldValue("id");
-  var text_class = block.getFieldValue("class");
+  const text_id = block.getFieldValue("id");
+  const text_class = block.getFieldValue("class");
   // TODO: Assemble javascript into code variable.
-  var code = "";
+  let code = "";
   if (text_id) {
     code = ` id="${text_id}"`;
   }
@@ -454,10 +450,10 @@ JavaScript.javascriptGenerator.forBlock["html_form"] = function (
   block: any,
   generator: any
 ) {
-  var value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
-  var statements_state = generator.statementToCode(block, "State");
+  const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
+  const statements_state = generator.statementToCode(block, "State");
 
-  var code = `<form ` + value_name + `>` + statements_state + `</form>`;
+  const code = `<form ` + value_name + `>` + statements_state + `</form>`;
   return code;
 };
 
@@ -487,11 +483,11 @@ JavaScript.javascriptGenerator.forBlock["html_table"] = function (
   block: any,
   generator: any
 ) {
-  var num = block.getFieldValue("NAME");
-  var value_identify = generator.valueToCode(block, "identify", Order.ATOMIC);
-  var statement = generator.statementToCode(block, "NAME");
+  const num = block.getFieldValue("NAME");
+  const value_identify = generator.valueToCode(block, "identify", Order.ATOMIC);
+  const statement = generator.statementToCode(block, "NAME");
 
-  var code =
+  const code =
     "<table " + "border=" + num + value_identify + ">" + statement + "</table>";
   return code;
 };
@@ -519,9 +515,9 @@ JavaScript.javascriptGenerator.forBlock["table_headings"] = function (
   block: any,
   generator: any
 ) {
-  var value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
-  var statements_state = generator.statementToCode(block, "State");
-  var code = "<th" + value_name + ">" + statements_state + "</th>";
+  const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
+  const statements_state = generator.statementToCode(block, "State");
+  const code = "<th" + value_name + ">" + statements_state + "</th>";
   return code;
 };
 
@@ -547,9 +543,9 @@ JavaScript.javascriptGenerator.forBlock["table_rows"] = function (
   block: any,
   generator: any
 ) {
-  var value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
-  var statements_state = generator.statementToCode(block, "State");
-  var code = "<tr" + value_name + ">" + statements_state + "</tr>";
+  const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
+  const statements_state = generator.statementToCode(block, "State");
+  const code = "<tr" + value_name + ">" + statements_state + "</tr>";
   return code;
 };
 
@@ -576,9 +572,9 @@ JavaScript.javascriptGenerator.forBlock["table_data"] = function (
   block: any,
   generator: any
 ) {
-  var value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
-  var statements_state = generator.statementToCode(block, "State");
-  var code = "<td" + value_name + ">" + statements_state + "</td>";
+  const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
+  const statements_state = generator.statementToCode(block, "State");
+  const code = "<td" + value_name + ">" + statements_state + "</td>";
   return code;
 };
 
@@ -598,39 +594,43 @@ Blockly.Blocks["html_textadd"] = {
 };
 
 JavaScript.javascriptGenerator.forBlock["html_textadd"] = function (
-  block: any,
-  generator: any
+  block: any
 ) {
-  var text_data = block.getFieldValue("data");
-  var code = removeParentheses(text_data);
+  const text_data = block.getFieldValue("data");
+  const code = removeParentheses(text_data);
   return code;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-Blockly.Blocks['html_div1'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Box container (div) ");
+Blockly.Blocks["html_div1"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Box container (div) ");
     this.appendValueInput("NAME")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("identify");
-    this.appendStatementInput("statementName")
-        .setCheck(null);
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("identify");
+    this.appendStatementInput("statementName").setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle("HTML_Containers");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-JavaScript.javascriptGenerator.forBlock['html_div1'] = function(block: any, generator: any) {
-  var value_name = generator.valueToCode(block, 'NAME', generator.ORDER_ATOMIC);
-  var statements_name = generator.statementToCode(block, 'statementName');
+JavaScript.javascriptGenerator.forBlock["html_div1"] = function (
+  block: any,
+  generator: any
+) {
+  const value_name = generator.valueToCode(
+    block,
+    "NAME",
+    generator.ORDER_ATOMIC
+  );
+  const statements_name = generator.statementToCode(block, "statementName");
   // TODO: Assemble javascript into code variable.
-  var code = `<div ` + value_name + ">" + statements_name + "</div>";
+  const code = `<div ` + value_name + ">" + statements_name + "</div>";
   return code;
 };
 
@@ -713,14 +713,14 @@ JavaScript.javascriptGenerator.forBlock["html_ol_list"] = function (
   block: any,
   generator: any
 ) {
-  var dropdown_type = block.getFieldValue("type");
-  var checkbox_checkid = block.getFieldValue("checkID") === "TRUE";
-  var text_idval = block.getFieldValue("idVal");
-  var checkbox_checkclass = block.getFieldValue("checkClass") === "TRUE";
-  var text_idclass = block.getFieldValue("idClass");
-  var statements_statement = generator.statementToCode(block, "statement");
+  const dropdown_type = block.getFieldValue("type");
+  const checkbox_checkid = block.getFieldValue("checkID") === "TRUE";
+  const text_idval = block.getFieldValue("idVal");
+  const checkbox_checkclass = block.getFieldValue("checkClass") === "TRUE";
+  const text_idclass = block.getFieldValue("idClass");
+  const statements_statement = generator.statementToCode(block, "statement");
 
-  var identifiers = "";
+  let identifiers = "";
   if (checkbox_checkid) {
     identifiers = ` id="` + removeParentheses(text_idval) + `"`;
   }
@@ -729,7 +729,7 @@ JavaScript.javascriptGenerator.forBlock["html_ol_list"] = function (
       identifiers + ` class="` + removeParentheses(text_idclass) + `"`;
   }
 
-  var code =
+  const code =
     `<ol type="` +
     dropdown_type +
     `" ` +
@@ -777,14 +777,14 @@ JavaScript.javascriptGenerator.forBlock["html_ul_list"] = function (
   block: any,
   generator: any
 ) {
-  var dropdown_type = block.getFieldValue("type");
-  var checkbox_checkid = block.getFieldValue("checkID") === "TRUE";
-  var text_idval = block.getFieldValue("idVal");
-  var checkbox_checkclass = block.getFieldValue("checkClass") === "TRUE";
-  var text_idclass = block.getFieldValue("idClass");
-  var statements_statement = generator.statementToCode(block, "statement");
+  const dropdown_type = block.getFieldValue("type");
+  const checkbox_checkid = block.getFieldValue("checkID") === "TRUE";
+  const text_idval = block.getFieldValue("idVal");
+  const checkbox_checkclass = block.getFieldValue("checkClass") === "TRUE";
+  const text_idclass = block.getFieldValue("idClass");
+  const statements_statement = generator.statementToCode(block, "statement");
 
-  var identifiers = "";
+  let identifiers = "";
   if (checkbox_checkid) {
     identifiers = ` id="` + removeParentheses(text_idval) + `"`;
   }
@@ -793,7 +793,7 @@ JavaScript.javascriptGenerator.forBlock["html_ul_list"] = function (
       identifiers + ` class="` + removeParentheses(text_idclass) + `"`;
   }
 
-  var code =
+  const code =
     `<ul type="` +
     dropdown_type +
     `" ` +
@@ -829,13 +829,13 @@ JavaScript.javascriptGenerator.forBlock["html_li"] = function (
   block: any,
   generator: any
 ) {
-  var checkbox_checkid = block.getFieldValue("checkID") === "TRUE";
-  var text_idval = block.getFieldValue("idVal");
-  var checkbox_checkclass = block.getFieldValue("checkClass") === "TRUE";
-  var text_idclass = block.getFieldValue("idClass");
-  var statements_statement = generator.statementToCode(block, "statement");
+  const checkbox_checkid = block.getFieldValue("checkID") === "TRUE";
+  const text_idval = block.getFieldValue("idVal");
+  const checkbox_checkclass = block.getFieldValue("checkClass") === "TRUE";
+  const text_idclass = block.getFieldValue("idClass");
+  const statements_statement = generator.statementToCode(block, "statement");
 
-  var identifiers = "";
+  let identifiers = "";
   if (checkbox_checkid) {
     identifiers = ` id="` + removeParentheses(text_idval) + `"`;
   }
@@ -844,7 +844,7 @@ JavaScript.javascriptGenerator.forBlock["html_li"] = function (
       identifiers + ` class="` + removeParentheses(text_idclass) + `"`;
   }
 
-  var code = `<li` + identifiers + ">" + statements_statement + `</li>`;
+  const code = `<li` + identifiers + ">" + statements_statement + `</li>`;
   return code;
 };
 
@@ -869,14 +869,11 @@ Blockly.Blocks["html_img"] = {
   },
 };
 
-JavaScript.javascriptGenerator.forBlock["html_img"] = function (
-  block: any,
-  generator: any
-) {
-  var text_imageurl = block.getFieldValue("imageUrl");
-  var text_imagename = block.getFieldValue("imageName");
+JavaScript.javascriptGenerator.forBlock["html_img"] = function (block: any) {
+  const text_imageurl = block.getFieldValue("imageUrl");
+  const text_imagename = block.getFieldValue("imageName");
   // TODO: Assemble javascript into code variable.
-  var code =
+  const code =
     `<img src='` + text_imageurl + "'" + `alt="` + text_imagename + `" ` + `>`;
   return code;
 };
@@ -902,9 +899,9 @@ JavaScript.javascriptGenerator.forBlock["html_a"] = function (
   block: any,
   generator: any
 ) {
-  var text_link = block.getFieldValue("link");
-  var statements_data = generator.statementToCode(block, "data");
-  var code = `<a href='` + text_link + "'" + `>` + statements_data + "</a>";
+  const text_link = block.getFieldValue("link");
+  const statements_data = generator.statementToCode(block, "data");
+  const code = `<a href='` + text_link + "'" + `>` + statements_data + "</a>";
   return code;
 };
 
@@ -934,12 +931,12 @@ JavaScript.javascriptGenerator.forBlock["html_checkbox"] = function (
   block: any,
   generator: any
 ) {
-  var text_name = block.getFieldValue("NAME");
-  var text_value = block.getFieldValue("Value");
-  var value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
+  const text_name = block.getFieldValue("NAME");
+  const text_value = block.getFieldValue("Value");
+  const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
   // TODO: Assemble javascript into code variable.
   // var code = "s"
-  var code =
+  const code =
     `<input type="checkbox"` +
     value_name +
     ` name="` +

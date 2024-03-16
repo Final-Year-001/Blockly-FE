@@ -26,6 +26,8 @@ import { tokenAtom } from "../../state/auth";
 import HintComponent from "../../components/HintComponent";
 import { stripId } from "../../helpers/blockly";
 import BackendTopBar from "../../components/BackendTopBar";
+import Tour from "reactour";
+import { TourSteps } from "./TourSteps";
 
 function organizeCode(code: string) {
   // Split the code into lines
@@ -63,6 +65,7 @@ function organizeCode(code: string) {
 type PageMode = "default" | "lesson";
 
 function BackendPage() {
+  const [showTour, setShowTour] = useState<boolean>(true);
   const [code, setCode] = useRecoilState(codeAtom);
   const [isExpanded, setIsExpanded] = useState(false);
   const [saveMessage, setSaveMessage] = useState<{
@@ -188,6 +191,13 @@ function BackendPage() {
 
   return (
     <div className="flex flex-col h-full w-full ">
+      <Tour
+        steps={TourSteps}
+        isOpen={showTour}
+        onRequestClose={() => {
+          setShowTour(false);
+        }}
+      />
       <div id="TopBar">
         <BackendTopBar />
       </div>
@@ -232,10 +242,10 @@ function BackendPage() {
               <ChevronDoubleLeftIcon />
             )}
           </div>
-          <Tabs value="html" className="h-full pb-10">
+          <Tabs id="outputSection" value="html" className="h-full pb-10">
             <TabsHeader>
               {tabs.map(({ label, value }) => (
-                <Tab key={value} value={value}>
+                <Tab id={`TabBtn${label}`} key={value} value={value}>
                   {label}
                 </Tab>
               ))}
