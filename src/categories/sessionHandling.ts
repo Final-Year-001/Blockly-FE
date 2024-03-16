@@ -4,7 +4,7 @@ import "../blocks/node/serverCreationBlocks";
 export const sessionHandlingCategory = {
   kind: "category",
   name: "Session Handling",
-  colour: "#f39c12",
+  colour: "#ffd000",
   contents: [
     {
       kind: "block",

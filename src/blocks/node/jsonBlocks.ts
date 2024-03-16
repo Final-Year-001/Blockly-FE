@@ -11,7 +11,7 @@ Blockly.Blocks["extract_value"] = {
     this.appendValueInput("Key").setCheck("String").appendField("Key chain:");
     this.setOutput(true, null);
     this.setInputsInline(true);
-    this.setColour(295);
+    this.setStyle("Json_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },
@@ -45,7 +45,7 @@ Blockly.Blocks["key_chain"] = {
       .appendField("Key Chain:");
     this.setOutput(true, null);
     this.setInputsInline(true);
-    this.setColour(295);
+    this.setStyle("Json_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
   },
@@ -73,7 +73,7 @@ Blockly.Blocks["set_value_to_key"] = {
       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
     );
     this.setHelpUrl("");
-    this.setColour(295);
+    this.setStyle("Json_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setInputsInline(true);
@@ -111,7 +111,7 @@ Blockly.Blocks["create_json_object"] = {
       .appendField("Variable name")
       .appendField(new Blockly.FieldTextInput(), "varName");
     this.setHelpUrl("");
-    this.setColour(295);
+    this.setStyle("Json_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
