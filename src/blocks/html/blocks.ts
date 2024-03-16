@@ -35,11 +35,11 @@ Blockly.Blocks["html_html"] = {
   init: function () {
     this.appendDummyInput().appendField("Main Html Block");
     this.appendStatementInput("html_head")
-      .setCheck(null)
+      .setCheck("css")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("head");
     this.appendStatementInput("html_body")
-      .setCheck(null)
+      .setCheck("css")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("body");
     this.setStyle("HTML_blocks");
@@ -469,7 +469,7 @@ Blockly.Blocks["html_table"] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("identify");
-    this.appendStatementInput("NAME").setCheck(null);
+    this.appendStatementInput("NAME").setCheck("table");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -501,10 +501,10 @@ Blockly.Blocks["table_headings"] = {
       .appendField("Heading cell")
       .appendField("|")
       .appendField("Identifer");
-    this.appendStatementInput("State").setCheck(null);
+    this.appendStatementInput("State").setCheck("tableHeading");
     this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "tableRow");
+    this.setNextStatement(true, "tableRow");
     this.setStyle("HTML_tableSub");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -530,10 +530,10 @@ Blockly.Blocks["table_rows"] = {
       .appendField("New Row")
       .appendField("|")
       .appendField("Identifer");
-    this.appendStatementInput("State").setCheck(null);
+    this.appendStatementInput("State").setCheck("tableRow");
     this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "table");
+    this.setNextStatement(true, "table");
     this.setStyle("HTML_table");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -558,10 +558,10 @@ Blockly.Blocks["table_data"] = {
       .appendField("Normal cell")
       .appendField("|")
       .appendField("Identifer");
-    this.appendStatementInput("State").setCheck(null);
+    this.appendStatementInput("State").setCheck("tableData");
     this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "tableRow");
+    this.setNextStatement(true, "tableRow");
     this.setStyle("HTML_tableSub");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -610,7 +610,7 @@ Blockly.Blocks["html_div1"] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("identify");
-    this.appendStatementInput("statementName").setCheck(null);
+    this.appendStatementInput("statementName").setCheck("div");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle("HTML_Containers");
