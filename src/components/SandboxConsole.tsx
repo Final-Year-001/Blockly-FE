@@ -6,7 +6,6 @@ import { sandboxAtom } from "../state/stadbox";
 
 function SandboxConsole() {
     const sandbox = useRecoilValue(sandboxAtom);
-    console.log("====", sandbox)
     const { lastMessage, readyState, sendJsonMessage } = useWebSocket(Config.getConsoleURL(sandbox.name));
     const [logHistory, setLogHistory] = useState<Array<MessageEvent<any>>>([]);
 
@@ -35,6 +34,7 @@ function SandboxConsole() {
     
     return (
         <div className="whitespace-pre-line w-full h-full p-2 text-white">
+          <div>Connection Status - {connectionStatus}</div>
           <code>{logHistory.map((l,i) => <div key={i}>{l.data || null}</div>)}</code>
         </div>
     )
