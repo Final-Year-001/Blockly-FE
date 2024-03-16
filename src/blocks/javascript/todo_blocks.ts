@@ -94,7 +94,8 @@ javascriptGenerator.forBlock['toggle_checkbox'] = function(block:any, generator:
         listItem.style.textDecoration = "none";
       }
     }
-  });`
+  });
+  `;
   
   return code;
 };
@@ -124,7 +125,8 @@ javascriptGenerator.forBlock['delete_task'] = function(block:any, generator:any)
       var taskList = listItem.parentNode;
       taskList.removeChild(listItem);
     }
-  });`
+  });
+  `;
 
   // var audio = new Audio('../src/sounds/delete.mp3');
   // audio.play();
