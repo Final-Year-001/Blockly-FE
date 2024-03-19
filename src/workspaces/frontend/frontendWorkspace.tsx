@@ -9,6 +9,8 @@ import "../../themes/renderer/CustomRender";
 import CustomCategory from "../../themes/toolbox/customCats";
 import { useRecoilState } from "recoil";
 import { FEOutAtom } from "../../state/FEOutputCode";
+import { useEffect } from "react";
+import { CrossTabCopyPaste } from '@blockly/plugin-cross-tab-copy-paste'; // Import the plugin
 
 // Renderers = minimalist /zelos / thrasos / geras
 
@@ -34,7 +36,6 @@ export const workspaceConfiguration = {
     pinch: true,
     trashcan: true,
   },
-
   toolboxConfiguration: {
     hidden: true, // Hide the toolbox
   },
@@ -46,6 +47,8 @@ interface FrontendWorkspaceProps {
   readonly loaded: boolean;
 }
 
+let pluginInitialized = false; // Static variable to track plugin initialization
+
 function FrontendWorkspace({
   onCodeChange,
   initialState,
@@ -54,7 +57,26 @@ function FrontendWorkspace({
   const workspaceWrapper = useRef<HTMLDivElement>(null);
   const [FEoutCode, SetFEoutCode] = useRecoilState(FEOutAtom);
 
+  useEffect(() => {
+    if (!pluginInitialized) {
+      const options = {
+        contextMenu: true,
+        shortcut: true,
+        typeErrorCallback: handleTypeError,
+      };
 
+      // Initialize plugin.
+      const plugin = new CrossTabCopyPaste();
+      plugin.init(options);
+      pluginInitialized = true; // Mark plugin as initialized
+
+      // Error handler for TypeError when pasting.
+      function handleTypeError(error: TypeError) {
+        console.error('TypeError occurred while pasting:', error.message);
+        // You can add your custom error handling logic here.
+      }
+    }
+  }, []); // Run only once when component mounts
 
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
     javascriptGenerator.addReservedWords("code");
@@ -64,8 +86,6 @@ function FrontendWorkspace({
     SetFEoutCode(code);
     onCodeChange?.(code, workspace);
   };
-
- 
 
   return (
     <Card

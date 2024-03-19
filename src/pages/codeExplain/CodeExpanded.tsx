@@ -36,7 +36,6 @@ function CodeExpanded({
           defaultValue={code}
           onChange={(value) => onChangeCode(value || "")}
         />
-  
     </Dialog>
   );
 }
