@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Typography } from "@material-tailwind/react";
-import ProjectCard from "../../components/ProjectCard";
+import ProjectCard, { ProjectCardProps } from "../../components/ProjectCard";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import NewProjectModal from "../../components/NewProjectModal";
 import { useState, useEffect } from "react";
@@ -9,6 +9,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { tokenAtom } from "../../state/auth";
 import {
+  deleteLesson,
+  deleteProjectById,
   getAllLessons,
   getAllProjects,
   newLesson,
@@ -17,7 +19,11 @@ import {
 import { AxiosError } from "axios";
 import NewLessonModal from "../../components/NewLessonModal";
 import { FaArrowUp } from "react-icons/fa";
-import { AwesomeButton } from 'react-awesome-button'; 
+import { AwesomeButton } from "react-awesome-button";
+import {
+  ConfirmDialog,
+  ConfirmDialogProps,
+} from "../../components/Dialogs/ConfirmDialog";
 
 function MyProjects() {
   const tokens = useRecoilValue(tokenAtom);
@@ -26,6 +32,12 @@ function MyProjects() {
   const [open, setOpen] = useState<boolean>(false);
   const [openNewLesson, setNewLessonOpen] = useState<boolean>(false);
   const [showScroll, setShowScroll] = useState(false);
+  const [openDialog, setOpenDialog] = useState<ConfirmDialogProps>({
+    body: <></>,
+    onOK: () => {},
+    onCancel: () => {},
+    open: false,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,7 +60,7 @@ function MyProjects() {
   };
 
   const qc = useQueryClient();
-  const projectDataQuery = useQuery("projects", {
+  const projectDataQuery = useQuery("project", {
     queryFn: getAllProjects.bind(null, tokens),
     retry: (_, err) => {
       if (err instanceof AxiosError && err.response?.status == 403) {
@@ -109,6 +121,20 @@ function MyProjects() {
     },
   });
 
+  const deleteProjectMut = useMutation({
+    mutationFn: (params: any) => deleteProjectById(tokens, params ?? ""),
+    onSuccess: () => {
+      qc.invalidateQueries("project");
+    },
+  });
+
+  const deleteLessonMut = useMutation({
+    mutationFn: (params: any) => deleteLesson(tokens, params ?? ""),
+    onSuccess: () => {
+      qc.invalidateQueries("lessons");
+    },
+  });
+
   const newLessonMutation = useMutation({
     mutationFn: (json: any) => newLesson(tokens, json),
     onSuccess: async (res) => {
@@ -139,6 +165,36 @@ function MyProjects() {
     });
   };
 
+  const deleteProject = (project: ProjectCardProps) => {
+    setOpenDialog({
+      open: true,
+      title: <span className="text-red-500">Delete {project.name}?</span>,
+      body: "Are you sure you want to delete " + project.name + "?",
+      onCancel: () => {
+        setOpenDialog((prev) => ({ ...prev, open: false }));
+      },
+      onOK() {
+        deleteProjectMut.mutate(project.id);
+        setOpenDialog((prev) => ({ ...prev, open: false }));
+      },
+    });
+  };
+
+  const _deleteLesson = (project: ProjectCardProps) => {
+    setOpenDialog({
+      open: true,
+      title: <span className="text-red-500">Delete {project.name}?</span>,
+      body: "Are you sure you want to delete " + project.name + "?",
+      onCancel: () => {
+        setOpenDialog((prev) => ({ ...prev, open: false }));
+      },
+      onOK() {
+        deleteLessonMut.mutate(project.id);
+        setOpenDialog((prev) => ({ ...prev, open: false }));
+      },
+    });
+  };
+
   return (
     <div>
       <div className="h-10 w-full"></div>
@@ -146,22 +202,21 @@ function MyProjects() {
         <div className="flex justify-between px-16 pb-4 style={{ flexGrow: 1 }}">
           <Typography variant="h1">My Projects</Typography>
           <div className="flex gap-4 justify-end">
-
             <AwesomeButton
               style={{
-                '--button-primary-color': '#E35335',
-                '--button-primary-color-dark': '#8B4000',
-                '--button-primary-color-light': '#ffffff',
-                '--button-primary-color-hover': '#E35335',
-                '--button-primary-color-active': '#FF4433',
-                '--button-default-border-radius': '8px',
-                width: '145px',
-                height: '50px',
+                "--button-primary-color": "#E35335",
+                "--button-primary-color-dark": "#8B4000",
+                "--button-primary-color-light": "#ffffff",
+                "--button-primary-color-hover": "#E35335",
+                "--button-primary-color-active": "#FF4433",
+                "--button-default-border-radius": "8px",
+                width: "145px",
+                height: "50px",
                 //marginRight: '10px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
               }}
               onPress={() => setOpen(true)}
               className="h-12 flex gap-3 justify-center items-center"
@@ -172,19 +227,19 @@ function MyProjects() {
 
             <AwesomeButton
               style={{
-                '--button-primary-color': '#33cc33',
-                '--button-primary-color-dark': '#18a418',
-                '--button-primary-color-light': '#ffffff',
-                '--button-primary-color-hover': '#33cc33',
-                '--button-primary-color-active': '#1aa81a',
-                '--button-default-border-radius': '8px',
-                width: '155px',
-                height: '50px',
+                "--button-primary-color": "#33cc33",
+                "--button-primary-color-dark": "#18a418",
+                "--button-primary-color-light": "#ffffff",
+                "--button-primary-color-hover": "#33cc33",
+                "--button-primary-color-active": "#1aa81a",
+                "--button-default-border-radius": "8px",
+                width: "155px",
+                height: "50px",
                 //marginRight: '10px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
               }}
               onPress={() => setNewLessonOpen(true)}
               className="h-12 flex gap-3 justify-center items-center"
@@ -195,63 +250,73 @@ function MyProjects() {
 
             <AwesomeButton
               style={{
-                '--button-primary-color': '#42A5F5',
-                '--button-primary-color-dark': '#2d82c7',
-                '--button-primary-color-light': '#ffffff',
-                '--button-primary-color-hover': '#62b4f8',
-                '--button-primary-color-active': '#2d82c7',
-                '--button-default-border-radius': '8px',
-                width: '145px',
-                height: '50px',
+                "--button-primary-color": "#42A5F5",
+                "--button-primary-color-dark": "#2d82c7",
+                "--button-primary-color-light": "#ffffff",
+                "--button-primary-color-hover": "#62b4f8",
+                "--button-primary-color-active": "#2d82c7",
+                "--button-default-border-radius": "8px",
+                width: "145px",
+                height: "50px",
                 //marginRight: '10px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
               }}
-              href={'/get-started'}
+              href={"/get-started"}
               className="h-12 flex gap-3 justify-center items-center"
               type="primary"
             >
-               Documentation
+              Documentation
             </AwesomeButton>
 
             <AwesomeButton
               style={{
-                '--button-primary-color': '#FFA726',
-                '--button-primary-color-dark': '#e29520',
-                '--button-primary-color-light': '#ffffff',
-                '--button-primary-color-hover': '#ffb03a',
-                '--button-primary-color-active': '#e29520',
-                '--button-default-border-radius': '8px',
-                width: '90px',
-                height: '50px',
+                "--button-primary-color": "#FFA726",
+                "--button-primary-color-dark": "#e29520",
+                "--button-primary-color-light": "#ffffff",
+                "--button-primary-color-hover": "#ffb03a",
+                "--button-primary-color-active": "#e29520",
+                "--button-default-border-radius": "8px",
+                width: "90px",
+                height: "50px",
                 //marginRight: '10px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
               }}
-              href={'/login'}
+              href={"/login"}
               className="h-12 flex gap-3 justify-center items-center"
               type="primary"
             >
               Logout
             </AwesomeButton>
-            
           </div>
         </div>
         <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
           {projectData.map((project: any) => (
-            <ProjectCard key={project.id} {...project} />
+            <ProjectCard
+              key={project.id}
+              {...project}
+              onDelete={deleteProject}
+            />
           ))}
-        </div> <br/><br/><hr style={{ border: '2px solid #353935', margin: '20px 0' }} />
+        </div>{" "}
+        <br />
+        <br />
+        <hr style={{ border: "2px solid #353935", margin: "20px 0" }} />
         <div className="flex justify-between px-16 pb-4 pt-10">
           <Typography variant="h1">My Lessons</Typography>
         </div>
         <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
           {lessonData.map((project: any) => (
-            <ProjectCard key={project.id} {...project} />
+            <ProjectCard
+              key={project.id}
+              {...project}
+              onDelete={_deleteLesson}
+            />
           ))}
         </div>
       </div>
@@ -265,6 +330,7 @@ function MyProjects() {
         handler={() => setNewLessonOpen(false)}
         onClick={onClickNewLesson}
       />
+      <ConfirmDialog {...openDialog} />
       {showScroll && (
         <div
           onClick={scrollToTop}
