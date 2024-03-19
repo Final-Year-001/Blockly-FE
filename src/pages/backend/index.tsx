@@ -30,6 +30,7 @@ import Tour from "reactour";
 import { TourSteps } from "./TourSteps";
 import AceEditor from "react-ace";
 import { js_beautify } from "js-beautify";
+
 function organizeCode(code: string) {
   // Split the code into lines
   const lines = code.split("\n");

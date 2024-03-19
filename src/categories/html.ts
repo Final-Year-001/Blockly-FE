@@ -16,7 +16,7 @@ export const htmlCategory = {
     },
     {
       kind: "block",
-      type: "block_identifier",
+      type: "html_idClass",
     },
     {
       kind: "category",
