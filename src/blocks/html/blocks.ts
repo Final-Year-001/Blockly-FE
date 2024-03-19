@@ -426,39 +426,6 @@ JavaScript.javascriptGenerator.forBlock['html_idClass'] = function(block : any, 
 };
 
 
-//This one has a bug. need to look into it to prevent such issues.
-// Blockly.Blocks["block_identifier"] = {
-//   init: function () {
-//     this.appendDummyInput()
-//       .appendField("ID")
-//       .appendField(new Blockly.FieldTextInput(""), "id")
-//       .appendField("Class")
-//       .appendField(new Blockly.FieldTextInput(""), "class");
-//     this.setOutput(true, null);
-//     this.setStyle("HTML_form");
-//     this.setTooltip("");
-//     this.setHelpUrl("");
-//   },
-// };
-
-// JavaScript.javascriptGenerator.forBlock["block_identifier"] = function (
-//   block: any,
-//   generator: any
-// ) {
-//   const text_id = block.getFieldValue("id");
-//   const text_class = block.getFieldValue("class");
-//   // TODO: Assemble javascript into code variable.
-//   let code = "";
-//   if (text_id) {
-//     code = code + ` id="${text_id}"`;
-//   }
-//   if (text_class) {
-//     code = code + ` class="${text_class}"`;
-//   }
-//   // TODO: Change ORDER_NONE to the correct strength.
-//   return [code, generator.ORDER_ATOMIC];
-// };
-
 //////////////////////////////////////////////////////////////////////////////
 
 Blockly.Blocks["html_form"] = {
