@@ -14,7 +14,7 @@ function ButtonsSet() {
         className="absolute rounded-full left-10"
         onClick={() => {
           setVideoPlayerDialogState({
-            videoLink: "https://www.youtube.com/watch?v=1jHvXakt1qw",
+            videoLink: "https://youtu.be/1GY3wrCKZFw",
             showPlayer: true,
           });
         }}
