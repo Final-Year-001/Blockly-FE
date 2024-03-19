@@ -13,6 +13,7 @@ import {
 } from "@material-tailwind/react";
 import NewProjectVariantCard from "./NewProjectVarientCard";
 import { useEffect, useState } from "react";
+import { AwesomeButton } from 'react-awesome-button'; 
 
 interface NewProjectModalProps {
   readonly open: boolean;
@@ -43,9 +44,9 @@ function NewProjectModal({ open, handler, onClick }: NewProjectModalProps) {
             isLastStep={(value) => setIsLastStep(value)}
             isFirstStep={(value) => setIsFirstStep(value)}
           >
-            <Step onClick={() => setActiveStep(0)}>1</Step>
-            <Step onClick={() => setActiveStep(1)}>2</Step>
-            <Step onClick={() => setActiveStep(1)}>3</Step>
+            <Step onClick={() => setActiveStep(0)} style={{ background: '#33cc33', borderRadius: '50%', color: 'white' }}>1</Step>
+            <Step onClick={() => setActiveStep(1)} style={{ background: '#42A5F5', borderRadius: '50%', color: 'white' }}>2</Step>
+            <Step onClick={() => setActiveStep(1)} style={{ background: '#FFA726', borderRadius: '50%', color: 'white' }}>3</Step>
           </Stepper>
           {activeStep == 1 ? (
             <div className="flex gap-6 justify-center items-center">
@@ -66,18 +67,58 @@ function NewProjectModal({ open, handler, onClick }: NewProjectModalProps) {
               {" "}
               <Input label="Project Name" onChange={(e) => setText(e.target.value)} crossOrigin={undefined} />
               <Typography className="pt-2">Enter a Name</Typography>
-              <Button variant="filled" onClick={handleNext}>
-                <span>Next</span>
-              </Button>
+
+              <AwesomeButton
+              style={{
+                '--button-primary-color': '#343434',
+                '--button-primary-color-dark': '#353935',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#343434',
+                '--button-primary-color-active': '#1aa81a',
+                '--button-default-border-radius': '8px',
+                width: '80px',
+                height: '40px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              onPress={handleNext}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+               Next
+            </AwesomeButton>
+              
             </div>
           ) : null}
           {activeStep == 2 ? <div className="h-full w-full flex flex-col justify-center items-center"></div> : null}
         </div>
       </DialogBody>
       <DialogFooter>
-        <Button variant="text" color="red" onClick={handler} className="mr-1">
-          <span>Cancel</span>
-        </Button>
+      <AwesomeButton
+              style={{
+                '--button-primary-color': '#D70040',
+                '--button-primary-color-dark': '#C41E3A',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#D70040',
+                '--button-primary-color-active': '#D2042D',
+                '--button-default-border-radius': '8px',
+                width: '80px',
+                height: '40px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              onPress={handler}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+               Cancel
+            </AwesomeButton>
       </DialogFooter>
     </Dialog>
   );

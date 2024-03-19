@@ -1,7 +1,6 @@
-import {Avatar } from "@material-tailwind/react";
 import ProductLogo from "../../assets/Logo";
 import { Link } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+import { AwesomeButton } from 'react-awesome-button';
   
   function TopBar() {
   
@@ -15,7 +14,22 @@ import { Button } from "@material-tailwind/react";
         </div>
   
         <div>
-          <Link to="/my/projects"><Button className="mr-1">My Projects</Button> </Link>
+          <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#4682B4',
+          '--button-primary-color-dark': '#008080',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#4682B4',
+          '--button-primary-color-active': '#2d82c7',
+          '--button-default-border-radius': '8px',
+           width: '180px',
+           height: '50px',
+           marginRight: '10px' 
+        }} 
+        href={'/my/projects'}
+        type="primary">
+          Back To My Projects
+        </AwesomeButton>
         </div>
   
       </div>

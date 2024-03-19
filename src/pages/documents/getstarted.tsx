@@ -3,6 +3,8 @@ import { Typography, Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import TopBar from "./topBar";
 import { FaArrowUp } from "react-icons/fa";
+import { AwesomeButton } from 'react-awesome-button';
+import './mainpage.css';
 
 function GetStartedPage() {
 
@@ -37,13 +39,13 @@ function GetStartedPage() {
 
      <div className="flex justify-between items-center">
         <div> <br/>
-          <Typography variant="h3">Get Started</Typography>
-          <h1 style={{ color: 'red', fontWeight: 'bold' }}>COMPLETE THIS PAGEEEE</h1>
+          <h1>Get Started</h1>
+          <h3 style={{ color: 'red', fontWeight: 'bold' }}>Ongoing...</h3>
         </div>
       </div>
      
       <div className="my-8">
-        <Typography variant="h4">Overview</Typography>
+        <h2>Overview</h2>
         <p>
           Welcome to Web Block Craft, a Google Blockly framework-based application
           designed to teach web programming to children and beginners. Web Block Craft
@@ -53,7 +55,7 @@ function GetStartedPage() {
       </div> <hr/>
 
       <div className="my-8">
-        <Typography variant="h4">Getting Started with Web Block Craft</Typography>
+        <h2>Getting Started with Web Block Craft</h2>
         <p>
           To start with development, follow these steps:
         </p>
@@ -66,53 +68,122 @@ function GetStartedPage() {
       </div> <hr/>
 
       <div className="my-8">
-        <Typography variant="h4">Getting Started with Frontend</Typography> <br/>
+        <h2>Getting Started with Frontend</h2> <br/>
         <div style={{ display: 'flex', gap: '10px' }}>
-          <Link to="/doc-html">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              HTML Tutorials
-            </Button>
-          </Link>
           
-          <Link to="/doc-css">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              CSS Tutorials
-            </Button>
-          </Link>
-          
-          <Link to="/doc-js">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              JavaScript Tutorials
-            </Button>
-          </Link>
+          <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#33cc33',
+          '--button-primary-color-dark': '#18a418',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#33cc33',
+          '--button-primary-color-active': '#1aa81a',
+          '--button-default-border-radius': '8px',
+           width: '140px',
+           height: '50px',   
+           marginRight: '10px'        
+        }} 
+        href={'#'}
+        type="primary">
+          HTML Tutorials
+        </AwesomeButton>
+
+        <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#42A5F5',
+          '--button-primary-color-dark': '#2d82c7',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#62b4f8',
+          '--button-primary-color-active': '#2d82c7',
+          '--button-default-border-radius': '8px',
+           width: '140px',
+           height: '50px',
+           marginRight: '10px' 
+        }} 
+        href={'#'}
+        type="primary">
+          CSS Tutorials
+        </AwesomeButton>
+
+          <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#FFA726',
+          '--button-primary-color-dark': '#e29520',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#ffb03a',
+          '--button-primary-color-active': '#e29520',
+          '--button-default-border-radius': '8px',
+          width: '180px',
+          height: '50px',
+          marginRight: '10px' 
+        }} 
+        href={'/doc-js'}
+        type="primary">
+          JavaScript Tutorials
+        </AwesomeButton>
         </div>
       </div> <hr/>
 
       <div className="my-8">
-        <Typography variant="h4">Getting Started with Backend</Typography><br/>
+        <h2>Getting Started with Backend</h2><br/>
         <div style={{ display: 'flex', gap: '10px' }}>
-          <Link to="#">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              Server Creation Tutorials
-            </Button>
-          </Link>
-          
-          <Link to="#">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              API Handling Tutorials
-            </Button>
-          </Link>
-          
-          <Link to="#">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              Database Handling Tutorials
-            </Button>
-          </Link>
+
+        <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#33cc33',
+          '--button-primary-color-dark': '#18a418',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#33cc33',
+          '--button-primary-color-active': '#1aa81a',
+          '--button-default-border-radius': '8px',
+           width: '220px',
+           height: '50px',   
+           marginRight: '10px'        
+        }} 
+        href={'#'}
+        type="primary">
+          Server Creation Tutorials
+        </AwesomeButton>
+
+        <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#42A5F5',
+          '--button-primary-color-dark': '#2d82c7',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#62b4f8',
+          '--button-primary-color-active': '#2d82c7',
+          '--button-default-border-radius': '8px',
+           width: '220px',
+           height: '50px',
+           marginRight: '10px' 
+        }} 
+        href={'#'}
+        type="primary">
+          API Handling Tutorials
+        </AwesomeButton>
+
+          <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#FFA726',
+          '--button-primary-color-dark': '#e29520',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#ffb03a',
+          '--button-primary-color-active': '#e29520',
+          '--button-default-border-radius': '8px',
+          width: '240px',
+          height: '50px',
+          marginRight: '10px' 
+        }} 
+        href={'#'}
+        type="primary">
+          Database Handling Tutorials
+        </AwesomeButton>
+
         </div>
       </div> <hr/>
 
       <div className="my-8">
-        <Typography variant="h4">Connecting Frontend and Backend</Typography>
+        <h2>Connecting Frontend and Backend</h2>
         <p>
           To connect your frontend and backend projects, use the following steps:
         </p>
@@ -126,7 +197,7 @@ function GetStartedPage() {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "black",
+            backgroundColor: "#C70039",
             color: "white",
             padding: "10px",
             borderRadius: "50%",
