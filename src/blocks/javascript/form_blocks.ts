@@ -27,7 +27,7 @@ javascriptGenerator.forBlock['handle_form_submission'] = function (block : any, 
     form.onsubmit = function(event) {
       event.preventDefault();
       ${on_submit_callback}
-    }
+    };
     `;
 
     return code;
@@ -104,7 +104,8 @@ javascriptGenerator.forBlock['fetch_block'] = function(block: any, generator: an
   }).catch((error) => {
     console.log(error);
     ${statements_on_error}
-  })`;
+  });
+  `;
   return code;
 };
 
