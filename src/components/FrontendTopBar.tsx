@@ -23,7 +23,7 @@ import { useState } from "react";
 
 function logout(){
   console.log("Works");
-  // localStorage.removeItem('tokens');
+  localStorage.removeItem('tokens');
   window.location.href = '/login'; 
 }
 

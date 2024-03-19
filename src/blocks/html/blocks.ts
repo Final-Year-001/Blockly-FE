@@ -395,37 +395,69 @@ JavaScript.javascriptGenerator.forBlock["html_label"] = function (
 
 //////////////////////////////////////////////////////////////////////////////
 
-Blockly.Blocks["block_identifier"] = {
-  init: function () {
+Blockly.Blocks['html_idClass'] = {
+  init: function() {
     this.appendDummyInput()
-      .appendField("ID")
-      .appendField(new Blockly.FieldTextInput(""), "id")
-      .appendField("Class")
-      .appendField(new Blockly.FieldTextInput(""), "class");
+        .appendField("Id")
+        .appendField(new Blockly.FieldTextInput(""), "inputID")
+        .appendField("Class")
+        .appendField(new Blockly.FieldTextInput(""), "inputClass");
+    this.setInputsInline(true);
     this.setOutput(true, null);
     this.setStyle("HTML_form");
-    this.setTooltip("");
-    this.setHelpUrl("");
-  },
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
 };
 
-JavaScript.javascriptGenerator.forBlock["block_identifier"] = function (
-  block: any,
-  generator: any
-) {
-  const text_id = block.getFieldValue("id");
-  const text_class = block.getFieldValue("class");
+JavaScript.javascriptGenerator.forBlock['html_idClass'] = function(block : any, generator: any) {
+  var text_inputid = block.getFieldValue('inputID');
+  var text_inputclass = block.getFieldValue('inputClass');
   // TODO: Assemble javascript into code variable.
-  let code = "";
-  if (text_id) {
-    code = ` id="${text_id}"`;
+  var code = '';
+  if (text_inputid) {
+    code = code + ` id="${text_inputid}"`;
   }
-  if (text_class) {
-    code = code + ` class="${text_class}"`;
+  if (text_inputclass) {
+    code = code + ` class="${text_inputclass}"`;
   }
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, generator.ORDER_ATOMIC];
 };
+
+
+//This one has a bug. need to look into it to prevent such issues.
+// Blockly.Blocks["block_identifier"] = {
+//   init: function () {
+//     this.appendDummyInput()
+//       .appendField("ID")
+//       .appendField(new Blockly.FieldTextInput(""), "id")
+//       .appendField("Class")
+//       .appendField(new Blockly.FieldTextInput(""), "class");
+//     this.setOutput(true, null);
+//     this.setStyle("HTML_form");
+//     this.setTooltip("");
+//     this.setHelpUrl("");
+//   },
+// };
+
+// JavaScript.javascriptGenerator.forBlock["block_identifier"] = function (
+//   block: any,
+//   generator: any
+// ) {
+//   const text_id = block.getFieldValue("id");
+//   const text_class = block.getFieldValue("class");
+//   // TODO: Assemble javascript into code variable.
+//   let code = "";
+//   if (text_id) {
+//     code = code + ` id="${text_id}"`;
+//   }
+//   if (text_class) {
+//     code = code + ` class="${text_class}"`;
+//   }
+//   // TODO: Change ORDER_NONE to the correct strength.
+//   return [code, generator.ORDER_ATOMIC];
+// };
 
 //////////////////////////////////////////////////////////////////////////////
 
