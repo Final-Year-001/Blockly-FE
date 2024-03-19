@@ -6,7 +6,7 @@ Blockly.Blocks["authenticationTocken_middleware"] = {
   init: function () {
     this.appendDummyInput()
       .setAlign(Blockly.inputs.Align.LEFT)
-      .appendField("Authenticate Tocken Middleware");
+      .appendField("Authenticate JWT Middleware");
     this.appendValueInput("token").setCheck(null).appendField("Token");
     this.appendValueInput("accessTokensecret")
       .setCheck("String")
