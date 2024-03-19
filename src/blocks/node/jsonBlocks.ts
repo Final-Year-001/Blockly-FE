@@ -27,7 +27,7 @@ javascriptGenerator.forBlock["extract_value"] = function (
   );
   const key = generator.valueToCode(block, "Key", 0);
 
-  const code = `${variableName}.${key}`;
+  const code = `${variableName}?.${key}`;
 
   return [code, javascriptGenerator.ORDER_NONE];
 };
@@ -38,13 +38,12 @@ Blockly.Blocks["key_chain"] = {
       .setAlign(Blockly.inputs.Align.LEFT)
       .appendField("Value of");
     this.appendDummyInput()
-      .appendField("Key:")
+      .appendField("key:")
       .appendField(new Blockly.FieldTextInput(), "key");
     this.appendValueInput("chainKey")
       .setCheck("String")
       .appendField("Key Chain:");
     this.setOutput(true, null);
-    this.setInputsInline(true);
     this.setStyle("Json_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -58,7 +57,7 @@ javascriptGenerator.forBlock["key_chain"] = function (
   const key = block.getFieldValue("key");
   const chainKey = generator.valueToCode(block, "chainKey", 0);
 
-  const code = `${key}${chainKey && "."}${chainKey}`;
+  const code = `${key}${chainKey && "?."}${chainKey}`;
 
   return [code, Order.ATOMIC];
 };
@@ -76,7 +75,6 @@ Blockly.Blocks["set_value_to_key"] = {
     this.setStyle("Json_blocks");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setInputsInline(true);
   },
 };
 
@@ -85,7 +83,10 @@ javascriptGenerator.forBlock["set_value_to_key"] = function (
   generator: any
 ) {
   const value = generator.valueToCode(block, "value", 0);
-  const key = generator.valueToCode(block, "Key", 0);
+  let key = generator.valueToCode(block, "Key", 0);
+  if (key) {
+    key = key.replace(/\?/g, "");
+  }
   // check whether the options are in expected type
 
   const code = `${key} = ${value};\n`;

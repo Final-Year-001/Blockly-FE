@@ -3,7 +3,7 @@ import { Button, Typography } from "@material-tailwind/react";
 import ProjectCard from "../../components/ProjectCard";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import NewProjectModal from "../../components/NewProjectModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -16,6 +16,8 @@ import {
 } from "../../api/project";
 import { AxiosError } from "axios";
 import NewLessonModal from "../../components/NewLessonModal";
+import { FaArrowUp } from "react-icons/fa";
+import { AwesomeButton } from 'react-awesome-button'; 
 
 function MyProjects() {
   const tokens = useRecoilValue(tokenAtom);
@@ -23,6 +25,27 @@ function MyProjects() {
 
   const [open, setOpen] = useState<boolean>(false);
   const [openNewLesson, setNewLessonOpen] = useState<boolean>(false);
+  const [showScroll, setShowScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScroll(true);
+      } else {
+        setShowScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const qc = useQueryClient();
   const projectDataQuery = useQuery("projects", {
@@ -123,23 +146,76 @@ function MyProjects() {
         <div className="flex justify-between px-16 pb-4">
           <Typography variant="h1">My Projects</Typography>
           <div className="flex gap-4">
-            <Button
-              onClick={() => setOpen(true)}
+
+            <AwesomeButton
+              style={{
+                '--button-primary-color': '#33cc33',
+                '--button-primary-color-dark': '#18a418',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#33cc33',
+                '--button-primary-color-active': '#1aa81a',
+                '--button-default-border-radius': '8px',
+                width: '180px',
+                height: '50px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              onPress={() => setOpen(true)}
               className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
             >
               <PlusIcon className="h-6 w-6" /> New Project
-            </Button>
-            <Button
-              onClick={() => setNewLessonOpen(true)}
+            </AwesomeButton>
+
+            <AwesomeButton
+              style={{
+                '--button-primary-color': '#42A5F5',
+                '--button-primary-color-dark': '#2d82c7',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#62b4f8',
+                '--button-primary-color-active': '#2d82c7',
+                '--button-default-border-radius': '8px',
+                width: '180px',
+                height: '50px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              onPress={() => setNewLessonOpen(true)}
               className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
             >
               <PlusIcon className="h-6 w-6" /> Create Lesson
-            </Button>
-            <Link to="/get-started">
-              <Button className="h-12 flex gap-3 justify-center items-center">
-                Documentation
-              </Button>
-            </Link>
+            </AwesomeButton>
+
+            <AwesomeButton
+              style={{
+                '--button-primary-color': '#FFA726',
+                '--button-primary-color-dark': '#e29520',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#ffb03a',
+                '--button-primary-color-active': '#e29520',
+                '--button-default-border-radius': '8px',
+                width: '180px',
+                height: '50px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              href={'/get-started'}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+               Documentation
+            </AwesomeButton>
+            
           </div>
         </div>
         <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
@@ -166,6 +242,23 @@ function MyProjects() {
         handler={() => setNewLessonOpen(false)}
         onClick={onClickNewLesson}
       />
+      {showScroll && (
+        <div
+          onClick={scrollToTop}
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            cursor: "pointer",
+            backgroundColor: "#FFBF00",
+            color: "white",
+            padding: "10px",
+            borderRadius: "50%",
+          }}
+        >
+          <FaArrowUp size={20} />
+        </div>
+      )}
     </div>
   );
 }

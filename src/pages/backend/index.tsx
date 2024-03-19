@@ -11,7 +11,7 @@ import {
 import { useRecoilState, useRecoilValue } from "recoil";
 import { codeAtom } from "../../state/code";
 import SandboxConsole from "../../components/SandboxConsole";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
@@ -29,6 +29,7 @@ import BackendTopBar from "../../components/BackendTopBar";
 import Tour from "reactour";
 import { TourSteps } from "./TourSteps";
 import AceEditor from "react-ace";
+import { js_beautify } from "js-beautify";
 
 function organizeCode(code: string) {
   // Split the code into lines
@@ -83,6 +84,38 @@ function BackendPage() {
   const debouncedWorkspace = useDebounce(workspaceState.current, 2000);
   const params = useParams();
   const tokens = useRecoilValue(tokenAtom);
+
+  const formattedCode = useMemo(
+    () =>
+      js_beautify(code, {
+        indent_size: 1,
+        indent_char: " ",
+        indent_with_tabs: false,
+        editorconfig: false,
+        eol: "\n",
+        end_with_newline: false,
+        indent_level: 0,
+        preserve_newlines: true,
+        max_preserve_newlines: 10,
+        space_in_paren: false,
+        space_in_empty_paren: false,
+        jslint_happy: false,
+        space_after_anon_function: false,
+        space_after_named_function: false,
+        brace_style: "collapse",
+        unindent_chained_methods: false,
+        break_chained_methods: false,
+        keep_array_indentation: false,
+        unescape_strings: false,
+        wrap_line_length: 0,
+        e4x: false,
+        comma_first: false,
+        operator_position: "before-newline",
+        indent_empty_lines: false,
+        templating: ["auto"],
+      }),
+    [code]
+  );
 
   const saveMutation = useMutation({
     mutationFn: ({ code, stepNumber }: { code: any; stepNumber: number }) =>
@@ -166,15 +199,13 @@ function BackendPage() {
       value: "html",
       desc: (
         <div className="whitespace-pre-line w-full h-full p-2 text-white">
-          {/* <code>{code}</code> */}
           <AceEditor
             height="100%"
             width="100%"
-            value={code}
-            mode="html"
+            value={formattedCode}
+            mode="javascript"
             theme="monokai"
             fontSize="20px"
-            highlightActiveLine={true}
             setOptions={{
               enableLiveAutocompletion: true,
               showLineNumbers: true,
@@ -267,7 +298,7 @@ function BackendPage() {
             </TabsHeader>
             <TabsBody className="h-full pb-10  bg-black border rounded-xl hover:overflow-auto">
               {tabs.map(({ value, desc }) => (
-                <TabPanel key={value} value={value}>
+                <TabPanel className="m-0 p-1 h-full" key={value} value={value}>
                   {desc}
                 </TabPanel>
               ))}

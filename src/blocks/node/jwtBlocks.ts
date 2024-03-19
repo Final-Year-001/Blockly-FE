@@ -35,8 +35,7 @@ javascriptGenerator.forBlock["authenticationTocken_middleware"] = function (
 
   // TODO: Assemble javascript into code variable.
   const code = `
-    import jwt from 'jsonwebtoken'
-    const app = express();
+    import jwt from 'jsonwebtoken';
 
     app.use(
       (req, res, next) => {
@@ -54,7 +53,9 @@ javascriptGenerator.forBlock["authenticationTocken_middleware"] = function (
           next();
         }
       
-        jwt.verify(token, ${accessTokensecret}, (err, user) => {
+        jwt.verify(token, ${
+          accessTokensecret || '"ASSDHSYEKSI"'
+        }, (err, user) => {
           if (err) {
             req.auth = {
               token,
