@@ -11,17 +11,19 @@ import {
 import { useNavigate } from "react-router-dom";
 import { AwesomeButton } from 'react-awesome-button'; 
 
-interface ProjectCardProps {
+export interface ProjectCardProps {
     readonly name: string;
     readonly description: string;
     readonly image: string;
     readonly id: string;
     readonly variant: string;
     readonly lesson?: boolean
+    readonly onDelete?: (project: ProjectCardProps) => void
 }
 
-function ProjectCard({ name, description, image, id, variant, lesson }: ProjectCardProps) {
+function ProjectCard(project: ProjectCardProps) {
   const navigate =  useNavigate();
+  const { name, description, image, id, variant, lesson, onDelete } = project;
 
   return (
     <Card className="mt-6 w-96">
@@ -116,6 +118,7 @@ function ProjectCard({ name, description, image, id, variant, lesson }: ProjectC
               }}
               className="h-12 flex gap-3 justify-center items-center"
               type="primary"
+              onPress={() => onDelete?.(project)}
             >
               <TrashIcon className="h-5 w-5" />
             </AwesomeButton>

@@ -43,6 +43,18 @@ export async function getProjectById(tokens: Tokens, id: string) {
   return res;
 }
 
+export async function deleteProjectById(tokens: Tokens, id: string) {
+  let res = await httpClient.request({
+    headers: {
+      Authorization: `Bearer ${tokens.access_token}`,
+    },
+    url: "project/" + id,
+    method: "DELETE",
+  });
+
+  return res;
+}
+
 export async function newProject(tokens: Tokens, data: any) {
   let res = await httpClient.request({
     headers: {
@@ -63,6 +75,18 @@ export async function getLessonById(tokens: Tokens, id: string) {
     },
     url: "lesson/" + id,
     method: "GET",
+  });
+
+  return res;
+}
+
+export async function deleteLesson(tokens: Tokens, id: string) {
+  let res = await httpClient.request({
+    headers: {
+      Authorization: `Bearer ${tokens.access_token}`,
+    },
+    url: "lesson/" + id,
+    method: "DELETE",
   });
 
   return res;
