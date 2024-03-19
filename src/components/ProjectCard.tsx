@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import { AwesomeButton } from 'react-awesome-button'; 
 
 interface ProjectCardProps {
     readonly name: string;
@@ -39,21 +40,86 @@ function ProjectCard({ name, description, image, id, variant, lesson }: ProjectC
         </Typography>
       </CardBody>
       <CardFooter className="pt-0 flex gap-3">
-        <Button onClick={() => {
-          if(lesson) {
-            navigate("/lesson-creator/" + id);
-            return;
-          } 
+        
+        <AwesomeButton
+              style={{
+                '--button-primary-color': '#33cc33',
+                '--button-primary-color-dark': '#18a418',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#33cc33',
+                '--button-primary-color-active': '#1aa81a',
+                '--button-default-border-radius': '8px',
+                width: '50px',
+                height: '50px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+              onPress={() => {
+                if(lesson) {
+                  navigate("/lesson-creator/" + id);
+                  return;
+                } 
+      
+                if (variant == "frontend") {
+                  navigate("/frontend/" + id);
+                  return;
+                }
+          
+                navigate("/backend/" + id);
+              }}
+            >
+              <PencilSquareIcon className="h-5 w-5" />
+            </AwesomeButton>
 
-          if (variant == "frontend") {
-            navigate("/frontend/" + id);
-            return;
-          }
-    
-          navigate("/backend/" + id);
-        }}><PencilSquareIcon className="w-5 h-5"/></Button>
-        <Button><PlayIcon className="w-5 h-5"/></Button>
-        <Button><TrashIcon className="w-5 h-5" /></Button>
+        <AwesomeButton
+              style={{
+                '--button-primary-color': '#42A5F5',
+                '--button-primary-color-dark': '#2d82c7',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#62b4f8',
+                '--button-primary-color-active': '#2d82c7',
+                '--button-default-border-radius': '8px',
+                width: '50px',
+                height: '50px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+              <PlayIcon className="h-5 w-5" />
+            </AwesomeButton>
+
+        <AwesomeButton
+              style={{
+                '--button-primary-color': '#D22B2B',
+                '--button-primary-color-dark': '#C41E3A',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#D22B2B',
+                '--button-primary-color-active': '#D2042D',
+                '--button-default-border-radius': '8px',
+                width: '50px',
+                height: '50px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+              <TrashIcon className="h-5 w-5" />
+            </AwesomeButton>
+
       </CardFooter>
     </Card>
   );

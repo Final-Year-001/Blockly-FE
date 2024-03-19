@@ -16,14 +16,14 @@ import { AwesomeButton } from 'react-awesome-button';
         <div>
           <AwesomeButton 
         style={{ 
-          '--button-primary-color': '#42A5F5',
-          '--button-primary-color-dark': '#2d82c7',
+          '--button-primary-color': '#4682B4',
+          '--button-primary-color-dark': '#008080',
           '--button-primary-color-light': '#ffffff',
-          '--button-primary-color-hover': '#62b4f8',
+          '--button-primary-color-hover': '#4682B4',
           '--button-primary-color-active': '#2d82c7',
           '--button-default-border-radius': '8px',
            width: '180px',
-           height: '37px',
+           height: '50px',
            marginRight: '10px' 
         }} 
         href={'/my/projects'}
