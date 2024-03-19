@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import TopBar from "./topBar";
 import { FaArrowUp } from "react-icons/fa";
 import { AwesomeButton } from 'react-awesome-button';
+import './main.css';
 
 function GetStartedPage() {
 
@@ -38,13 +39,13 @@ function GetStartedPage() {
 
      <div className="flex justify-between items-center">
         <div> <br/>
-          <Typography variant="h3">Get Started</Typography>
-          <h1 style={{ color: 'red', fontWeight: 'bold' }}>COMPLETE THIS PAGEEEE</h1>
+          <h1>Get Started</h1>
+          <h3 style={{ color: 'red', fontWeight: 'bold' }}>Ongoing...</h3>
         </div>
       </div>
      
       <div className="my-8">
-        <Typography variant="h4">Overview</Typography>
+        <h2>Overview</h2>
         <p>
           Welcome to Web Block Craft, a Google Blockly framework-based application
           designed to teach web programming to children and beginners. Web Block Craft
@@ -54,7 +55,7 @@ function GetStartedPage() {
       </div> <hr/>
 
       <div className="my-8">
-        <Typography variant="h4">Getting Started with Web Block Craft</Typography>
+        <h2>Getting Started with Web Block Craft</h2>
         <p>
           To start with development, follow these steps:
         </p>
@@ -67,7 +68,7 @@ function GetStartedPage() {
       </div> <hr/>
 
       <div className="my-8">
-        <Typography variant="h4">Getting Started with Frontend</Typography> <br/>
+        <h2>Getting Started with Frontend</h2> <br/>
         <div style={{ display: 'flex', gap: '10px' }}>
           
           <AwesomeButton 
@@ -79,27 +80,27 @@ function GetStartedPage() {
           '--button-primary-color-active': '#1aa81a',
           '--button-default-border-radius': '8px',
            width: '140px',
-           height: '37px',   
+           height: '50px',   
            marginRight: '10px'        
         }} 
-        href={'/doc-html'}
+        href={'#'}
         type="primary">
           HTML Tutorials
         </AwesomeButton>
 
         <AwesomeButton 
         style={{ 
-          '--button-primary-color': '#4682B4',
-          '--button-primary-color-dark': '#008080',
+          '--button-primary-color': '#42A5F5',
+          '--button-primary-color-dark': '#2d82c7',
           '--button-primary-color-light': '#ffffff',
-          '--button-primary-color-hover': '#4682B4',
+          '--button-primary-color-hover': '#62b4f8',
           '--button-primary-color-active': '#2d82c7',
           '--button-default-border-radius': '8px',
            width: '140px',
-           height: '37px',
+           height: '50px',
            marginRight: '10px' 
         }} 
-        href={'/doc-css'}
+        href={'#'}
         type="primary">
           CSS Tutorials
         </AwesomeButton>
@@ -113,7 +114,7 @@ function GetStartedPage() {
           '--button-primary-color-active': '#e29520',
           '--button-default-border-radius': '8px',
           width: '180px',
-          height: '37px',
+          height: '50px',
           marginRight: '10px' 
         }} 
         href={'/doc-js'}
@@ -124,7 +125,7 @@ function GetStartedPage() {
       </div> <hr/>
 
       <div className="my-8">
-        <Typography variant="h4">Getting Started with Backend</Typography><br/>
+        <h2>Getting Started with Backend</h2><br/>
         <div style={{ display: 'flex', gap: '10px' }}>
 
         <AwesomeButton 
@@ -136,27 +137,27 @@ function GetStartedPage() {
           '--button-primary-color-active': '#1aa81a',
           '--button-default-border-radius': '8px',
            width: '220px',
-           height: '37px',   
+           height: '50px',   
            marginRight: '10px'        
         }} 
-        href={'/#'}
+        href={'#'}
         type="primary">
           Server Creation Tutorials
         </AwesomeButton>
 
         <AwesomeButton 
         style={{ 
-          '--button-primary-color': '#4682B4',
-          '--button-primary-color-dark': '#008080',
+          '--button-primary-color': '#42A5F5',
+          '--button-primary-color-dark': '#2d82c7',
           '--button-primary-color-light': '#ffffff',
-          '--button-primary-color-hover': '#4682B4',
+          '--button-primary-color-hover': '#62b4f8',
           '--button-primary-color-active': '#2d82c7',
           '--button-default-border-radius': '8px',
            width: '220px',
-           height: '37px',
+           height: '50px',
            marginRight: '10px' 
         }} 
-        href={'/#'}
+        href={'#'}
         type="primary">
           API Handling Tutorials
         </AwesomeButton>
@@ -170,10 +171,10 @@ function GetStartedPage() {
           '--button-primary-color-active': '#e29520',
           '--button-default-border-radius': '8px',
           width: '240px',
-          height: '37px',
+          height: '50px',
           marginRight: '10px' 
         }} 
-        href={'/#'}
+        href={'#'}
         type="primary">
           Database Handling Tutorials
         </AwesomeButton>
@@ -182,7 +183,7 @@ function GetStartedPage() {
       </div> <hr/>
 
       <div className="my-8">
-        <Typography variant="h4">Connecting Frontend and Backend</Typography>
+        <h2>Connecting Frontend and Backend</h2>
         <p>
           To connect your frontend and backend projects, use the following steps:
         </p>
@@ -196,7 +197,7 @@ function GetStartedPage() {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "#FFBF00",
+            backgroundColor: "#C70039",
             color: "white",
             padding: "10px",
             borderRadius: "50%",
