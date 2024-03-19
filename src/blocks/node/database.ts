@@ -64,7 +64,8 @@ javascriptGenerator.forBlock["find_by_id_db"] = function (
 
 Blockly.Blocks["find_with_filter"] = {
   init: function () {
-    this.appendDummyInput().appendField("Find in database");
+    this.appendDummyInput().appendField("Find in collection");
+    this.appendValueInput("collection").setCheck(null).setAlign(Blockly.ALIGN_CENTRE);
     this.appendStatementInput("filter").setCheck(null).appendField("Filter");
     this.setOutput(true, null);
     this.setStyle("Database_blocks");
@@ -77,8 +78,31 @@ javascriptGenerator.forBlock["find_with_filter"] = function (
   block: any,
   generator: any
 ) {
-  const statements_filter = generator.statementToCode(block, "filter");
-  const code = "...";
+    const statements_filter = generator.statementToCode(block, "filter", Order.ATOMIC);
+  const collection = generator.valueToCode(block, "collection", Order.ATOMIC);
+  const code = `await database.getAll(${collection},{ ${statements_filter} })`;
+  return [code, javascriptGenerator.ORDER_NONE];
+};
+
+Blockly.Blocks["delete_with_filter"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Delete in collection");
+    this.appendValueInput("collection").setCheck(null).setAlign(Blockly.ALIGN_CENTRE);
+    this.appendStatementInput("filter").setCheck(null).appendField("Filter");
+    this.setOutput(true, null);
+    this.setStyle("Database_blocks");
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+javascriptGenerator.forBlock["delete_with_filter"] = function (
+  block: any,
+  generator: any
+) {
+    const statements_filter = generator.statementToCode(block, "filter", Order.ATOMIC);
+  const collection = generator.valueToCode(block, "collection", Order.ATOMIC);
+  const code = `await database.deleteDoc(${collection},{ ${statements_filter} })`;
   return [code, javascriptGenerator.ORDER_NONE];
 };
 
@@ -105,6 +129,6 @@ javascriptGenerator.forBlock["find_in_database_filter"] = function (
   const value_key = generator.valueToCode(block, "key", Order.ATOMIC);
   const value_value = generator.valueToCode(block, "value", Order.ATOMIC);
   // TODO: Assemble javascript into code variable.
-  const code = "...\n";
+  const code = `${value_key}:${value_value},`;
   return code;
 };
