@@ -22,7 +22,8 @@ function VideoPlayer() {
         <ReactPlayer
           width="900px"
           height="500px"
-          url="https://www.youtube.com/watch?v=1jHvXakt1qw"
+          url={videoPlayerDialogState.videoLink}
+          playbackRate={1.3}
         />
       </DialogBody>
     </Dialog>

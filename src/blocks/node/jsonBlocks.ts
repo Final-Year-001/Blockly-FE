@@ -10,7 +10,6 @@ Blockly.Blocks["extract_value"] = {
       .appendField(new Blockly.FieldVariable("item"), "var");
     this.appendValueInput("Key").setCheck("String").appendField("Key chain:");
     this.setOutput(true, null);
-    this.setInputsInline(true);
     this.setStyle("Json_blocks");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -64,9 +63,7 @@ javascriptGenerator.forBlock["key_chain"] = function (
 
 Blockly.Blocks["set_value_to_key"] = {
   init: function () {
-    this.appendDummyInput();
-    this.appendDummyInput().appendField("Set value");
-    this.appendValueInput("value").setCheck(null);
+    this.appendValueInput("value").setCheck(null).appendField("Set value");
     this.appendValueInput("Key").setCheck("String").appendField("Key chain:");
     this.setTooltip(
       "By adding this compression middleware will compress responses return from the server and will provide user a faster download speed"
