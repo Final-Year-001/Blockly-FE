@@ -28,6 +28,7 @@ import { stripId } from "../../helpers/blockly";
 import BackendTopBar from "../../components/BackendTopBar";
 import Tour from "reactour";
 import { TourSteps } from "./TourSteps";
+import AceEditor from "react-ace";
 
 function organizeCode(code: string) {
   // Split the code into lines
@@ -165,7 +166,21 @@ function BackendPage() {
       value: "html",
       desc: (
         <div className="whitespace-pre-line w-full h-full p-2 text-white">
-          <code>{code}</code>
+          {/* <code>{code}</code> */}
+          <AceEditor
+            height="100%"
+            width="100%"
+            value={code}
+            mode="html"
+            theme="monokai"
+            fontSize="20px"
+            highlightActiveLine={true}
+            setOptions={{
+              enableLiveAutocompletion: true,
+              showLineNumbers: true,
+              tabSize: 2,
+            }}
+          />
         </div>
       ),
     },

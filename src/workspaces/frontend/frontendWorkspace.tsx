@@ -20,8 +20,8 @@ export const workspaceConfiguration = {
   grid: {
     spacing: 20,
     length: 3,
-    // colour: "#ffffff",
-    colour: "#",
+    colour: "#ebd50d",
+    // colour: "#",
     snap: true,
   },
   zoom: {
@@ -54,15 +54,18 @@ function FrontendWorkspace({
   const workspaceWrapper = useRef<HTMLDivElement>(null);
   const [FEoutCode, SetFEoutCode] = useRecoilState(FEOutAtom);
 
+
+
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
     javascriptGenerator.addReservedWords("code");
     const code = javascriptGenerator.workspaceToCode(workspace);
 
-    SetFEoutCode(code);
     // console.log("FROM FEWORKSPACE", FEoutCode)
-
+    SetFEoutCode(code);
     onCodeChange?.(code, workspace);
   };
+
+ 
 
   return (
     <Card

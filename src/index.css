@@ -56,9 +56,9 @@ svg[display="none"] {
 }
 
 .blocklyToolboxDiv {
-  background-color: rgba(2, 16, 30, 0.744);
+  background-color: rgba(117, 86, 1, 0.782);
   /* background-color: rgba(0, 1, 2, 0.744);  */
-  backdrop-filter: blur(10px); /* Apply a blur effect */
+  backdrop-filter: blur(5px); /* Apply a blur effect */
   border-radius: 5px;
 }
 
