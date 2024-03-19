@@ -47,11 +47,7 @@ function FrontendTopBar() {
       </h3>
       </div>
 
-      <div>
-        {/* <Button className="mr-4" onClick={()=>{createHTMLFile("file")}}>Preview Code</Button> */}
-        {/* <Link to="/get-started"><Button className="mr-4">Tutorial Guide</Button> </Link> */}
-        {/* <Button className="mr-4" onClick={()=>logout()} >Logout</Button> */}
-    
+      <div>    
         <AwesomeButton 
         style={{ 
           '--button-primary-color': '#33cc33',
