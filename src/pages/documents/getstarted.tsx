@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import TopBar from "./topBar";
 import { FaArrowUp } from "react-icons/fa";
 import { AwesomeButton } from 'react-awesome-button';
-import './main.css';
+import './mainpage.css';
 
 function GetStartedPage() {
 
