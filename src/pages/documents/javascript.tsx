@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import TopBar from "./topBar";
 import { FaArrowUp } from "react-icons/fa";
+import Confetti from "react-dom-confetti";
+import './jsstyles.css';
 
 const blocks = [
   // Get started category
@@ -164,6 +166,13 @@ const blocks = [
   },
 ];
 
+const Badge = ({ title, image }) => (
+  <div style={{ display: 'inline-block', marginRight: '10px' }}>
+    <img src={image} alt={title} style={{ width: '50px', height: '50px' }} />
+    <p>{title}</p>
+  </div>
+);
+
 function JavascriptDoc() {
   // Group blocks by category
   const groupedBlocks = blocks.reduce((acc, block) => {
@@ -173,11 +182,14 @@ function JavascriptDoc() {
   }, {});
 
   const [showScroll, setShowScroll] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
+      if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 250) {
         setShowScroll(true);
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 2000); 
       } else {
         setShowScroll(false);
       }
@@ -201,7 +213,7 @@ function JavascriptDoc() {
       </div>
 
       <div style={{ textAlign: 'center', margin: '20px 0' }}>
-      <h1 style={{ fontSize: '2rem', fontFamily: 'Arial, sans-serif', fontWeight: 'bold', color: '#333', textAlign: 'center' }}>Javascript Blocks</h1>
+      <h1>Javascript Blocks</h1>
       </div>
 
       <div>
@@ -209,7 +221,7 @@ function JavascriptDoc() {
         {Object.entries(groupedBlocks).map(([category, categoryBlocks], index) => (
           <div key={index} style={{ marginBottom: '30px', marginLeft: '20%' }}>
             <br/>
-            <h2 style={{ textDecoration: 'underline' }}>{category}</h2>
+            <h2>{category}</h2>
             {/* Add a sentence about the type of blocks in the category */}
             {categoryDescriptions[category] && <p>{categoryDescriptions[category]}</p>}
             <br/>
@@ -219,9 +231,9 @@ function JavascriptDoc() {
                 <div key={index} style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
                   <div style={{ width: block.maxWidth?.description || '50%', marginRight: '20px' }}>
                     <h3>{index + 1}. {block.title}</h3>
-                    <p>{block.description}</p>
+                    <p>{block.description}</p><br/>
                   </div>
-                  <img src={block.image} alt={`image`} style={{ maxWidth: block.maxWidth?.image || '50%', height: 'auto' }} />
+                  <img src={block.image} alt={`image`} style={{ maxWidth: block.maxWidth?.image || '50%', height: 'auto', border: '2px solid #A9A9A9'}} />
                 </div>
               ))}
             </div> 
@@ -230,6 +242,35 @@ function JavascriptDoc() {
         ))}
       </div>
 
+      {/* Feedback System with Badges */}
+      <div className="feedback-container">
+        <h3 className="badheh3">Your Badges</h3>
+        <div className="badge-list">
+          <div className="badge-item">
+            <img src="https://cdn2.iconfinder.com/data/icons/coding-files-extensions/512/coding-file-extension-javascript-512.png" alt="JavaScript Pro" />
+            <p>JavaScript Pro</p>
+          </div>
+          <div className="badge-item">
+            <img style={{marginLeft: '45px'}} src="https://www.freeiconspng.com/uploads/badge-certificate-medal-quality-reward-icon--3.png" alt="Reward for completing the tutorial" />
+            <p style={{marginLeft:'55px'}}>Completion Reward</p>
+          </div>
+        </div> 
+      </div><br/>
+
+      <Confetti active={showConfetti} 
+      config={{
+        angle: 90,
+        spread: 45,
+        startVelocity: 45,
+        elementCount: 60, // Adjust the number of confetti particles
+        dragFriction: 0.1,
+        duration: 2000,
+        stagger: 3,
+        width: '10px',
+        height: '10px',
+        colors: ['#FF0000', '#00FF00', '#0000FF', '#FFA500', '#FFC0CB', '#FFD700', '#00FFFF', '#FF69B4', '#FFFF00']
+      }} />
+      
       {showScroll && (
         <div
           onClick={scrollToTop}
@@ -238,13 +279,13 @@ function JavascriptDoc() {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "black",
+            backgroundColor: "#C70039",
             color: "white",
             padding: "10px",
             borderRadius: "50%",
           }}
         >
-          <FaArrowUp size={20} />
+          <FaArrowUp size={23} />
         </div>
       )}
 

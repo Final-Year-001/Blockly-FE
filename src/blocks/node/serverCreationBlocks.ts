@@ -18,12 +18,6 @@ Blockly.Blocks["express_server_creation"] = {
       // .setCheck(["compression_middleware"])
       .appendField("Middleware (Optional)");
     this.appendStatementInput("ROUTES").setCheck("route").appendField("Routes");
-    this.appendValueInput("ERROR_HANDLER")
-      .setCheck(null)
-      .appendField("Error handler");
-    this.appendValueInput("START_SERVER")
-      .setCheck("Boolean")
-      .appendField("Start server?");
     this.setTooltip("Creates a new Express server instance.");
     this.setHelpUrl("");
     this.setStyle("Backend_Components_blocks");
@@ -45,7 +39,6 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
   const middleware = generator.statementToCode(block, "MIDDLEWARE");
   const routes = generator.statementToCode(block, "ROUTES");
   const errorHandler = generator.valueToCode(block, "ERROR_HANDLER", 0);
-  const startServer = generator.valueToCode(block, "START_SERVER", 0);
 
   // TODO: Assemble javascript into code variable.
   const code = `
@@ -65,13 +58,9 @@ javascriptGenerator.forBlock["express_server_creation"] = function (
       ${errorHandler || "next()"}
     });
 
-    ${
-      startServer
-        ? `app.listen("${port}", () => {
-      console.log("listen on ${port}")
-  });`
-        : ""
-    }
+    app.listen("${port || 8999}", () => {
+      console.log("listen on ${port || 8999}")
+    });
   `;
   return code;
 };
