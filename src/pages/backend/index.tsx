@@ -267,6 +267,8 @@ function BackendPage() {
               stepPreview={currentStep.workspaceState}
               step={currentStepNumber + 1}
               hint={currentStep.description}
+              image={currentStep.image}
+              lastStep={steps.length - 1}
             />
           ) : null}
         </div>
