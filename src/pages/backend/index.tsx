@@ -281,7 +281,7 @@ function BackendPage() {
           }
         >
           <div
-            className="absolute p-2 top-20 left-0  w-10 z-10 bg-black rounded-l-lg text-white"
+            className="absolute p-2 top-20 left-10  w-10 z-10 bg-black rounded-l-lg text-white"
             onClick={() => {
               setIsExpanded((prev) => !prev);
             }}
@@ -300,9 +300,9 @@ function BackendPage() {
                 </Tab>
               ))}
             </TabsHeader>
-            <TabsBody className="h-full pb-10  bg-black border rounded-xl hover:overflow-auto">
+            <TabsBody className="h-full  bg-black border rounded-xl hover:overflow-auto">
               {tabs.map(({ value, desc }) => (
-                <TabPanel className="m-0 p-1 h-full" key={value} value={value}>
+                <TabPanel className="m-0 p-0 h-full" key={value} value={value}>
                   {desc}
                 </TabPanel>
               ))}

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Blockly from "blockly";
-import { javascriptGenerator } from "blockly/javascript";
+import { Order, javascriptGenerator } from "blockly/javascript";
 
 Blockly.Blocks["authenticationTocken_middleware"] = {
   init: function () {
     this.appendDummyInput()
       .setAlign(Blockly.inputs.Align.LEFT)
-      .appendField("Authenticate Tocken Middleware");
+      .appendField("Authenticate JWT Middleware");
     this.appendValueInput("token").setCheck(null).appendField("Token");
     this.appendValueInput("accessTokensecret")
       .setCheck("String")
@@ -51,13 +51,14 @@ javascriptGenerator.forBlock["authenticationTocken_middleware"] = function (
             valid: false,
           };
           next();
-        }
-      
+        } else {
+                
         jwt.verify(token, ${
           accessTokensecret || '"ASSDHSYEKSI"'
         }, (err, user) => {
           if (err) {
             req.auth = {
+              err,
               token,
               valid: false,
             };
@@ -71,6 +72,8 @@ javascriptGenerator.forBlock["authenticationTocken_middleware"] = function (
             next();
           }
         });
+
+        }
       }
     )
     
@@ -96,14 +99,11 @@ javascriptGenerator.forBlock["get_auth_object"] = function () {
   return [code, javascriptGenerator.ORDER_NONE];
 };
 
-Blockly.Blocks["get_hashed_password"] = {
+Blockly.Blocks["get_salt"] = {
   init: function () {
     this.appendDummyInput()
       .setAlign(Blockly.inputs.Align.LEFT)
-      .appendField("Hash password");
-    this.appendDummyInput()
-      .appendField("Path to password:")
-      .appendField(new Blockly.FieldTextInput(), "password");
+      .appendField("Generated salt value");
     this.setOutput(true, null);
     this.setStyle("JWT_Authentication_blocks");
     this.setTooltip("");
@@ -111,12 +111,41 @@ Blockly.Blocks["get_hashed_password"] = {
   },
 };
 
-javascriptGenerator.forBlock["get_hashed_password"] = function (block: any) {
-  const password = block.getFieldValue("password");
-
-  const code = `await bcrypt.hash(${password}, await bcrypt.genSalt(10));`;
+javascriptGenerator.forBlock["get_salt"] = function () {
+  const code = `await bcrypt.genSalt(10)`;
 
   return [code, javascriptGenerator.ORDER_NONE];
+};
+
+Blockly.Blocks["get_hashed_password"] = {
+  init: function () {
+    this.appendDummyInput()
+      .setAlign(Blockly.inputs.Align.LEFT)
+      .appendField("Hash password");
+    this.appendValueInput("password").setCheck(null).appendField("Password:");
+    this.appendValueInput("salt")
+      .setCheck(null)
+      .appendField("Slat (Optional):");
+    this.setOutput(true, null);
+    this.setStyle("JWT_Authentication_blocks");
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+javascriptGenerator.forBlock["get_hashed_password"] = function (
+  block: any,
+  generator: any
+) {
+  const password = generator.valueToCode(block, "password", Order.ATOMIC);
+  const salt = generator.valueToCode(block, "salt", Order.ATOMIC);
+
+  const code = `
+  import bcrypt from 'bcrypt';
+
+  await bcrypt.hash(${password}, ${salt || '"AKUHUSHWUNJSIIA"'})`;
+
+  return [code, Order.ATOMIC];
 };
 
 Blockly.Blocks["sign_jwt"] = {
@@ -124,9 +153,7 @@ Blockly.Blocks["sign_jwt"] = {
     this.appendDummyInput()
       .setAlign(Blockly.inputs.Align.LEFT)
       .appendField("Create and get JWT token");
-    this.appendDummyInput()
-      .appendField("Path to user details:")
-      .appendField(new Blockly.FieldTextInput(), "userDetailsPath");
+    this.appendValueInput("user").setCheck(null).appendField("User:");
     this.appendValueInput("accessTokensecret")
       .setCheck("String")
       .appendField("Access Token Secret");
@@ -149,17 +176,17 @@ javascriptGenerator.forBlock["sign_jwt"] = function (
     "accessTokensecret",
     0
   );
-  const userDetailsPath = block.getFieldValue("userDetailsPath");
+  const user = generator.valueToCode(block, "user", Order.ATOMIC);
   const expresIn = generator.valueToCode(block, "expresIn", 0);
 
   // TODO: Assemble javascript into code variable.
   const code = `
-    jwt.sign({user: JSON.stringify(${userDetailsPath})}, ${accessTokensecret} ${
+    jwt.sign({user: JSON.stringify(${user})}, ${accessTokensecret} ${
     expresIn && `, {expiresIn: ${expresIn} }`
-  } );
+  } )
     `;
 
-  return [code, javascriptGenerator.ORDER_NONE];
+  return [code, Order.ATOMIC];
 };
 
 Blockly.Blocks["match_passwords"] = {
@@ -167,12 +194,12 @@ Blockly.Blocks["match_passwords"] = {
     this.appendDummyInput()
       .setAlign(Blockly.inputs.Align.LEFT)
       .appendField("Compayer hashed password");
-    this.appendDummyInput()
-      .appendField("Path to incomming password:")
-      .appendField(new Blockly.FieldTextInput(), "inPassPath");
-    this.appendDummyInput()
-      .appendField("Path to hashed stored password:")
-      .appendField(new Blockly.FieldTextInput(), "storedPassPath");
+    this.appendValueInput("inPassword")
+      .setCheck(null)
+      .appendField("Incomming Password:");
+    this.appendValueInput("storedPassword")
+      .setCheck(null)
+      .appendField("Stored Hashed Password:");
     this.setOutput(true, null);
     this.setStyle("JWT_Authentication_blocks");
     this.setTooltip("");
@@ -180,11 +207,18 @@ Blockly.Blocks["match_passwords"] = {
   },
 };
 
-javascriptGenerator.forBlock["match_passwords"] = function (block: any) {
-  const inPassPath = block.getFieldValue("inPassPath");
-  const storedPassPath = block.getFieldValue("storedPassPath");
+javascriptGenerator.forBlock["match_passwords"] = function (
+  block: any,
+  generator: any
+) {
+  const inPassPath = generator.valueToCode(block, "inPassword", Order.ATOMIC);
+  const storedPassPath = generator.valueToCode(
+    block,
+    "storedPassword",
+    Order.ATOMIC
+  );
 
-  const code = `await bcrypt.compare(${inPassPath}, ${storedPassPath});`;
+  const code = `await bcrypt.compare(${inPassPath}, ${storedPassPath})`;
 
   return [code, javascriptGenerator.ORDER_NONE];
 };
