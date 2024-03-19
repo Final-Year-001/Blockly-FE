@@ -150,7 +150,7 @@ function MyProjects() {
             <AwesomeButton
               style={{
                 '--button-primary-color': '#E35335',
-                '--button-primary-color-dark': '#EC5800',
+                '--button-primary-color-dark': '#8B4000',
                 '--button-primary-color-light': '#ffffff',
                 '--button-primary-color-hover': '#E35335',
                 '--button-primary-color-active': '#FF4433',
