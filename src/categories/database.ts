@@ -21,5 +21,13 @@ export const databaseCategory = {
       kind: "block",
       type: "find_in_database_filter",
     },
+    {
+      kind: "block",
+      type: "delete_with_filter",
+    },
+    {
+      kind: "block",
+      type: "update_with_filter",
+    },
   ],
 };

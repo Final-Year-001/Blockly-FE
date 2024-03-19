@@ -77,12 +77,20 @@ export const cssCategory = {
     },
     {
       kind: "category",
-      name: "Positioning",
+      name: "Borders",
       colour: "#f28177",
       contents: [
         {
           kind: "block",
-          type: "css_bg_color",
+          type: "css_bloc_style",
+        },
+        {
+          kind: "block",
+          type: "css_borderRadius",
+        },
+        {
+          kind: "block",
+          type: "css_border_color",
         },
       ],
     },

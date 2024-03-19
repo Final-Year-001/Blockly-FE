@@ -8,10 +8,16 @@ import { useRecoilValue } from "recoil";
 import { tokenAtom } from "../../state/auth";
 import { getLessonById, newProject, saveLesson } from "../../api/project";
 import ProductLogo from "../../assets/Logo";
+import { uploadImage } from "../../helpers/firebase";
 
 interface StepDefinition {
   description: string;
   workspaceState: object;
+  image?: {
+    url?: string,
+    ref?: string
+  }
+  imageFile?: File
 }
 
 function LessonCreator() {
@@ -48,7 +54,7 @@ function LessonCreator() {
   const [refreshSteps, setRefreshSteps] = useState<boolean>(false);
 
   const saveMutation = useMutation({
-    mutationFn: (json) => saveLesson(tokens, params.id ?? "", json),
+    mutationFn: (steps) => saveLesson(tokens, params.id ?? "", steps),
     onMutate: () => {
       setSaveMessage({
         show: true,
@@ -105,8 +111,7 @@ function LessonCreator() {
     setSteps(newSteps);
   };
 
-  const save = () => {
-    console.log(steps);
+  const save = async () => {
     saveMutation.mutate(steps as any);
   };
 
@@ -180,6 +185,7 @@ function LessonCreator() {
               onMouseOver={() => {
                 setUndoSateLock(false);
               }}
+              image={value.image?.url}
               variant={variant}
               refresh={refreshSteps}
               state={value.workspaceState || {}}
@@ -188,6 +194,14 @@ function LessonCreator() {
                 let newSteps = _.cloneDeep(steps);
 
                 newSteps[index].description = value;
+                // setUndoSateLock(false);
+                setSteps(newSteps);
+              }}
+              onImageSet={(image) => {
+                console.log(image)
+                let newSteps = _.cloneDeep(steps);
+
+                newSteps[index].imageFile = image;
                 // setUndoSateLock(false);
                 setSteps(newSteps);
               }}
@@ -206,9 +220,9 @@ function LessonCreator() {
         })}
       </div>
       <div className="flex flex-row gap-3 w-full justify-center p-4">
-        <Button onClick={addStep}>+ Add Step</Button>
-        <Button onClick={save}>Save</Button>
-        <Button onClick={newProjectWithLesson}>New Project with lesson</Button>
+        <Button onClick={addStep} disabled={saveMutation.isLoading}>+ Add Step</Button>
+        <Button onClick={save} disabled={saveMutation.isLoading}>Save</Button>
+        <Button onClick={newProjectWithLesson} disabled={saveMutation.isLoading}>New Project with lesson</Button>
       </div>
     </>
   );

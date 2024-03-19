@@ -19,7 +19,6 @@ function SandboxConsole() {
         [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
       }[readyState];
 
-    console.log(readyState, "rs", connectionStatus)
     useEffect(() => {
       setLogHistory([]);
     }, [sandbox])

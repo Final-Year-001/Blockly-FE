@@ -29,8 +29,8 @@ export const FETheme = Blockly.Theme.defineTheme('myCustomTheme', {
 
     // Define component styles
     'componentStyles': {
-       'workspaceBackgroundColour': '#dbe7e5ab',
-      //  'toolboxBackgroundColour': '#36454ff0',
+       'workspaceBackgroundColour': '#fbf6daab',
+      //  'toolboxBackgroundColour': '#7f4d07cc',
        'toolboxForegroundColour': '#e2e2e2',
        'flyoutBackgroundColour': '#dcdcdce9', 
        'flyoutForegroundColour': '#fff',
