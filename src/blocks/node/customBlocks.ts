@@ -21,7 +21,7 @@ javascriptGenerator.forBlock["custom_code"] = function (block: any) {
   const yourCode = block.getFieldValue("code");
   // check whether the options are in expected type
 
-  const code = `${yourCode}\n`;
+  const code = `${yourCode}`;
 
   return code;
 };

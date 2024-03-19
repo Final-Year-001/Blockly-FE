@@ -25,5 +25,9 @@ export const jwtCategory = {
       kind: "block",
       type: "get_auth_object",
     },
+    {
+      kind: "block",
+      type: "get_salt",
+    },
   ],
 };

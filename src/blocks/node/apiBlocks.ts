@@ -43,7 +43,7 @@ javascriptGenerator.forBlock["api_method"] = function (
         res.status(500).json(e)
         console.error(e);
       }
-      res.end(); 
+res.end(); 
     });
   `;
   return code;
