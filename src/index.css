@@ -7,9 +7,10 @@
 }
 
 #root,
-html,
+html
 body {
   height: 100vh;
+  padding: 0px;
 }
 
 /* This is to fix the blockly scrollbar issue when using tailwind */
