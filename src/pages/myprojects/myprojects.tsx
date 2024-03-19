@@ -143,21 +143,21 @@ function MyProjects() {
     <div>
       <div className="h-10 w-full"></div>
       <div className="px-10">
-        <div className="flex justify-between px-16 pb-4">
+        <div className="flex justify-between px-16 pb-4 style={{ flexGrow: 1 }}">
           <Typography variant="h1">My Projects</Typography>
-          <div className="flex gap-4">
+          <div className="flex gap-4 justify-end">
 
             <AwesomeButton
               style={{
-                '--button-primary-color': '#33cc33',
-                '--button-primary-color-dark': '#18a418',
+                '--button-primary-color': '#E35335',
+                '--button-primary-color-dark': '#EC5800',
                 '--button-primary-color-light': '#ffffff',
-                '--button-primary-color-hover': '#33cc33',
-                '--button-primary-color-active': '#1aa81a',
+                '--button-primary-color-hover': '#E35335',
+                '--button-primary-color-active': '#FF4433',
                 '--button-default-border-radius': '8px',
-                width: '180px',
+                width: '145px',
                 height: '50px',
-                marginRight: '10px',
+                //marginRight: '10px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -172,15 +172,15 @@ function MyProjects() {
 
             <AwesomeButton
               style={{
-                '--button-primary-color': '#42A5F5',
-                '--button-primary-color-dark': '#2d82c7',
+                '--button-primary-color': '#33cc33',
+                '--button-primary-color-dark': '#18a418',
                 '--button-primary-color-light': '#ffffff',
-                '--button-primary-color-hover': '#62b4f8',
-                '--button-primary-color-active': '#2d82c7',
+                '--button-primary-color-hover': '#33cc33',
+                '--button-primary-color-active': '#1aa81a',
                 '--button-default-border-radius': '8px',
-                width: '180px',
+                width: '155px',
                 height: '50px',
-                marginRight: '10px',
+                //marginRight: '10px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -195,15 +195,15 @@ function MyProjects() {
 
             <AwesomeButton
               style={{
-                '--button-primary-color': '#FFA726',
-                '--button-primary-color-dark': '#e29520',
+                '--button-primary-color': '#42A5F5',
+                '--button-primary-color-dark': '#2d82c7',
                 '--button-primary-color-light': '#ffffff',
-                '--button-primary-color-hover': '#ffb03a',
-                '--button-primary-color-active': '#e29520',
+                '--button-primary-color-hover': '#62b4f8',
+                '--button-primary-color-active': '#2d82c7',
                 '--button-default-border-radius': '8px',
-                width: '180px',
+                width: '145px',
                 height: '50px',
-                marginRight: '10px',
+                //marginRight: '10px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -215,6 +215,29 @@ function MyProjects() {
             >
                Documentation
             </AwesomeButton>
+
+            <AwesomeButton
+              style={{
+                '--button-primary-color': '#FFA726',
+                '--button-primary-color-dark': '#e29520',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#ffb03a',
+                '--button-primary-color-active': '#e29520',
+                '--button-default-border-radius': '8px',
+                width: '90px',
+                height: '50px',
+                //marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              href={'/login'}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+              Logout
+            </AwesomeButton>
             
           </div>
         </div>
@@ -222,7 +245,7 @@ function MyProjects() {
           {projectData.map((project: any) => (
             <ProjectCard key={project.id} {...project} />
           ))}
-        </div>
+        </div> <br/><br/><hr style={{ border: '2px solid #353935', margin: '20px 0' }} />
         <div className="flex justify-between px-16 pb-4 pt-10">
           <Typography variant="h1">My Lessons</Typography>
         </div>

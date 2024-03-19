@@ -5,6 +5,7 @@ import WhatToLean from "./Explanation/WhatToLearn.tsx";
 import { useSetRecoilState } from "recoil";
 import { whatToLeanAtom } from "../state/explanation.ts";
 import VideoPlayer from "./Explanation/VideoPlayerDialog.tsx/index.tsx";
+import { AwesomeButton} from 'react-awesome-button';
 
 function BackendTopBar() {
   const setWhatToLearnState = useSetRecoilState(whatToLeanAtom);
@@ -22,18 +23,60 @@ function BackendTopBar() {
         </div>
 
         <div>
-          <Button
-            className="mr-4"
-            onClick={() => {
-              setWhatToLearnState(true);
-            }}
+          
+          <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#33cc33',
+          '--button-primary-color-dark': '#18a418',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#33cc33',
+          '--button-primary-color-active': '#1aa81a',
+          '--button-default-border-radius': '8px',
+           width: '140px',
+           height: '37px',   
+           marginRight: '10px'        
+        }} 
+        className="mr-4"
+        onPress={() => {setWhatToLearnState(true);}}
             id="HaveNoIdea"
-          >
-            Have No idea?
-          </Button>
-          <Link to="/get-started">
-            <Avatar src="/img/cat default avatar.png" alt="avatar" size="md" />
-          </Link>
+        type="primary">
+          Have No idea?
+        </AwesomeButton>
+
+          <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#42A5F5',
+          '--button-primary-color-dark': '#2d82c7',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#62b4f8',
+          '--button-primary-color-active': '#2d82c7',
+          '--button-default-border-radius': '8px',
+           width: '140px',
+           height: '37px',
+           marginRight: '10px' 
+        }} 
+        href={'/get-started'}
+        type="primary">
+          Tutorial Guide
+        </AwesomeButton>
+
+          <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#FFA726',
+          '--button-primary-color-dark': '#e29520',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#ffb03a',
+          '--button-primary-color-active': '#e29520',
+          '--button-default-border-radius': '8px',
+           width: '90px',
+           height: '37px' ,
+           marginRight: '10px' 
+        }} 
+        href={'/login'}
+        type="primary">
+          Logout
+        </AwesomeButton>
+      
         </div>
       </div>
       <WhatToLean />
