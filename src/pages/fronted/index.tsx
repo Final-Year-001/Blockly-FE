@@ -305,7 +305,7 @@ function FrontendPage() {
   });
 
   return (
-    <div className="flex flex-col h-full w-full ">
+    <div className="flex -200 flex-col h-full w-full ">
       <Tour
         steps={TourSteps}
         isOpen={showTour}

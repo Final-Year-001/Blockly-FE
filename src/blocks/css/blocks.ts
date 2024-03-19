@@ -420,7 +420,8 @@ Blockly.Blocks['css_marginPadding'] = {
         .appendField(new Blockly.FieldDropdown([["All",""], ["top","-top"], ["bottom","-bottom"], ["left","-left"], ["right","-right"]]),  "selectSide")
         .appendField("Side")
         .appendField(new Blockly.FieldNumber(0, 0, 100), "num")
-        .appendField(new Blockly.FieldDropdown([["Pixels","px"], ["Percentage","%"], ["em","em"]]), "selectNum");
+        .appendField(new Blockly.FieldDropdown([["Pixels","px"], ["Percentage","%"], ["em","em"]]), "selectNum")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "Auto")
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('CSS_blocks');
@@ -430,12 +431,18 @@ Blockly.Blocks['css_marginPadding'] = {
 };
 
 JavaScript.javascriptGenerator.forBlock['css_marginPadding'] = function(block : any, generator : any) {
-  var dropdown_selecttype = block.getFieldValue('selectType');
-  var dropdown_selectside = block.getFieldValue('selectSide');
-  var number_num = block.getFieldValue('num');
-  var dropdown_selectnum = block.getFieldValue('selectNum');
+  let dropdown_selecttype = block.getFieldValue('selectType');
+  let dropdown_selectside = block.getFieldValue('selectSide');
+  let number_num = block.getFieldValue('num');
+  let dropdown_selectnum = block.getFieldValue('selectNum');
+  let Auto = block.getFieldValue('Auto') === 'TRUE';
   // TODO: Assemble javascript into code variable.
-  var code = `${dropdown_selecttype}${dropdown_selectside}: ${number_num}${dropdown_selectnum}; `;
+  let code = `${dropdown_selecttype}${dropdown_selectside}: ${number_num}${dropdown_selectnum}`;
+  if(Auto){
+    code = code + " auto ;"
+  }else{
+    code = code + ";"
+  }
   return code;
 };
 
