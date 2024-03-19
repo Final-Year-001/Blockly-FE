@@ -25,5 +25,9 @@ export const databaseCategory = {
       kind: "block",
       type: "delete_with_filter",
     },
+    {
+      kind: "block",
+      type: "update_with_filter",
+    },
   ],
 };

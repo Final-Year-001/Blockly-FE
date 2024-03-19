@@ -84,6 +84,30 @@ javascriptGenerator.forBlock["find_with_filter"] = function (
   return [code, javascriptGenerator.ORDER_NONE];
 };
 
+Blockly.Blocks["update_with_filter"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Update collection");
+    this.appendValueInput("collection").setCheck(null).setAlign(Blockly.ALIGN_CENTRE);
+    this.appendStatementInput("filter").setCheck(null).appendField("Filter");
+    this.appendStatementInput("update").setCheck(null).appendField("Update");
+    this.setOutput(true, null);
+    this.setStyle("Database_blocks");
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+javascriptGenerator.forBlock["update_with_filter"] = function (
+  block: any,
+  generator: any
+) {
+    const statements_filter = generator.statementToCode(block, "filter", Order.ATOMIC);
+    const statements_update = generator.statementToCode(block, "update", Order.ATOMIC);
+  const collection = generator.valueToCode(block, "collection", Order.ATOMIC);
+  const code = `await database.update(${collection},{ ${statements_filter} }, { ${statements_update} })`;
+  return [code, javascriptGenerator.ORDER_NONE];
+},
+
 Blockly.Blocks["delete_with_filter"] = {
   init: function () {
     this.appendDummyInput().appendField("Delete in collection");
@@ -110,7 +134,7 @@ Blockly.Blocks["find_in_database_filter"] = {
   init: function () {
     this.appendValueInput("key")
       .setCheck(null)
-      .appendField("find filter")
+      .appendField("filter")
       .appendField("key");
     this.appendDummyInput().appendField("value");
     this.appendValueInput("value").setCheck(null);
