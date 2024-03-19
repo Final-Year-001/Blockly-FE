@@ -233,7 +233,7 @@ function JavascriptDoc() {
                     <h3>{index + 1}. {block.title}</h3>
                     <p>{block.description}</p><br/>
                   </div>
-                  <img src={block.image} alt={`image`} style={{ maxWidth: block.maxWidth?.image || '50%', height: 'auto' }} />
+                  <img src={block.image} alt={`image`} style={{ maxWidth: block.maxWidth?.image || '50%', height: 'auto', border: '2px solid #A9A9A9'}} />
                 </div>
               ))}
             </div> 
@@ -279,7 +279,7 @@ function JavascriptDoc() {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "#FFBF00",
+            backgroundColor: "#C70039",
             color: "white",
             padding: "10px",
             borderRadius: "50%",
