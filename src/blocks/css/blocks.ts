@@ -642,3 +642,66 @@ JavaScript.javascriptGenerator.forBlock['css_custom'] = function(block : any, ge
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+Blockly.Blocks['css_borderRadius'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Border Corners")
+        .appendField(new Blockly.FieldNumber(0, 0, 100), "borderCorner");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle('CSS_blocks');
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_borderRadius'] = function(block: any, generator: any) {
+  var number_bordercorner = block.getFieldValue('borderCorner');
+  // TODO: Assemble javascript into code variable.
+  var code = `border-radius: ${number_bordercorner}px;\n`;
+  return code;
+};
+
+/////////////////////////////////////////////////////////////
+
+Blockly.Blocks['css_border_color'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Border Color")
+        .appendField(new Blockly.FieldColour("#ff0000"), "color");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle('CSS_blocks');
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_border_color'] = function(block: any, generator: any) {
+  var colour_color = block.getFieldValue('color');
+  // TODO: Assemble javascript into code variable.
+  var code = `border-color: ${colour_color};\n`;
+  return code;
+};
+
+/////////////////////////////////
+
+Blockly.Blocks['css_bloc_style'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Border Style")
+        .appendField(new Blockly.FieldDropdown([["double","double"], ["solid","solid"], ["none","none"], ["outset","outset"], ["option","option"], ["groove","groove"], ["hidden","hidden"], ["inherit","inherit"], ["inset","inset"]]), "borderstyle");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle('CSS_blocks');
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['css_bloc_style'] = function(block: any, generator:any) {
+  var dropdown_borderstyle = block.getFieldValue('borderstyle');
+  // TODO: Assemble javascript into code variable.
+  var code = `border-style: ${dropdown_borderstyle};\n`;
+  return code;
+};

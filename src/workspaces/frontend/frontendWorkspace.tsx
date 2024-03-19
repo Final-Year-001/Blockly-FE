@@ -60,7 +60,7 @@ function FrontendWorkspace({
   useEffect(() => {
     if (!pluginInitialized) {
       const options = {
-        contextMenu: true,
+        contextMenu: false,
         shortcut: true,
         typeErrorCallback: handleTypeError,
       };
