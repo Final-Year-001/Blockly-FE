@@ -3,6 +3,7 @@ import { Typography, Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import TopBar from "./topBar";
 import { FaArrowUp } from "react-icons/fa";
+import { AwesomeButton } from 'react-awesome-button';
 
 function GetStartedPage() {
 
@@ -68,46 +69,115 @@ function GetStartedPage() {
       <div className="my-8">
         <Typography variant="h4">Getting Started with Frontend</Typography> <br/>
         <div style={{ display: 'flex', gap: '10px' }}>
-          <Link to="/doc-html">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              HTML Tutorials
-            </Button>
-          </Link>
           
-          <Link to="/doc-css">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              CSS Tutorials
-            </Button>
-          </Link>
-          
-          <Link to="/doc-js">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              JavaScript Tutorials
-            </Button>
-          </Link>
+          <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#33cc33',
+          '--button-primary-color-dark': '#18a418',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#33cc33',
+          '--button-primary-color-active': '#1aa81a',
+          '--button-default-border-radius': '8px',
+           width: '140px',
+           height: '37px',   
+           marginRight: '10px'        
+        }} 
+        href={'/doc-html'}
+        type="primary">
+          HTML Tutorials
+        </AwesomeButton>
+
+        <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#4682B4',
+          '--button-primary-color-dark': '#008080',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#4682B4',
+          '--button-primary-color-active': '#2d82c7',
+          '--button-default-border-radius': '8px',
+           width: '140px',
+           height: '37px',
+           marginRight: '10px' 
+        }} 
+        href={'/doc-css'}
+        type="primary">
+          CSS Tutorials
+        </AwesomeButton>
+
+          <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#FFA726',
+          '--button-primary-color-dark': '#e29520',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#ffb03a',
+          '--button-primary-color-active': '#e29520',
+          '--button-default-border-radius': '8px',
+          width: '180px',
+          height: '37px',
+          marginRight: '10px' 
+        }} 
+        href={'/doc-js'}
+        type="primary">
+          JavaScript Tutorials
+        </AwesomeButton>
         </div>
       </div> <hr/>
 
       <div className="my-8">
         <Typography variant="h4">Getting Started with Backend</Typography><br/>
         <div style={{ display: 'flex', gap: '10px' }}>
-          <Link to="#">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              Server Creation Tutorials
-            </Button>
-          </Link>
-          
-          <Link to="#">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              API Handling Tutorials
-            </Button>
-          </Link>
-          
-          <Link to="#">
-            <Button className="h-12 flex gap-3 justify-center items-center">
-              Database Handling Tutorials
-            </Button>
-          </Link>
+
+        <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#33cc33',
+          '--button-primary-color-dark': '#18a418',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#33cc33',
+          '--button-primary-color-active': '#1aa81a',
+          '--button-default-border-radius': '8px',
+           width: '220px',
+           height: '37px',   
+           marginRight: '10px'        
+        }} 
+        href={'/#'}
+        type="primary">
+          Server Creation Tutorials
+        </AwesomeButton>
+
+        <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#4682B4',
+          '--button-primary-color-dark': '#008080',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#4682B4',
+          '--button-primary-color-active': '#2d82c7',
+          '--button-default-border-radius': '8px',
+           width: '220px',
+           height: '37px',
+           marginRight: '10px' 
+        }} 
+        href={'/#'}
+        type="primary">
+          API Handling Tutorials
+        </AwesomeButton>
+
+          <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#FFA726',
+          '--button-primary-color-dark': '#e29520',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#ffb03a',
+          '--button-primary-color-active': '#e29520',
+          '--button-default-border-radius': '8px',
+          width: '240px',
+          height: '37px',
+          marginRight: '10px' 
+        }} 
+        href={'/#'}
+        type="primary">
+          Database Handling Tutorials
+        </AwesomeButton>
+
         </div>
       </div> <hr/>
 
@@ -126,7 +196,7 @@ function GetStartedPage() {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "black",
+            backgroundColor: "#FFBF00",
             color: "white",
             padding: "10px",
             borderRadius: "50%",
