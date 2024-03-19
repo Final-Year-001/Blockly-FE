@@ -6,7 +6,9 @@ import { sandboxAtom } from "../state/stadbox";
 
 function SandboxConsole() {
     const sandbox = useRecoilValue(sandboxAtom);
-    const { lastMessage, readyState, sendJsonMessage } = useWebSocket(Config.getConsoleURL(sandbox.name));
+    const { lastMessage, readyState, sendJsonMessage } = useWebSocket(Config.getConsoleURL(sandbox.name), {
+      shouldReconnect: () => true        
+    });
     const [logHistory, setLogHistory] = useState<Array<MessageEvent<any>>>([]);
 
     const connectionStatus = {
