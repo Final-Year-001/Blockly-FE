@@ -146,9 +146,11 @@ function BackendPage() {
     queryFn: ({ queryKey }) => getLessonById(tokens, queryKey?.[1] ?? "?"),
   });
 
-  const steps = getLessonQuery.data?.data?.steps || [];
+  let _steps = getLessonQuery.data?.data?.steps || [];
 
-  const currentStep = getLessonQuery.data?.data?.steps?.[currentStepNumber];
+  let steps = _steps.concat({})
+
+  const currentStep = steps?.[currentStepNumber];
 
   const mode = getProjectQuery.data?.data?.mode ?? ("default" as PageMode);
 
@@ -175,7 +177,7 @@ function BackendPage() {
   const checkIfStepComplete = (workspace: object) => {
     const curentStepToComplete = steps[currentStepNumber];
     const lessonStepState = stripId(
-      _.cloneDeep(curentStepToComplete.workspaceState)
+      _.cloneDeep(curentStepToComplete?.workspaceState)
     );
     const currentWorkspace = stripId(_.cloneDeep(workspace));
 
@@ -262,13 +264,13 @@ function BackendPage() {
             loaded={!getProjectQuery.isFetching}
             initialState={getProjectQuery.data?.data?.saveData}
           />
-          {mode == "lesson" && currentStep ? (
+          {mode == "lesson" && getLessonQuery.isSuccess ? (
             <HintComponent
               stepPreview={currentStep.workspaceState}
               step={currentStepNumber + 1}
               hint={currentStep.description}
               image={currentStep.image}
-              lastStep={steps.length - 1}
+              lastStep={steps.length}
             />
           ) : null}
         </div>

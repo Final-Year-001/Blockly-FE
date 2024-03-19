@@ -41,7 +41,6 @@ import StatusNoti from "./Status";
 import { useChildEvents } from "../../lib/iframe-communication/iframe-communication";
 import { ConsoleLogger, LogEvent } from "../../components/ConsoleLogger";
 
-
 function organizeImports(code: string) {
   // Split the code into lines
   const lines = code.split("\n");
@@ -155,9 +154,11 @@ function FrontendPage() {
     queryFn: ({ queryKey }) => getLessonById(tokens, queryKey?.[1] ?? "?"),
   });
 
-  const steps = getLessonQuery.data?.data?.steps || [];
+  let _steps = getLessonQuery.data?.data?.steps || [];
 
-  const currentStep = getLessonQuery.data?.data?.steps?.[currentStepNumber];
+  let steps = _steps.concat({})
+
+  const currentStep = steps?.[currentStepNumber];
 
   const mode = getProjectQuery.data?.data?.mode ?? ("default" as PageMode);
 
@@ -175,7 +176,7 @@ function FrontendPage() {
   const checkIfStepComplete = (workspace: object) => {
     const curentStepToComplete = steps[currentStepNumber];
     let lessonStepState = stripId(
-      _.cloneDeep(curentStepToComplete.workspaceState)
+      _.cloneDeep(curentStepToComplete?.workspaceState)
     );
     let currentWorkspace = stripId(_.cloneDeep(workspace));
 
@@ -198,7 +199,7 @@ function FrontendPage() {
 
     if (_.isEqual(stripId(json), stripId(workspaceState.current))) return;
 
-    setLogs([])
+    setLogs([]);
 
     // Exclude comments starting with "//" from the code
     const cleanCode = code.replace(/\/\/(.*)/g, "");
@@ -332,11 +333,13 @@ function FrontendPage() {
             loaded={!getProjectQuery.isFetching}
             initialState={getProjectQuery.data?.data?.saveData}
           />
-          {mode == "lesson" && currentStep ? (
+          {mode == "lesson" && getLessonQuery.isSuccess ? (
             <HintComponent
               stepPreview={currentStep.workspaceState}
               step={currentStepNumber + 1}
               hint={currentStep.description}
+              image={currentStep.image}
+              lastStep={steps.length}
             />
           ) : null}
         </div>

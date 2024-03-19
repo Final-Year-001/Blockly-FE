@@ -4,13 +4,13 @@ import { useAnimate, motion } from "framer-motion";
 
 interface HintComponentProps {
   readonly hint?: string;
-  readonly step?: number;
+  readonly step: number;
   readonly stepPreview?: object;
   readonly image?: {
     ref?: string;
     url?: string;
   };
-  readonly lastStep?: number;
+  readonly lastStep: number;
 }
 
 function HintComponent(_props: HintComponentProps) {
@@ -23,18 +23,9 @@ function HintComponent(_props: HintComponentProps) {
 
   useEffect(() => {
     const a = async () => {
-      // const controls = animate(count, 60, {
-      //   duration: 1,
-      //   ease: "easeInOut",
-      //   repeat: Infinity,
-      //   repeatType: "reverse",
-      //   repeatDelay: 1,
-      // });
-
-      // return controls.stop;
       await animate([[scope.current, { opacity: 0 }]]);
       setProps(_props);
-      setIsLastStep(step == lastStep);
+      setIsLastStep(_props.step == _props.lastStep);
       await animate([[scope.current, { opacity: 1 }]]);
     };
     a();
