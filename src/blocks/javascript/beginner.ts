@@ -13,7 +13,7 @@ Blockly.Blocks['javascript'] = {
     this.setNextStatement(true, null);
     this.setTooltip("");
     this.setHelpUrl("");
-    this.setTooltip('Define the script tag. JavaScript code should be wrapped in this tag'); 
+    this.setTooltip('This is the script tag. JavaScript code should be wrapped in this tag'); 
   }
 };
 
@@ -62,9 +62,9 @@ javascriptGenerator.forBlock["generate_id"] = function (
   block: any,
   generator: any
 ) {
-  var elId = block.getFieldValue("elId"); // Get the form ID value
-  var code = `\"${elId}\"`; // Wrap the formId in quotes to make it a string in the generated code
-  return [code, generator.ORDER_ATOMIC]; // Return the code and precedence
+  var elId = block.getFieldValue("elId"); 
+  var code = `\"${elId}\"`; 
+  return [code, generator.ORDER_ATOMIC]; 
 };
 
 //getElementById() and changes the element content (innerHTML) 
