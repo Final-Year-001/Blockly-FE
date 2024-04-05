@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { BlocklyWorkspace, WorkspaceSvg } from "react-blockly";
 import { javascriptGenerator } from "blockly/javascript";
 import CustomCategory from "../../themes/toolbox/customCats";
 import { Card } from "@material-tailwind/react";
 import toolboxConfig from "../../toolbox/toolbox";
 import { BETheme } from "../../themes/BETheme";
+import { BEOutAtom } from "../../state/BEOutputCode";
+import { useRecoilState } from "recoil";
+import { CrossTabCopyPaste } from "@blockly/plugin-cross-tab-copy-paste";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const workspaceConfiguration = {
@@ -15,8 +18,8 @@ export const workspaceConfiguration = {
   grid: {
     spacing: 20,
     length: 3,
-    // colour: "#ffffff",
-    colour: "#",
+    colour: "#ebd50d", 
+    //colour: "#",
     snap: true,
   },
   zoom: {
@@ -40,6 +43,8 @@ interface BackendWorkspaceProps {
   readonly loaded: boolean;
 }
 
+let pluginInitialized = false; // Static variable to track plugin initialization
+
 function BackendWorkspace({
   onCodeChange,
   initialState,
@@ -49,10 +54,33 @@ function BackendWorkspace({
   // const [json, setJson] = useState<string>();
 
   const workspaceWrapper = useRef<HTMLDivElement>(null);
+  const [BEoutCode, SetBEoutCode] = useRecoilState(BEOutAtom);
 
+  useEffect(() => {
+    if (!pluginInitialized) {
+      const options = {
+        contextMenu: false,
+        shortcut: true,
+        typeErrorCallback: handleTypeError,
+      };
+
+      // Initialize plugin.
+      const plugin = new CrossTabCopyPaste();
+      plugin.init(options);
+      pluginInitialized = true; // Mark plugin as initialized
+
+      // Error handler for TypeError when pasting.
+      function handleTypeError(error: TypeError) {
+        console.error('TypeError occurred while pasting:', error.message);
+        // You can add your custom error handling logic here.
+      }
+    }
+  }, []); // Run only once when component mounts
+  
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
     javascriptGenerator.addReservedWords("code");
     const code = javascriptGenerator.workspaceToCode(workspace);
+    SetBEoutCode(code);
     onCodeChange?.(code, workspace);
   };
 

@@ -8,6 +8,7 @@ import {
 import ButtonsSet from "./ButtonsSet";
 import { useRecoilState } from "recoil";
 import { whatToLeanAtom } from "../../../state/explanation";
+import { AwesomeButton} from 'react-awesome-button';
 
 function WhatToLean() {
   const [whatToLearnState, setWhatToLearnState] =
@@ -23,7 +24,7 @@ function WhatToLean() {
       handler={handleOpen}
     >
       <DialogHeader className="ml-11 mt-6">
-        What do you want to Try? 😋
+        What do you want to try? 😋
       </DialogHeader>
       <DialogBody className="max-w-full max-h-max">
         <div className="flex flex-row justify-center flex-wrap max-w-full">
@@ -36,14 +37,30 @@ function WhatToLean() {
         </div>
       </DialogBody>
       <DialogFooter>
-        <Button
-          variant="text"
-          color="red"
-          onClick={handleOpen}
-          className="mr-1"
-        >
-          <span>Cancel</span>
-        </Button>
+
+      <AwesomeButton
+              style={{
+                '--button-primary-color': '#D70040',
+                '--button-primary-color-dark': '#C41E3A',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#D70040',
+                '--button-primary-color-active': '#D2042D',
+                '--button-default-border-radius': '8px',
+                width: '80px',
+                height: '40px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              onPress={handleOpen}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+               Cancel
+            </AwesomeButton>
+
       </DialogFooter>
     </Dialog>
   );

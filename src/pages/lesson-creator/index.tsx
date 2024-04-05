@@ -9,6 +9,7 @@ import { tokenAtom } from "../../state/auth";
 import { getLessonById, newProject, saveLesson } from "../../api/project";
 import ProductLogo from "../../assets/Logo";
 import { uploadImage } from "../../helpers/firebase";
+import { AwesomeButton } from 'react-awesome-button'; 
 
 interface StepDefinition {
   description: string;
@@ -172,8 +173,53 @@ function LessonCreator() {
         {/* <Link to="/get-started"><Avatar src="/img/cat default avatar.png" alt="avatar" size="md" /></Link> */}
         {/* </div> */}
         <div className="flex gap-3">
-          <Button onClick={undo}>Undo</Button>
-          <Button onClick={redo}>Redo</Button>
+          
+          <AwesomeButton
+              style={{
+                '--button-primary-color': '#D70040',
+                '--button-primary-color-dark': '#C41E3A',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#D70040',
+                '--button-primary-color-active': '#D2042D',
+                '--button-default-border-radius': '8px',
+                width: '80px',
+                height: '40px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              onPress={undo}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+               Undo
+            </AwesomeButton>
+
+          <AwesomeButton
+              style={{
+                '--button-primary-color': '#343434',
+                '--button-primary-color-dark': '#353935',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#343434',
+                '--button-primary-color-active': '#1aa81a',
+                '--button-default-border-radius': '8px',
+                width: '80px',
+                height: '40px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              onPress={redo}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+               Redo
+            </AwesomeButton>
+
         </div>
       </div>
       <div className="flex flex-col gap-10 p-4">
@@ -220,9 +266,64 @@ function LessonCreator() {
         })}
       </div>
       <div className="flex flex-row gap-3 w-full justify-center p-4">
-        <Button onClick={addStep} disabled={saveMutation.isLoading}>+ Add Step</Button>
-        <Button onClick={save} disabled={saveMutation.isLoading}>Save</Button>
-        <Button onClick={newProjectWithLesson} disabled={saveMutation.isLoading}>New Project with lesson</Button>
+        {/* <Button onClick={addStep} disabled={saveMutation.isLoading}>+ Add Step</Button> */}
+        {/* <Button onClick={save} disabled={saveMutation.isLoading}>Save</Button> */}
+        {/* <Button onClick={newProjectWithLesson} disabled={saveMutation.isLoading}>New Project with lesson</Button> */}
+
+        <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#33cc33',
+          '--button-primary-color-dark': '#18a418',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#33cc33',
+          '--button-primary-color-active': '#1aa81a',
+          '--button-default-border-radius': '8px',
+           width: '140px',
+           height: '37px',   
+           marginRight: '10px'        
+        }} 
+        onPress={addStep}
+        disabled={saveMutation.isLoading}
+        type="primary">
+          + Add Step
+        </AwesomeButton>
+
+        <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#42A5F5',
+          '--button-primary-color-dark': '#2d82c7',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#62b4f8',
+          '--button-primary-color-active': '#2d82c7',
+          '--button-default-border-radius': '8px',
+           width: '140px',
+           height: '37px',
+           marginRight: '10px' 
+        }} 
+        onPress={save}
+        disabled={saveMutation.isLoading}
+        type="primary">
+          Save
+        </AwesomeButton>
+
+        <AwesomeButton 
+        style={{ 
+          '--button-primary-color': '#FFA726',
+          '--button-primary-color-dark': '#e29520',
+          '--button-primary-color-light': '#ffffff',
+          '--button-primary-color-hover': '#ffb03a',
+          '--button-primary-color-active': '#e29520',
+          '--button-default-border-radius': '8px',
+           width: '90px',
+           height: '37px' ,
+           marginRight: '10px' 
+        }} 
+        onPress={newProjectWithLesson}
+        disabled={saveMutation.isLoading}
+        type="primary">
+          New Project with lesson
+        </AwesomeButton>
+
       </div>
     </>
   );
