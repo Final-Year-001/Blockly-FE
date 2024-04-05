@@ -314,7 +314,7 @@ function LessonCreator() {
           '--button-primary-color-hover': '#ffb03a',
           '--button-primary-color-active': '#e29520',
           '--button-default-border-radius': '8px',
-           width: '90px',
+           width: '180px',
            height: '37px' ,
            marginRight: '10px' 
         }} 
