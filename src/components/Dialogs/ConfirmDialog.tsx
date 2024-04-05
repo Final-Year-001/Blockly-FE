@@ -6,7 +6,8 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
- 
+import { AwesomeButton } from 'react-awesome-button'; 
+
 export interface ConfirmDialogProps {
   body?: React.ReactNode
   onOK?: () => void
@@ -24,17 +25,53 @@ export function ConfirmDialog({ body, onOK, onCancel, open, title }: ConfirmDial
           {body}
         </DialogBody>
         <DialogFooter>
-          <Button
-            variant="text"
-            color="red"
-            onClick={onCancel}
-            className="mr-1"
-          >
-            <span>Cancel</span>
-          </Button>
-          <Button variant="gradient" color="green" onClick={onOK}>
-            <span>Confirm</span>
-          </Button>
+          
+          <AwesomeButton
+              style={{
+                '--button-primary-color': '#D70040',
+                '--button-primary-color-dark': '#C41E3A',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#D70040',
+                '--button-primary-color-active': '#D2042D',
+                '--button-default-border-radius': '8px',
+                width: '80px',
+                height: '40px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              onPress={onCancel}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+               Cancel
+            </AwesomeButton>
+
+          <AwesomeButton
+              style={{
+                '--button-primary-color': '#343434',
+                '--button-primary-color-dark': '#353935',
+                '--button-primary-color-light': '#ffffff',
+                '--button-primary-color-hover': '#343434',
+                '--button-primary-color-active': '#1aa81a',
+                '--button-default-border-radius': '8px',
+                width: '80px',
+                height: '40px',
+                marginRight: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+              onPress={onOK}
+              className="h-12 flex gap-3 justify-center items-center"
+              type="primary"
+            >
+               Confirm
+            </AwesomeButton>
+
         </DialogFooter>
       </Dialog>
     </>

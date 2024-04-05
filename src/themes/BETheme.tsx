@@ -8,7 +8,7 @@ export const BETheme = Blockly.Theme.defineTheme("myCustomTheme", {
   // Define block styles
   blockStyles: {
     ...BackendBlocksTheme,
-    ...GoogleBlockTheme,
+    ...GoogleBlockTheme, 
   },
 
   // Define category styles
@@ -20,7 +20,7 @@ export const BETheme = Blockly.Theme.defineTheme("myCustomTheme", {
 
   // Define component styles
   componentStyles: {
-    workspaceBackgroundColour: "#dbe7e5ab",
+    workspaceBackgroundColour: "#fbf6daab",
     //  'toolboxBackgroundColour': '#36454ff0',
     toolboxForegroundColour: "#e2e2e2",
     flyoutBackgroundColour: "#dcdcdce9",
