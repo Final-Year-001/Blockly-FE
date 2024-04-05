@@ -76,9 +76,9 @@ function injectIframeCommunicator(cleanCode: string) {
       ${top}
         <script src="/js/iframe.js"></script>
         <script>
-          console.log("Hello from the IFrame previewer. Your console.logs will appear here!")
-          console.warn("Hello from the IFrame previewer. Your console.warn will appear here!")
-          console.error("Hello from the IFrame previewer. Your console.error will appear here!")
+          console.log("Hello from the console previewer. Your console.logs will appear here!")
+          console.warn("Hello from the console previewer. Your console.warn will appear here!")
+          console.error("Hello from the console previewer. Your console.error will appear here!")
         </script>
       ${bottom}
     `;

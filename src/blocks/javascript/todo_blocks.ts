@@ -14,13 +14,16 @@ Blockly.Blocks['create_task'] = {
         .appendField(new Blockly.FieldTextInput('taskInputId'), 'taskInputId');
     this.appendDummyInput()
         .appendField("Match the list id")
-        .appendField(new Blockly.FieldTextInput('taskListId'), 'taskListId');
+        .appendField(new Blockly.FieldTextInput('taskListId'), 'taskListId'); 
     this.appendDummyInput()
         .appendField("Name of the checkbox")
         .appendField(new Blockly.FieldTextInput('checkboxId'), 'checkboxId');
     this.appendDummyInput()
         .appendField("Name of the delete button")
         .appendField(new Blockly.FieldTextInput('deleteButtonId'), 'deletebtn');
+    this.appendValueInput('endpointUrl')
+        .setCheck("String")
+        .appendField("Add the link to send the task list to backend")
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setStyle('JS_Step5');
@@ -34,6 +37,8 @@ javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any)
   var taskListId = block.getFieldValue('taskListId');
   var checkboxId = block.getFieldValue('checkboxId');
   var deletebtnId = block.getFieldValue('deletebtn');
+  var endpointUrl = block.getFieldValue('endpointUrl');
+
   var code = `
       document.addEventListener("DOMContentLoaded", function() {
           document.getElementById(${buttonId}).addEventListener("click", function() {
@@ -44,6 +49,31 @@ javascriptGenerator.forBlock['create_task'] = function(block:any, generator:any)
                   alert("Please enter a task!");
                   return;
               }
+
+              var taskData = {
+                task: taskInput.value,
+                checked: document.getElementById('${checkboxId}').checked
+            };
+
+            var fetchOptions = {
+                method: "POST",
+                body: JSON.stringify(taskData),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            };
+
+            fetch("${endpointUrl}", fetchOptions)
+                .then(res => res.json())
+                .then((res) => {
+                  alert("Task added successfully!");
+                    console.log(res);
+                })
+                .catch((error) => {
+                  alert("Error adding task. Please try again.");
+                    console.log(error);
+                });
+
 
               var li = document.createElement("li");
               var checkbox = document.createElement("input");
@@ -128,7 +158,5 @@ javascriptGenerator.forBlock['delete_task'] = function(block:any, generator:any)
   });
   `;
 
-  // var audio = new Audio('../src/sounds/delete.mp3');
-  // audio.play();
 return code;
 };
