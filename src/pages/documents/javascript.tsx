@@ -146,7 +146,7 @@ const blocks = [
    {
     title: "Adding a task",
     description: "Add new tasks with a simple button click. ",
-    image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1712304549/WebBlockCraft/JavaScript/20_w3upcp.png",
+    image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1714749948/WebBlockCraft/JavaScript/20_yuzxop.png",
     category: "Create A Todo List",
     maxWidth: { description: '50%', image: '40%' },
   },
