@@ -16,6 +16,7 @@ import JavascriptDoc from "./pages/documents/javascript";
 import HTMLDoc from "./pages/documents/html";
 import CSSDoc from "./pages/documents/css";
 import CodeSplitter from "./pages/codeExplain/CodeSplitter";
+import MainPage from "./pages/home/MainPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
   {
     path: "/*",
     element: <Navigate to="/my/projects" replace />
+  },
+  {
+    path: "/home",
+    element: <MainPage />
   }
 ]);
 
