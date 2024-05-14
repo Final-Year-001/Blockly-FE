@@ -150,7 +150,7 @@ function ProjectCard(project: ProjectCardProps) {
           <TrashIcon className="h-5 w-5" />
         </AwesomeButton> */}
           <div
-            className="bg-amber-300 p-4 rounded-lg hover:bg-amber-500 active:bg-amber-700"
+            className="bg-amber-300 p-4 rounded-lg hover:bg-amber-500 active:bg-amber-700 border-black border-2"
             onClick={() => {
               if (lesson) {
                 navigate("/lesson-creator/" + id);
@@ -169,13 +169,13 @@ function ProjectCard(project: ProjectCardProps) {
           </div>
           <div
             onClick={() => onDelete?.(project)}
-            className="bg-blue-300 p-4 rounded-lg hover:bg-blue-500 active:bg-blue-700"
+            className="bg-blue-300 p-4 rounded-lg hover:bg-blue-500 active:bg-blue-700 border-black border-2"
           >
             <PlayIcon className="h-5 w-5 text-black" />
           </div>
           <div
             onClick={() => onDelete?.(project)}
-            className="bg-red-300 p-4 rounded-lg hover:bg-red-500 active:bg-red-700"
+            className="bg-red-300 p-4 rounded-lg hover:bg-red-500 active:bg-red-700 border-black border-2"
           >
             <TrashIcon className="h-5 w-5 text-black" />
           </div>
