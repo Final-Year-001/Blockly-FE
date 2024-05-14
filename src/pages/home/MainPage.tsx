@@ -1,23 +1,16 @@
-import { PlayIcon } from "@heroicons/react/20/solid";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Typography,
-} from "@material-tailwind/react";
+
 import { useNavigate } from "react-router-dom";
-import { AwesomeButton } from "react-awesome-button";
-import homeBG from "../../assets/home/homeBG.jpg";
 import ProductLogo from "../../assets/Logo";
 import TeamImg from "../../assets/home/team.png";
 import InfoComp1 from "./InfoComp1";
 
+
 function MainPage() {
+const navigate = useNavigate();
+
+
   return (
-    <div className="min-h-screen bg-cover bg-center relative">
+    <div className="min-h-screen  bg-cover bg-center relative">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0  bg-gray-200/70 z-20 backdrop-filter backdrop-blur-sm ">
         <div className="container mx-auto px-6 py-5 flex justify-between items-center">
@@ -28,7 +21,7 @@ function MainPage() {
           </div>
           {/* Logout Button */}
           <div className="flex gap-2">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg border-black border-2">
+            <button onClick={()=>navigate('/get-started')} className="bg-blue-500 text-white px-4 py-2 rounded-lg border-black border-2">
               Documentation
             </button>
             <button className="bg-blue-500 text-white px-4 py-2 rounded-lg border-black border-2">
@@ -52,10 +45,10 @@ function MainPage() {
           </div>
           <div className="g  w-full flex justify-center">
             <div className=" bg-blue-300 mr-20 p-6 rounded-xl px-20 border-4 border-black flex flex-row gap-4">
-              <div className="w-44 bg-red-300 border-2 border-black rounded-lg py-3 text-xl flex justify-center hover:bg-red-500 active:red-700">
+              <div onClick={()=>navigate('/get-started')} className="cursor-pointer w-44 bg-red-300 border-2 border-black rounded-lg py-3 text-xl flex justify-center hover:bg-red-500 active:red-700">
                 Lets Create!
               </div>
-              <div className="w-44 bg-amber-300 border-2 border-black rounded-lg py-3 text-xl flex justify-center hover:bg-amber-500 active:amber-700">
+              <div onClick={()=>navigate('/my/projects')} className="cursor-pointer w-44 bg-amber-300 border-2 border-black rounded-lg py-3 text-xl flex justify-center hover:bg-amber-500 active:amber-700">
                 My Projects
               </div>
             </div>
