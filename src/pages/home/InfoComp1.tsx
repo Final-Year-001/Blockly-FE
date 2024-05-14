@@ -23,7 +23,7 @@ function InfoComp1() {
             <div className="border-black w-3/12 h-44 flex border-4 bg-red-200 rounded-2xl p-8 px-10 justify-center">
               <span className="text-2xl">HTML JS CSS</span>
             </div>
-            <div className="border-2 border-black p-10 text-justify rounded-2xl w-9/12 py-8 text-2xl flex justify-center items-center">
+            <div className="border-2 border-black bg-gray-200 p-10 text-justify rounded-2xl w-9/12 py-8 text-2xl flex justify-center items-center">
               Learning coding opens up a world of endless possibilities. It's
               not just about mastering programming languages; it's about
               developing problem-solving skills, logical thinking, and
@@ -34,7 +34,7 @@ function InfoComp1() {
             <div className="border-black w-3/12 h-44 flex border-4 bg-teal-200 rounded-2xl p-8 px-10justify-center">
               <span className="text-2xl">Server Creation</span>
             </div>
-            <div className="border-2 border-black p-10 text-justify rounded-2xl w-9/12 py-8 text-2xl flex justify-center items-center">
+            <div className="border-2 border-black bg-gray-200 p-10 text-justify rounded-2xl w-9/12 py-8 text-2xl flex justify-center items-center">
               Learning coding opens up a world of endless possibilities. It's
               not just about mastering programming languages; it's about
               developing problem-solving skills, logical thinking, and
@@ -45,7 +45,7 @@ function InfoComp1() {
             <div className="border-black w-3/12 h-44 flex border-4 bg-amber-200 rounded-2xl p-8 px-10 justify-center">
               <span className="text-2xl">Connectivity</span>
             </div>
-            <div className="border-2 border-black p-10 text-justify rounded-xl w-9/12 h-44 text-2xl flex justify-center items-center">
+            <div className="border-2 border-black bg-gray-200 p-10 text-justify rounded-xl w-9/12 h-44 text-2xl flex justify-center items-center">
               Learning coding opens up a world of endless possibilities. It's
               not just about mastering programming languages; it's about
               developing problem-solving skills, logical thinking, and

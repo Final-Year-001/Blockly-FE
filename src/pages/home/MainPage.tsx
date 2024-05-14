@@ -114,10 +114,10 @@ const navigate = useNavigate();
       <InfoComp1 />
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-10">
+      <footer className="bg-gray-900 text-white py-20">
         <div className="container mx-auto px-4">
           <p className="text-center text-amber-500/80">
-            © 2024 The dog ate my homework corp. All rights reserved.
+            2024 The dog ate my homework corp. All rights reserved.
           </p>
         </div>
       </footer>
