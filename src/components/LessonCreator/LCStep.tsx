@@ -8,6 +8,7 @@ import { removeSearch } from "../../helpers/blockly";
 import { workspaceConfiguration as workspaceConfigurationBackend } from "../../workspaces/backend/backendWorkspace";
 import { workspaceConfiguration as workspaceConfigurationFrontend } from "../../workspaces/frontend/frontendWorkspace";
 import { PanelGroup, Panel, PanelResizeHandle } from "react-resizable-panels";
+import { ScreenCapture } from 'react-screen-capture';
 
 interface LCStepProps {
   readonly step: number;
@@ -40,6 +41,7 @@ function LCStep({
   };
 
   const [altImageURL, setAltImageURL] = useState("");
+  const [screenCapture, setScreenCapture] = useState<string>('');
 
   const _onImageSet = (img?: File) => {
     console.log(img, "ssdsda")
@@ -48,9 +50,15 @@ function LCStep({
       onImageSet?.(undefined);
       return;
     }
-
     setAltImageURL(URL.createObjectURL(img));
     onImageSet?.(img);
+  };
+
+  const handleScreenCapture = (screenCapture: string) => {
+    // _onImageSet(screenCapture);
+    // onImageSet?.(screenCapture)
+    alert(screenCapture);
+    console.log(screenCapture)
   };
 
   const [altImage, setAltImage] = useState(false);
@@ -74,6 +82,8 @@ function LCStep({
   };
 
   return (
+    <ScreenCapture onEndCapture={handleScreenCapture}>
+      {({ onStartCapture }) => (
     <div className="flex flex-col h-[23em]" onMouseOver={onMouseOver}>
       <h2>Step {step + 1}</h2>
       <PanelGroup direction="horizontal">
@@ -120,6 +130,7 @@ function LCStep({
               />{" "}
               Select an alternative preview image for this step
             </div>
+            <button onClick={onStartCapture}>Capture</button>
             {altImage ? (
               <>
                 <Input
@@ -144,6 +155,8 @@ function LCStep({
         </Panel>
       </PanelGroup>
     </div>
+    )}
+    </ScreenCapture>
   );
 }
 
