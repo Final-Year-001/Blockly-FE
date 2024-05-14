@@ -205,19 +205,19 @@ function MyProjects() {
 
   return (
     <div className="">
-      <div className="bg-gray-400 p-8 mb-4 flex justify-center">
+      <div onClick={()=>navigate('/home')} className="cursor-pointer bg-gray-200 p-8 mb-4 flex justify-center">
         <ProductLogoBW />{" "}
       </div>
 
       <div className="px-10">
-        <div className="flex justify-between px-12 pb-4 style={{ flexGrow: 1 }}">
+        <div className="flex  justify-between px-12 pb-4 style={{ flexGrow: 1 }}">
           <div>
             <button
               className={`${
                 selectedTab === "projects"
-                  ? "bg-blue-500 text-white"
+                  ? "bg-blue-500 text-white border-2 border-black"
                   : "bg-gray-200 text-gray-700"
-              } px-10 py-2 text-2xl rounded-l-lg focus:outline-none`}
+              } px-10 py-2 text-2xl rounded-l-lg focus:outline-none `}
               onClick={() => handleTabChange("projects")}
             >
               Projects
@@ -225,7 +225,7 @@ function MyProjects() {
             <button
               className={`${
                 selectedTab === "lesson"
-                  ? "bg-blue-500 text-white"
+                  ? "bg-blue-500 text-white border-2 border-black"
                   : "bg-gray-200 text-gray-700"
               } px-10 py-2 text-2xl rounded-r-lg focus:outline-none`}
               onClick={() => handleTabChange("lesson")}
@@ -331,7 +331,7 @@ function MyProjects() {
         {selectedTab == "projects" && (
           <div>
             <div className="flex justify-between px-12 pb-4">
-              <Typography variant="h1">My Projects</Typography>
+              <Typography className="text-3xl">My Projects</Typography>
             </div>
            
       
@@ -353,7 +353,7 @@ function MyProjects() {
         {selectedTab == "lesson" && (
           <div>
             <div className="flex justify-between px-12 pb-4">
-              <Typography variant="h1">My Lessons</Typography>
+              <Typography className="text-3xl">My Lessons</Typography>
             </div>
             <div className="flex flex-row flex-wrap px-10 pt-4 gap-6">
               {lessonData.map((project: any) => (

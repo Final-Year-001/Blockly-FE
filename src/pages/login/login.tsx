@@ -34,7 +34,7 @@ function LoginPage() {
     mutationFn: loginWithUsernameAndPassword,
     onSuccess: (res) => {
       setTokens(res);
-      navigate("/my/project");
+      navigate("/home");
     },
   });
 
