@@ -24,6 +24,7 @@ import {
   ConfirmDialog,
   ConfirmDialogProps,
 } from "../../components/Dialogs/ConfirmDialog";
+import ProductLogo from "../../assets/Logo";
 
 function MyProjects() {
   const tokens = useRecoilValue(tokenAtom);
@@ -95,7 +96,7 @@ function MyProjects() {
     },
   });
 
-  const [selectedTab, setSelectedTab] = useState("lesson");
+  const [selectedTab, setSelectedTab] = useState("projects");
 
   const handleTabChange = (tab: any) => {
     setSelectedTab(tab);
@@ -202,31 +203,33 @@ function MyProjects() {
   };
 
   return (
-    <div>
-      <div className="bg-red-300 p-4">Header bar</div>
+    <div className="">
+      <div className="bg-gray-300 p-8 mb-10 flex justify-center">
+        <ProductLogo />{" "}
+      </div>
 
       <div className="px-10">
-        <div className="flex justify-between px-16 pb-4 style={{ flexGrow: 1 }}">
+        <div className="flex justify-between px-12 pb-4 style={{ flexGrow: 1 }}">
           <div>
-            <button
-              className={`${
-                selectedTab === "lesson"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 text-gray-700"
-              } px-6 py-3 rounded-l-lg focus:outline-none`}
-              onClick={() => handleTabChange("lesson")}
-            >
-              Lessons
-            </button>
             <button
               className={`${
                 selectedTab === "projects"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-700"
-              } px-6 py-3 rounded-r-lg focus:outline-none`}
+              } px-10 py-2 text-2xl rounded-l-lg focus:outline-none`}
               onClick={() => handleTabChange("projects")}
             >
               Projects
+            </button>
+            <button
+              className={`${
+                selectedTab === "lesson"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              } px-10 py-2 text-2xl rounded-r-lg focus:outline-none`}
+              onClick={() => handleTabChange("lesson")}
+            >
+              Lessons
             </button>
           </div>
           <div className="flex gap-4 justify-end">
@@ -323,29 +326,35 @@ function MyProjects() {
             </AwesomeButton>
           </div>
         </div>
+
         {selectedTab == "projects" && (
           <div>
-            <div className="flex justify-between px-16 pb-4">
+            <div className="flex justify-between px-12 pb-4">
               <Typography variant="h1">My Projects</Typography>
             </div>
-            <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
-              {projectData.map((project: any) => (
-                <ProjectCard
-                  key={project.id}
-                  {...project}
-                  onDelete={deleteProject}
-                />
-              ))}
-            </div>
+           
+      
+
+           
+              <div className="flex flex-row  flex-wrap px-10 pt-4 gap-6">
+                {projectData.map((project: any) => (
+                  <ProjectCard
+                    key={project.id}
+                    {...project}
+                    onDelete={deleteProject}
+                  />
+                ))}
+              </div>
+          
           </div>
         )}
-        
+
         {selectedTab == "lesson" && (
           <div>
-            <div className="flex justify-between px-16 pb-4">
+            <div className="flex justify-between px-12 pb-4">
               <Typography variant="h1">My Lessons</Typography>
             </div>
-            <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
+            <div className="flex flex-row flex-wrap px-10 pt-4 gap-6">
               {lessonData.map((project: any) => (
                 <ProjectCard
                   key={project.id}
@@ -356,6 +365,10 @@ function MyProjects() {
             </div>
           </div>
         )}
+      </div>
+
+      <div className="mt-10 bg-gray-300 p-10 flex justify-center">
+        Web Block Craft
       </div>
       <NewProjectModal
         open={open}
