@@ -13,28 +13,34 @@ import { AwesomeButton } from "react-awesome-button";
 import homeBG from "../../assets/home/homeBG.jpg";
 import ProductLogo from "../../assets/Logo";
 import TeamImg from "../../assets/home/team.png";
+import InfoComp1 from "./InfoComp1";
 
 function MainPage() {
   return (
     <div className="min-h-screen bg-cover bg-center relative">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-20 ">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+      <header className="fixed top-0 left-0 right-0  bg-gray-200/70 z-20 backdrop-filter backdrop-blur-sm ">
+        <div className="container mx-auto px-6 py-5 flex justify-between items-center">
           {/* Logo */}
           <div>
             <ProductLogo />
             {/* Example: <img src="your-logo-url.png" alt="Logo" className="h-12" /> */}
           </div>
           {/* Logout Button */}
-          <button className="bg-blue-500 text-white px-4 py-2 rounded border-black border-2">
-            Logout
-          </button>
+          <div className="flex gap-2">
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg border-black border-2">
+              Documentation
+            </button>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg border-black border-2">
+              Logout
+            </button>
+          </div>
         </div>
       </header>
       {/* <div className="mb-16"></div> */}
 
       <section className="py-16">
-        <div className="flex flex-cols w-full  h-96 items-center justify-center">
+        <div className="flex flex-cols w-full  h-96 mt-10 mb-2 items-center justify-center">
           <div className=" w-full flex justify-center">
             <div className=" w-1/2">
               <div className="text-5xl mb-4">Welcome to Web Block Craft</div>
@@ -45,7 +51,7 @@ function MainPage() {
             </div>
           </div>
           <div className="g  w-full flex justify-center">
-            <div className=" bg-blue-300 mr-20 p-6 rounded-lg px-20 border-2 border-black flex flex-row gap-4">
+            <div className=" bg-blue-300 mr-20 p-6 rounded-xl px-20 border-4 border-black flex flex-row gap-4">
               <div className="w-44 bg-red-300 border-2 border-black rounded-lg py-3 text-xl flex justify-center hover:bg-red-500 active:red-700">
                 Lets Create!
               </div>
@@ -56,17 +62,29 @@ function MainPage() {
           </div>
         </div>
 
-        <div className="mx-32 flex gap-10 mb-8">
-        <div className="border-black w-full  border-4 mx-auto bg-blue-200 rounded-2xl p-10 px-20 mt-4">
-          Lets Learn
+        <div className="mx-32 flex gap-10 mb-8 mx-4 sm:mx-32 flex flex-col sm:flex-row">
+          <div className="border-black w-full  border-4 mx-auto bg-blue-200 rounded-2xl p-8 px-10 mt-4 text-justify">
+            <span className="text-2xl">Lets Learn</span>
+            <p className="text-sm">
+              Learn something new explore whats out there and gather all that
+              knowledge.
+            </p>
+          </div>
+          <div className="border-black w-full border-4 mx-auto bg-pink-200 rounded-2xl p-8 px-10 mt-4">
+            <span className="text-2xl">Lets Imagine</span>
+            <p className="text-sm">
+              Imaging with your imagination there are endless possibilities for
+              you to imaging.
+            </p>
+          </div>
+          <div className="border-black w-full border-4 mx-auto bg-purple-200 rounded-2xl p-8 px-10 mt-4">
+            <span className="text-2xl">Lets Create</span>
+            <p className="text-sm">
+              With the knowledge and support, lets create something remarkeble.
+              Your imagination is the limit
+            </p>
+          </div>
         </div>
-        <div className="border-black w-full border-4 mx-auto bg-pink-200 rounded-2xl p-10 px-20 mt-4">
-          Lets Imaging
-        </div>
-        <div className="border-black w-full border-4 mx-auto bg-lime-200 rounded-2xl p-10 px-20 mt-4">
-          lets Create
-        </div>
-      </div>
 
         <div className="mx-32 border-black border-4 mx-auto bg-amber-200 rounded-2xl p-10 px-20 mt-4">
           <h2 className="text-3xl font-bold mb-8 flex justify-center">
@@ -100,7 +118,7 @@ function MainPage() {
         </div>
       </section>
 
-     
+      <InfoComp1 />
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-10">
