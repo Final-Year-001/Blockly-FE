@@ -95,6 +95,12 @@ function MyProjects() {
     },
   });
 
+  const [selectedTab, setSelectedTab] = useState("lesson");
+
+  const handleTabChange = (tab: any) => {
+    setSelectedTab(tab);
+  };
+
   const lessonData =
     lessonDataQuery.data?.result?.map((c: any) => {
       return {
@@ -197,10 +203,32 @@ function MyProjects() {
 
   return (
     <div>
-      <div className="h-10 w-full"></div>
+      <div className="bg-red-300 p-4">Header bar</div>
+
       <div className="px-10">
         <div className="flex justify-between px-16 pb-4 style={{ flexGrow: 1 }}">
-          <Typography variant="h1">My Projects</Typography>
+          <div>
+            <button
+              className={`${
+                selectedTab === "lesson"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              } px-6 py-3 rounded-l-lg focus:outline-none`}
+              onClick={() => handleTabChange("lesson")}
+            >
+              Lessons
+            </button>
+            <button
+              className={`${
+                selectedTab === "projects"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              } px-6 py-3 rounded-r-lg focus:outline-none`}
+              onClick={() => handleTabChange("projects")}
+            >
+              Projects
+            </button>
+          </div>
           <div className="flex gap-4 justify-end">
             <AwesomeButton
               style={{
@@ -295,30 +323,39 @@ function MyProjects() {
             </AwesomeButton>
           </div>
         </div>
-        <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
-          {projectData.map((project: any) => (
-            <ProjectCard
-              key={project.id}
-              {...project}
-              onDelete={deleteProject}
-            />
-          ))}
-        </div>{" "}
-        <br />
-        <br />
-        <hr style={{ border: "2px solid #353935", margin: "20px 0" }} />
-        <div className="flex justify-between px-16 pb-4 pt-10">
-          <Typography variant="h1">My Lessons</Typography>
-        </div>
-        <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
-          {lessonData.map((project: any) => (
-            <ProjectCard
-              key={project.id}
-              {...project}
-              onDelete={_deleteLesson}
-            />
-          ))}
-        </div>
+        {selectedTab == "projects" && (
+          <div>
+            <div className="flex justify-between px-16 pb-4">
+              <Typography variant="h1">My Projects</Typography>
+            </div>
+            <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
+              {projectData.map((project: any) => (
+                <ProjectCard
+                  key={project.id}
+                  {...project}
+                  onDelete={deleteProject}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {selectedTab == "lesson" && (
+          <div>
+            <div className="flex justify-between px-16 pb-4">
+              <Typography variant="h1">My Lessons</Typography>
+            </div>
+            <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
+              {lessonData.map((project: any) => (
+                <ProjectCard
+                  key={project.id}
+                  {...project}
+                  onDelete={_deleteLesson}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       <NewProjectModal
         open={open}
