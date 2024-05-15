@@ -98,7 +98,7 @@ function HTMLDoc(): JSX.Element {
   return (
     <div className="flex h-screen overflow-hidden">
   <div
-    className={`h-full w-64 bg-gray-700 text-white ${
+    className={`h-full w-64 bg-gray-400 text-black ${
       isCollapsed ? "hidden" : "block"
     }`}
   >
