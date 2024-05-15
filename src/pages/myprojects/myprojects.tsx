@@ -205,7 +205,7 @@ function MyProjects() {
 
   return (
     <div className="">
-      <div onClick={()=>navigate('/home')} className="cursor-pointer bg-gray-200 p-8 mb-4 flex justify-center">
+      <div onClick={()=>navigate('/home')} className="cursor-pointer bg-blue-500 p-4 mb-6 flex justify-center">
         <ProductLogoBW />{" "}
       </div>
 
