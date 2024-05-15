@@ -5,6 +5,10 @@ import { blocks, categoryDescriptions } from "./htmlDocData";
 import DocumentationFile from "./Documentation";
 import { FaAngleDoubleRight } from "react-icons/fa";
 
+const cardColor = "bg-gray-100"
+const topBarColor = "bg-blue-400"
+const sideBarColor = "bg-gray-400"
+
 interface Block {
   category: string;
   title: string;
@@ -100,11 +104,11 @@ function HTMLDoc(): JSX.Element {
   return (
     <div className="flex h-screen overflow-hidden">
       <div
-        className={`h-full w-64 bg-gray-400 text-black ${
-          isCollapsed ? "hidden" : "block"
+        className={`h-full ${sideBarColor} text-black transition-all ${
+          isCollapsed ? "w-0" : "w-64 block"
         }`}
       >
-        <div className="mt-10 mb-10 flex flex-col items-center">
+        <div className={`mt-10 mb-10 flex flex-col items-center transition delay-300  ${isCollapsed ? 'hidden': 'block'} `}>
           <div className="mb-20 text-xl">HTML Categories</div>
           {/* Render links for each category */}
           {Object.keys(groupedBlocks).map((category, index) => (
@@ -121,10 +125,10 @@ function HTMLDoc(): JSX.Element {
         </div>
       </div>
 
-      {/* Button to toggle sidebar */}
+    
 
       <div className="flex flex-col w-full">
-        <div className="w-full h-18 bg-blue-400 text-white flex justify-between items-center px-4">
+        <div className={`w-full h-18 ${topBarColor} text-white flex justify-between items-center px-4`}>
           <button
             onClick={toggleSidebar}
             className="text-black bg-gray-500 border-black border-2 rounded active:bg-blue-800 hover:bg-blue-700 p-2"
@@ -184,7 +188,7 @@ function HTMLDoc(): JSX.Element {
                   {categoryBlocks.map((block, index) => (
                     <div
                       key={index}
-                      className="mb-8 bg-gray-100 justify-between p-8 rounded-xl flex"
+                      className={`mb-8 ${cardColor} justify-between p-8 rounded-xl flex`}
                     >
                       <div className="">
                         <div className="flex  flex-col mb-2">
