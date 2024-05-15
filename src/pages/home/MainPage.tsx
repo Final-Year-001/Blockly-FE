@@ -1,117 +1,109 @@
-
 import { useNavigate } from "react-router-dom";
 import ProductLogo from "../../assets/Logo";
+import ProductLogoBW from "../../assets/LogoB&W";
 import TeamImg from "../../assets/home/team.png";
 import InfoComp1 from "./InfoComp1";
+import AboutUs from "./AboutUs";
+import IntroToWBC from "./Intro";
+import { useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+import InfoComp2 from "./infoComp2";
+import TopSection from "./TopSection";
+import InfoComp3 from "./infoComp3";
 
+
+function logout() {
+  localStorage.removeItem("tokens");
+  console.log("Token removed!");
+  window.location.href = "/login";
+}
 
 function MainPage() {
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [logged, setLogged] = useState<any>(null);
+  const [isTokenValid, setIsTokenValid] = useState<boolean>(false);
 
+  useEffect(() => {
+    const token = localStorage.getItem("tokens");
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      setLogged(decodedToken);
+
+      const currentTime: number = Date.now() / 1000; // Convert milliseconds to seconds
+      if (decodedToken.exp > currentTime) {
+        setIsTokenValid(true);
+        console.log("HETT", isTokenValid, decodedToken.exp, "ss", currentTime);
+      } else {
+        setIsTokenValid(false);
+      }
+    }
+  }, []);
 
   return (
-    <div className="min-h-screen  bg-cover bg-center relative">
+    <div className="min-h-screen bg-cover bg-center relative">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0  bg-gray-200/70 z-20 backdrop-filter backdrop-blur-sm ">
+      <header className="fixed top-0 left-0 right-0  bg-gray-900/10 z-20 backdrop-filter backdrop-blur-sm ">
         <div className="container mx-auto px-6 py-5 flex justify-between items-center">
           {/* Logo */}
           <div>
-            <ProductLogo />
+            <ProductLogoBW />
             {/* Example: <img src="your-logo-url.png" alt="Logo" className="h-12" /> */}
           </div>
           {/* Logout Button */}
           <div className="flex gap-2">
-            <button onClick={()=>navigate('/get-started')} className="bg-blue-500 text-white px-4 py-2 rounded-lg border-black border-2">
+            <button
+              onClick={() => navigate("/get-started")}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg border-black border-2"
+            >
               Documentation
             </button>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg border-black border-2">
-              Logout
-            </button>
+            {isTokenValid ? (
+              <button
+                onClick={logout}
+                className="bg-red-500 text-white px-4 py-2 rounded-lg border-black border-2"
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                onClick={() => (window.location.href = "/login")}
+                className="bg-amber-500 text-white px-4 py-2 rounded-lg border-black border-2"
+              >
+                LogIn
+              </button>
+            )}
           </div>
         </div>
       </header>
       {/* <div className="mb-16"></div> */}
 
-      <section className="py-16">
-        <div className="flex flex-cols w-full  h-96 mt-10 mb-2 items-center justify-center">
-          <div className=" w-full flex justify-center">
-            <div className=" w-1/2">
-              <div className="text-5xl mb-4">Welcome to Web Block Craft</div>
-              <div>
-                Empowering Young Minds to Code Their Dreams: Web Block Craft,
-                Where Creativity Meets Coding.
-              </div>
-            </div>
-          </div>
-          <div className="g  w-full flex justify-center">
-            <div className=" bg-blue-300 mr-20 p-6 rounded-xl px-20 border-4 border-black flex flex-row gap-4">
-              <div onClick={()=>navigate('/get-started')} className="cursor-pointer w-44 bg-red-300 border-2 border-black rounded-lg py-3 text-xl flex justify-center hover:bg-red-500 active:red-700">
-                Lets Create!
-              </div>
-              <div onClick={()=>navigate('/my/projects')} className="cursor-pointer w-44 bg-amber-300 border-2 border-black rounded-lg py-3 text-xl flex justify-center hover:bg-amber-500 active:amber-700">
-                My Projects
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="bg-gradient-to-br from-blue-500 to-blue-900">
+        <TopSection tokenValid={isTokenValid}/>
+      </div>
 
-        <div className="mx-32 flex gap-10 mb-8 mx-4 sm:mx-32 flex flex-col sm:flex-row">
-          <div className="border-black w-full  border-4 mx-auto bg-blue-200 rounded-2xl p-8 px-10 mt-4 text-justify">
-            <span className="text-2xl">Lets Learn</span>
-            <p className="text-sm">
-              Learn something new explore whats out there and gather all that
-              knowledge.
-            </p>
-          </div>
-          <div className="border-black w-full border-4 mx-auto bg-pink-200 rounded-2xl p-8 px-10 mt-4">
-            <span className="text-2xl">Lets Imagine</span>
-            <p className="text-sm">
-              Imaging with your imagination there are endless possibilities for
-              you to imaging.
-            </p>
-          </div>
-          <div className="border-black w-full border-4 mx-auto bg-purple-200 rounded-2xl p-8 px-10 mt-4">
-            <span className="text-2xl">Lets Create</span>
-            <p className="text-sm">
-              With the knowledge and support, lets create something remarkeble.
-              Your imagination is the limit
-            </p>
-          </div>
-        </div>
+      {/* what is WBC */}
+      <div className="bg-blue-100">
+        <IntroToWBC />
+      </div>
 
-        <div className="mx-32 border-black border-4 mx-auto bg-amber-200 rounded-2xl p-10 px-20 mt-4">
-          <h2 className="text-3xl font-bold mb-8 flex justify-center">
-            About Us
-          </h2>
-          <p className="text-lg mb-4 text-justify">
-            Welcome to Web Block Craft, an innovative platform developed by a
-            passionate team of four dedicated to making web programming
-            accessible to everyone. Our mission is simple: to empower aspiring
-            coders of all ages with the knowledge and skills needed to thrive in
-            the digital age.
-          </p>
-          <p className="text-lg mb-4 text-justify">
-            At Web Block Craft, we believe that learning should be fun,
-            engaging, and accessible. That's why we've created a unique learning
-            experience that combines the creativity of crafting with the logic
-            of coding. Through our interactive tutorials and projects, learners
-            are introduced to the exciting world of web development in a
-            hands-on and immersive way.
-          </p>
-          <p className="text-lg mb-4 text-justify">
-            Whether you're a beginner or an experienced coder, Web Block Craft
-            provides the tools, resources, and support you need to succeed. Join
-            us on this journey of discovery and unleash your potential in the
-            world of web programming. Together, let's build a brighter future,
-            one block at a time."
-          </p>
-          <div className="flex justify-center">
-            <img src={TeamImg} width={300} alt="teamimage" />
-          </div>
-        </div>
-      </section>
+      {/* what can you learn from WBC */}
+      <div className="bg-amber-500 pt-24 pb-12">
+        <InfoComp1 />
+      </div>
 
-      <InfoComp1 />
+      <div className="pt-28 pb-28 bg-amber-100/80 py-10">
+        <InfoComp2 />
+      </div>
+
+      <div className="pt-28 pb-28 bg-red-400 py-10">
+        <InfoComp3 />
+      </div>
+
+      <div className="pt-32 pb-32 bg-gray-100 py-10">
+        <AboutUs />
+      </div>
+
+     
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-20">
