@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import TopBar from "./topBar";
 import { FaArrowUp } from "react-icons/fa";
 import { blocks } from "./htmlDocData";
-
 
 function HTMLDoc() {
   // Group blocks by category
@@ -13,6 +12,11 @@ function HTMLDoc() {
   }, {});
 
   const [showScroll, setShowScroll] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
+
+  // Refs for each category section
+  const categoryBlocksRef = useRef({});
+  const sidebarRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +25,26 @@ function HTMLDoc() {
       } else {
         setShowScroll(false);
       }
+
+      // Find the active section based on scroll position
+      const { current: sidebar } = sidebarRef;
+      const { current: blocksRef } = categoryBlocksRef;
+      const categorySections = Object.keys(blocksRef).map(category => ({
+        category,
+        offsetTop: blocksRef[category].offsetTop
+      }));
+
+      const currentScroll = window.scrollY + sidebar.offsetHeight;
+      const active = categorySections.reduce((closestSection, section) => {
+        const sectionTop = section.offsetTop - sidebar.offsetTop;
+        if (sectionTop <= currentScroll && sectionTop > closestSection.offsetTop) {
+          return section;
+        }
+        return closestSection;
+      }, { category: null, offsetTop: -Infinity });
+
+      // setActiveSection(active.category);
+      // There is a bug with this feature not sure how to fix yet
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -34,69 +58,63 @@ function HTMLDoc() {
     });
   };
 
+  const handleCategoryClick = (category: any) => {
+    const topBarHeight = document.querySelector('.bg-blue-600').offsetHeight;
+    const targetSectionTop = categoryBlocksRef.current[category].offsetTop - topBarHeight + -24;
+    window.scrollTo({ top: targetSectionTop, behavior: "smooth" });
+    setActiveSection(category); // Update active section
+  };
+  
   return (
-    <div className="">
-      <div id="TopBar">
+    <div className="flex h-screen">
+      {/* Top Bar */}
+      <div className="bg-blue-600 text-black fixed top-0 w-full ">
         <TopBar />
       </div>
 
-      <div style={{ textAlign: "center", margin: "20px 0" }}>
-        <h1 style={{ fontSize: "1.6rem" }}>HTML Blocks</h1>
+      {/* Sidebar */}
+      <div className="w-1/6 bg-blue-700 text-white fixed top-20 left-0 h-full" ref={sidebarRef}>
+        <div className="mt-10 mb-10 flex flex-col items-center">
+          <div className="mb-10 text-xl">Categories</div>
+          {/* Render links for each category */}
+          {Object.keys(groupedBlocks).map((category, index) => (
+            <a
+              key={index}
+              className={`cursor-pointer w-full pl-6 p-3 hover:bg-amber-600 ${activeSection === category ? 'bg-amber-500' : ''}`}
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category}
+            </a>
+          ))}
+        </div>
       </div>
 
-      <div>
-        {/* Render blocks for each category */}
-        {Object.entries(groupedBlocks).map(
-          ([category, categoryBlocks], index) => (
-            <div key={index} style={{ marginBottom: "30px" }}>
-              <br />
-              <h2 className="ml-20" style={{ textDecoration: "underline" }}>
-                {category}
-              </h2>{" "}
-              <br />
-              <div
-              className="bg-gray-100"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "left",
-                }}
-              >
-                {/* Map over the blocks in the category and render each one */}
-                {categoryBlocks.map((block: any, index: any) => (
-                  <div
-                    key={index}
-                    style={{
-                      marginBottom: "20px",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <div className=" flex w-full px-40">
-                      <div className=" bg-gray-200 w-4/6">
-                        <div>
-                          <h3>
-                            {index + 1}. {block.title}
-                          </h3>
-                          <p>{block.description}</p>
-                        </div>
-                      </div>
-                      <div className="bg-gray-400 w-2/6 flex justify-center">
-                        <img
-                          src={block.image}
-                          alt={`image`}
-                          height={200}
-                        />
-                      </div>
+      {/* Main Content */}
+      <div className="w-5/6 p-10 ml-auto">
+        {/* Content */}
+        <div className="pr-10 pl-10">
+          {/* Render blocks for each category */}
+          {Object.entries(groupedBlocks).map(([category, categoryBlocks], index) => (
+            <div key={index} id={category} ref={(el) => (categoryBlocksRef.current[category] = el)} className="mb-8">
+              <div className="text-3xl font-semibold mt-16 mb-8">{category}</div>
+              {/* Map over the blocks in the category and render each one */}
+              {categoryBlocks.map((block, index) => (
+                <div key={index} className="mb-16">
+                  <div className="flex flex-col mb-2">
+                    <div className="mr-4 mb-2 text-2xl">
+                      {index + 1}. {block.title}
                     </div>
+                    <div>{block.description}</div>
                   </div>
-                ))}
-              </div>
+                  <img src={block.image} alt={`image`} width={200} />
+                </div>
+              ))}
             </div>
-          )
-        )}
+          ))}
+        </div>
       </div>
 
+      {/* Scroll to top button */}
       {showScroll && (
         <div
           onClick={scrollToTop}

@@ -1,4 +1,5 @@
 import ProductLogo from "../../assets/Logo";
+import ProductLogoBW from "../../assets/LogoB&W";
 import { Link } from "react-router-dom";
 import { AwesomeButton } from 'react-awesome-button';
   
@@ -9,7 +10,7 @@ import { AwesomeButton } from 'react-awesome-button';
       <div className="flex w-full justify-between items-center p-4">
         <div className="flex flex-col  gap-3 px-2">
         <Link to="/my/projects">
-          <ProductLogo TextSize={3}/>
+          <ProductLogoBW TextSize={3}/>
           </Link>
         </div>
   
