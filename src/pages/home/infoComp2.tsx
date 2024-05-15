@@ -39,7 +39,7 @@ function InfoComp2() {
               handle APIs, manage databases, and implement authentication and
               authorization features. Experience the magic of coding as you
               build the backbone of your web projects, and watch your creations
-              come to life with ease!"
+              come to life with ease!
             </div>
             <div className="w-full bg-blue-400">
               <img
