@@ -10,7 +10,8 @@ import { jwtDecode } from "jwt-decode";
 import InfoComp2 from "./infoComp2";
 import TopSection from "./TopSection";
 import InfoComp3 from "./infoComp3";
-
+import InfoComp4 from "./infoComp4";
+import Footer from "./Footer";
 
 function logout() {
   localStorage.removeItem("tokens");
@@ -77,8 +78,9 @@ function MainPage() {
       </header>
       {/* <div className="mb-16"></div> */}
 
+      {/* <div className="bg-white"> */}
       <div className="bg-gradient-to-br from-blue-500 to-blue-900">
-        <TopSection tokenValid={isTokenValid}/>
+        <TopSection tokenValid={isTokenValid} />
       </div>
 
       {/* what is WBC */}
@@ -99,20 +101,18 @@ function MainPage() {
         <InfoComp3 />
       </div>
 
-      <div className="pt-32 pb-32 bg-gray-100 py-10">
+      <div className="pt-28 pb-28 bg-red-100 py-10">
+        <InfoComp4 />
+      </div>
+
+      <div className="pt-32 pb-32 bg-gray-200 py-10">
         <AboutUs />
       </div>
 
-     
+      <div className="bg-gray-900 text-white py-20">
+        <Footer />
+      </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-20">
-        <div className="container mx-auto px-4">
-          <p className="text-center text-amber-500/80">
-            2024 The dog ate my homework corp. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -29,13 +29,13 @@ function ProjectCard(project: ProjectCardProps) {
   const { name, description, image, id, variant, lesson, onDelete } = project;
 
   return (
-    <Card className="mt-6 w-80 bg-gray-200 border-2 border-black">
-      {/* <CardHeader
+    <Card className="mt-12 w-96">
+      <CardHeader
         color="blue-gray"
         className="relative h-56 justify-center items-center flex p-12"
-      > */}
+      >
       {/* <div className=" bg-gradient-to-tl from-pink-200 to-amber-200 rounded-t-xl justify-center items-center flex p-12"> */}
-      <div
+      {/* <div
         className={`${
           description == "New backend project" ? "bg-orange-200" : "bg-blue-200"
         } ${
@@ -43,26 +43,25 @@ function ProjectCard(project: ProjectCardProps) {
             ? "bg-orange-200"
             : "bg-blue-200"
         }  rounded-t-xl gap-1 justify-center items-center flex p-12`}
-      >
-        <div>
+      > */}
+        {/* <div>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             {description == "New backend project" && <span><span className="text-4xl">BE</span> <span>Project</span></span>}
             {description == "New frontend project" && <span><span className="text-4xl">FE</span> <span>Project</span></span>}
             {description == "New backend lesson" && <span><span className="text-4xl">BE</span> <span>Lesson</span></span>}
             {description == "New frontend lesson" && <span><span className="text-4xl">FE</span> <span>Lesson</span></span>}
           </Typography>
-        </div>
+        </div> */}
         <div>
           <img
-            src={logoImg || "/img/blockly/logo_built_with_knockout.svg"}
+            src={image || "/img/blockly/logo_built_with_knockout.svg"}
             alt="card-image"
-            className="w-28"
           />
         </div>
-      </div>
+      {/* </div> */}
 
-      {/* </CardHeader> */}
-      <div className="bg-gray-200 rounded-b-xl">
+      </CardHeader>
+      <div className="rounded-b-xl">
         <CardBody>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             {name}
