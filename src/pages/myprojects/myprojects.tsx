@@ -205,7 +205,7 @@ function MyProjects() {
 
   return (
     <div className="">
-      <div onClick={()=>navigate('/home')} className="cursor-pointer bg-blue-500 p-4 mb-6 flex justify-center">
+      <div onClick={()=>navigate('/home')} className="cursor-pointer bg-blue-400 p-4 mb-6 flex justify-center">
         <ProductLogoBW />{" "}
       </div>
 
@@ -215,7 +215,7 @@ function MyProjects() {
             <button
               className={`${
                 selectedTab === "projects"
-                  ? "bg-blue-500 text-white border-2 border-black"
+                  ? "bg-blue-600 text-white border-2 border-black"
                   : "bg-gray-200 text-gray-700"
               } px-10 py-2 text-2xl rounded-l-lg focus:outline-none `}
               onClick={() => handleTabChange("projects")}
@@ -225,7 +225,7 @@ function MyProjects() {
             <button
               className={`${
                 selectedTab === "lesson"
-                  ? "bg-blue-500 text-white border-2 border-black"
+                  ? "bg-blue-600 text-white border-2 border-black"
                   : "bg-gray-200 text-gray-700"
               } px-10 py-2 text-2xl rounded-r-lg focus:outline-none`}
               onClick={() => handleTabChange("lesson")}
@@ -364,8 +364,10 @@ function MyProjects() {
         )}
       </div>
 
-      <div className="mt-10 bg-gray-300 p-10 flex justify-center">
-        Web Block Craft
+      <div className="mt-10 bg-blue-700 p-8 flex justify-center">
+      <p className="text-center text-white">
+      © WebBlockCraft,2024. All rights reserved.
+      </p>
       </div>
       <NewProjectModal
         open={open}
@@ -386,7 +388,7 @@ function MyProjects() {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "#FFBF00",
+            backgroundColor: "black",
             color: "white",
             padding: "10px",
             borderRadius: "50%",

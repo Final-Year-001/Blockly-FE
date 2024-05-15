@@ -9,11 +9,11 @@ function InfoComp3() {
     "https://www.youtube.com/embed/FRnKY-5TqOM?si=HnjgCHTn7SeDOdya",
   ];
 
-  const des = "If you're feeling lost, don't worry, kiddo, we've got you covered with our wonderful YouTube series. We'll show you what to do and get you started. Head over to our YouTube channel and explore what's in store."
+  const des = "If you're feeling lost, don't worry, we've got you covered with our wonderful YouTube series. We'll help you to get started. Head over to our YouTube channel for detailed explanations."
 
   return (
     <div className="w-full mx-auto container">
-      <div className="text-3xl flex justify-center mb-6">Check us out on Youtube :)</div>
+      <div className="text-3xl flex justify-center mb-6">Check us out on Youtube! 🎥</div>
       <div className="text-xl flex justify-center mb-20">{des}</div>
       <div className="flex flex-wrap justify-center mt-4">
         {youtubeLinks.map((link) => (

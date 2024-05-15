@@ -17,12 +17,12 @@ function InfoComp2() {
               />
             </div>
             <div className="w-full p-10 text-2xl flex justify-center items-center text-justify">
-              The Frontend Builder of Web Block Craft, where you can bring your
-              web design ideas to life! With our intuitive interface, you can
+              The Frontend Builder of Web Block Craft, is where you can bring your
+              web design ideas to life. With our intuitive interface, you can
               experiment with HTML, CSS, and JS in real-time. Watch your code
-              come alive as you make changes, and enjoy the visual feedback to
+              come alive as you make changes, and enjoy the visual representation to
               see exactly what's happening on your webpage. Let your creativity
-              soar as you craft stunning designs effortlessly
+              soar as you craft stunning designs effortlessly!
             </div>
           </div>
         </div>
@@ -33,11 +33,11 @@ function InfoComp2() {
         <div>
           <div className="flex">
             <div className="w-full pr-10 pt-10 pb-10 text-2xl  flex items-center text-justify">
-              The Backend Builder of Web Block Craft, where you can
-              turn your ideas into robust and powerful web applications! With
+              The Backend Builder of Web Block Craft, is where you can
+              turn your ideas into robust and powerful web applications. With
               our user-friendly interface, you can effortlessly create servers,
               handle APIs, manage databases, and implement authentication and
-              authorization features. Experience the magic of coding as you
+              authorization features. Experience the magic of backend coding as you
               build the backbone of your web projects, and watch your creations
               come to life with ease!
             </div>

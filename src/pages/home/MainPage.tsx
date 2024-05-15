@@ -12,6 +12,7 @@ import TopSection from "./TopSection";
 import InfoComp3 from "./infoComp3";
 import InfoComp4 from "./infoComp4";
 import Footer from "./Footer";
+import { FaArrowUp } from "react-icons/fa";
 
 function logout() {
   localStorage.removeItem("tokens");
@@ -23,6 +24,14 @@ function MainPage() {
   const navigate = useNavigate();
   const [logged, setLogged] = useState<any>(null);
   const [isTokenValid, setIsTokenValid] = useState<boolean>(false);
+  const [showScroll, setShowScroll] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("tokens");
@@ -38,6 +47,16 @@ function MainPage() {
         setIsTokenValid(false);
       }
     }
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScroll(true);
+      } else {
+        setShowScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -79,7 +98,7 @@ function MainPage() {
       {/* <div className="mb-16"></div> */}
 
       {/* <div className="bg-white"> */}
-      <div className="bg-gradient-to-br from-blue-500 to-blue-900">
+      <div className="bg-blue-400">
         <TopSection tokenValid={isTokenValid} />
       </div>
 
@@ -93,25 +112,43 @@ function MainPage() {
         <InfoComp1 />
       </div>
 
-      <div className="pt-28 pb-28 bg-amber-100/80 py-10">
+      <div className="pt-28 pb-28 bg-amber-200 py-10">
         <InfoComp2 />
       </div>
 
-      <div className="pt-28 pb-28 bg-red-400 py-10">
+      <div className="pt-28 pb-28 bg-green-500 py-10">
         <InfoComp3 />
       </div>
 
-      <div className="pt-28 pb-28 bg-red-100 py-10">
+      <div className="pt-28 pb-28 bg-green-200 py-10">
         <InfoComp4 />
       </div>
 
-      <div className="pt-32 pb-32 bg-gray-200 py-10">
+      <div className="pt-32 pb-32 bg-orange-400 py-10">
         <AboutUs />
       </div>
 
-      <div className="bg-gray-900 text-white py-20">
+      <div className="bg-blue-700 text-white py-6">
         <Footer />
       </div>
+
+      {showScroll && (
+        <div
+          onClick={scrollToTop}
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            cursor: "pointer",
+            backgroundColor: "black",
+            color: "white",
+            padding: "10px",
+            borderRadius: "50%",
+          }}
+        >
+          <FaArrowUp size={20} />
+        </div>
+      )}
 
     </div>
   );
