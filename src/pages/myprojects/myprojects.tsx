@@ -24,6 +24,8 @@ import {
   ConfirmDialog,
   ConfirmDialogProps,
 } from "../../components/Dialogs/ConfirmDialog";
+import ProductLogo from "../../assets/Logo";
+import ProductLogoBW from "../../assets/LogoB&W";
 
 function MyProjects() {
   const tokens = useRecoilValue(tokenAtom);
@@ -94,6 +96,12 @@ function MyProjects() {
       return true;
     },
   });
+
+  const [selectedTab, setSelectedTab] = useState("projects");
+
+  const handleTabChange = (tab: any) => {
+    setSelectedTab(tab);
+  };
 
   const lessonData =
     lessonDataQuery.data?.result?.map((c: any) => {
@@ -196,11 +204,35 @@ function MyProjects() {
   };
 
   return (
-    <div>
-      <div className="h-10 w-full"></div>
+    <div className="">
+      <div onClick={()=>navigate('/home')} className="cursor-pointer bg-blue-500 p-4 mb-6 flex justify-center">
+        <ProductLogoBW />{" "}
+      </div>
+
       <div className="px-10">
-        <div className="flex justify-between px-16 pb-4 style={{ flexGrow: 1 }}">
-          <Typography variant="h1">My Projects</Typography>
+        <div className="flex  justify-between px-12 pb-4 style={{ flexGrow: 1 }}">
+          <div>
+            <button
+              className={`${
+                selectedTab === "projects"
+                  ? "bg-blue-500 text-white border-2 border-black"
+                  : "bg-gray-200 text-gray-700"
+              } px-10 py-2 text-2xl rounded-l-lg focus:outline-none `}
+              onClick={() => handleTabChange("projects")}
+            >
+              Projects
+            </button>
+            <button
+              className={`${
+                selectedTab === "lesson"
+                  ? "bg-blue-500 text-white border-2 border-black"
+                  : "bg-gray-200 text-gray-700"
+              } px-10 py-2 text-2xl rounded-r-lg focus:outline-none`}
+              onClick={() => handleTabChange("lesson")}
+            >
+              Lessons
+            </button>
+          </div>
           <div className="flex gap-4 justify-end">
             <AwesomeButton
               style={{
@@ -295,30 +327,45 @@ function MyProjects() {
             </AwesomeButton>
           </div>
         </div>
-        <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
-          {projectData.map((project: any) => (
-            <ProjectCard
-              key={project.id}
-              {...project}
-              onDelete={deleteProject}
-            />
-          ))}
-        </div>{" "}
-        <br />
-        <br />
-        <hr style={{ border: "2px solid #353935", margin: "20px 0" }} />
-        <div className="flex justify-between px-16 pb-4 pt-10">
-          <Typography variant="h1">My Lessons</Typography>
-        </div>
-        <div className="flex flex-row flex-wrap px-10 pt-4 gap-8">
-          {lessonData.map((project: any) => (
-            <ProjectCard
-              key={project.id}
-              {...project}
-              onDelete={_deleteLesson}
-            />
-          ))}
-        </div>
+
+        {selectedTab == "projects" && (
+          <div>
+            <div className="flex justify-between px-12 pb-4">
+              <Typography className="text-3xl">My Projects</Typography>
+            </div>
+              <div className="flex flex-row flex-wrap px-10 pt-4 gap-10">
+                {projectData.map((project: any) => (
+                  <ProjectCard
+                    key={project.id}
+                    {...project}
+                    onDelete={deleteProject}
+                  />
+                ))}
+              </div>
+          
+          </div>
+        )}
+
+        {selectedTab == "lesson" && (
+          <div>
+            <div className="flex justify-between px-12 pb-4">
+              <Typography className="text-3xl">My Lessons</Typography>
+            </div>
+            <div className="flex flex-row flex-wrap px-10 pt-4 gap-10">
+              {lessonData.map((project: any) => (
+                <ProjectCard
+                  key={project.id}
+                  {...project}
+                  onDelete={_deleteLesson}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-10 bg-gray-300 p-10 flex justify-center">
+        Web Block Craft
       </div>
       <NewProjectModal
         open={open}

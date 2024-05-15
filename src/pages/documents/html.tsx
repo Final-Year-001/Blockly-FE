@@ -1,80 +1,46 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TopBar from "./topBar";
 import { FaArrowUp } from "react-icons/fa";
+import { blocks, categoryDescriptions } from "./htmlDocData";
+import DocumentationFile from "./Documentation";
+import { FaAngleDoubleRight } from "react-icons/fa";
 
-const blocks = [
-  // Get started category
-  {
-    title: "Script block",
-    description: "JavaScript code should be wrapped in this tag.",
-    image: "#",
-    category: "Get Started",
-  },
-  {
-    title: "Creating a variable",
-    description: "Create a custom variable using this block.",
-    image: "#",
-    category: "Get Started",
-  },
+interface Block {
+  category: string;
+  title: string;
+  description: string;
+  image: string;
+}
 
-  // DOM Manipulation category
-  {
-    title: "Change the content of an HTML element by ID",
-    description: "Change the content of an HTML element by ID.",
-    image: "#",
-    category: "DOM Manipulation",
-  },
-  {
-    title: "Generate a custom alert",
-    description: "Generate a custom alert.",
-    image: "#",
-    category: "DOM Manipulation",
-  },
-  
-  // Sounds & images category
-  {
-    title: "Play a sound when a button is clicked",
-    description: "Play a sound when a button is clicked.",
-    image: "#",
-    category: "Sounds & Images",
-  },
-  {
-    title: "Upload and display an image",
-    description: "Upload and display an image.",
-    image: "#",
-    category: "Sounds & Images",
-  },
-  // Form manipulation category
-  {
-    title: "Handle form submission",
-    description: "Handle form submission and send the data to the backend.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-  {
-    title: "Set the form data to a variable",
-    description: "Set the form data to a variable for easy access.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-   // ToDo blocks
-   {
-    title: "Adding a task",
-    description: "Create a new task, a bell sound will be played when the task is added.",
-    image: "#",
-    category: "Todo blocks",
-  },
-];
+interface CategoryDescriptions {
+  [key: string]: string;
+}
 
-function HTMLDoc() {
+function HTMLDoc(): JSX.Element {
   // Group blocks by category
-  const groupedBlocks = blocks.reduce((acc, block) => {
-    acc[block.category] = acc[block.category] || [];
-    acc[block.category].push(block);
-    return acc;
-  }, {});
+  const groupedBlocks: { [key: string]: Block[] } = blocks.reduce(
+    (acc, block) => {
+      acc[block.category] = acc[block.category] || [];
+      acc[block.category].push(block);
+      return acc;
+    },
+    {}
+  );
 
-  const [showScroll, setShowScroll] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
+  const [showScroll, setShowScroll] = useState<boolean>(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  // Refs for each category section
+  const categoryBlocksRef = useRef<{ [key: string]: HTMLDivElement | null }>(
+    {}
+  );
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,6 +49,31 @@ function HTMLDoc() {
       } else {
         setShowScroll(false);
       }
+
+      // Find the active section based on scroll position
+      const { current: sidebar } = sidebarRef;
+      const { current: blocksRef } = categoryBlocksRef;
+      const categorySections = Object.keys(blocksRef).map((category) => ({
+        category,
+        offsetTop: blocksRef[category]!.offsetTop,
+      }));
+
+      const currentScroll = window.scrollY + sidebar!.offsetHeight;
+      const active = categorySections.reduce(
+        (closestSection, section) => {
+          const sectionTop = section.offsetTop - sidebar!.offsetTop;
+          if (
+            sectionTop <= currentScroll &&
+            sectionTop > closestSection.offsetTop
+          ) {
+            return section;
+          }
+          return closestSection;
+        },
+        { category: null, offsetTop: -Infinity }
+      );
+
+      // setActiveSection(active.category);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -96,57 +87,95 @@ function HTMLDoc() {
     });
   };
 
+  const handleCategoryClick = (category: string) => {
+    const categoryBlock = categoryBlocksRef.current[category];
+    if (categoryBlock) {
+      categoryBlock.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(category); // Update active section
+    }
+  };
+
   return (
-    <div style={{ paddingLeft: '10px' }}>
-      <div id="TopBar">
-        <TopBar />
-      </div>
+    <div className="flex h-screen overflow-hidden">
+  <div
+    className={`h-full w-64 bg-gray-700 text-white ${
+      isCollapsed ? "hidden" : "block"
+    }`}
+  >
+    <div className="mt-10 mb-10 flex flex-col items-center">
+      <div className="mb-10 text-xl">HTML Categories</div>
+      <button onClick={toggleSidebar} className="text-black bg-gray-400 rounded active:bg-blue-500 hover:bg-blue-400 px-4 py-2 mb-10">
+        Hide bar
+      </button>
+      {/* Render links for each category */}
+      {Object.keys(groupedBlocks).map((category, index) => (
+        <a
+          key={index}
+          className={`cursor-pointer w-full pl-6 p-3 hover:bg-amber-600 ${
+            activeSection === category ? "bg-amber-500 text-black" : ""
+          }`}
+          onClick={() => handleCategoryClick(category)}
+        >
+          {category}
+        </a>
+      ))}
+    </div>
+  </div>
 
-      <div style={{ textAlign: 'center', margin: '20px 0' }}>
-        <h1 style={{ fontSize: '1.6rem' }}>HTML Blocks</h1>
-      </div>
+  {/* Button to toggle sidebar */}
+  <button
+    className={`h-full w-10 bg-blue-400 text-white flex justify-center items-center ${
+      isCollapsed ? "block" : "hidden"
+    }`}
+    onClick={toggleSidebar}
+  >
+    {isCollapsed ? <FaAngleDoubleRight /> : <FaArrowUp />}
+  </button>
 
-      <div>
+  <div className="flex flex-col w-full">
+    <div className="w-full h-18 bg-blue-400 text-white flex justify-between items-center px-4">
+      <TopBar />
+    </div>
+    <div
+      className="p-4"
+      style={{ overflowY: "auto", maxHeight: "calc(100vh - 4rem)" }}
+    >
+      <div className="pr-10 pl-10">
         {/* Render blocks for each category */}
         {Object.entries(groupedBlocks).map(([category, categoryBlocks], index) => (
-          <div key={index} style={{ marginBottom: '30px', marginLeft: '20%' }}>
-            <br/>
-            <h2 style={{ textDecoration: 'underline' }}>{category}</h2> <br/>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
-              {/* Map over the blocks in the category and render each one */}
-              {categoryBlocks.map((block:any, index:any) => (
-                <div key={index} style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
-                  <div style={{ marginRight: '20px' }}>
-                    <h3>{index + 1}. {block.title}</h3>
-                    <p>{block.description}</p>
+          <div
+            key={index}
+            id={category}
+            ref={(el) => (categoryBlocksRef.current[category] = el)}
+            className="mb-8"
+          >
+            <div className="text-3xl font-semibold mt-16">{category}</div>
+            {/* Render category description */}
+            <div className="mb-8">{categoryDescriptions[category]}</div>
+            {/* Map over the blocks in the category and render each one */}
+            {categoryBlocks.map((block, index) => (
+              <div key={index} className="mb-16 bg-gray-100 justify-between p-8 rounded-xl flex">
+                <div className="">
+                  <div className="flex  flex-col mb-2">
+                    <div className="mb-2 text-2xl">
+                      {index + 1}. {block.title}
+                    </div>
+                    <div>{block.description}</div>
                   </div>
-                  <img src={block.image} alt={`image`} style={{ maxWidth: '100px', marginLeft:'10px' }} />
                 </div>
-              ))}
-            </div>
+
+                <div className=" w-2/6  flex justify-end">
+                  <img src={block.image} alt={`image`} width={300} />
+                </div>
+              </div>
+            ))}
           </div>
         ))}
       </div>
-
-      {showScroll && (
-        <div
-          onClick={scrollToTop}
-          style={{
-            position: "fixed",
-            bottom: "20px",
-            right: "20px",
-            cursor: "pointer",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            color: "white",
-            padding: "10px",
-            borderRadius: "50%",
-          }}
-        >
-          <FaArrowUp size={20} />
-        </div>
-      )}
-
     </div>
+  </div>
+</div>
+
   );
 }
 
