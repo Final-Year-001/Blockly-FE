@@ -5,9 +5,11 @@ import { blocks, categoryDescriptions } from "./htmlDocData";
 import DocumentationFile from "./Documentation";
 import { FaAngleDoubleRight } from "react-icons/fa";
 
-const cardColor = "bg-gray-100"
-const topBarColor = "bg-blue-400"
-const sideBarColor = "bg-gray-400"
+const cardColor = "bg-white/0"
+const topBarColor = "bg-wbcMain"
+const sideBarColor = "bg-white"
+const sideBarHover = "bg-wbcMain"
+const sideBarActive = "hover:bg-wbcMain"
 
 interface Block {
   category: string;
@@ -114,8 +116,8 @@ function HTMLDoc(): JSX.Element {
           {Object.keys(groupedBlocks).map((category, index) => (
             <a
               key={index}
-              className={`cursor-pointer w-full pl-6 p-3 hover:bg-amber-600 ${
-                activeSection === category ? "bg-amber-500 text-black" : ""
+              className={`cursor-pointer w-full pl-6 p-3 ${sideBarActive} ${
+                activeSection === category ? `${sideBarHover} text-black` : ""
               }`}
               onClick={() => handleCategoryClick(category)}
             >
