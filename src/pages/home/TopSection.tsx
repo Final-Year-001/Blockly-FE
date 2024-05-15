@@ -17,7 +17,7 @@ function TopSection(tokenValid : any) {
       </div>
       <div className="w-full flex justify-center mr-28">
         {tokenValid.tokenValid ?
-        <div className=" bg-blue-300  p-8 rounded-xl px-16 border-4 border-black flex flex-row gap-4">
+        <div className=" bg-gray-400  p-8 rounded-xl px-16 border-4 border-black flex flex-row gap-4">
           <div
             onClick={() => navigate("/get-started")}
             className="cursor-pointer w-40 bg-red-300 border-2 border-black rounded-lg py-2 text-lg flex justify-center hover:bg-red-500 active:red-700"

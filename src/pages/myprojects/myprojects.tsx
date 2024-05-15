@@ -333,11 +333,7 @@ function MyProjects() {
             <div className="flex justify-between px-12 pb-4">
               <Typography className="text-3xl">My Projects</Typography>
             </div>
-           
-      
-
-           
-              <div className="flex flex-row  flex-wrap px-10 pt-4 gap-6">
+              <div className="flex flex-row flex-wrap px-10 pt-4 gap-10">
                 {projectData.map((project: any) => (
                   <ProjectCard
                     key={project.id}
@@ -355,7 +351,7 @@ function MyProjects() {
             <div className="flex justify-between px-12 pb-4">
               <Typography className="text-3xl">My Lessons</Typography>
             </div>
-            <div className="flex flex-row flex-wrap px-10 pt-4 gap-6">
+            <div className="flex flex-row flex-wrap px-10 pt-4 gap-10">
               {lessonData.map((project: any) => (
                 <ProjectCard
                   key={project.id}
