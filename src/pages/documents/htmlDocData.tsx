@@ -1,3 +1,10 @@
+export const categoryDescriptions = {
+  "Get Started": "Explore foundational concepts HTML and start your creative journey.",
+  "Words Category": "Learn what types of word blocks are there and how to use them.",
+  "Tables": "Learn what blocks are needed to make cool tables",
+  "Forms": "We all need a good form. Here you get to learn what blocks are responsible for making forms.",
+};
+
 export const blocks = [
   // Get started category
   {
