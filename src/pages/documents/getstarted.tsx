@@ -6,6 +6,11 @@ import { FaArrowUp } from "react-icons/fa";
 import { AwesomeButton } from "react-awesome-button";
 import "./mainpage.css";
 
+const topBarColor = "bg-wbcMain";
+const cardColor = "bg-gray-200"
+
+const overview = "   Welcome to Web Block Craft, a Google Blockly framework-based application designed to teach web programming to children and beginners. Web Block Craft allows you to create both frontend and backend development projects separately and connect them through URL."
+
 function GetStartedPage() {
   const [showScroll, setShowScroll] = useState(false);
 
@@ -30,29 +35,23 @@ function GetStartedPage() {
   };
 
   return (
-    <div className="px-10">
-      <div id="TopBar">
+    <div>
+      <div className={` ${topBarColor}`} id="TopBar">
         <TopBar />
       </div>
-      <div className="flex justify-between items-center">
-        <div>
-          {" "}
-          <br />
-          <h1>Get Started</h1>
-          <h3 style={{ color: "red", fontWeight: "bold" }}>Ongoing...</h3>
-        </div>
+
+      <div className="bg-gray-200 mx-10">
+
+      <div>
+        <div className="flex text-3xl justify-center">Get Started</div>
       </div>
-      <div className="my-8">
-        <h2>Overview</h2>
-        <p>
-          Welcome to Web Block Craft, a Google Blockly framework-based
-          application designed to teach web programming to children and
-          beginners. Web Block Craft allows you to create both frontend and
-          backend development projects separately and connect them through a
-          URL.
-        </p>
-      </div>{" "}
-      <hr />
+
+      <div>
+        <div>Overview</div>
+        <div>{overview}</div>
+      </div>
+
+ 
       <div className="my-8">
         <h2>Getting Started with Web Block Craft</h2>
         <p>To start with development, follow these steps:</p>
@@ -210,6 +209,7 @@ function GetStartedPage() {
           <FaArrowUp size={20} />
         </div>
       )}
+      </div>
     </div>
   );
 }
