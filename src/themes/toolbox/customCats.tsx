@@ -31,7 +31,6 @@ class CustomCategory extends Blockly.ToolboxCategory {
 //       isSelected
 //     );
 //   }
-
 }
 
 Blockly.registry.register(
