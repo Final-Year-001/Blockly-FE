@@ -205,9 +205,10 @@ function MyProjects() {
 
   return (
     <div className="">
-      <div onClick={()=>navigate('/home')} className="cursor-pointer bg-blue-400 p-4 mb-6 flex justify-center">
+      {/* left aligned the logo to keep consistency  */}
+      <div onClick={()=>navigate('/home')} className="cursor-pointer bg-blue-400 p-4 mb-6 flex justify-left">
         <ProductLogoBW />{" "}
-      </div>
+      </div> 
 
       <div className="px-10">
         <div className="flex  justify-between px-12 pb-4 style={{ flexGrow: 1 }}">
@@ -215,7 +216,7 @@ function MyProjects() {
             <button
               className={`${
                 selectedTab === "projects"
-                  ? "bg-blue-600 text-white border-2 border-black"
+                  ? "bg-blue-400 text-white border-2 border-black"
                   : "bg-gray-200 text-gray-700"
               } px-10 py-2 text-2xl rounded-l-lg focus:outline-none `}
               onClick={() => handleTabChange("projects")}
@@ -225,7 +226,7 @@ function MyProjects() {
             <button
               className={`${
                 selectedTab === "lesson"
-                  ? "bg-blue-600 text-white border-2 border-black"
+                  ? "bg-blue-400 text-white border-2 border-black"
                   : "bg-gray-200 text-gray-700"
               } px-10 py-2 text-2xl rounded-r-lg focus:outline-none`}
               onClick={() => handleTabChange("lesson")}
@@ -329,7 +330,7 @@ function MyProjects() {
         </div>
 
         {selectedTab == "projects" && (
-          <div>
+          <div style={{ marginTop: '20px' }}>
             <div className="flex justify-between px-12 pb-4">
               <Typography className="text-3xl">My Projects</Typography>
             </div>
@@ -347,7 +348,7 @@ function MyProjects() {
         )}
 
         {selectedTab == "lesson" && (
-          <div>
+          <div style={{ marginTop: '20px' }}>
             <div className="flex justify-between px-12 pb-4">
               <Typography className="text-3xl">My Lessons</Typography>
             </div>
@@ -364,11 +365,12 @@ function MyProjects() {
         )}
       </div>
 
-      <div className="mt-10 bg-blue-700 p-8 flex justify-center">
-      <p className="text-center text-white">
-      © WebBlockCraft,2024. All rights reserved.
-      </p>
+      <div className="mt-10 bg-blue-600 p-8 flex justify-center">
+        <p className="text-center text-white">
+        © WebBlockCraft, 2024. All rights reserved.
+        </p>
       </div>
+      
       <NewProjectModal
         open={open}
         handler={() => setOpen(false)}
