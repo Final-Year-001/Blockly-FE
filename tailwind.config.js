@@ -5,6 +5,9 @@ export default withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
+    colors: {
+      'wbcMain': '#0093A4',
+    },
   },
   plugins: [],
 });

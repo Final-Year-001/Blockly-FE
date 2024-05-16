@@ -10,7 +10,7 @@ function InfoComp1() {
     <div className="w-full mx-auto container">
       <div className=" flex flex-col gap-10 mb-8 mx-4 sm:mx-32 mb-20">
         <div className="flex justify-center text-3xl mb-10">
-          What Can you Learn from Web Block Craft?
+          What Can You Learn From Web Block Craft?
         </div>
         <div className="">
           <div className="flex gap-10 mb-10 transform hover:scale-110 transition duration-300">
@@ -21,9 +21,10 @@ function InfoComp1() {
               <div>
                 <p className="text-2xl text-black font-bold">HTML</p>
                 <span>
-                  HTML is a special language that lets us make cool stuff on the
-                  internet, like writing stories, showing pictures, and making
-                  links to explore!
+                HTML (HyperText Markup Language) is like the blueprint for web pages. 
+                It helps us create and organize content on the internet, such as text, images, 
+                and links, making it easy for people to read stories, view pictures, and 
+                navigate through different pages!
                 </span>
               </div>
             </div>
@@ -36,7 +37,7 @@ function InfoComp1() {
               <div>
                 <p className="text-2xl text-black font-bold">CSS</p>
                 <span>
-                  CSS (Cascading Style Sheets) is like magic paint for web
+                  CSS (Cascading Style Sheets) is like a magic paint for web
                   pages. It makes everything colorful and fun by telling the
                   computer how things should look!
                 </span>
@@ -51,8 +52,8 @@ function InfoComp1() {
               <div>
                 <p className="text-2xl text-black font-bold">JavaScript</p>
                 <span>
-                  JavaScript is the secret sauce of the web, giving websites the
-                  power to do amazing things like games, animations, and
+                  JS (JavaScript) is the secret sauce of the web, giving websites the
+                  power to do amazing dynamic things like games, animations, and
                   interactive features!
                 </span>
               </div>
@@ -69,7 +70,7 @@ function InfoComp1() {
                 <span>
                   Creating a server and handling APIs is like building a bridge
                   between different parts of the internet. It lets computers
-                  talk to each other and share information.
+                  talk to each other and share information!
                 </span>
               </div>
             </div>
@@ -100,10 +101,9 @@ function InfoComp1() {
               <div>
                 <p className="text-2xl text-black font-bold">Security</p>
                 <span>
-                  Authentication and authorization are like the bouncers and VIP
-                  lists of the internet. They make sure only the right people
-                  get into the party (your website), keeping things safe and
-                  secure!
+                Authentication and authorization are like the gates and access passes of an event. 
+                They ensure that only approved individuals can enter the event (your website), maintaining safety 
+                and security by controlling who has permission to access certain areas or functions!
                 </span>
               </div>
             </div>
