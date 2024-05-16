@@ -49,4 +49,9 @@ export const HTMLBlockTheme = {
         'colourSecondary': '#64C7FF',
         'colourTertiary': '#2a5ebf'
       },
+      'HTML_premade': {
+        'colourPrimary': '#00b0b6',
+        'colourSecondary': '#42b7bb',
+        'colourTertiary': '#2a5ebf'
+      },
 }

@@ -20,7 +20,7 @@ function GettingStartFront() {
         </div>
         <div
           className={` ${GettingStartedBtnSize} ${CssButtonColor}`}
-          onClick={() => navigate("/doc-js")}
+          onClick={() => navigate("/doc-css")}
         >
           CSS Tutorials
         </div>

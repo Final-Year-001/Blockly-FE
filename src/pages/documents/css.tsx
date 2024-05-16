@@ -1,192 +1,44 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import TopBar from "./topBar";
 import { FaArrowUp } from "react-icons/fa";
+import { blocks, categoryDescriptions } from "./CSSDocData";
+import { useNavigate } from "react-router-dom";
 
-const blocks = [
-  // Get started category
-  {
-    title: "Script block",
-    description: "JavaScript code should be wrapped in this tag.",
-    image: "#",
-    category: "Get Started",
-  },
-  {
-    title: "Creating a variable",
-    description: "Create a custom variable using this block.",
-    image: "#",
-    category: "Get Started",
-  },
-  {
-    title: "Create an element ID",
-    description: "Create an element ID for a html element.",
-    image: "#",
-    category: "Get Started",
-  },
-  {
-    title: "Log a message to the console",
-    description: "Log a message to the console.",
-    image: "#",
-    category: "Get Started",
-  },
-  {
-    title: "Print the page",
-    description: "Print the page using a button click.",
-    image: "#",
-    category: "Get Started",
-  },
-  {
-    title: "Single-line comment",
-    description: "Single-line comment block.",
-    image: "#",
-    category: "Get Started",
-  },
-  {
-    title: "Multi-line comment",
-    description: "Multiple-line comment block.",
-    image: "#",
-    category: "Get Started",
-  },
-  // DOM Manipulation category
-  {
-    title: "Change the content of an HTML element by ID",
-    description: "Change the content of an HTML element by ID.",
-    image: "#",
-    category: "DOM Manipulation",
-  },
-  {
-    title: "Generate a custom alert",
-    description: "Generate a custom alert.",
-    image: "#",
-    category: "DOM Manipulation",
-  },
-  {
-    title: "Attach an event listener to an HTML element",
-    description: "Attach an event listener to an HTML element.",
-    image: "#",
-    category: "DOM Manipulation",
-  },
-  {
-    title: "Show or hide an HTML element",
-    description: "Show or hide an HTML element.",
-    image: "#",
-    category: "DOM Manipulation",
-  },
-  {
-    title: "Create a custom function",
-    description: "Create a custom function.",
-    image: "#",
-    category: "DOM Manipulation",
-  },
-  // Sounds & images category
-  {
-    title: "Play a sound when a button is clicked",
-    description: "Play a sound when a button is clicked.",
-    image: "#",
-    category: "Sounds & Images",
-  },
-  {
-    title: "Upload and display an image",
-    description: "Upload and display an image.",
-    image: "#",
-    category: "Sounds & Images",
-  },
-  {
-    title: "Remove the image with a button click",
-    description: "Remove the image with a button click.",
-    image: "#",
-    category: "Sounds & Images",
-  },
-  // Form manipulation category
-  {
-    title: "Handle form submission",
-    description: "Handle form submission and send the data to the backend.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-  {
-    title: "Set the form data to a variable",
-    description: "Set the form data to a variable for easy access.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-  {
-    title: "Get the data to the backend",
-    description: "Pass the data to the backend.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-  {
-    title: "Clear all input fields in a form",
-    description: "Clear name and age fields in a form using a button click.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-  {
-    title: "Auto-fill name and age",
-    description: "Auto fill name and age from a button click.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-  {
-    title: "Validate the name and age",
-    description: "Validattion for the name and age.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-  {
-    title: "Name condition validation",
-    description: "Validation condition for the name.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-  {
-    title: "Age condition validation",
-    description: "Validation condition for the age.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-  {
-    title: "Change the background color of a form",
-    description: "Changing the backgrounf color of the form.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-  {
-    title: "Show collected data in an alert",
-    description: "Show collected data in an alert.",
-    image: "#",
-    category: "Form Manipulation",
-  },
-   // ToDo blocks
-   {
-    title: "Adding a task",
-    description: "Create a new task, a bell sound will be played when the task is added.",
-    image: "#",
-    category: "Todo blocks",
-  },
-  {
-    title: "Completing a task",
-    description: "Completed task will be striked through.",
-    image: "#",
-    category: "Todo blocks",
-  },
-  {
-    title: "Delete a task",
-    description: "The task will be deleted and a bin sound will be played.",
-    image: "#",
-    category: "Todo blocks",
-  },
-];
+const cardColor = "bg-white/0"
+const topBarColor = "bg-wbcMain"
+const sideBarColor = "bg-white"
+const sideBarHover = "bg-wbcMain"
+const sideBarActive = "hover:bg-wbcMain"
+const blueButton = 'bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2'
 
-function CSSDoc() {
+function CSSDoc(): JSX.Element {
   // Group blocks by category
-  const groupedBlocks = blocks.reduce((acc, block) => {
-    acc[block.category] = acc[block.category] || [];
-    acc[block.category].push(block);
-    return acc;
-  }, {});
+  const navigate = useNavigate();
+  const groupedBlocks: { [key: string]: Block[] } = blocks.reduce(
+    (acc, block) => {
+      acc[block.category] = acc[block.category] || [];
+      acc[block.category].push(block);
+      return acc;
+    },
+    {}
+  );
 
-  const [showScroll, setShowScroll] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
+  const [showScroll, setShowScroll] = useState<boolean>(false);
+  const [activeSection, setActiveSection] = useState<string | null>(
+    "Get Started"
+  );
+
+  // Refs for each category section
+  const categoryBlocksRef = useRef<{ [key: string]: HTMLDivElement | null }>(
+    {}
+  );
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -195,6 +47,31 @@ function CSSDoc() {
       } else {
         setShowScroll(false);
       }
+
+      // Find the active section based on scroll position
+      const { current: sidebar } = sidebarRef;
+      const { current: blocksRef } = categoryBlocksRef;
+      const categorySections = Object.keys(blocksRef).map((category) => ({
+        category,
+        offsetTop: blocksRef[category]!.offsetTop,
+      }));
+
+      const currentScroll = window.scrollY + sidebar!.offsetHeight;
+      const active = categorySections.reduce(
+        (closestSection, section) => {
+          const sectionTop = section.offsetTop - sidebar!.offsetTop;
+          if (
+            sectionTop <= currentScroll &&
+            sectionTop > closestSection.offsetTop
+          ) {
+            return section;
+          }
+          return closestSection;
+        },
+        { category: null, offsetTop: -Infinity }
+      );
+
+      // setActiveSection(active.category);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -208,38 +85,125 @@ function CSSDoc() {
     });
   };
 
+  const handleCategoryClick = (category: string) => {
+    const categoryBlock = categoryBlocksRef.current[category];
+    if (categoryBlock) {
+      categoryBlock.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(category); // Update active section
+    }
+  };
+
   return (
-    <div style={{ paddingLeft: '10px' }}>
-      <div id="TopBar">
-        <TopBar />
+    <div className="flex h-screen overflow-hidden">
+      <div
+        className={`h-full ${sideBarColor} text-black transition-all ${
+          isCollapsed ? "w-0" : "w-64 block"
+        }`}
+      >
+        <div className={`mt-10 mb-10 flex flex-col items-center transition delay-300  ${isCollapsed ? 'hidden': 'block'} `}>
+          <div className="text-xl">CSS Categories</div>
+          <div onClick={()=> navigate('/doc-html')} className={` ${blueButton} mt-10`}>HTML Doc</div>
+          {/* Render links for each category */}
+          {Object.keys(groupedBlocks).map((category, index) => (
+            <a
+              key={index}
+              className={`cursor-pointer w-full pl-6 p-3 ${sideBarActive} ${
+                activeSection === category ? `${sideBarHover} text-black` : ""
+              }`}
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category}
+            </a>
+          ))}
+           <div onClick={()=> navigate('/doc-js')} className={` ${blueButton} mt-10`}>JS Doc</div>
+        </div>
       </div>
 
-      <div style={{ textAlign: 'center', margin: '20px 0' }}>
-        <h1 style={{ fontSize: '1.6rem' }}>Javascript Blocks</h1>
-      </div>
+    
 
-      <div>
-        {/* Render blocks for each category */}
-        {Object.entries(groupedBlocks).map(([category, categoryBlocks], index) => (
-          <div key={index} style={{ marginBottom: '30px', marginLeft: '20%' }}>
-            <br/>
-            <h2 style={{ textDecoration: 'underline' }}>{category}</h2> <br/>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
-              {/* Map over the blocks in the category and render each one */}
-              {categoryBlocks.map((block:any, index:any) => (
-                <div key={index} style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
-                  <div style={{ marginRight: '20px' }}>
-                    <h3>{index + 1}. {block.title}</h3>
-                    <p>{block.description}</p>
-                  </div>
-                  <img src={block.image} alt={`image`} style={{ maxWidth: '100px', marginLeft:'10px' }} />
+      <div className="flex flex-col w-full">
+        <div className={`w-full h-18 bg-blue-500 text-white flex justify-between items-center px-4`}>
+          <button
+            onClick={toggleSidebar}
+            className="text-black bg-gray-500 border-black border-2 rounded active:bg-blue-800 hover:bg-blue-700 p-2"
+          >
+            {isCollapsed ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5 8.25 12l7.5-7.5"
+                />
+              </svg>
+            )}
+          </button>
+          <TopBar onPage="documentation"/>
+        </div>
+        <div
+          className="p-4"
+          style={{ overflowY: "auto", maxHeight: "calc(100vh - 4rem)" }}
+        >
+          <div className="pr-10 pl-10">
+            {/* Render blocks for each category */}
+            {Object.entries(groupedBlocks).map(
+              ([category, categoryBlocks], index) => (
+                <div
+                  key={index}
+                  id={category}
+                  ref={(el) => (categoryBlocksRef.current[category] = el)}
+                  className="mb-8"
+                >
+                  <div className="text-3xl font-semibold mt-16">{category}</div>
+                  {/* Render category description */}
+                  <div className="mb-8">{categoryDescriptions[category]}</div>
+                  {/* Map over the blocks in the category and render each one */}
+                  {categoryBlocks.map((block, index) => (
+                    <div
+                      key={index}
+                      className={`mb-8 ${cardColor} justify-between p-8 rounded-xl flex`}
+                    >
+                      <div className="">
+                        <div className="flex  flex-col mb-2">
+                          <div className="mb-2 text-2xl">
+                            {index + 1}. {block.title}
+                          </div>
+                          <div>{block.description}</div>
+                        </div>
+                      </div>
+
+                      <div className=" w-2/6  flex justify-end">
+                        <img src={block.image} alt={`image`} width={300} />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              )
+            )}
           </div>
-        ))}
+        </div>
       </div>
-
       {showScroll && (
         <div
           onClick={scrollToTop}
@@ -248,16 +212,15 @@ function CSSDoc() {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "#C70039",
             color: "white",
             padding: "10px",
             borderRadius: "50%",
           }}
         >
-          <FaArrowUp size={20} />
+          <FaArrowUp size={23} />
         </div>
       )}
-
     </div>
   );
 }

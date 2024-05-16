@@ -58,12 +58,12 @@ JavaScript.javascriptGenerator.forBlock["html_html"] = function (
   // tanks!!!
   const code =
     "<html>\n" +
-    "  <head>\n" +
+    " <head>\n" +
     statements_html_head +
-    "  \n</head>\n" +
-    "  <body>\n" +
+    " </head>\n" +
+    " <body>\n" +
     statements_html_body +
-    "  </body>\n" +
+    " </body>\n" +
     "</html>";
   return code;
 };
@@ -165,9 +165,9 @@ JavaScript.javascriptGenerator.forBlock["html_h"] = function (
     `<` +
     dropdown_size +
     removeParentheses(value_identify) +
-    `> ` +
+    `>` +
     removeParentheses(value_text) +
-    " </" +
+    "</" +
     dropdown_size +
     ">";
   return code;
@@ -213,9 +213,9 @@ JavaScript.javascriptGenerator.forBlock["html_p"] = function (
   const code =
     `<p` +
     removeParentheses(value_identify) +
-    `> ` +
+    `>` +
     removeParentheses(value_text) +
-    " </p>";
+    "</p>";
   return code;
 };
 
@@ -273,7 +273,7 @@ JavaScript.javascriptGenerator.forBlock["html_button"] = function (
   const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
 
   const code =
-    `<button ` +
+    `<button` +
     value_name +
     ` type="` +
     text_type +
@@ -395,26 +395,29 @@ JavaScript.javascriptGenerator.forBlock["html_label"] = function (
 
 //////////////////////////////////////////////////////////////////////////////
 
-Blockly.Blocks['html_idClass'] = {
-  init: function() {
+Blockly.Blocks["html_idClass"] = {
+  init: function () {
     this.appendDummyInput()
-        .appendField("Id")
-        .appendField(new Blockly.FieldTextInput(""), "inputID")
-        .appendField("Class")
-        .appendField(new Blockly.FieldTextInput(""), "inputClass");
+      .appendField("Id")
+      .appendField(new Blockly.FieldTextInput(""), "inputID")
+      .appendField("Class")
+      .appendField(new Blockly.FieldTextInput(""), "inputClass");
     this.setInputsInline(true);
     this.setOutput(true, null);
     this.setStyle("HTML_form");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-JavaScript.javascriptGenerator.forBlock['html_idClass'] = function(block : any, generator: any) {
-  var text_inputid = block.getFieldValue('inputID');
-  var text_inputclass = block.getFieldValue('inputClass');
+JavaScript.javascriptGenerator.forBlock["html_idClass"] = function (
+  block: any,
+  generator: any
+) {
+  var text_inputid = block.getFieldValue("inputID");
+  var text_inputclass = block.getFieldValue("inputClass");
   // TODO: Assemble javascript into code variable.
-  var code = '';
+  var code = "";
   if (text_inputid) {
     code = code + ` id="${text_inputid}"`;
   }
@@ -424,7 +427,6 @@ JavaScript.javascriptGenerator.forBlock['html_idClass'] = function(block : any, 
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, generator.ORDER_ATOMIC];
 };
-
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -708,106 +710,137 @@ JavaScript.javascriptGenerator.forBlock["html_div1"] = function (
 //   },
 // };
 
-Blockly.Blocks['html_ol_list'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Ordered List");
+Blockly.Blocks["html_ol_list"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Ordered List");
     this.appendValueInput("identify")
-        .setCheck(null)
-        .appendField("Type")
-        .appendField(new Blockly.FieldDropdown([["1", "1"], ["a", "a"],  ["A", "A"],  ["i", "i"], ["I", "I"],]), "NAME")
-        .appendField("Identify");
-    this.appendStatementInput("NAME")
-        .setCheck(null);
+      .setCheck(null)
+      .appendField("Type")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["1", "1"],
+          ["a", "a"],
+          ["A", "A"],
+          ["i", "i"],
+          ["I", "I"],
+        ]),
+        "NAME"
+      )
+      .appendField("Identify");
+    this.appendStatementInput("NAME").setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
- this.setStyle("HTML_list");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+    this.setStyle("HTML_list");
+  },
 };
 
-JavaScript.javascriptGenerator.forBlock['html_ol_list'] = function(block: any, generator: any) {
-  const dropdown_name = block.getFieldValue('NAME');
-  const value_identify = generator.valueToCode(block, 'identify', JavaScript.Order.ATOMIC);
-  const statements_name = generator.statementToCode(block, 'NAME');
+JavaScript.javascriptGenerator.forBlock["html_ol_list"] = function (
+  block: any,
+  generator: any
+) {
+  const dropdown_name = block.getFieldValue("NAME");
+  const value_identify = generator.valueToCode(
+    block,
+    "identify",
+    JavaScript.Order.ATOMIC
+  );
+  const statements_name = generator.statementToCode(block, "NAME");
   // TODO: Assemble javascript into code variable.
   const code =
-    `<ol type="` + dropdown_name + `" ` + value_identify + ">" + statements_name + `</ol>`;
+    `<ol type="` +
+    dropdown_name +
+    `" ` +
+    value_identify +
+    ">" +
+    statements_name +
+    `</ol>`;
   return code;
 };
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-Blockly.Blocks['html_ul_list'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Unordered List");
+Blockly.Blocks["html_ul_list"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Unordered List");
     this.appendValueInput("identify")
-        .setCheck(null)
-        .appendField("Type")
-        .appendField(new Blockly.FieldDropdown([["disc", "disc"],
-        ["circle", "circle"],
-        ["square", "square"],
-        ["none", "none"],]), "NAME")
-        .appendField("Identify");
-    this.appendStatementInput("NAME")
-        .setCheck(null);
+      .setCheck(null)
+      .appendField("Type")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["disc", "disc"],
+          ["circle", "circle"],
+          ["square", "square"],
+          ["none", "none"],
+        ]),
+        "NAME"
+      )
+      .appendField("Identify");
+    this.appendStatementInput("NAME").setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
- this.setStyle("HTML_list");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+    this.setStyle("HTML_list");
+  },
 };
 
-JavaScript.javascriptGenerator.forBlock['html_ul_list'] = function(block: any, generator: any) {
-  const dropdown_name = block.getFieldValue('NAME');
-  const value_identify = generator.valueToCode(block, 'identify', JavaScript.Order.ATOMIC);
-  const statements_name = generator.statementToCode(block, 'NAME');
+JavaScript.javascriptGenerator.forBlock["html_ul_list"] = function (
+  block: any,
+  generator: any
+) {
+  const dropdown_name = block.getFieldValue("NAME");
+  const value_identify = generator.valueToCode(
+    block,
+    "identify",
+    JavaScript.Order.ATOMIC
+  );
+  const statements_name = generator.statementToCode(block, "NAME");
   // TODO: Assemble javascript into code variable.
   const code =
-    `<ul type="` + dropdown_name + `" ` + value_identify + ">" + statements_name + `</ul>`;
+    `<ul type="` +
+    dropdown_name +
+    `" ` +
+    value_identify +
+    ">" +
+    statements_name +
+    `</ul>`;
   return code;
 };
 
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-Blockly.Blocks['html_li'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("List Item");
-    this.appendValueInput("identify")
-        .setCheck(null)
-        .appendField("Identify");
-    this.appendStatementInput("NAME")
-        .setCheck(null);
+Blockly.Blocks["html_li"] = {
+  init: function () {
+    this.appendDummyInput().appendField("List Item");
+    this.appendValueInput("identify").setCheck(null).appendField("Identify");
+    this.appendStatementInput("NAME").setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
- this.setStyle("HTML_list");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+    this.setStyle("HTML_list");
+  },
 };
 
 JavaScript.javascriptGenerator.forBlock["html_li"] = function (
   block: any,
   generator: any
 ) {
-  var value_identify = generator.valueToCode(block, 'identify', JavaScript.Order.ATOMIC);
-  var statements_name = generator.statementToCode(block, 'NAME');
+  var value_identify = generator.valueToCode(
+    block,
+    "identify",
+    JavaScript.Order.ATOMIC
+  );
+  var statements_name = generator.statementToCode(block, "NAME");
   // TODO: Assemble javascript into code variable.
   const code = `<li` + value_identify + ">" + statements_name + `</li>`;
   return code;
 };
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -908,5 +941,82 @@ JavaScript.javascriptGenerator.forBlock["html_checkbox"] = function (
   return code;
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Test commit
+Blockly.Blocks["premade_button"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Button Name")
+      .appendField(new Blockly.FieldTextInput("btnName"), "btnName");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+    this.setStyle("HTML_premade");
+  },
+};
+
+JavaScript.javascriptGenerator.forBlock["premade_button"] = function (
+  block: any,
+  generator: any
+) {
+  const text_btnname = block.getFieldValue("btnName");
+
+  // TODO: Assemble javascript into code variable.
+  var code = `<button style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">${text_btnname}</button>`;
+  return code;
+};
+
+////////////////////////////////////////////////////////////////////////////
+
+
+Blockly.Blocks["premade_dropdown"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Drop Down Box");
+    this.appendStatementInput("NAME").setCheck(null).appendField("options");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+    this.setStyle("HTML_premade");
+  },
+};
+
+JavaScript.javascriptGenerator.forBlock["premade_dropdown"] = function (
+  block: any,
+  generator: any
+) {
+  var statements_name = generator.statementToCode(block, "NAME");
+
+  var code = `<select style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">\n${statements_name}</select>`;
+  
+  return code;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks["premade_option"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("option")
+      .appendField(new Blockly.FieldTextInput("default"), "NAME");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+    this.setStyle("HTML_premade");
+  },
+};
+
+JavaScript.javascriptGenerator.forBlock["premade_option"] = function (
+  block: any,
+  generator: any
+) {
+  var text_name = block.getFieldValue("NAME");
+  // TODO: Assemble javascript into code variable.
+  var code = `<option value="volvo">${text_name}</option> \n`;
+  return code;
+};

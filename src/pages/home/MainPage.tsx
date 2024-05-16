@@ -83,11 +83,6 @@ function MainPage() {
             >
               Documentation
             </button>
-            <div>
-              <button onClick={() => navigate("/my/projects")} className={projectBtn}>
-                My Projects
-              </button>
-            </div>
             {isTokenValid ? (
               <button
                 onClick={logout}
