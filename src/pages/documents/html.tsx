@@ -7,12 +7,13 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 
 import { useNavigate } from "react-router-dom";
 
-const cardColor = "bg-white/0"
-const topBarColor = "bg-wbcMain"
-const sideBarColor = "bg-white"
-const sideBarHover = "bg-wbcMain"
-const sideBarActive = "hover:bg-wbcMain"
-const blueButton = 'bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2'
+const cardColor = "bg-white/0";
+const topBarColor = "bg-wbcMain";
+const sideBarColor = "bg-gray-200";
+const sideBarHover = "bg-blue-500";
+const sideBarActive = "hover:bg-blue-600";
+const blueButton =
+  "bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2";
 
 function HTMLDoc(): JSX.Element {
   // Group blocks by category
@@ -103,9 +104,13 @@ function HTMLDoc(): JSX.Element {
           isCollapsed ? "w-0" : "w-64 block"
         }`}
       >
-        <div className={`mt-10 mb-10 flex flex-col items-center transition delay-300  ${isCollapsed ? 'hidden': 'block'} `}>
+        <div
+          className={`mt-10 mb-10 flex flex-col items-center transition delay-300  ${
+            isCollapsed ? "hidden" : "block"
+          } `}
+        >
           <div className="mb-10 text-xl">HTML Categories</div>
-         
+
           {/* Render links for each category */}
           {Object.keys(groupedBlocks).map((category, index) => (
             <a
@@ -118,14 +123,19 @@ function HTMLDoc(): JSX.Element {
               {category}
             </a>
           ))}
-           <div onClick={()=> navigate('/doc-css')} className={` ${blueButton} mt-10`}>CSS Doc</div>
+          <div
+            onClick={() => navigate("/doc-css")}
+            className={` ${blueButton} mt-10`}
+          >
+            CSS Doc
+          </div>
         </div>
       </div>
 
-    
-
       <div className="flex flex-col w-full">
-        <div className={`w-full h-18 bg-blue-500 text-white flex justify-between items-center px-4`}>
+        <div
+          className={`w-full h-18 bg-blue-500 text-white flex justify-between items-center px-4`}
+        >
           <button
             onClick={toggleSidebar}
             className="text-black bg-gray-500 border-black border-2 rounded active:bg-blue-800 hover:bg-blue-700 p-2"
@@ -162,7 +172,7 @@ function HTMLDoc(): JSX.Element {
               </svg>
             )}
           </button>
-          <TopBar onPage="documentation"/>
+          <TopBar onPage="documentation" />
         </div>
         <div
           className="p-4"
@@ -178,26 +188,32 @@ function HTMLDoc(): JSX.Element {
                   ref={(el) => (categoryBlocksRef.current[category] = el)}
                   className="mb-8"
                 >
-                  <div className="text-3xl font-semibold mt-16">{category}</div>
+                  <div className="text-4xl font-semibold mt-2">{category}</div>
                   {/* Render category description */}
-                  <div className="mb-8">{categoryDescriptions[category]}</div>
+                  <div className="mb-8 text-xl text-justify ">
+                    {categoryDescriptions[category]}
+                  </div>
                   {/* Map over the blocks in the category and render each one */}
                   {categoryBlocks.map((block, index) => (
                     <div
                       key={index}
-                      className={`mb-8 ${cardColor} justify-between p-8 rounded-xl flex`}
+                      className={`mb- ${cardColor} p-8 rounded-xl flex flex-col`}
                     >
-                      <div className="">
-                        <div className="flex  flex-col mb-2">
-                          <div className="mb-2 text-2xl">
-                            {index + 1}. {block.title}
-                          </div>
-                          <div>{block.description}</div>
-                        </div>
+                      <div className="mb-2 text-3xl text-gray-700 border-b-2 border-gray-200 pb-2 w-2/3">
+                        {block.title}
                       </div>
+                      <div className="justify-between mt-4 w-full flex">
+                        <div className="w-4/6 ">
+                          <div className="flex  flex-col">
+                            <div className="text-xl text-gray-600 text-justify">
+                              {block.description}
+                            </div>
+                          </div>
+                        </div>
 
-                      <div className=" w-2/6  flex justify-end">
-                        <img src={block.image} alt={`image`} width={300} />
+                        <div className=" w-2/6 px-8">
+                            <img src={block.image} alt={`image`} style={{ width: '100%' }}/>
+                        </div>
                       </div>
                     </div>
                   ))}

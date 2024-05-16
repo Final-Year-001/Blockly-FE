@@ -175,21 +175,21 @@ function CSSDoc(): JSX.Element {
                   ref={(el) => (categoryBlocksRef.current[category] = el)}
                   className="mb-8"
                 >
-                  <div className="text-3xl font-semibold mt-16">{category}</div>
+                  <div className="text-4xl font-semibold mt-16">{category}</div>
                   {/* Render category description */}
-                  <div className="mb-8">{categoryDescriptions[category]}</div>
+                  <div className="mb-8 text-xl">{categoryDescriptions[category]}</div>
                   {/* Map over the blocks in the category and render each one */}
                   {categoryBlocks.map((block, index) => (
                     <div
                       key={index}
                       className={`mb-8 ${cardColor} justify-between p-8 rounded-xl flex`}
                     >
-                      <div className="">
+                      <div className="w-4/6">
                         <div className="flex  flex-col mb-2">
-                          <div className="mb-2 text-2xl">
+                          <div className="mb-2 text-3xl">
                             {index + 1}. {block.title}
                           </div>
-                          <div>{block.description}</div>
+                          <div className="text-xl">{block.description}</div>
                         </div>
                       </div>
 
