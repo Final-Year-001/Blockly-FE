@@ -22,7 +22,7 @@ function InfoComp1() {
                 <p className="text-2xl text-black font-bold">HTML</p>
                 <span>
                 HTML (HyperText Markup Language) is like the blueprint for web pages. 
-                It helps us create and organize content on the internet, such as text, images, 
+                It helps us create and organize content, such as text, images, 
                 and links, making it easy for people to read stories, view pictures, and 
                 navigate through different pages!
                 </span>
