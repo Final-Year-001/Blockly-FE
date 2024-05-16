@@ -3,6 +3,10 @@ export const categoryDescriptions = {
   "Words Category": "Learn what types of word blocks are there and how to use them.",
   "Tables": "Learn what blocks are needed to make cool tables",
   "Forms": "We all need a good form. Here you get to learn what blocks are responsible for making forms.",
+  "Lists": "We all need a good form. Here you get to learn what blocks are responsible for making forms.",
+  "Containers": "We all need a good form. Here you get to learn what blocks are responsible for making forms.",
+  "Link": "We all need a good form. Here you get to learn what blocks are responsible for making forms.",
+  "Premade": "We all need a good form. Here you get to learn what blocks are responsible for making forms.",
 };
 
 export const blocks = [
@@ -99,5 +103,47 @@ export const blocks = [
     description: "This is a button block. Yes you CAN use this to add a button. By default the type is set to submit. But you can change this later.",
     image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1715153792/WebBlockCraft/HTML/fe4311b1-87d0-4c76-a615-428124d5fc1c.png",
     category: "Forms",
+  },
+  {
+    title: "Ordered List",
+    description: "This is a button block. Yes you CAN use this to add a button. By default the type is set to submit. But you can change this later.",
+    image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1715871438/WebBlockCraft/HTML/97fffc16-d915-48e6-9bcb-7b1275515446.png",
+    category: "Lists",
+  },
+  {
+    title: "Unordered List",
+    description: "This is a button block. Yes you CAN use this to add a button. By default the type is set to submit. But you can change this later.",
+    image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1715871467/WebBlockCraft/HTML/5eabfe64-b580-46c0-a0db-d7b519f4d568.png",
+    category: "Lists",
+  },
+  {
+    title: "List Item",
+    description: "This is a button block. Yes you CAN use this to add a button. By default the type is set to submit. But you can change this later.",
+    image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1715871493/WebBlockCraft/HTML/d136c741-629f-4139-8285-bd01cf9691d8.png",
+    category: "Lists",
+  },
+  {
+    title: "Containers",
+    description: "This is a button block. Yes you CAN use this to add a button. By default the type is set to submit. But you can change this later.",
+    image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1715871516/WebBlockCraft/HTML/476797b8-691e-470d-a3b4-9706cf273dc6.png",
+    category: "Containers",
+  },
+  {
+    title: "Image Block",
+    description: "This is a button block. Yes you CAN use this to add a button. By default the type is set to submit. But you can change this later.",
+    image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1715871550/WebBlockCraft/HTML/2bf62e51-f1d9-466a-8b0b-9a448440fab8.png",
+    category: "Link",
+  },
+  {
+    title: "Link Block",
+    description: "This is a button block. Yes you CAN use this to add a button. By default the type is set to submit. But you can change this later.",
+    image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1715871567/WebBlockCraft/HTML/f1a8d752-3359-44e8-8d6d-272c1797eb81.png",
+    category: "Link",
+  },
+  {
+    title: "Premade",
+    description: "This is a button block. Yes you CAN use this to add a button. By default the type is set to submit. But you can change this later.",
+    image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1715153792/WebBlockCraft/HTML/fe4311b1-87d0-4c76-a615-428124d5fc1c.png",
+    category: "Premade",
   },
 ];

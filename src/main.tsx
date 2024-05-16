@@ -60,7 +60,7 @@ const router = createBrowserRouter([
     element: <HTMLDoc />
   },
   {
-    path: "/doc-cdd",
+    path: "/doc-css",
     element: <CSSDoc />
   },
   {

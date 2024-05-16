@@ -15,7 +15,7 @@ const projectBtn =
   "bg-amber-600 hover:bg-amber-700 avtive:bg-amber-900 hover:scale-105 active:scale-95 transition duration-100  text-white px-4 py-2 rounded-lg border-black border-2";
 
 interface Props {
-  onPage?: string; // 
+  onPage?: string; //
 }
 
 function TopBar({ onPage }: Props): JSX.Element {
@@ -80,6 +80,9 @@ function TopBar({ onPage }: Props): JSX.Element {
 
         {onPage == "getStarted" && (
           <div className={buttonGroup}>
+            <button onClick={() => navigate("/home")} className={homeBtn}>
+              Home
+            </button>
             <div>
               <div>
                 <button
@@ -105,7 +108,7 @@ function TopBar({ onPage }: Props): JSX.Element {
                 onClick={() => navigate("/get-started")}
                 className={documentationBtn}
               >
-                Documentation
+                Get Started
               </button>
             </div>
             <div>
