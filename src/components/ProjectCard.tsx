@@ -166,12 +166,13 @@ function ProjectCard(project: ProjectCardProps) {
           >
             <PencilSquareIcon className="h-5 w-5 text-black" />
           </div>
-          <div
+          {/* Commented for now since both this and next icons are delete operations  */}
+          {/* <div
             onClick={() => onDelete?.(project)}
             className="bg-blue-300 p-4 rounded-lg hover:bg-blue-500 active:bg-blue-700 border-black border-2"
           >
             <PlayIcon className="h-5 w-5 text-black" />
-          </div>
+          </div> */}
           <div
             onClick={() => onDelete?.(project)}
             className="bg-red-300 p-4 rounded-lg hover:bg-red-500 active:bg-red-700 border-black border-2"
