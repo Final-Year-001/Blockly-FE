@@ -1,7 +1,7 @@
 export const categoryDescriptions = {
-  "Get Started": "Explore foundational concepts HTML and start your creative journey.",
-  "Words Category": "Learn what types of word blocks are there and how to use them.",
-  "Tables": "Learn what blocks are needed to make cool tables",
+  "Get Started": "Embark on a creative journey delving into the foundational concepts of HTML with this comprehensive documentation. Here, you'll find a detailed guide on all available HTML blocks, providing a clear understanding of their purpose and usage. Let's dive in and unleash your creativity! ",
+  "Words Category": "In the Word category, our HTML learning app introduces kids to essential text blocks for web design. They'll encounter blocks like <p> for paragraphs and <h1> through <h6> for headings. Through interactive play, children learn the importance of structuring content for readability and emphasis.",
+  "Tables": "",
   "Forms": "We all need a good form. Here you get to learn what blocks are responsible for making forms.",
   "Lists": "We all need a good form. Here you get to learn what blocks are responsible for making forms.",
   "Containers": "We all need a good form. Here you get to learn what blocks are responsible for making forms.",
