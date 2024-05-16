@@ -6,7 +6,7 @@ import './beginner';
 Blockly.Blocks["handle_form_submission"] = {
   init: function () {
     this.appendValueInput("form")
-        .setCheck(null)
+        .setCheck("el_id_input")
         .appendField("Give the form name:");
     this.appendStatementInput("on_submit")
         .setCheck(null)
@@ -37,7 +37,7 @@ javascriptGenerator.forBlock['handle_form_submission'] = function (block : any, 
 Blockly.Blocks['set_form_data_to'] = {
   init: function() {
     this.appendStatementInput("var")
-        .setCheck("Variable")
+        .setCheck("variable_input")
         .appendField("Pass form data to a label");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -58,7 +58,7 @@ javascriptGenerator.forBlock['set_form_data_to'] = function(block: any, generato
 Blockly.Blocks['fetch_block'] = {
   init: function() {
     this.appendValueInput("fetch")
-        .setCheck(null)
+        .setCheck("String")
         .appendField("Send the data to the backend using this link");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_CENTRE)

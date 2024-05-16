@@ -13,7 +13,7 @@ Blockly.Blocks['javascript'] = {
     this.setNextStatement(true, null);
     this.setTooltip("");
     this.setHelpUrl("");
-    this.setTooltip('This is the script tag. JavaScript code should be wrapped in this tag'); 
+    this.setTooltip('Place the script tag in the body after HTMl content. JavaScript code should be wrapped in this tag'); 
   }
 };
 
@@ -139,7 +139,7 @@ javascriptGenerator.forBlock['print_block'] = function(block:any, generator:any)
 Blockly.Blocks['console_log'] = {
   init: function () {
     this.appendValueInput('text')
-      .setCheck(null) // Allow any value to be logged
+      .setCheck("String") // Allow any value to be logged
       .appendField('Show a message in the console:');
     this.setPreviousStatement(true, null); // Previous block can be of any type
     this.setNextStatement(true, null); // Next block can be of any type
@@ -158,7 +158,7 @@ return code;
 Blockly.Blocks['alert_block'] = {
   init: function() {
     this.appendValueInput("message")
-        .setCheck(null)
+        .setCheck("String")
         .appendField("Show this message when the button is clicked");
     this.appendValueInput("element")
         .setCheck("el_id_input")
