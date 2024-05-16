@@ -26,6 +26,7 @@ import {
 } from "../../components/Dialogs/ConfirmDialog";
 import ProductLogo from "../../assets/Logo";
 import ProductLogoBW from "../../assets/LogoB&W";
+import TopBar from "../documents/topBar";
 
 function MyProjects() {
   const tokens = useRecoilValue(tokenAtom);
@@ -205,17 +206,18 @@ function MyProjects() {
 
   return (
     <div className="">
-      <div onClick={()=>navigate('/home')} className="cursor-pointer bg-blue-400 p-4 mb-6 flex justify-center">
-        <ProductLogoBW />{" "}
+      {/* left aligned the logo to keep consistency  */}
+      <div className="fixed top-0 w-full z-10">
+        <TopBar onPage={'projectSelection'}/>
       </div>
 
-      <div className="px-10">
+      <div className="px-10 pt-8 mt-16">
         <div className="flex  justify-between px-12 pb-4 style={{ flexGrow: 1 }}">
           <div>
             <button
               className={`${
                 selectedTab === "projects"
-                  ? "bg-blue-600 text-white border-2 border-black"
+                  ? "bg-blue-400 text-white border-2 border-black"
                   : "bg-gray-200 text-gray-700"
               } px-10 py-2 text-2xl rounded-l-lg focus:outline-none `}
               onClick={() => handleTabChange("projects")}
@@ -225,7 +227,7 @@ function MyProjects() {
             <button
               className={`${
                 selectedTab === "lesson"
-                  ? "bg-blue-600 text-white border-2 border-black"
+                  ? "bg-blue-400 text-white border-2 border-black"
                   : "bg-gray-200 text-gray-700"
               } px-10 py-2 text-2xl rounded-r-lg focus:outline-none`}
               onClick={() => handleTabChange("lesson")}
@@ -280,56 +282,11 @@ function MyProjects() {
               <PlusIcon className="h-6 w-6" /> Create Lesson
             </AwesomeButton>
 
-            <AwesomeButton
-              style={{
-                "--button-primary-color": "#42A5F5",
-                "--button-primary-color-dark": "#2d82c7",
-                "--button-primary-color-light": "#ffffff",
-                "--button-primary-color-hover": "#62b4f8",
-                "--button-primary-color-active": "#2d82c7",
-                "--button-default-border-radius": "8px",
-                width: "145px",
-                height: "50px",
-                //marginRight: '10px',
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              href={"/get-started"}
-              className="h-12 flex gap-3 justify-center items-center"
-              type="primary"
-            >
-              Documentation
-            </AwesomeButton>
-
-            <AwesomeButton
-              style={{
-                "--button-primary-color": "#FFA726",
-                "--button-primary-color-dark": "#e29520",
-                "--button-primary-color-light": "#ffffff",
-                "--button-primary-color-hover": "#ffb03a",
-                "--button-primary-color-active": "#e29520",
-                "--button-default-border-radius": "8px",
-                width: "90px",
-                height: "50px",
-                //marginRight: '10px',
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              href={"/login"}
-              className="h-12 flex gap-3 justify-center items-center"
-              type="primary"
-            >
-              Logout
-            </AwesomeButton>
           </div>
         </div>
 
         {selectedTab == "projects" && (
-          <div>
+          <div style={{ marginTop: '20px' }}>
             <div className="flex justify-between px-12 pb-4">
               <Typography className="text-3xl">My Projects</Typography>
             </div>
@@ -347,7 +304,7 @@ function MyProjects() {
         )}
 
         {selectedTab == "lesson" && (
-          <div>
+          <div style={{ marginTop: '20px' }}>
             <div className="flex justify-between px-12 pb-4">
               <Typography className="text-3xl">My Lessons</Typography>
             </div>
@@ -364,11 +321,12 @@ function MyProjects() {
         )}
       </div>
 
-      <div className="mt-10 bg-blue-700 p-8 flex justify-center">
-      <p className="text-center text-white">
-      © WebBlockCraft,2024. All rights reserved.
-      </p>
+      <div className="mt-10 bg-blue-600 p-8 flex justify-center">
+        <p className="text-center text-white">
+        © WebBlockCraft, 2024. All rights reserved.
+        </p>
       </div>
+      
       <NewProjectModal
         open={open}
         handler={() => setOpen(false)}

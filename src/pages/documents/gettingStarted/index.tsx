@@ -40,11 +40,11 @@ function GetStarted() {
 
   return (
     <div className="bg-white">
-      <div className={` ${topBarColor}`} id="TopBar">
-        <TopBar />
+      <div className={` ${topBarColor} fixed top-0 w-full`} id="TopBar">
+        <TopBar onPage="getStarted" />
       </div>
 
-      <div className="mx-auto container">
+      <div className="mx-auto container mt-24">
         <div>
           <div className="flex text-3xl justify-center pt-4 mb-4">
             Get Started

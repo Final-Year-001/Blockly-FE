@@ -130,7 +130,7 @@ function HTMLDoc(): JSX.Element {
     
 
       <div className="flex flex-col w-full">
-        <div className={`w-full h-18 ${topBarColor} text-white flex justify-between items-center px-4`}>
+        <div className={`w-full h-18 bg-blue-500 text-white flex justify-between items-center px-4`}>
           <button
             onClick={toggleSidebar}
             className="text-black bg-gray-500 border-black border-2 rounded active:bg-blue-800 hover:bg-blue-700 p-2"
@@ -167,7 +167,7 @@ function HTMLDoc(): JSX.Element {
               </svg>
             )}
           </button>
-          <TopBar />
+          <TopBar onPage="documentation"/>
         </div>
         <div
           className="p-4"

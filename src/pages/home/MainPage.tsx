@@ -25,6 +25,12 @@ function MainPage() {
   const [logged, setLogged] = useState<any>(null);
   const [isTokenValid, setIsTokenValid] = useState<boolean>(false);
   const [showScroll, setShowScroll] = useState(false);
+  const documentationBtn =
+  "bg-blue-600 hover:bg-blue-700 avtive:bg-blue-800  active:scale-95 hover:scale-105  transition duration-100 text-white px-4 py-2 rounded-lg border-black border-2";
+  const logoutBtn =
+  "bg-red-500 hover:bg-red-700 avtive:bg-red-900 hover:scale-105 active:scale-95 transition duration-100 text-white px-4 py-2 rounded-lg border-black border-2";
+  const projectBtn = 'bg-amber-600 hover:bg-amber-700 avtive:bg-amber-900 hover:scale-105 active:scale-95 transition duration-100  text-white px-4 py-2 rounded-lg border-black border-2'
+
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -73,14 +79,19 @@ function MainPage() {
           <div className="flex gap-2">
             <button
               onClick={() => navigate("/get-started")}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg border-black border-2"
+              className={documentationBtn}
             >
               Documentation
             </button>
+            <div>
+              <button onClick={() => navigate("/my/projects")} className={projectBtn}>
+                My Projects
+              </button>
+            </div>
             {isTokenValid ? (
               <button
                 onClick={logout}
-                className="bg-red-500 text-white px-4 py-2 rounded-lg border-black border-2"
+                className={logoutBtn}
               >
                 Logout
               </button>
@@ -128,7 +139,7 @@ function MainPage() {
         <AboutUs />
       </div>
 
-      <div className="bg-blue-700 text-white py-6">
+      <div className="bg-blue-600 text-white py-6">
         <Footer />
       </div>
 
