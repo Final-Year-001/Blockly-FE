@@ -128,7 +128,7 @@ function MainPage() {
         <AboutUs />
       </div>
 
-      <div className="bg-blue-700 text-white py-6">
+      <div className="bg-blue-600 text-white py-6">
         <Footer />
       </div>
 
