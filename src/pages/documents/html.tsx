@@ -5,25 +5,18 @@ import { blocks, categoryDescriptions } from "./htmlDocData";
 import DocumentationFile from "./Documentation";
 import { FaAngleDoubleRight } from "react-icons/fa";
 
+import { useNavigate } from "react-router-dom";
+
 const cardColor = "bg-white/0"
 const topBarColor = "bg-wbcMain"
 const sideBarColor = "bg-white"
 const sideBarHover = "bg-wbcMain"
 const sideBarActive = "hover:bg-wbcMain"
-
-interface Block {
-  category: string;
-  title: string;
-  description: string;
-  image: string;
-}
-
-interface CategoryDescriptions {
-  [key: string]: string;
-}
+const blueButton = 'bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2'
 
 function HTMLDoc(): JSX.Element {
   // Group blocks by category
+  const navigate = useNavigate();
   const groupedBlocks: { [key: string]: Block[] } = blocks.reduce(
     (acc, block) => {
       acc[block.category] = acc[block.category] || [];
@@ -111,7 +104,8 @@ function HTMLDoc(): JSX.Element {
         }`}
       >
         <div className={`mt-10 mb-10 flex flex-col items-center transition delay-300  ${isCollapsed ? 'hidden': 'block'} `}>
-          <div className="mb-20 text-xl">HTML Categories</div>
+          <div className="mb-10 text-xl">HTML Categories</div>
+         
           {/* Render links for each category */}
           {Object.keys(groupedBlocks).map((category, index) => (
             <a
@@ -124,6 +118,7 @@ function HTMLDoc(): JSX.Element {
               {category}
             </a>
           ))}
+           <div onClick={()=> navigate('/doc-css')} className={` ${blueButton} mt-10`}>CSS Doc</div>
         </div>
       </div>
 
