@@ -10,6 +10,7 @@ import GettingStartFront from "./GettingStartFrontend";
 import GettingStartBack from "./GettingStartBackend";
 import ConnectingFEBE from "./Connecting";
 import InfoComp3 from "../../home/infoComp3";
+import LayoutGuide from "./LayoutGuide";
 import Footer from "../../home/Footer";
 
 const topBarColor = "bg-blue-500";
@@ -74,6 +75,10 @@ function GetStarted() {
 
         <div className="bg-blue-100 p-8 pt-16 rounded-xl shadow">
           <InfoComp3 />
+        </div>
+
+        <div className="mt-10">
+          <LayoutGuide />
         </div>
 
         <div className="p-10">{""}</div>
