@@ -171,6 +171,26 @@ export const htmlCategory = {
         },
       ],
     },
+    {
+      kind: "category",
+      name: "Premade",
+      colour: "#74aff2",
+      style: "HTML_premade" ,
+      contents: [
+        {
+          kind: "block",
+          type: "premade_button",
+        },
+        {
+          kind: "block",
+          type: "premade_dropdown",
+        },
+        {
+          kind: "block",
+          type: "premade_option",
+        },
+      ],
+    },
   ],
 };
 
