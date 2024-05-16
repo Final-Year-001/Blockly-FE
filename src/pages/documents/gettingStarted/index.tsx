@@ -97,7 +97,7 @@ function GetStarted() {
         )}
       </div>
 
-      <div className="w-full p-10 bg-gray-700">
+      <div className="w-full p-10 bg-blue-600">
         <Footer />
       </div>
     </div>

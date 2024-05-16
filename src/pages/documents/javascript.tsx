@@ -54,12 +54,13 @@ function JavascriptDoc() {
       {/* <div id="TopBar">
         <TopBar />
       </div> */}
-      <div onClick={()=>navigate('/home')} className="cursor-pointer bg-blue-400 p-4 mb-6 flex justify-left">
+      {/* <div onClick={()=>navigate('/home')} className="cursor-pointer bg-blue-400 p-4 mb-6 flex justify-left">
         <ProductLogoBW />{" "}
-      </div> 
+      </div>  */}
+      <TopBar onPage="documentation"/>
 
       <div style={{ textAlign: 'center', margin: '20px 0' }}>
-      <h1>Javascript Blocks</h1>
+      <h1>Javascript Blocks</h1> 
       </div>
 
       <div>
