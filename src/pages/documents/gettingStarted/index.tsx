@@ -10,7 +10,8 @@ import GettingStartFront from "./GettingStartFrontend";
 import GettingStartBack from "./GettingStartBackend";
 import ConnectingFEBE from "./Connecting";
 import InfoComp3 from "../../home/infoComp3";
-import LayoutGuide from "./LayoutGuide";
+import LayoutGuideFE from "./LayoutGuideFE";
+import LayoutGuideBE from "./LayoutGuideBE";
 import Footer from "../../home/Footer";
 import QuickAccess from "./QuickAccess";
 
@@ -46,30 +47,34 @@ function GetStarted() {
         <TopBar onPage="getStarted" />
       </div>
 
-      <div className="mx-auto container mt-24">
+      <div className="pt-20">
         <div>
           <div className="flex text-3xl justify-center pt-4 mb-4">
             Get Started
           </div>
         </div>
 
-        <div>
-<QuickAccess />
+        <div className="mx-auto container ">
+          <QuickAccess />
         </div>
 
         {/* Overview section */}
-        <div>
-        <Overview />
-        </div>
-        
-
-        <div className="mt-20">
-          <div className="text-3xl mb-4">Frontend Builder Interface</div>
-          <LayoutGuide />
+        <div className="mx-auto container ">
+          <Overview />
         </div>
 
-        <div className="flex mt-20 gap-16">
-          <div className="w-full">
+        <div className="mt-20 py-32 bg-blue-100">
+          <div className="mx-auto container ">
+            
+            <div className="text-3xl mb-4">Frontend Builder Interface</div>
+            <LayoutGuideFE />
+            <div className="text-3xl mb-4 flex justify-end mt-10">Backend Builder Interface</div>
+            <LayoutGuideBE />
+          </div>
+        </div>
+
+        <div className="flex mt-20 gap-16 mx-auto container">
+          <div className="w-full ">
             <div className="text-2xl mb-8">Getting Started with Frontend</div>
             <GettingStartFront />
           </div>
@@ -79,20 +84,17 @@ function GetStarted() {
           </div>
         </div>
 
-        <div className="w-full">
+        <div className="w-full mx-auto container mb-20">
           <div className="text-2xl mt-20 mb-4">
             Connecting Frontend to Backend
           </div>
           <ConnectingFEBE />
         </div>
 
-        <div className="bg-blue-100 p-8 pt-16 rounded-xl shadow">
+        <div className="bg-blue-100 p-28">
           <InfoComp3 />
         </div>
 
-       
-
-        <div className="p-10">{""}</div>
 
         {showScroll && (
           <div
