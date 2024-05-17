@@ -45,15 +45,15 @@ export const blocks = [
     },
     {
       title: "Single-line comment",
-      description: "Single-line comment block.",
+      description: "Single-line comment block. It's used to add explanations, reminders, or temporary disable code snippets.",
       image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1712304547/WebBlockCraft/JavaScript/6_kf6lpc.png",
       category: "Get Started",
       maxWidth: { description: '60%', image: '30%' },
     },
     {
       title: "Multi-line comment",
-      description: "Multiple-line comment block.",
-      image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1712304547/WebBlockCraft/JavaScript/7_l8nwk1.png",
+      description: "Multiple-line comment block. Allow programmers to add longer explanations or comments spanning multiple lines within their code. ",
+      image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1715925258/WebBlockCraft/JavaScript/Screenshot_2024-05-17_112341_uxxy6s.png",
       category: "Get Started",
       maxWidth: { description: '60%', image: '30%' },
     },
@@ -88,7 +88,7 @@ export const blocks = [
     },
     {
       title: "Create a custom function",
-      description: "Create a custom function encapsulating reusable logic. ",
+      description: "Creating a custom function involves defining a block of code that performs a specific task or contains reusable logic. This function can accept parameters, process data, and return results, enhancing code readability and maintainability.",
       image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1712304547/WebBlockCraft/JavaScript/12_c1b0yn.png",
       category: "Action Blocks",
       maxWidth: { description: '55%', image: '35%' },
@@ -125,7 +125,7 @@ export const blocks = [
     },
     {
       title: "Set the form data to a variable",
-      description: "Capturing user inputs and storing them in variablesfor for easy access.",
+      description: "Capturing user inputs and storing them in variables for easy access.",
       image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1712304549/WebBlockCraft/JavaScript/17_n7jnsu.png",
       category: "Create A Form",
       maxWidth: { description: '55%', image: '35%' },
@@ -147,7 +147,7 @@ export const blocks = [
      // ToDo blocks
      {
       title: "Adding a task",
-      description: "Add new tasks with a simple button click. ",
+      description: "Add new tasks with a simple button click. Here you need to match the identifier you gave for the input box and the list along side the check-box and delete buttons.",
       image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1714749948/WebBlockCraft/JavaScript/20_yuzxop.png",
       category: "Create A Todo List",
       maxWidth: { description: '50%', image: '40%' },
@@ -161,7 +161,7 @@ export const blocks = [
     },
     {
       title: "Delete a task",
-      description: "Delete unwanted tasks from the todo list. ",
+      description: "Delete unwanted tasks from the todo list. Remember to match the identifier you gave for the delete button.",
       image: "https://res.cloudinary.com/dlw1yfobn/image/upload/v1712304549/WebBlockCraft/JavaScript/22_fmc2vi.png",
       category: "Create A Todo List",
       maxWidth: { description: '50%', image: '40%' },
