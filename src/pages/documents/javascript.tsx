@@ -122,8 +122,8 @@ function JavascriptDoc(): JSX.Element {
         }`}
       >
         <div className={`mt-10 mb-10 flex flex-col items-center transition delay-300  ${isCollapsed ? 'hidden': 'block'} `}>
-          <div className="mb-10 text-xl">JS Categories</div>
-         
+          <div className="mb-3 text-xl">JS Categories</div>
+          <div onClick={()=> navigate('/doc-css')} className={` ${blueButton} mt-10`}>CSS Doc</div>
           {/* Render links for each category */}
           {Object.keys(groupedBlocks).map((category, index) => (
             <a
