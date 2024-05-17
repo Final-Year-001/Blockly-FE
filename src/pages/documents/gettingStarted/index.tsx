@@ -41,7 +41,7 @@ function GetStarted() {
 
   return (
     <div className="bg-white">
-      <div className={` ${topBarColor} fixed top-0 w-full`} id="TopBar">
+      <div className={` ${topBarColor} fixed top-0 z-50 w-full`} id="TopBar">
         <TopBar onPage="getStarted" />
       </div>
 
