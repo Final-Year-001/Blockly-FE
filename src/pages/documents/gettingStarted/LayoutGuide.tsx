@@ -4,7 +4,7 @@ import sb from "../../../assets/LayoutTour/2.png";
 import wa from "../../../assets/LayoutTour/3.png";
 import co from "../../../assets/LayoutTour/4.png";
 
-const style = "hover:scale-105 transition duration-100 cursor-pointer relative";
+const style = "transition  duration-100 cursor-pointer relative";
 const highlight = "border-2 border-red-500";
 
 const topBarContent =
