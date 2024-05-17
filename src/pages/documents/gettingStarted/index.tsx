@@ -12,6 +12,7 @@ import ConnectingFEBE from "./Connecting";
 import InfoComp3 from "../../home/infoComp3";
 import LayoutGuide from "./LayoutGuide";
 import Footer from "../../home/Footer";
+import QuickAccess from "./QuickAccess";
 
 const topBarColor = "bg-blue-500";
 const cardColor = "bg-gray-200";
@@ -52,10 +53,22 @@ function GetStarted() {
           </div>
         </div>
 
-        {/* Overview section */}
-        <Overview />
+        <div>
+<QuickAccess />
+        </div>
 
-        <div className="flex gap-16">
+        {/* Overview section */}
+        <div>
+        <Overview />
+        </div>
+        
+
+        <div className="mt-20">
+          <div className="text-3xl mb-4">Frontend Builder Interface</div>
+          <LayoutGuide />
+        </div>
+
+        <div className="flex mt-20 gap-16">
           <div className="w-full">
             <div className="text-2xl mb-8">Getting Started with Frontend</div>
             <GettingStartFront />
@@ -67,7 +80,7 @@ function GetStarted() {
         </div>
 
         <div className="w-full">
-          <div className="text-2xl mt-24 mb-4">
+          <div className="text-2xl mt-20 mb-4">
             Connecting Frontend to Backend
           </div>
           <ConnectingFEBE />
@@ -77,10 +90,7 @@ function GetStarted() {
           <InfoComp3 />
         </div>
 
-        <div className="mt-20">
-          <div className="text-3xl mb-4">Frontend Builder Interface</div>
-          <LayoutGuide />
-        </div>
+       
 
         <div className="p-10">{""}</div>
 
