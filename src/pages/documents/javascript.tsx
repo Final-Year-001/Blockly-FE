@@ -32,10 +32,14 @@ function JavascriptDoc(): JSX.Element {
   const [showScroll, setShowScroll] = useState(false);
   const [confettiActive, setConfettiActive] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [activeSection, setActiveSection] = useState<string | null>("Get Started");
+  const [activeSection, setActiveSection] = useState<string | null>(
+    "Get Started"
+  );
 
   // Refs for each category section
-  const categoryBlocksRef = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const categoryBlocksRef = useRef<{ [key: string]: HTMLDivElement | null }>(
+    {}
+  );
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   const toggleSidebar = () => {
@@ -266,33 +270,33 @@ function JavascriptDoc(): JSX.Element {
             <p className="text-center text-white">
               © WebBlockCraft, 2024. All rights reserved.
             </p>
-            </div>
+          </div>
         </div>
         <Confetti
-        active={confettiActive}
-        config={{
-          angle: 90,
-          spread: 75,
-          startVelocity: 45,
-          elementCount: 400, // Adjust the number of confetti particles
-          dragFriction: 0.1,
-          duration: 2000,
-          stagger: 3,
-          width: "10px",
-          height: "10px",
-          colors: [
-            "#FF0000",
-            "#00FF00",
-            "#0000FF",
-            "#FFA500",
-            "#FFC0CB",
-            "#FFD700",
-            "#00FFFF",
-            "#FF69B4",
-            "#FFFF00",
-          ],
-        }}
-      />
+          active={confettiActive}
+          config={{
+            angle: 90,
+            spread: 75,
+            startVelocity: 45,
+            elementCount: 400, // Adjust the number of confetti particles
+            dragFriction: 0.1,
+            duration: 2000,
+            stagger: 3,
+            width: "10px",
+            height: "10px",
+            colors: [
+              "#FF0000",
+              "#00FF00",
+              "#0000FF",
+              "#FFA500",
+              "#FFC0CB",
+              "#FFD700",
+              "#00FFFF",
+              "#FF69B4",
+              "#FFFF00",
+            ],
+          }}
+        />
       </div>
 
       {showScroll && (
