@@ -189,7 +189,7 @@ function JavascriptDoc(): JSX.Element {
           <div className="pr-10 pl-10"> 
             {/* Render blocks for each category */}
             {Object.entries(groupedBlocks).map(([category, categoryBlocks], index) => (
-              <div key={index} style={{ marginBottom: '30px', marginLeft: '5%' }}
+              <div key={index} style={{ marginBottom: '30px', marginRight: '5%', marginLeft: '2%' }}
               id={category}
               ref={(el) => (categoryBlocksRef.current[category] = el)}
               className="mb-8">
