@@ -4,7 +4,11 @@ import "./index.css";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "@material-tailwind/react";
 
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import BackendPage from "./pages/backend";
 import FrontendPage from "./pages/fronted";
@@ -17,6 +21,7 @@ import HTMLDoc from "./pages/documents/html";
 import CSSDoc from "./pages/documents/css";
 import CodeSplitter from "./pages/codeExplain/CodeSplitter";
 import MainPage from "./pages/home/MainPage";
+import ServerCreationDocs from "./pages/documents/serverCreationDocs";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,7 +38,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />
+    element: <LoginPage />,
   },
   {
     path: "/frontend/:id",
@@ -41,40 +46,44 @@ const router = createBrowserRouter([
   },
   {
     path: "/my/projects",
-    element: <MyProjects />
+    element: <MyProjects />,
   },
   {
     path: "/get-started",
-    element: <GetStarted />
+    element: <GetStarted />,
   },
   {
     path: "/lesson-creator/:id",
-    element: <LessonCreator />
+    element: <LessonCreator />,
   },
   {
     path: "/doc-js",
-    element: <JavascriptDoc />
+    element: <JavascriptDoc />,
   },
   {
     path: "/doc-html",
-    element: <HTMLDoc />
+    element: <HTMLDoc />,
   },
   {
     path: "/doc-css",
-    element: <CSSDoc />
+    element: <CSSDoc />,
+  },
+  {
+    path: "/doc-server-creation",
+    element: <ServerCreationDocs />,
   },
   {
     path: "/crunchCode",
-    element: <CodeSplitter />
+    element: <CodeSplitter />,
   },
   {
     path: "/*",
-    element: <Navigate to="/my/projects" replace />
+    element: <Navigate to="/my/projects" replace />,
   },
   {
     path: "/home",
-    element: <MainPage />
-  }
+    element: <MainPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

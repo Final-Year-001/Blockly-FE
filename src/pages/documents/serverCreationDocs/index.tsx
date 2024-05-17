@@ -1,43 +1,63 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useRef } from "react";
-import TopBar from "./topBar";
-import { FaArrowUp } from "react-icons/fa";
-import { blocks, categoryDescriptions } from "./htmlDocData";
 import { useNavigate } from "react-router-dom";
+import TopBar from "../topBar";
+import { FaArrowUp } from "react-icons/fa";
 import Confetti from "react-dom-confetti";
+import "./serverCreationStyles.css";
+import { blocks, categoryDescriptions } from "./data";
 
-const cardColor = "bg-white/0";
+// const Badge = ({ title, image }) => (
+//   <div style={{ display: "inline-block", marginRight: "10px" }}>
+//     <img src={image} alt={title} style={{ width: "50px", height: "50px" }} />
+//     <p>{title}</p>
+//   </div>
+// );
+
 const sideBarColor = "bg-gray-200";
 const sideBarHover = "bg-blue-500";
 const sideBarActive = "hover:bg-blue-600";
 const blueButton =
   "bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2";
 
-function HTMLDoc(): JSX.Element {
+function ServerCreationDocs(): JSX.Element {
   const navigate = useNavigate();
 
   // Group blocks by category
-  const groupedBlocks: { [key: string]: Block[] } = blocks.reduce(
-    (acc, block) => {
-      acc[block.category] = acc[block.category] || [];
-      acc[block.category].push(block);
+  const groupedBlocks: {
+    [key: string]: any[];
+  } = blocks.reduce((acc, block, index) => {
+    if (index === 0) {
+      // @ts-expect-error - TODO: try to fix this later
+      acc["Get Started"] = [];
+      // @ts-expect-error - TODO: try to fix this later
+      acc["Overview"] = [];
+    }
 
-      return acc;
-    },
-    {}
-  );
+    // @ts-expect-error - TODO: try to fix this later
+    acc[block.category] = acc[block.category] || [];
+    // @ts-expect-error - TODO: try to fix this later
+    acc[block.category].push(block);
 
+    return acc;
+  }, {});
+
+  const [showScroll, setShowScroll] = useState(false);
+  const [confettiActive, setConfettiActive] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [showScroll, setShowScroll] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string | null>(
     "Get Started"
   );
-  const [confettiActive, setConfettiActive] = useState<boolean>(false);
 
   // Refs for each category section
   const categoryBlocksRef = useRef<{ [key: string]: HTMLDivElement | null }>(
     {}
   );
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const toggleSidebar = () => {
+    setIsCollapsed(!isCollapsed);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,11 +88,9 @@ function HTMLDoc(): JSX.Element {
   }, []);
 
   const scrollToTop = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+    const categoryBlock = categoryBlocksRef.current["Get Started"];
+    if (categoryBlock) {
+      categoryBlock.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -96,7 +114,13 @@ function HTMLDoc(): JSX.Element {
             isCollapsed ? "hidden" : "block"
           } `}
         >
-          <div className="mb-10 text-xl">HTML Categories</div>
+          <div className="mb-10 text-xl ml-4">Server Creation Categories</div>
+          <div
+            onClick={() => navigate("/doc-css")}
+            className={` ${blueButton} mt-10`}
+          >
+            CSS Doc
+          </div>
           {/* Render links for each category */}
           {Object.keys(groupedBlocks).map((category, index) => (
             <a
@@ -109,11 +133,8 @@ function HTMLDoc(): JSX.Element {
               {category}
             </a>
           ))}
-          <div
-            onClick={() => navigate("/doc-css")}
-            className={` ${blueButton} mt-10`}
-          >
-            CSS Doc
+          <div onClick={() => navigate("#")} className={` ${blueButton} mt-10`}>
+            Server Creation Doc
           </div>
         </div>
       </div>
@@ -123,7 +144,7 @@ function HTMLDoc(): JSX.Element {
           className={`w-full h-18 bg-blue-500 text-white flex justify-between items-center px-4`}
         >
           <button
-            onClick={() => setIsCollapsed(!isCollapsed)}
+            onClick={toggleSidebar}
             className="text-black bg-gray-500 border-black border-2 rounded active:bg-blue-800 hover:bg-blue-700 p-2"
           >
             {isCollapsed ? (
@@ -171,46 +192,91 @@ function HTMLDoc(): JSX.Element {
               ([category, categoryBlocks], index) => (
                 <div
                   key={index}
+                  style={{ marginBottom: "30px", marginLeft: "5%" }}
                   id={category}
                   ref={(el) => (categoryBlocksRef.current[category] = el)}
                   className="mb-8"
                 >
-                  <div className="text-4xl font-semibold mt-2">{category}</div>
-                  {/* Render category description */}
-                  <div className="mb-8 text-xl text-justify ">
-                    {categoryDescriptions[category]}
-                  </div>
-                  {/* Map over the blocks in the category and render each one */}
-                  {categoryBlocks.map((block, index) => (
-                    <div
-                      key={index}
-                      className={`mb- ${cardColor} p-8 rounded-xl flex flex-col`}
-                    >
-                      <div className="mb-2 text-3xl text-gray-700 border-b-2 border-gray-200 pb-2 w-2/3">
-                        {block.title}
-                      </div>
-                      <div className="justify-between mt-4 w-full flex">
-                        <div className="w-4/6 ">
-                          <div className="flex  flex-col">
-                            <div className="text-xl text-gray-600 text-justify">
-                              {block.description}
-                            </div>
+                  <br />
+                  <h2>{category}</h2>
+                  {/* Add a sentence about the type of blocks in the category */}
+                  {categoryDescriptions[category] && (
+                    <p>{categoryDescriptions[category]}</p>
+                  )}
+                  <br />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "left",
+                    }}
+                  >
+                    {/* Map over the blocks in the category and render each one */}
+                    {categoryBlocks.length !== 0 &&
+                      categoryBlocks.map((block, index) => (
+                        <div
+                          key={index}
+                          style={{
+                            marginBottom: "20px",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          <div style={{ width: "50%", marginRight: "20px" }}>
+                            <h3>
+                              {index + 1}. {block.title}
+                            </h3>
+                            <p>{block.description}</p>
+                            <br />
                           </div>
-                        </div>
-
-                        <div className="w-2/6 px-8">
                           <img
                             src={block.image}
                             alt={`image`}
-                            style={{ width: "100%" }}
+                            style={{
+                              maxWidth: "50%",
+                              height: "auto",
+                              border: "2px solid #A9A9A9",
+                            }}
                           />
                         </div>
-                      </div>
-                    </div>
-                  ))}
+                      ))}
+                  </div>
+                  <hr
+                    style={{
+                      border: "1px solid #ddd",
+                      width: "85%",
+                      margin: "20px 5px 20px 5px",
+                    }}
+                  />
                 </div>
               )
             )}
+          </div>
+
+          {/* Feedback System with Badges */}
+          <h3 className="badheh3">Your Badges</h3>
+          <div className="feedback-container">
+            <div className="kid-animation">
+              <img
+                src="/img/js.gif"
+                alt="Kid Animation"
+                style={{ maxWidth: "250px", maxHeight: "200px" }}
+              />
+              <p className="caption" style={{ marginTop: "10px" }}>
+                JavaScript Basics
+              </p>
+            </div>
+            <div className="kid-animation">
+              <img
+                src="/img/Award.gif"
+                alt="Kid Animation"
+                style={{ maxWidth: "250px", maxHeight: "180px" }}
+              />
+              <p className="caption" style={{ marginTop: "28px" }}>
+                {" "}
+                Completion Reward
+              </p>
+            </div>
           </div>
 
           {/* footer */}
@@ -220,8 +286,6 @@ function HTMLDoc(): JSX.Element {
             </p>
           </div>
         </div>
-
-        {/* Confetti Component */}
         <Confetti
           active={confettiActive}
           config={{
@@ -247,29 +311,28 @@ function HTMLDoc(): JSX.Element {
             ],
           }}
         />
-
-        {/* Scroll to Top Button */}
-        {showScroll && (
-          <div
-            className="mr-4"
-            onClick={scrollToTop}
-            style={{
-              position: "fixed",
-              bottom: "20px",
-              right: "20px",
-              cursor: "pointer",
-              backgroundColor: "#202020",
-              color: "white",
-              padding: "10px",
-              borderRadius: "50%",
-            }}
-          >
-            <FaArrowUp size={23} />
-          </div>
-        )}
       </div>
+
+      {showScroll && (
+        <div
+          className="mr-4"
+          onClick={scrollToTop}
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            cursor: "pointer",
+            backgroundColor: "#C70039",
+            color: "white",
+            padding: "10px",
+            borderRadius: "50%",
+          }}
+        >
+          <FaArrowUp size={23} />
+        </div>
+      )}
     </div>
   );
 }
 
-export default HTMLDoc;
+export default ServerCreationDocs;
