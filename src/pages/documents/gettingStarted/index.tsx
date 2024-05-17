@@ -77,7 +77,8 @@ function GetStarted() {
           <InfoComp3 />
         </div>
 
-        <div className="mt-10">
+        <div className="mt-20">
+          <div className="text-3xl mb-4">Frontend Builder Interface</div>
           <LayoutGuide />
         </div>
 

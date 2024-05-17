@@ -257,7 +257,7 @@ function HTMLDoc(): JSX.Element {
               bottom: "20px",
               right: "20px",
               cursor: "pointer",
-              backgroundColor: "#C70039",
+              backgroundColor: "#202020",
               color: "white",
               padding: "10px",
               borderRadius: "50%",
