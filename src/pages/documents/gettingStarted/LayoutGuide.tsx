@@ -115,7 +115,7 @@ function LayoutGuide() {
       </div>
 
       <div className="w-3/12">
-        <div className="bg-gray-200 p-6 shadow-lg mx-4 text-justify rounded-lg">
+        <div className="bg-white p-6 shadow-lg mx-4 text-justify rounded-lg">
           {selected == 0 && (
             <div>
               <div className="text-2xl">Start Tour</div>
@@ -151,6 +151,7 @@ function LayoutGuide() {
               <div className="text-2xl">Top Bar</div>
               <div>{topBarContent}</div>
               <div className="flex justify-end mt-4 gap-4">
+                <div onClick={()=>setSelected(selected - 1)} className={`${blueButton} px-6`}>Back</div>
                 <div onClick={()=>setSelected(selected + 1)}className={`${blueButton} px-6`}>Next</div>
               </div>
             </div>
