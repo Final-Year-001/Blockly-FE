@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "@material-tailwind/react";
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginWithUsernameAndPassword } from "../../api/auth";
 import { useRecoilState } from "recoil";
 import { tokenAtom } from "../../state/auth";
@@ -48,7 +48,9 @@ function LoginPage() {
       <div className="hidden md:block bg-white h-full w-full relative">
         <div className="min-h-screen flex items-center justify-center">
           <div className="absolute top-0 left-0 m-6">
+          <Link to="/home">
             <ProductLogo />
+            </Link>
           </div>
           <div>
             <div>
