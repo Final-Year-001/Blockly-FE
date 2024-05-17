@@ -1,5 +1,5 @@
 export const categoryDescriptions = {
-  "Get Started": "Explore foundational concepts HTML and start your creative journey.",
+  "Get Started": "Embark on a creative journey delving into the foundational concepts of HTML with this comprehensive documentation. Here, you'll find a detailed guide on all available HTML blocks, providing a clear understanding of their purpose and usage. Let's dive in and unleash your creativity! ",
   "Colors": "Learn what types of word blocks are there and how to use them.",
   "Text": "Learn what blocks are needed to make cool tables",
   "Size and Spacing": "We all need a good form. Here you get to learn what blocks are responsible for making forms.",
