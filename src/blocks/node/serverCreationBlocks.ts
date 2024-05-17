@@ -15,7 +15,6 @@ Blockly.Blocks["express_server_creation"] = {
       .appendField("Port (Optional)");
     this.appendStatementInput("MIDDLEWARE")
       .setCheck("middleware")
-      // .setCheck(["compression_middleware"])
       .appendField("Middleware (Optional)");
     this.appendStatementInput("ROUTES").setCheck("route").appendField("Routes");
     this.setTooltip("Creates a new Express server instance.");

@@ -125,8 +125,8 @@ Blockly.Blocks["express_json_middleware"] = {
     );
     this.setHelpUrl("");
     this.setStyle("General_Middlewares_blocks");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "middleware");
+    this.setNextStatement(true, "middleware");
   },
 };
 

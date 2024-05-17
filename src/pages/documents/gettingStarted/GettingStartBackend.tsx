@@ -14,16 +14,18 @@ function GettingStartBack() {
       <div className="flex flex-col gap-3 text-3xl justify-between">
         <div
           className={` ${GettingStartedBtnSize} ${serverButtonColor}`}
-          onClick={() => navigate("/doc-html")}
+          onClick={() => navigate("/doc-server-creation")}
         >
           Server Creation Tutorials
         </div>
+
         <div
           className={` ${GettingStartedBtnSize} ${APIButtonColor}`}
           onClick={() => navigate("/doc-js")}
         >
           API Handling Tutorials
         </div>
+
         <div
           className={` ${GettingStartedBtnSize} ${DBButtonColor}`}
           onClick={() => navigate("/doc-html")}

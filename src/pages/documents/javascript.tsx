@@ -120,7 +120,10 @@ function JavascriptDoc(): JSX.Element {
               {category}
             </a>
           ))}
-          <div onClick={() => navigate("#")} className={` ${blueButton} mt-10`}>
+          <div
+            onClick={() => navigate("/doc-server-creation")}
+            className={` ${blueButton} mt-10`}
+          >
             Server Creation Doc
           </div>
         </div>
