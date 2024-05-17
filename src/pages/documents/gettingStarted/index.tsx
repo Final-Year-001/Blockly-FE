@@ -10,7 +10,8 @@ import GettingStartFront from "./GettingStartFrontend";
 import GettingStartBack from "./GettingStartBackend";
 import ConnectingFEBE from "./Connecting";
 import InfoComp3 from "../../home/infoComp3";
-import LayoutGuide from "./LayoutGuide";
+import LayoutGuideFE from "./LayoutGuideFE";
+import LayoutGuideBE from "./LayoutGuideBE";
 import Footer from "../../home/Footer";
 import QuickAccess from "./QuickAccess";
 
@@ -64,8 +65,11 @@ function GetStarted() {
 
         <div className="mt-20 py-32 bg-blue-100">
           <div className="mx-auto container ">
-          <div className="text-3xl mb-4">Frontend Builder Interface</div>
-          <LayoutGuide />
+            
+            <div className="text-3xl mb-4">Frontend Builder Interface</div>
+            <LayoutGuideFE />
+            <div className="text-3xl mb-4 flex justify-end mt-10">Backend Builder Interface</div>
+            <LayoutGuideBE />
           </div>
         </div>
 
