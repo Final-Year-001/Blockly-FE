@@ -7,7 +7,7 @@ import Confetti from "react-dom-confetti";
 
 const cardColor = "bg-white/0";
 const topBarColor = "bg-wbcMain";
-const sideBarColor = "bg-white";
+const sideBarColor = "bg-gray-200";
 const sideBarHover = "bg-wbcMain";
 const sideBarActive = "hover:bg-wbcMain";
 const blueButton =
@@ -170,7 +170,8 @@ function CSSDoc(): JSX.Element {
           style={{ overflowY: "auto", maxHeight: "calc(100vh - 4rem)" }}
           ref={scrollContainerRef}
         >
-          <div className="pr-10 pl-10">
+        <div className="pr-10 pl-10">
+            {/* Render blocks for each category */}
             {Object.entries(groupedBlocks).map(
               ([category, categoryBlocks], index) => (
                 <div
@@ -179,25 +180,36 @@ function CSSDoc(): JSX.Element {
                   ref={(el) => (categoryBlocksRef.current[category] = el)}
                   className="mb-8"
                 >
-                  <div className="text-4xl font-semibold mt-16">{category}</div>
-                  <div className="mb-8 text-xl">
+                  <div className="text-4xl font-semibold mt-2">{category}</div>
+                  {/* Render category description */}
+                  <div className="mb-8 text-xl text-justify ">
                     {categoryDescriptions[category]}
                   </div>
+                  {/* Map over the blocks in the category and render each one */}
                   {categoryBlocks.map((block, index) => (
                     <div
                       key={index}
-                      className={`mb-8 ${cardColor} justify-between p-8 rounded-xl flex`}
+                      className={`mb- ${cardColor} p-8 rounded-xl flex flex-col`}
                     >
-                      <div className="w-4/6">
-                        <div className="flex  flex-col mb-2">
-                          <div className="mb-2 text-3xl">
-                            {index + 1}. {block.title}
-                          </div>
-                          <div className="text-xl">{block.description}</div>
-                        </div>
+                      <div className="mb-2 text-3xl text-gray-700 border-b-2 border-gray-200 pb-2 w-2/3">
+                        {block.title}
                       </div>
-                      <div className="w-2/6 flex justify-end">
-                        <img src={block.image} alt={`image`} width={300} />
+                      <div className="justify-between mt-4 w-full flex">
+                        <div className="w-4/6 ">
+                          <div className="flex  flex-col">
+                            <div className="text-xl text-gray-600 text-justify">
+                              {block.description}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="w-2/6 px-8">
+                          <img
+                            src={block.image}
+                            alt={`image`}
+                            style={{ width: "100%" }}
+                          />
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -206,8 +218,8 @@ function CSSDoc(): JSX.Element {
             )}
           </div>
 
-             {/* footer */}
-             <div className="mt-10 bg-blue-600 p-8 flex justify-center w-full">
+          {/* footer */}
+          <div className="mt-10 bg-blue-600 p-8 flex justify-center w-full">
             <p className="text-center text-white">
               © WebBlockCraft, 2024. All rights reserved.
             </p>
