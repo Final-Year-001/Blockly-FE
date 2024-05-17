@@ -31,7 +31,7 @@ function JavascriptDoc(): JSX.Element {
   const [showScroll, setShowScroll] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [sidebarshowScroll, setSideBarShowScroll] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
@@ -183,13 +183,16 @@ function JavascriptDoc(): JSX.Element {
           <TopBar onPage="documentation"/>
         </div>
         <div
-          className=""
+          className="" 
           style={{ overflowY: "auto", maxHeight: "calc(100vh - 4rem)" }}
         >
-          <div className="pr-10 pl-10">
+          <div className="pr-10 pl-10"> 
             {/* Render blocks for each category */}
             {Object.entries(groupedBlocks).map(([category, categoryBlocks], index) => (
-              <div key={index} style={{ marginBottom: '30px', marginLeft: '20%' }}>
+              <div key={index} style={{ marginBottom: '30px', marginLeft: '5%' }}
+              id={category}
+              ref={(el) => (categoryBlocksRef.current[category] = el)}
+              className="mb-8">
                 <br />
                 <h2>{category}</h2>
                 {/* Add a sentence about the type of blocks in the category */}
