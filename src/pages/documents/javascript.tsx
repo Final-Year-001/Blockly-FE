@@ -13,10 +13,10 @@ const Badge = ({ title, image }) => (
   </div>
 );
 
-const sideBarColor = "bg-white"
-const sideBarHover = "bg-wbcMain"
-const sideBarActive = "hover:bg-wbcMain"
-const blueButton = 'bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2'
+const sideBarColor = "bg-gray-200";
+const sideBarHover = "bg-blue-500";
+const sideBarActive = "hover:bg-blue-600";
+const blueButton ="bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2";
 
 function JavascriptDoc(): JSX.Element {
   const navigate = useNavigate();
