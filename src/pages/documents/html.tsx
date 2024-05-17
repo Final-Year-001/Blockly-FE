@@ -2,21 +2,20 @@ import React, { useState, useEffect, useRef } from "react";
 import TopBar from "./topBar";
 import { FaArrowUp } from "react-icons/fa";
 import { blocks, categoryDescriptions } from "./htmlDocData";
-import DocumentationFile from "./Documentation";
-import { FaAngleDoubleRight } from "react-icons/fa";
-
 import { useNavigate } from "react-router-dom";
+import Confetti from "react-dom-confetti";
 
-const cardColor = "bg-white/0"
-const topBarColor = "bg-wbcMain"
-const sideBarColor = "bg-white"
-const sideBarHover = "bg-wbcMain"
-const sideBarActive = "hover:bg-wbcMain"
-const blueButton = 'bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2'
+const cardColor = "bg-white/0";
+const sideBarColor = "bg-gray-200";
+const sideBarHover = "bg-blue-500";
+const sideBarActive = "hover:bg-blue-600";
+const blueButton =
+  "bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2";
 
 function HTMLDoc(): JSX.Element {
-  // Group blocks by category
   const navigate = useNavigate();
+
+  // Group blocks by category
   const groupedBlocks: { [key: string]: Block[] } = blocks.reduce(
     (acc, block) => {
       acc[block.category] = acc[block.category] || [];
@@ -27,65 +26,53 @@ function HTMLDoc(): JSX.Element {
   );
 
   const [isCollapsed, setIsCollapsed] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
-
   const [showScroll, setShowScroll] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string | null>(
     "Get Started"
   );
+  const [confettiActive, setConfettiActive] = useState<boolean>(false);
 
   // Refs for each category section
   const categoryBlocksRef = useRef<{ [key: string]: HTMLDivElement | null }>(
     {}
   );
-  const sidebarRef = useRef<HTMLDivElement | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowScroll(true);
-      } else {
-        setShowScroll(false);
+      if (scrollContainerRef.current) {
+        const scrollTop = scrollContainerRef.current.scrollTop;
+        const scrollHeight = scrollContainerRef.current.scrollHeight;
+        const clientHeight = scrollContainerRef.current.clientHeight;
+
+        setShowScroll(scrollTop > 300);
+
+        if (scrollTop + clientHeight >= scrollHeight - 1) {
+          setConfettiActive(true);
+          setTimeout(() => setConfettiActive(false), 3000);
+        }
       }
-
-      // Find the active section based on scroll position
-      const { current: sidebar } = sidebarRef;
-      const { current: blocksRef } = categoryBlocksRef;
-      const categorySections = Object.keys(blocksRef).map((category) => ({
-        category,
-        offsetTop: blocksRef[category]!.offsetTop,
-      }));
-
-      const currentScroll = window.scrollY + sidebar!.offsetHeight;
-      const active = categorySections.reduce(
-        (closestSection, section) => {
-          const sectionTop = section.offsetTop - sidebar!.offsetTop;
-          if (
-            sectionTop <= currentScroll &&
-            sectionTop > closestSection.offsetTop
-          ) {
-            return section;
-          }
-          return closestSection;
-        },
-        { category: null, offsetTop: -Infinity }
-      );
-
-      // setActiveSection(active.category);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener("scroll", handleScroll);
+      }
+    };
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   const handleCategoryClick = (category: string) => {
@@ -103,9 +90,12 @@ function HTMLDoc(): JSX.Element {
           isCollapsed ? "w-0" : "w-64 block"
         }`}
       >
-        <div className={`mt-10 mb-10 flex flex-col items-center transition delay-300  ${isCollapsed ? 'hidden': 'block'} `}>
+        <div
+          className={`mt-10 mb-10 flex flex-col items-center transition delay-300  ${
+            isCollapsed ? "hidden" : "block"
+          } `}
+        >
           <div className="mb-10 text-xl">HTML Categories</div>
-         
           {/* Render links for each category */}
           {Object.keys(groupedBlocks).map((category, index) => (
             <a
@@ -118,16 +108,21 @@ function HTMLDoc(): JSX.Element {
               {category}
             </a>
           ))}
-           <div onClick={()=> navigate('/doc-css')} className={` ${blueButton} mt-10`}>CSS Doc</div>
+          <div
+            onClick={() => navigate("/doc-css")}
+            className={` ${blueButton} mt-10`}
+          >
+            CSS Doc
+          </div>
         </div>
       </div>
 
-    
-
       <div className="flex flex-col w-full">
-        <div className={`w-full h-18 bg-blue-500 text-white flex justify-between items-center px-4`}>
+        <div
+          className={`w-full h-18 bg-blue-500 text-white flex justify-between items-center px-4`}
+        >
           <button
-            onClick={toggleSidebar}
+            onClick={() => setIsCollapsed(!isCollapsed)}
             className="text-black bg-gray-500 border-black border-2 rounded active:bg-blue-800 hover:bg-blue-700 p-2"
           >
             {isCollapsed ? (
@@ -162,11 +157,12 @@ function HTMLDoc(): JSX.Element {
               </svg>
             )}
           </button>
-          <TopBar onPage="documentation"/>
+          <TopBar onPage="documentation" />
         </div>
         <div
-          className="p-4"
+          className=""
           style={{ overflowY: "auto", maxHeight: "calc(100vh - 4rem)" }}
+          ref={scrollContainerRef}
         >
           <div className="pr-10 pl-10">
             {/* Render blocks for each category */}
@@ -178,26 +174,36 @@ function HTMLDoc(): JSX.Element {
                   ref={(el) => (categoryBlocksRef.current[category] = el)}
                   className="mb-8"
                 >
-                  <div className="text-3xl font-semibold mt-16">{category}</div>
+                  <div className="text-4xl font-semibold mt-2">{category}</div>
                   {/* Render category description */}
-                  <div className="mb-8">{categoryDescriptions[category]}</div>
+                  <div className="mb-8 text-xl text-justify ">
+                    {categoryDescriptions[category]}
+                  </div>
                   {/* Map over the blocks in the category and render each one */}
                   {categoryBlocks.map((block, index) => (
                     <div
                       key={index}
-                      className={`mb-8 ${cardColor} justify-between p-8 rounded-xl flex`}
+                      className={`mb- ${cardColor} p-8 rounded-xl flex flex-col`}
                     >
-                      <div className="">
-                        <div className="flex  flex-col mb-2">
-                          <div className="mb-2 text-2xl">
-                            {index + 1}. {block.title}
-                          </div>
-                          <div>{block.description}</div>
-                        </div>
+                      <div className="mb-2 text-3xl text-gray-700 border-b-2 border-gray-200 pb-2 w-2/3">
+                        {block.title}
                       </div>
+                      <div className="justify-between mt-4 w-full flex">
+                        <div className="w-4/6 ">
+                          <div className="flex  flex-col">
+                            <div className="text-xl text-gray-600 text-justify">
+                              {block.description}
+                            </div>
+                          </div>
+                        </div>
 
-                      <div className=" w-2/6  flex justify-end">
-                        <img src={block.image} alt={`image`} width={300} />
+                        <div className="w-2/6 px-8">
+                          <img
+                            src={block.image}
+                            alt={`image`}
+                            style={{ width: "100%" }}
+                          />
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -205,25 +211,62 @@ function HTMLDoc(): JSX.Element {
               )
             )}
           </div>
+
+          {/* footer */}
+          <div className="mt-10 bg-blue-600 p-8 flex justify-center w-full">
+            <p className="text-center text-white">
+              © WebBlockCraft, 2024. All rights reserved.
+            </p>
+          </div>
         </div>
-      </div>
-      {showScroll && (
-        <div
-          onClick={scrollToTop}
-          style={{
-            position: "fixed",
-            bottom: "20px",
-            right: "20px",
-            cursor: "pointer",
-            backgroundColor: "#C70039",
-            color: "white",
-            padding: "10px",
-            borderRadius: "50%",
+
+        {/* Confetti Component */}
+        <Confetti
+          active={confettiActive}
+          config={{
+            angle: 90,
+            spread: 75,
+            startVelocity: 45,
+            elementCount: 400, // Adjust the number of confetti particles
+            dragFriction: 0.1,
+            duration: 2000,
+            stagger: 3,
+            width: "10px",
+            height: "10px",
+            colors: [
+              "#FF0000",
+              "#00FF00",
+              "#0000FF",
+              "#FFA500",
+              "#FFC0CB",
+              "#FFD700",
+              "#00FFFF",
+              "#FF69B4",
+              "#FFFF00",
+            ],
           }}
-        >
-          <FaArrowUp size={23} />
-        </div>
-      )}
+        />
+
+        {/* Scroll to Top Button */}
+        {showScroll && (
+          <div
+            className="mr-4"
+            onClick={scrollToTop}
+            style={{
+              position: "fixed",
+              bottom: "20px",
+              right: "20px",
+              cursor: "pointer",
+              backgroundColor: "#202020",
+              color: "white",
+              padding: "10px",
+              borderRadius: "50%",
+            }}
+          >
+            <FaArrowUp size={23} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

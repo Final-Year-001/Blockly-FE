@@ -31,14 +31,14 @@ function TopSection(tokenValid : any) {
           </div>
         </div>
         :
-        <div>
+        <div className="mt-16">
             <img width={350} src={logoTrans} alt="logo" />
         </div>
         }
       </div>
     </div>
 
-    <div className="container mx-auto mt-0">
+    <div className="container mx-auto mt-10">
       <div className=" mx-32 flex gap-12 mb-8 mx-4 sm:mx-32 flex flex-col sm:flex-row">
         <div className="border-black w-full  border-4 mx-auto bg-green-300 rounded-2xl p-8 px-10 mt-4 text-justify">
           <span className="text-2xl">Let's Learn</span>
