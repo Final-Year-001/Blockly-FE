@@ -10,6 +10,9 @@ class CustomRenderer extends Blockly.blockRendering.Renderer {
 }
 
 class CustomConstantProvider extends Blockly.blockRendering.ConstantProvider {
+  getBlockBorderThickness() {
+    return 10; // Adjust this value for your desired border size
+  }
   constructor() {
     // Set up all of the constants from the base provider.
     super();

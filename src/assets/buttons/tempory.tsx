@@ -1,0 +1,52 @@
+html_html;
+html_identifier - simple;
+html_h;
+html_p;
+html_addtext;
+html_button;
+html_name;
+html_input_field;
+html_label;
+html_idClass;
+html_form;
+html_table;
+table_headings;
+table_rows;
+table_data;
+html_textadd;
+html_div1;
+html_ol_list;
+html_ul_list;
+html_li;
+html_img;
+html_a;
+html_checkbox;
+premade_button;
+premade_dropdown;
+premade_option;
+
+html_css
+
+const test = [
+  ("html_h",
+  "html_p",
+  "html_addtext",
+  "html_button",
+  "html_name",
+  "html_input_field",
+  "html_label",
+  "html_form",
+  "html_table",
+  "table_headings",
+  "table_rows",
+  "html_div1",
+  "table_data",
+  "html_ol_list",
+  "html_ul_list",
+  "html_img",
+  "html_a",
+  "html_checkbox",
+  "premade_dropdown",
+  "premade_option",
+  "premade_button")
+]
