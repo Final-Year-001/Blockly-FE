@@ -116,10 +116,10 @@ function ServerCreationDocs(): JSX.Element {
         >
           <div className="mb-10 text-xl ml-4">Server Creation Categories</div>
           <div
-            onClick={() => navigate("/doc-css")}
-            className={` ${blueButton} mt-10`}
+            onClick={() => navigate("/doc-js")}
+            className={` ${blueButton} mt-1`}
           >
-            CSS Doc
+            JS Doc
           </div>
           {/* Render links for each category */}
           {Object.keys(groupedBlocks).map((category, index) => (
@@ -133,7 +133,7 @@ function ServerCreationDocs(): JSX.Element {
               {category}
             </a>
           ))}
-          <div onClick={() => navigate("#")} className={` ${blueButton} mt-10`}>
+          <div onClick={() => navigate("#")} className={` ${blueButton} mt-6`}>
             Server Creation Doc
           </div>
         </div>

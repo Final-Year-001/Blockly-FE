@@ -11,6 +11,7 @@ import ProductLogo from "../../assets/Logo";
 import img from "../../assets/loginImg/loginimg.gif";
 import bgImg from "../../assets/loginImg/ttbg.jpg";
 import { TypeAnimation } from "react-type-animation";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 
 const elements = document.querySelectorAll('.index-module_type__E-SaG');
 
@@ -23,6 +24,7 @@ elements.forEach((element: HTMLElement) => {
 function LoginPage() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false); // State for password visibility
 
   const [_, setTokens] = useRecoilState(tokenAtom);
 
@@ -40,6 +42,10 @@ function LoginPage() {
 
   const login = () => {
     loginMutation.mutate({ username, password });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -102,13 +108,20 @@ function LoginPage() {
             <div className="relative h-11 w-full min-w-[200px]">
               <Input
                 crossOrigin={undefined}
-                type="password"
+                type={showPassword ? "text" : "password"} // Toggle type based on state
                 label="Password"
                 value={password}
                 onChange={(password) => setPassword(password.target.value)}
                 containerProps={{
                   className: "min-w-0",
                 }}
+                icon={
+                  showPassword ? (
+                    <FaEyeSlash className="cursor-pointer" onClick={togglePasswordVisibility} />
+                  ) : (
+                    <FaEye className="cursor-pointer" onClick={togglePasswordVisibility} />
+                  )
+                } // Add eye icon
               />
             </div>
             <div className="-ml-2.5">
