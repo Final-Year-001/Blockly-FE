@@ -30,7 +30,7 @@ export const BackendBlocksTheme = {
     colourTertiary: "#f585c2" /* Slightly darker pink for contrast */,
   },
   Json_blocks: {
-    colourPrimary: "#b28dff" /* Blue-violet primary color */,
+    colourPrimary: "#ff968a" /* Blue-violet primary color */,
     colourSecondary: "#c2b0f2" /* Lighter blue-violet for emphasis */,
     colourTertiary: "#877bcf" /* Darker blue-violet for contrast */,
     colourAccent: "#7f6ad8" /* Vivid blue-violet for highlights */,

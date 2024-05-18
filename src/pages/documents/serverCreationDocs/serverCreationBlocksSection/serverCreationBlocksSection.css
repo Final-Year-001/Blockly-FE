@@ -1,0 +1,16 @@
+p {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+li {
+  margin-bottom: 20px;
+}
+
+ul {
+  margin-left: 40px;
+}
+
+a.BESC {
+  color: #00b4d8 !important;
+}
