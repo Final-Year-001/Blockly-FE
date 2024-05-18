@@ -268,7 +268,7 @@ function CSSDoc(): JSX.Element {
             borderRadius: "50%",
           }}
         >
-          <FaArrowUp size={23} />
+          <FaArrowUp size={20} />
         </div>
       )}
     </div>

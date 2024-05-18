@@ -185,7 +185,7 @@ function JavascriptDoc(): JSX.Element {
         </div>
         <div
           className=""
-          style={{ overflowY: "auto", maxHeight: "calc(100vh - 4rem)" }}
+          style={{ overflowY: "auto", maxHeight: "calc(100vh - 4rem)", }}
           ref={scrollContainerRef}
         >
           <div className="pr-10 pl-10">
@@ -194,7 +194,7 @@ function JavascriptDoc(): JSX.Element {
               ([category, categoryBlocks], index) => (
                 <div
                   key={index}
-                  style={{ marginBottom: "30px", marginLeft: "5%" }}
+                  style={{ marginBottom: "30px", marginLeft: "5%", marginRight:"5%" }}
                   id={category}
                   ref={(el) => (categoryBlocksRef.current[category] = el)}
                   className="mb-8"
@@ -358,7 +358,7 @@ function JavascriptDoc(): JSX.Element {
             borderRadius: "50%",
           }}
         >
-          <FaArrowUp size={23} />
+          <FaArrowUp size={20} />
         </div>
       )}
     </div>
