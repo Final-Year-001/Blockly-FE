@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import serverImg from '../../../assets/gettingStarted/quickaccess/server.png'
-import APIImg from '../../../assets/gettingStarted/quickaccess/api.png'
-import DBImg from '../../../assets/gettingStarted/quickaccess/db.png'
+import serverImg from "../../../assets/gettingStarted/quickaccess/server.png";
+import APIImg from "../../../assets/gettingStarted/quickaccess/api.png";
+import DBImg from "../../../assets/gettingStarted/quickaccess/db.png";
 
 const GettingStartedBtnSize =
   "hover:scale-105 transition duration-300 cursor-pointer  border-2 border-black  rounded-xl p-4 px-16 flex justify-items items-center gap-4";
@@ -22,35 +22,27 @@ function GettingStartBack() {
           <div>
             <img src={serverImg} width={65} alt="image" />
           </div>
-          <div>
-            Server Creation Tutorials
-          </div>
+          <div>Server Creation Tutorials</div>
         </div>
 
         <div
           className={` ${GettingStartedBtnSize} ${APIButtonColor}`}
           onClick={() => navigate("/doc-js")}
         >
-           <div>
+          <div>
             <img src={APIImg} width={65} alt="image" />
           </div>
-          <div>
-          API Handling Tutorials
-          </div>
-          
+          <div>API Handling Tutorials</div>
         </div>
 
         <div
           className={` ${GettingStartedBtnSize} ${DBButtonColor}`}
           onClick={() => navigate("/doc-html")}
         >
-           <div>
+          <div>
             <img src={DBImg} width={65} alt="image" />
           </div>
-          <div>
-          Database Handling Tutorials
-          </div>
-          
+          <div>Database Handling Tutorials</div>
         </div>
       </div>
     </div>
