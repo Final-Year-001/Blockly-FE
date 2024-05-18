@@ -219,16 +219,26 @@ function ServerCreationDocs(): JSX.Element {
                           style={{
                             marginBottom: "20px",
                             display: "flex",
-                            alignItems: "center",
+                            flexDirection: "column",
+                            alignItems: "start",
                           }}
                         >
-                          <div style={{ width: "50%", marginRight: "20px" }}>
-                            <h3>
+                          <div
+                            style={{
+                              minWidth: "50%",
+                              marginRight: "20px",
+                              marginTop: 20,
+                            }}
+                          >
+                            <h3
+                              style={{
+                                marginBottom: 20,
+                              }}
+                            >
                               {index + 1}. {block.title}
                             </h3>
-                            <p>{block.description}</p>
-                            <br />
                           </div>
+
                           <img
                             src={block.image}
                             alt={`image`}
@@ -236,8 +246,14 @@ function ServerCreationDocs(): JSX.Element {
                               maxWidth: "50%",
                               height: "auto",
                               border: "2px solid #A9A9A9",
+                              marginBottom: 20,
+                              marginLeft: 40,
                             }}
                           />
+                          <div>
+                            <p>{block.description}</p>
+                            <br />
+                          </div>
                         </div>
                       ))}
                   </div>
@@ -255,18 +271,15 @@ function ServerCreationDocs(): JSX.Element {
 
           {/* Feedback System with Badges */}
           <h3 className="badheh3">Your Badges</h3>
-          <div className="feedback-container">
-            <div className="kid-animation">
-              <img
-                src="/img/js.gif"
-                alt="Kid Animation"
-                style={{ maxWidth: "250px", maxHeight: "200px" }}
-              />
-              <p className="caption" style={{ marginTop: "10px" }}>
-                JavaScript Basics
-              </p>
-            </div>
-            <div className="kid-animation">
+          <div
+            className="feedback-container"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <div>
               <img
                 src="/img/Award.gif"
                 alt="Kid Animation"
