@@ -68,7 +68,7 @@ function GetStarted() {
             
             <div className="text-3xl mb-4">Frontend Builder Interface</div>
             <LayoutGuideFE />
-            <div className="text-3xl mb-4 flex justify-end mt-10">Backend Builder Interface</div>
+            <div className="text-3xl mb-4 flex justify-end mt-24">Backend Builder Interface</div>
             <LayoutGuideBE />
           </div>
         </div>
