@@ -557,10 +557,31 @@ Blockly.Blocks["table_headings"] = {
       .appendField("Heading cell")
       .appendField("|")
       .appendField("properties");
-    this.appendStatementInput("State").setCheck("tableHeading");
+    this.appendStatementInput("State").setCheck([
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+    ]);
     this.setInputsInline(false);
-    this.setPreviousStatement(true, "tableRow");
-    this.setNextStatement(true, "tableRow");
+    this.setPreviousStatement(true, "table_headings");
+    this.setNextStatement(true, "table_headings");
     this.setStyle("HTML_tableSub");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -624,7 +645,6 @@ Blockly.Blocks["table_data"] = {
       "html_label",
       "html_form",
       "html_table",
-      "table_headings",
       "html_div1",
       "table_data",
       "html_ol_list",
