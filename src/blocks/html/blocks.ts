@@ -607,7 +607,30 @@ Blockly.Blocks["table_rows"] = {
       .appendField("New Row")
       .appendField("|")
       .appendField("properties");
-    this.appendStatementInput("State").setCheck("tableRow");
+    this.appendStatementInput("State").setCheck(
+      [
+        "html_h",
+        "html_p",
+        "html_addtext",
+        "html_button",
+        "html_name",
+        "html_input_field",
+        "html_label",
+        "html_form",
+        "html_table",
+        "html_div1",
+        "table_data",
+        "html_ol_list",
+        "table_headings",
+        "html_ul_list",
+        "html_img",
+        "html_a",
+        "html_checkbox",
+        "premade_dropdown",
+        "premade_option",
+        "premade_button",
+      ]
+    );
     this.setInputsInline(false);
     this.setPreviousStatement(true, "table_rows");
     this.setNextStatement(true, "table_rows");

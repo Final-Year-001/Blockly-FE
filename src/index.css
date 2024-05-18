@@ -57,10 +57,10 @@ svg[display="none"] {
 }
 
 .blocklyToolboxDiv {
-  background-color: rgba(117, 86, 1, 0.782);
+  background-color: rgba(0, 55, 100, 0.782);
   /* background-color: rgba(0, 1, 2, 0.744);  */
   backdrop-filter: blur(5px); /* Apply a blur effect */
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 .aws-btn {

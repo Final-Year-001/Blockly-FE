@@ -26,6 +26,7 @@ import { useDebounce } from "@uidotdev/usehooks";
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
+  CodeBracketSquareIcon,
 } from "@heroicons/react/24/solid";
 import Tour from "reactour";
 import _ from "lodash";
@@ -111,6 +112,8 @@ function FrontendPage() {
   }>({ message: "", show: false, loading: false });
   const [showTour, setShowTour] = useState<boolean>(true);
   const [logs, setLogs] = useState<LogEvent[]>([]);
+  const [hideOutput, setHideOutput] = useState(false);
+  const [reset, setReset] = useState(true);
 
   const params = useParams();
   const tokens = useRecoilValue(tokenAtom);
@@ -135,6 +138,16 @@ function FrontendPage() {
       });
     },
   });
+
+  const changeHideState =() =>{
+    setHideOutput(!hideOutput)
+    setReset(false)
+    console.log("state changed")
+    
+    setTimeout(() => {
+      setReset(true)
+    }, 200); // 1000 milliseconds = 1 second
+  }
 
   useEffect(() => {
     setIsVisible(true);
@@ -306,7 +319,7 @@ function FrontendPage() {
   });
 
   return (
-    <div className="flex flex-col h-full w-full ">
+    <div className="flex flex-col h-full w-full bg-white">
       <Tour
         steps={TourSteps}
         isOpen={showTour}
@@ -316,23 +329,25 @@ function FrontendPage() {
       />
 
       <div id="TopBar">
-        <FrontendTopBar />
+        <FrontendTopBar hideCode={changeHideState}/>
       </div>
 
       <div
-        className="flex flex-row flex-grow px-3 pb-3"
+        className="flex flex-row flex-grow "
         style={{ height: "calc(100% - 400px)" }}
       >
         <div
-          className={`flex  border-none flex-col gap-4 ${
-            isExpanded ? "flex-[0.3]" : "flex-[0.7]"
-          } duration-300 ease-in-out transition-all`}
+          className={`flex flex-col gap-4 ${
+            hideOutput ? "flex-[1]" : isExpanded ? "flex-[0.3]" : "flex-[0.7]"
+          } duration-200 ease-in-out transition-all`}
         >
+          {reset && 
           <FrontendWorkspace
             onCodeChange={injectCode}
             loaded={!getProjectQuery.isFetching}
             initialState={getProjectQuery.data?.data?.saveData}
           />
+          }
           {mode == "lesson" && getLessonQuery.isSuccess ? (
             <HintComponent
               stepPreview={currentStep.workspaceState}
@@ -346,21 +361,25 @@ function FrontendPage() {
 
         <div
           className={
-            "flex-[0.3] pl-6 h-full relative transition-all duration-300 ease-in-out " +
-            `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"}`
+            "flex-[0.3] pl-2 h-full relative transition-all duration-200 bg-gray-600 p-1 rounded-lg ease-in-out " +
+            `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"} ${hideOutput && 'hidden'}`
           }
         >
           <div
             className="absolute p-2 top-20 left-0 w-10 z-10 bg-black rounded-l-lg text-white"
+            
+          >
+            <div 
             onClick={() => {
               setIsExpanded((prev) => !prev);
-            }}
-          >
+            }}>
             {isExpanded ? (
               <ChevronDoubleRightIcon />
             ) : (
               <ChevronDoubleLeftIcon />
             )}
+            </div>
+        
           </div>
           <Tabs id="outputSection" value="html" className="h-full pb-10">
             <TabsHeader>

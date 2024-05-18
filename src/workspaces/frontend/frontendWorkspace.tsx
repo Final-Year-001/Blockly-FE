@@ -22,7 +22,7 @@ export const workspaceConfiguration = {
   grid: {
     spacing: 20,
     length: 3,
-    colour: "#ebd50d",
+    colour: "#a1caff",
     // colour: "#",
     snap: true,
   },
@@ -90,7 +90,7 @@ function FrontendWorkspace({
   return (
     <Card
       ref={workspaceWrapper}
-      className="fill-height z-20 rounded-lg border-8 overflow-hidden border-gray-300"
+      className="fill-height z-20 border-4 overflow-hidden border-gray-400"
     >
       {loaded ? (
         <BlocklyWorkspace
