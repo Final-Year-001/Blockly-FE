@@ -17,7 +17,7 @@ const ProductLogoBW = ({ TextSize = defailtText }) => {
         </div>
         <div></div>
         <div className={`text-${TextSize}xl flex items-center font-bold `}>
-          <div>WebBlockCraft</div>
+          <div style={{color:"black"}}>WebBlockCraft</div>
         </div>
       </span>
     </div>
