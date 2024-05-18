@@ -99,7 +99,7 @@ function CSSDoc(): JSX.Element {
           <div className="text-xl">CSS Categories</div>
           <div
             onClick={() => navigate("/doc-html")}
-            className={` ${blueButton} mt-10`}
+            className={` ${blueButton} mt-8`}
           >
             HTML Doc
           </div>
@@ -116,7 +116,7 @@ function CSSDoc(): JSX.Element {
           ))}
           <div
             onClick={() => navigate("/doc-js")}
-            className={` ${blueButton} mt-10`}
+            className={` ${blueButton} mt-5`}
           >
             JS Doc
           </div>
