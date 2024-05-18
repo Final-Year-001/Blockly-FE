@@ -25,6 +25,7 @@ function LoginPage() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false); // State for password visibility
+  const [loading, setLoading] = useState(false)
 
   const [_, setTokens] = useRecoilState(tokenAtom);
 
@@ -41,6 +42,7 @@ function LoginPage() {
   });
 
   const login = () => {
+    setLoading(true);
     loginMutation.mutate({ username, password });
   };
 
@@ -175,7 +177,7 @@ function LoginPage() {
               onMouseUp={login}
               type="primary"
             >
-              Sign In
+              {loading ? "Loading..." : "Sign In"}
             </AwesomeButton>
 
             <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
