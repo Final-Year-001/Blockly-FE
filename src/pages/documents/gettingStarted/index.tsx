@@ -91,8 +91,8 @@ function GetStarted() {
           <ConnectingFEBE />
         </div>
 
-        <div className="bg-blue-100 p-28">
-          <InfoComp3 />
+        <div className="bg-blue-100 pt-28 pb-28 py-10">
+          <InfoComp3 />  
         </div>
 
 
