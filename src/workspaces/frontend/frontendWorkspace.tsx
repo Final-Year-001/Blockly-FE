@@ -90,7 +90,7 @@ function FrontendWorkspace({
   return (
     <Card
       ref={workspaceWrapper}
-      className="fill-height z-20 border-4 overflow-hidden border-gray-400"
+      className="fill-height z-20 border-4 overflow-hidden border-gray-300"
     >
       {loaded ? (
         <BlocklyWorkspace

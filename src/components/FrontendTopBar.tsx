@@ -55,7 +55,7 @@ const FrontendTopBar: React.FC<FrontendTopBarProps> = ({ hideCode }) => {
       </div>
 
       <div className="flex items-center">    
-      <div className="w-8" onClick={hideCode}>
+      <div className="w-10 mr-4 text-red-500 hover:scale-125 active:scale-110 hover:text-red-800 transition duration-100" onClick={hideCode}>
         <CodeBracketSquareIcon />
       </div>
         <AwesomeButton 

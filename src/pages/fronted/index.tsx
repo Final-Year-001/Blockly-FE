@@ -26,7 +26,6 @@ import { useDebounce } from "@uidotdev/usehooks";
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
-  CodeBracketSquareIcon,
 } from "@heroicons/react/24/solid";
 import Tour from "reactour";
 import _ from "lodash";
@@ -256,16 +255,18 @@ function FrontendPage() {
       label: "Code",
       value: "html",
       desc: (
-        <div className="whitespace-pre-line w-full h-full p-2">
+        <div className="whitespace-pre-line w-full h-full">
           {/* <code>{code}</code> */}
-
           <AceEditor
             height="100%"
             width="100%"
             value={code}
+            style={{borderRadius: '10px'}}
             mode="html"
             theme="monokai"
-            fontSize="20px"
+            wrapEnabled={true} // wraps and removes the scroll bar
+            readOnly={true}
+            fontSize="18px"
             highlightActiveLine={true}
             setOptions={{
               enableLiveAutocompletion: true,
@@ -277,12 +278,12 @@ function FrontendPage() {
       ),
     },
     {
-      label: "IFrame",
+      label: "Website",
       value: "iframe",
       desc: (
         <iframe
           title="preview"
-          className="bg-white pb-10 rounded-lg w-full h-full"
+          className="bg-white pb-10 border-2 border-black rounded-lg w-full h-full"
           ref={iframeRef}
           name="iframe1"
         />
@@ -291,7 +292,7 @@ function FrontendPage() {
     {
       label: "Console",
       value: "react",
-      desc: <ConsoleLogger logs={logs} />,
+      desc: (<div className="bg-black h-full rounded-lg"><ConsoleLogger logs={logs} /></div>)
     },
   ];
 
@@ -338,8 +339,8 @@ function FrontendPage() {
       >
         <div
           className={`flex flex-col gap-4 ${
-            hideOutput ? "flex-[1]" : isExpanded ? "flex-[0.3]" : "flex-[0.7]"
-          } duration-200 ease-in-out transition-all`}
+            hideOutput ? "flex-[1] mr-1" : isExpanded ? "flex-[0.3]" : "flex-[0.7]"
+          } duration-200 ease-in-out transition-all` }
         >
           {reset && 
           <FrontendWorkspace
@@ -361,12 +362,12 @@ function FrontendPage() {
 
         <div
           className={
-            "flex-[0.3] pl-2 h-full relative transition-all duration-200 bg-gray-600 p-1 rounded-lg ease-in-out " +
+            "flex-[0.3] pl-2 h-full relative transition-all duration-200 bg-gray-200 ml-1 pr-1 pt-1 rounded-lg ease-in-out " +
             `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"} ${hideOutput && 'hidden'}`
           }
         >
           <div
-            className="absolute p-2 top-20 left-0 w-10 z-10 bg-black rounded-l-lg text-white"
+            className="absolute p-2 top-20 left-0 w-10 z-10 bg-black rounded-xl text-white"
             
           >
             <div 
@@ -381,7 +382,7 @@ function FrontendPage() {
             </div>
         
           </div>
-          <Tabs id="outputSection" value="html" className="h-full pb-10">
+          <Tabs id="outputSection" value="html" className="h-full pb-10 mr-1">
             <TabsHeader>
               {tabs.map(({ label, value }) => (
                 <Tab id={`TabBtn${label}`} key={value} value={value}>
@@ -390,9 +391,9 @@ function FrontendPage() {
               ))}
             </TabsHeader>
             {/* <TabsBody className="h-full   bg-black border rounded-xl hover:overflow-auto"> */}
-            <TabsBody className="h-full   bg-black border rounded-xl hover:overflow-auto">
+            <TabsBody className="h-full  rounded-xl hover:overflow-auto">
               {tabs.map(({ value, desc }) => (
-                <TabPanel className="m-0 p-1 h-full" key={value} value={value}>
+                <TabPanel className="m-0 p-1 pb-2 rounded-lg h-full" key={value} value={value}>
                   {desc}
                   {value == "html" && (
                     <button
