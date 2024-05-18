@@ -14,18 +14,21 @@ class CustomConstantProvider extends Blockly.blockRendering.ConstantProvider {
     // Set up all of the constants from the base provider.
     super();
     this.NOTCH_WIDTH = 40;
-    this.NOTCH_HEIGHT = 12;
-    this.CORNER_RADIUS = 10;
+    this.NOTCH_HEIGHT = 6;
+    this.CORNER_RADIUS = 15;
 
-    // this is the left side puzzle thingy
+    // this is the left side puzzle thingy - the thingy that looks like ooms 
     this.TAB_HEIGHT = 30;
     this.TAB_WIDTH = 20;
     this.TAB_OFFSET_FROM_TOP = 6;
 
     this.MEDIUM_PADDING = 5;
 
-    //top down puzzle notch thing
+    //top down puzzle notch thing -- width eka
     this.NOTCH_OFFSET_LEFT = 20;
+
+
+    // this.JAGGED_TEETH = this.makeJaggedTeeth();
    
     // This is the tiny box with input that we see inside the blocks
     this.FIELD_BORDER_RECT_HEIGHT = 20;
