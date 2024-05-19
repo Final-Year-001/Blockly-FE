@@ -6,6 +6,8 @@ import { FaArrowUp } from "react-icons/fa";
 import Confetti from "react-dom-confetti";
 import "./serverCreationStyles.css";
 import { blocks, categoryDescriptions } from "./data";
+import avatar from "../../../assets/avatar/avatarW.png";
+import play from "../../../assets/avatar/play.png";
 
 // const Badge = ({ title, image }) => (
 //   <div style={{ display: "inline-block", marginRight: "10px" }}>
@@ -57,6 +59,16 @@ function ServerCreationDocs(): JSX.Element {
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
+  };
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayButtonClick = () => {
+    setIsPlaying(true);
+  };
+
+  const handleVideoEnd = () => {
+    setIsPlaying(false);
   };
 
   useEffect(() => {
@@ -270,25 +282,83 @@ function ServerCreationDocs(): JSX.Element {
           </div>
 
           {/* Feedback System with Badges */}
-          <h3 className="badheh3">Your Badges</h3>
-          <div
-            className="feedback-container"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
+          <h3
+            className="badheh3"
+            style={{ fontFamily: "Arial, sans-serif", fontSize: "1.5rem" }}
           >
-            <div>
+            Your Badges
+          </h3>
+          <div className="feedback-container">
+            <div className="kid-animation">
               <img
                 src="/img/Award.gif"
                 alt="Kid Animation"
-                style={{ maxWidth: "250px", maxHeight: "180px" }}
+                style={{
+                  maxWidth: "250px",
+                  maxHeight: "180px",
+                  marginLeft: "-70px",
+                  marginTop: "10px",
+                }}
               />
-              <p className="caption" style={{ marginTop: "28px" }}>
+              <p
+                className="caption"
+                style={{
+                  marginTop: "28px",
+                  marginLeft: "-70px",
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "1.3rem",
+                }}
+              >
                 {" "}
                 Completion Reward
               </p>
+            </div>
+            <div
+              className="mt-16 relative"
+              style={{
+                width: "250px",
+                marginTop: "2px",
+                marginLeft: "80px",
+                transform: "translateY(-25px)",
+              }}
+            >
+              {isPlaying ? (
+                <video width="350" controls autoPlay onEnded={handleVideoEnd}>
+                  <source
+                    src="https://res.cloudinary.com/dlw1yfobn/video/upload/v1716008459/WebBlockCraft/avatar/20240518_Congratula_1_dsqcmv.mp4"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div
+                  style={{ position: "relative", width: "70%", height: "100%" }}
+                >
+                  <img
+                    src={avatar}
+                    alt="Avatar"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <img
+                    src={play}
+                    alt="Play"
+                    onClick={handlePlayButtonClick}
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      cursor: "pointer",
+                      width: "60px", // Adjust size of the play button as needed
+                      height: "60px",
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </div>
 
