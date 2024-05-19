@@ -4,8 +4,20 @@ import { ClipboardIcon } from "@heroicons/react/24/solid";
 import Editor from "@monaco-editor/react";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-html";
-import "ace-builds/src-noconflict/theme-github";
+
 import "ace-builds/src-noconflict/theme-monokai";
+import 'ace-builds/src-noconflict/theme-solarized_light';
+import 'ace-builds/src-noconflict/theme-github';
+import 'ace-builds/src-noconflict/theme-twilight';
+import 'ace-builds/src-noconflict/theme-solarized_dark';
+import 'ace-builds/src-noconflict/theme-solarized_light';
+import 'ace-builds/src-noconflict/mode-javascript';
+import 'ace-builds/src-noconflict/theme-cobalt';
+
+import 'ace-builds/src-noconflict/theme-ambiance';
+import 'ace-builds/src-noconflict/theme-cobalt';
+import 'ace-builds/src-noconflict/theme-cobalt';
+
 import "ace-builds/src-noconflict/ext-language_tools";
 import {
   Tabs,
@@ -268,6 +280,7 @@ function FrontendPage() {
             readOnly={true}
             fontSize="18px"
             highlightActiveLine={true}
+            // showGutter={false} // hide numbers 
             setOptions={{
               enableLiveAutocompletion: true,
               showLineNumbers: true,

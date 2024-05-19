@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 import ModalCodeEdit from "../pages/codeExplain/ModalCode";
 import { useState } from "react";
 import {
-  CodeBracketSquareIcon
+  ArrowsPointingOutIcon
 } from "@heroicons/react/24/solid";
 
 function logout(){
@@ -55,8 +55,8 @@ const FrontendTopBar: React.FC<FrontendTopBarProps> = ({ hideCode }) => {
       </div>
 
       <div className="flex items-center">    
-      <div className="w-10 mr-4 text-red-500 hover:scale-125 active:scale-110 hover:text-red-800 transition duration-100" onClick={hideCode}>
-        <CodeBracketSquareIcon />
+      <div className="w-8 mr-4 text-red-500 hover:scale-125 active:scale-110 hover:text-red-800 transition duration-100" onClick={hideCode}>
+        <ArrowsPointingOutIcon />
       </div>
         <AwesomeButton 
         style={{ 
