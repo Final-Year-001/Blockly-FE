@@ -22,6 +22,7 @@ import CSSDoc from "./pages/documents/css";
 import CodeSplitter from "./pages/codeExplain/CodeSplitter";
 import MainPage from "./pages/home/MainPage";
 import ServerCreationDocs from "./pages/documents/serverCreationDocs";
+import AuthenticationDocs from "./pages/documents/authenticationDocs";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
   {
     path: "/doc-server-creation",
     element: <ServerCreationDocs />,
+  },
+  {
+    path: "/doc-auth",
+    element: <AuthenticationDocs />,
   },
   {
     path: "/crunchCode",

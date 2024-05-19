@@ -16,19 +16,21 @@ function GettingStartFront() {
           className={` ${GettingStartedBtnSize} ${HtmlButtonColor}`}
           onClick={() => navigate("/doc-html")}
         >
-          HTML Tutorials
+          HTML Documentation
         </div>
+
         <div
           className={` ${GettingStartedBtnSize} ${CssButtonColor}`}
           onClick={() => navigate("/doc-css")}
         >
-          CSS Tutorials
+          CSS Documentation
         </div>
+
         <div
           className={` ${GettingStartedBtnSize} ${JSButtonColor}`}
           onClick={() => navigate("/doc-js")}
         >
-          JS Tutorials
+          JS Documentaion
         </div>
       </div>
     </div>

@@ -16,21 +16,21 @@ function GettingStartBack() {
           className={` ${GettingStartedBtnSize} ${serverButtonColor}`}
           onClick={() => navigate("/doc-server-creation")}
         >
-          Server Creation Tutorials
+          Server Creation Documentation
         </div>
 
         <div
           className={` ${GettingStartedBtnSize} ${APIButtonColor}`}
-          onClick={() => navigate("/doc-js")}
+          onClick={() => navigate("/doc-auth")}
         >
-          API Handling Tutorials
+          Authentication Documentation
         </div>
 
         <div
           className={` ${GettingStartedBtnSize} ${DBButtonColor}`}
           onClick={() => navigate("/doc-html")}
         >
-          Database Handling Tutorials
+          API and Database Handling Documentation
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TopBar from "../topBar";
 import { FaArrowUp } from "react-icons/fa";
@@ -20,7 +20,7 @@ const sideBarActive = "hover:bg-blue-600";
 const blueButton =
   "bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2";
 
-function ServerCreationDocs(): JSX.Element {
+function AuthenticationDocs(): JSX.Element {
   const navigate = useNavigate();
 
   // Group blocks by category
@@ -134,7 +134,7 @@ function ServerCreationDocs(): JSX.Element {
             </a>
           ))}
           <div onClick={() => navigate("#")} className={` ${blueButton} mt-10`}>
-            Auth Doc
+            Server Creation Doc
           </div>
         </div>
       </div>
@@ -348,4 +348,4 @@ function ServerCreationDocs(): JSX.Element {
   );
 }
 
-export default ServerCreationDocs;
+export default AuthenticationDocs;
