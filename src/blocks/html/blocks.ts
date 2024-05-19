@@ -58,6 +58,7 @@ Blockly.Blocks["html_html"] = {
         "premade_dropdown",
         "premade_option",
         "premade_button",
+        "style_block_inline"
       ])
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("body");
@@ -152,7 +153,7 @@ Blockly.Blocks["html_h"] = {
       )
       .appendField("Text");
     this.appendValueInput("text")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("properties");
     this.setInputsInline(false);
@@ -202,7 +203,7 @@ Blockly.Blocks["html_p"] = {
       .appendField("Paragrapgh")
       .appendField("Text");
     this.appendValueInput("text")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("properties");
     this.setInputsInline(false);
@@ -273,7 +274,7 @@ Blockly.Blocks["html_button"] = {
       .appendField("Name")
       .appendField(new Blockly.FieldTextInput(""), "name");
     this.appendValueInput("NAME")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
@@ -355,7 +356,7 @@ Blockly.Blocks["html_input_field"] = {
         "type"
       );
     this.appendValueInput("NAME")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
@@ -395,7 +396,7 @@ Blockly.Blocks["html_label"] = {
       .appendField("Name")
       .appendField(new Blockly.FieldTextInput(""), "NAME");
     this.appendValueInput("NAME")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
@@ -459,7 +460,7 @@ JavaScript.javascriptGenerator.forBlock["html_idClass"] = function (
 Blockly.Blocks["html_form"] = {
   init: function () {
     this.appendValueInput("NAME")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("Form Block")
       .appendField("|")
       .appendField("properties");
@@ -482,6 +483,7 @@ Blockly.Blocks["html_form"] = {
       "premade_dropdown",
       "premade_option",
       "premade_button",
+    
     ]);
     this.setInputsInline(false);
     this.setPreviousStatement(true, "html_form");
@@ -512,10 +514,10 @@ Blockly.Blocks["html_table"] = {
       .appendField("Border size")
       .appendField(new Blockly.FieldNumber(0, 0, 100, 1), "NAME");
     this.appendValueInput("identify")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("properties");
-    this.appendStatementInput("NAME").setCheck(["table_rows"]);
+    this.appendStatementInput("NAME").setCheck(["table_rows", "style_block_inline"]);
     this.setInputsInline(false);
     this.setPreviousStatement(true, [
       "html_table",
@@ -553,7 +555,7 @@ JavaScript.javascriptGenerator.forBlock["html_table"] = function (
 Blockly.Blocks["table_headings"] = {
   init: function () {
     this.appendValueInput("NAME")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("Heading cell")
       .appendField("|")
       .appendField("properties");
@@ -603,7 +605,7 @@ JavaScript.javascriptGenerator.forBlock["table_headings"] = function (
 Blockly.Blocks["table_rows"] = {
   init: function () {
     this.appendValueInput("NAME")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("New Row")
       .appendField("|")
       .appendField("properties");
@@ -654,7 +656,7 @@ JavaScript.javascriptGenerator.forBlock["table_rows"] = function (
 Blockly.Blocks["table_data"] = {
   init: function () {
     this.appendValueInput("NAME")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("Normal cell")
       .appendField("|")
       .appendField("properties");
@@ -705,8 +707,8 @@ Blockly.Blocks["html_textadd"] = {
     this.appendDummyInput()
       .appendField("Add Text")
       .appendField(new Blockly.FieldTextInput("default"), "data");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_textadd");
+    this.setNextStatement(true, "html_textadd");
     this.setStyle("HTML_text");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -727,7 +729,7 @@ Blockly.Blocks["html_div1"] = {
   init: function () {
     this.appendDummyInput().appendField("Box container (div) ");
     this.appendValueInput("NAME")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("properties");
     this.appendStatementInput("statementName").setCheck([
@@ -852,7 +854,7 @@ Blockly.Blocks["html_ol_list"] = {
   init: function () {
     this.appendDummyInput().appendField("Ordered List");
     this.appendValueInput("identify")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("Type")
       .appendField(
         new Blockly.FieldDropdown([
@@ -904,7 +906,7 @@ Blockly.Blocks["html_ul_list"] = {
   init: function () {
     this.appendDummyInput().appendField("Unordered List");
     this.appendValueInput("identify")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("Type")
       .appendField(
         new Blockly.FieldDropdown([
@@ -955,12 +957,13 @@ Blockly.Blocks["html_li"] = {
   init: function () {
     this.appendDummyInput().appendField("List Item");
     this.appendValueInput("identify")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("properties");
     this.appendStatementInput("NAME").setCheck([
       "html_h",
       "html_p",
       "html_addtext",
+      "html_textadd",
       "html_button",
       "html_name",
       "html_input_field",
@@ -1072,7 +1075,7 @@ Blockly.Blocks["html_checkbox"] = {
       .appendField("  Value")
       .appendField(new Blockly.FieldTextInput(""), "Value");
     this.appendValueInput("NAME")
-      .setCheck(["html_idClass", "html_identifier"])
+      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
