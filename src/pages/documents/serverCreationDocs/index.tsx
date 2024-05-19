@@ -335,7 +335,7 @@ function ServerCreationDocs(): JSX.Element {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "#C70039",
+            backgroundColor: "black",
             color: "white",
             padding: "10px",
             borderRadius: "50%",
