@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TopBar from "../topBar";
 import { FaArrowUp } from "react-icons/fa";
@@ -116,10 +116,10 @@ function ServerCreationDocs(): JSX.Element {
         >
           <div className="mb-10 text-xl ml-4">Server Creation Categories</div>
           <div
-            onClick={() => navigate("/doc-css")}
-            className={` ${blueButton} mt-10`}
+            onClick={() => navigate("/doc-js")}
+            className={` ${blueButton} mt-1`}
           >
-            CSS Doc
+            JS Doc
           </div>
           {/* Render links for each category */}
           {Object.keys(groupedBlocks).map((category, index) => (
@@ -341,7 +341,7 @@ function ServerCreationDocs(): JSX.Element {
             borderRadius: "50%",
           }}
         >
-          <FaArrowUp size={23} />
+          <FaArrowUp size={20} />
         </div>
       )}
     </div>

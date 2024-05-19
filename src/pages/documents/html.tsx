@@ -258,13 +258,13 @@ function HTMLDoc(): JSX.Element {
               bottom: "20px",
               right: "20px",
               cursor: "pointer",
-              backgroundColor: "#C70039",
+              backgroundColor: "#202020",
               color: "white",
               padding: "10px",
               borderRadius: "50%",
             }}
           >
-            <FaArrowUp size={23} />
+            <FaArrowUp size={20} />
           </div>
         )}
       </div>

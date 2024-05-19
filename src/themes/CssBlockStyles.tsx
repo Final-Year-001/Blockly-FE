@@ -1,17 +1,17 @@
 export const CssBlockTheme = {
     'CSS_Main': {
-        'colourPrimary': '#d26374',
+        'colourPrimary': '#d34358',
         'colourSecondary': '#0d05ab',
-        'colourTertiary': '#cb0808'
+        'colourTertiary': '#4e0000'
      },
       'CSS_style': {
-        'colourPrimary': '#d98282',
+        'colourPrimary': '#da5050',
         'colourSecondary': '#AD7BE9',
-        'colourTertiary': '#e53a5c'
+        'colourTertiary': '#5f0013'
      },
      'CSS_blocks': {
-        'colourPrimary': '#999999',
+        'colourPrimary': '#818181',
         'colourSecondary': '#AD7BE9',
-        'colourTertiary': '#e53a5c'
+        'colourTertiary': '#4d000f'
      },
 }

@@ -7,9 +7,9 @@ import Confetti from "react-dom-confetti";
 
 const cardColor = "bg-white/0";
 const topBarColor = "bg-wbcMain";
-const sideBarColor = "bg-gray-200";
-const sideBarHover = "bg-wbcMain";
-const sideBarActive = "hover:bg-wbcMain";
+const sideBarColor = "bg-gray-200"; 
+const sideBarHover = "bg-blue-500";
+const sideBarActive = "hover:bg-blue-600";
 const blueButton =
   "bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2";
 
@@ -99,7 +99,7 @@ function CSSDoc(): JSX.Element {
           <div className="text-xl">CSS Categories</div>
           <div
             onClick={() => navigate("/doc-html")}
-            className={` ${blueButton} mt-10`}
+            className={` ${blueButton} mt-8`}
           >
             HTML Doc
           </div>
@@ -116,7 +116,7 @@ function CSSDoc(): JSX.Element {
           ))}
           <div
             onClick={() => navigate("/doc-js")}
-            className={` ${blueButton} mt-10`}
+            className={` ${blueButton} mt-5`}
           >
             JS Doc
           </div>
@@ -262,13 +262,13 @@ function CSSDoc(): JSX.Element {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "#C70039",
+            backgroundColor: "#202020",
             color: "white",
             padding: "10px",
             borderRadius: "50%",
           }}
         >
-          <FaArrowUp size={23} />
+          <FaArrowUp size={20} />
         </div>
       )}
     </div>

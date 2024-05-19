@@ -2,7 +2,9 @@ import ProductLogo from "../../assets/Logo";
 import ProductLogoBW from "../../assets/LogoB&W";
 import { Link } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
 
 const buttonGroup = "flex gap-2";
 const logoutBtn =
@@ -13,19 +15,40 @@ const homeBtn =
   "bg-green-400 hover:bg-green-500 avtive:bg-green-600 hover:scale-105 active:scale-95 transition duration-100  text-white px-4 py-2 rounded-lg border-black border-2";
 const projectBtn =
   "bg-amber-600 hover:bg-amber-700 avtive:bg-amber-900 hover:scale-105 active:scale-95 transition duration-100  text-white px-4 py-2 rounded-lg border-black border-2";
+const loginBtn =
+  "bg-amber-600 hover:bg-amber-700 avtive:bg-amber-900 hover:scale-105 active:scale-95 transition duration-100  text-white px-4 py-2 rounded-lg border-black border-2";
 
 interface Props {
   onPage?: string; //
 }
 
 function TopBar({ onPage }: Props): JSX.Element {
+  const [isTokenValid, setIsTokenValid] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const token = localStorage.getItem("tokens");
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+
+      const currentTime: number = Date.now() / 1000; // Convert milliseconds to seconds
+      if (decodedToken.exp > currentTime) {
+        setIsTokenValid(true);
+      } else {
+        setIsTokenValid(false);
+        console.log("pathname is ", location.pathname);
+        navigate("./login");
+      }
+    }
+  }, []);
+
   function logout() {
     localStorage.removeItem("tokens");
     console.log("Token removed!");
     window.location.href = "/login";
   }
 
-  const navigate = useNavigate();
   return (
     <div className="flex px-20 w-full bg-blue-500 justify-between items-center p-4">
       <div className="flex flex-col  gap-3 px-2">
@@ -35,7 +58,7 @@ function TopBar({ onPage }: Props): JSX.Element {
       </div>
 
       <div className="flex">
-        {onPage == "projectSss" && (
+        {onPage == "projectSss" && isTokenValid && (
           <AwesomeButton
             style={{
               "--button-primary-color": "#4682B4",
@@ -71,9 +94,15 @@ function TopBar({ onPage }: Props): JSX.Element {
               </button>
             </div>
             <div>
-              <button onClick={logout} className={logoutBtn}>
-                Logout
-              </button>
+              {isTokenValid ? (
+                <button onClick={logout} className={logoutBtn}>
+                  Logout
+                </button>
+              ) : (
+                <button onClick={() => navigate("/login")} className={loginBtn}>
+                  Login
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -85,18 +114,26 @@ function TopBar({ onPage }: Props): JSX.Element {
             </button>
             <div>
               <div>
-                <button
-                  onClick={() => navigate("/my/projects")}
-                  className={projectBtn}
-                >
-                  My Projects
-                </button>
+                {isTokenValid && (
+                  <button
+                    onClick={() => navigate("/my/projects")}
+                    className={projectBtn}
+                  >
+                    My Projects
+                  </button>
+                )}
               </div>
             </div>
             <div>
-              <button onClick={logout} className={logoutBtn}>
-                Logout
-              </button>
+              {isTokenValid ? (
+                <button onClick={logout} className={logoutBtn}>
+                  Logout
+                </button>
+              ) : (
+                <button onClick={() => navigate("/login")} className={loginBtn}>
+                  Login
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -112,17 +149,25 @@ function TopBar({ onPage }: Props): JSX.Element {
               </button>
             </div>
             <div>
-              <button
-                onClick={() => navigate("/my/projects")}
-                className={projectBtn}
-              >
-                My Projects
-              </button>
+              {isTokenValid && (
+                <button
+                  onClick={() => navigate("/my/projects")}
+                  className={projectBtn}
+                >
+                  My Projects
+                </button>
+              )}
             </div>
             <div>
-              <button onClick={logout} className={logoutBtn}>
-                Logout
-              </button>
+              {isTokenValid ? (
+                <button onClick={logout} className={logoutBtn}>
+                  Logout
+                </button>
+              ) : (
+                <button onClick={() => navigate("/login")} className={loginBtn}>
+                  Login
+                </button>
+              )}
             </div>
           </div>
         )}

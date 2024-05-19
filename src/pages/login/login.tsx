@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "@material-tailwind/react";
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginWithUsernameAndPassword } from "../../api/auth";
 import { useRecoilState } from "recoil";
 import { tokenAtom } from "../../state/auth";
@@ -11,6 +11,7 @@ import ProductLogo from "../../assets/Logo";
 import img from "../../assets/loginImg/loginimg.gif";
 import bgImg from "../../assets/loginImg/ttbg.jpg";
 import { TypeAnimation } from "react-type-animation";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 
 const elements = document.querySelectorAll('.index-module_type__E-SaG');
 
@@ -23,6 +24,8 @@ elements.forEach((element: HTMLElement) => {
 function LoginPage() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false); // State for password visibility
+  const [loading, setLoading] = useState(false)
 
   const [_, setTokens] = useRecoilState(tokenAtom);
 
@@ -39,7 +42,12 @@ function LoginPage() {
   });
 
   const login = () => {
+    setLoading(true);
     loginMutation.mutate({ username, password });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -48,7 +56,9 @@ function LoginPage() {
       <div className="hidden md:block bg-white h-full w-full relative">
         <div className="min-h-screen flex items-center justify-center">
           <div className="absolute top-0 left-0 m-6">
+          <Link to="/home">
             <ProductLogo />
+            </Link>
           </div>
           <div>
             <div>
@@ -100,13 +110,20 @@ function LoginPage() {
             <div className="relative h-11 w-full min-w-[200px]">
               <Input
                 crossOrigin={undefined}
-                type="password"
+                type={showPassword ? "text" : "password"} // Toggle type based on state
                 label="Password"
                 value={password}
                 onChange={(password) => setPassword(password.target.value)}
                 containerProps={{
                   className: "min-w-0",
                 }}
+                icon={
+                  showPassword ? (
+                    <FaEyeSlash className="cursor-pointer" onClick={togglePasswordVisibility} />
+                  ) : (
+                    <FaEye className="cursor-pointer" onClick={togglePasswordVisibility} />
+                  )
+                } // Add eye icon
               />
             </div>
             <div className="-ml-2.5">
@@ -160,7 +177,7 @@ function LoginPage() {
               onMouseUp={login}
               type="primary"
             >
-              Sign In
+              {loading ? "Loading..." : "Sign In"}
             </AwesomeButton>
 
             <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
