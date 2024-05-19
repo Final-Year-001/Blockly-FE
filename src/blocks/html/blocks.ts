@@ -16,8 +16,8 @@ function removeParentheses(str: any) {
 Blockly.Blocks["html_br"] = {
   init: function () {
     this.appendDummyInput().appendField("Line Break");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_br");
+    this.setNextStatement(true, "html_br");
     this.setStyle("HTML_text");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -42,6 +42,7 @@ Blockly.Blocks["html_html"] = {
       .setCheck([
         "html_h",
         "html_p",
+        "html_br",
         "html_addtext",
         "html_button",
         "html_name",
@@ -157,8 +158,8 @@ Blockly.Blocks["html_h"] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("properties");
     this.setInputsInline(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_h");
+    this.setNextStatement(true, "html_h");
     this.setStyle("HTML_text");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -207,8 +208,8 @@ Blockly.Blocks["html_p"] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("properties");
     this.setInputsInline(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_p");
+    this.setNextStatement(true, "html_p");
     this.setStyle("HTML_text");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -278,8 +279,8 @@ Blockly.Blocks["html_button"] = {
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_button");
+    this.setNextStatement(true, "html_button");
     this.setStyle("HTML_form");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -360,8 +361,8 @@ Blockly.Blocks["html_input_field"] = {
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_input_field");
+    this.setNextStatement(true, "html_input_field");
     this.setStyle("HTML_form");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -400,8 +401,8 @@ Blockly.Blocks["html_label"] = {
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_label");
+    this.setNextStatement(true, "html_label");
     this.setStyle("HTML_form");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -752,8 +753,8 @@ Blockly.Blocks["html_div1"] = {
       "premade_option",
       "premade_button",
     ]);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_div1");
+    this.setNextStatement(true, "html_div1");
     this.setStyle("HTML_Containers");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -1019,8 +1020,8 @@ Blockly.Blocks["html_img"] = {
       // .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("name:")
       .appendField(new Blockly.FieldTextInput("add image name"), "imageName");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_img");
+    this.setNextStatement(true, "html_img");
     this.setStyle("HTML_links");
     this.setTooltip("This is the image block");
     this.setHelpUrl("");
@@ -1045,8 +1046,8 @@ Blockly.Blocks["html_a"] = {
       .appendField("Add link")
       .appendField(new Blockly.FieldTextInput("Add link here"), "link");
     this.appendStatementInput("data").setCheck(null);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_a");
+    this.setNextStatement(true, "html_a");
     this.setStyle("HTML_links");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -1079,8 +1080,8 @@ Blockly.Blocks["html_checkbox"] = {
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "html_checkbox");
+    this.setNextStatement(true, "html_checkbox");
     this.setStyle("HTML_form");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -1114,8 +1115,8 @@ Blockly.Blocks["premade_button"] = {
     this.appendDummyInput()
       .appendField("Button Name")
       .appendField(new Blockly.FieldTextInput("btnName"), "btnName");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "premade_button");
+    this.setNextStatement(true, "premade_button");
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -1139,9 +1140,9 @@ JavaScript.javascriptGenerator.forBlock["premade_button"] = function (
 Blockly.Blocks["premade_dropdown"] = {
   init: function () {
     this.appendDummyInput().appendField("Drop Down Box");
-    this.appendStatementInput("NAME").setCheck(null).appendField("options");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.appendStatementInput("NAME").setCheck("premade_option").appendField("options");
+    this.setPreviousStatement(true, "premade_dropdown");
+    this.setNextStatement(true, "premade_dropdown");
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -1167,8 +1168,8 @@ Blockly.Blocks["premade_option"] = {
     this.appendDummyInput()
       .appendField("option")
       .appendField(new Blockly.FieldTextInput("default"), "NAME");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "premade_option");
+    this.setNextStatement(true, "premade_option");
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");

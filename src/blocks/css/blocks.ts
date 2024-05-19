@@ -19,9 +19,9 @@ Blockly.Blocks['html_css'] = {
     this.appendDummyInput()
         .appendField("CSS Block");
     this.appendStatementInput("css_statement")
-        .setCheck("cssStatement");
+        .setCheck("style_block");
     this.setPreviousStatement(true, "html_css");
-    this.setNextStatement(true, null);
+    this.setNextStatement(true, "html_css");
     this.setStyle('CSS_Main');
  this.setTooltip("This is the CSS tag block where you include the css styling");
  this.setHelpUrl("");
@@ -50,8 +50,8 @@ Blockly.Blocks['style_block'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("declarator");
-    this.setPreviousStatement(true, "cssStatement");
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "style_block");
+    this.setNextStatement(true, "style_block");
     this.setStyle('CSS_style');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -203,8 +203,8 @@ Blockly.Blocks['css_font_family'] = {
         .appendField(new Blockly.FieldCheckbox("FALSE"), "NAME")
         .appendField("Add other font")
         .appendField(new Blockly.FieldTextInput("default"), "customFont");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "css_font_family");
+    this.setNextStatement(true, "css_font_family");
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
