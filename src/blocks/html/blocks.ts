@@ -1648,76 +1648,7 @@ JavaScript.javascriptGenerator.forBlock["html_checkbox"] = function (
   return code;
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Blockly.Blocks["premade_button"] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Button Name")
-      .appendField(new Blockly.FieldTextInput("btnName"), "btnName");
-    this.setPreviousStatement(true, [
-      "html_h",
-      "html_p",
-      "html_addtext",
-      "html_button",
-      "html_name",
-      "html_input_field",
-      "html_label",
-      "html_form",
-      "html_table",
-      "table_headings",
-      "html_div1",
-      "table_data",
-      "html_ol_list",
-      "html_ul_list",
-      "html_img",
-      "html_a",
-      "html_checkbox",
-      "premade_dropdown",
-      "premade_option",
-      "premade_button",
-      "html_textadd",
-    ]);
-    this.setNextStatement(true, [
-      "html_h",
-      "html_p",
-      "html_addtext",
-      "html_button",
-      "html_name",
-      "html_input_field",
-      "html_label",
-      "html_form",
-      "html_table",
-      "table_headings",
-      "html_div1",
-      "table_data",
-      "html_ol_list",
-      "html_ul_list",
-      "html_img",
-      "html_a",
-      "html_checkbox",
-      "premade_dropdown",
-      "premade_option",
-      "premade_button",
-      "html_textadd",
-    ]);
-    this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-    this.setStyle("HTML_premade");
-  },
-};
-
-JavaScript.javascriptGenerator.forBlock["premade_button"] = function (
-  block: any,
-  generator: any
-) {
-  const text_btnname = block.getFieldValue("btnName");
-
-  // TODO: Assemble javascript into code variable.
-  var code = `<button style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">${text_btnname}</button>`;
-  return code;
-};
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -1863,6 +1794,50 @@ JavaScript.javascriptGenerator.forBlock["preBlock_input"] = function (
     return `<input type="${dropdown_dropdown}" name="${text_name}" ${value_name}>`;
   }else {
     return `<input type="${dropdown_dropdown}" name="${text_name}" ${cssTika} ${value_name}>`;
+  }
+};
+
+////////////////////////
+
+
+Blockly.Blocks['preBlock_button'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Button")
+        .appendField(new Blockly.FieldDropdown([["red" , "red"], ["green" , "green"], ["blue" , "blue"], ["orange" , "orange"]]), "color")
+        .appendField("Name")
+        .appendField(new Blockly.FieldTextInput("default"), "NAME1");
+    this.appendValueInput("NAME3")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Overide CSS")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "NAME2")
+        .appendField("|")
+        .appendField("Properties");
+        
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle("HTML_premade");
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock["preBlock_button"] = function (
+  block: any,
+  generator: any
+) {
+  var dropdown_color = block.getFieldValue('color');
+  var text_name = block.getFieldValue('NAME1');
+  var checkbox_name = block.getFieldValue('NAME2') === 'FALSE';
+  var value_name = generator.valueToCode(block, 'NAME3', JavaScript.Order.ATOMIC);
+  // TODO: Assemble javascript into code variable.
+
+  const cssTika = `style="padding: 10px 20px; background-color: ${dropdown_color}; color: #fff; border: none; border-radius: 5px; cursor: pointer;"`
+  if(!checkbox_name){
+    return `<button ${value_name}>${text_name}</button>`;
+  }else {
+    return `<button ${cssTika} ${value_name}>${text_name}</button>`;
   }
 };
 
