@@ -22,42 +22,77 @@ function QuickAccess() {
 
   return (
     <div>
+      <style>{`
+        .tooltip {
+          position: relative;
+          display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+          visibility: hidden;
+          width: 80px;
+          background-color: #28282B;
+          color: #fff;
+          text-align: center;
+          font-size: 10px;
+          border-radius: 5px;
+          padding: 2px 0;
+          position: absolute;
+          z-index: 1;
+          bottom: 105%;
+          left: 50%;
+          margin-left: -40px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+          visibility: visible;
+          opacity: 1;
+        }
+      `}</style>
       <div className="flex justify-between px-72">
         <div
-          className={` ${GettingStartedBtnSize} ${HtmlButtonColor} flex flex-col`}
+          className={`tooltip ${GettingStartedBtnSize} ${HtmlButtonColor} flex flex-col`}
           onClick={() => navigate("/doc-html")}
         >
-          <img src={htmlIMG}  alt="Quick access image" />
+          <img src={htmlIMG} alt="Quick access image" />
+          <span className="tooltiptext">HTML</span>
         </div>
         <div
-          className={` ${GettingStartedBtnSize} ${CssButtonColor}`}
+          className={`tooltip ${GettingStartedBtnSize} ${CssButtonColor}`}
           onClick={() => navigate("/doc-css")}
         >
-          <img src={cssImg}  alt="Quick access image" />
+          <img src={cssImg} alt="Quick access image" />
+          <span className="tooltiptext">CSS</span>
         </div>
         <div
-          className={` ${GettingStartedBtnSize} ${JSButtonColor}`}
+          className={`tooltip ${GettingStartedBtnSize} ${JSButtonColor}`}
           onClick={() => navigate("/doc-js")}
         >
-           <img src={jsImg}  alt="Quick access image" />
+          <img src={jsImg} alt="Quick access image" />
+          <span className="tooltiptext">JavaScript</span>
         </div>
         <div
-          className={` ${GettingStartedBtnSize} ${serverButtonColor}`}
+          className={`tooltip ${GettingStartedBtnSize} ${serverButtonColor}`}
           onClick={() => navigate("/doc-html")}
         >
-           <img src={serverImg}  alt="Quick access image" />
+          <img src={serverImg} alt="Quick access image" />
+          <span className="tooltiptext">Server Creation</span>
         </div>
         <div
-          className={` ${GettingStartedBtnSize} ${APIButtonColor}`}
+          className={`tooltip ${GettingStartedBtnSize} ${APIButtonColor}`}
           onClick={() => navigate("/doc-html")}
         >
-           <img src={APIImg}  alt="Quick access image" />
+          <img src={APIImg} alt="Quick access image" />
+          <span className="tooltiptext">API Handling</span>
         </div>
         <div
-          className={` ${GettingStartedBtnSize} ${DBButtonColor}`}
+          className={`tooltip ${GettingStartedBtnSize} ${DBButtonColor}`}
           onClick={() => navigate("/doc-html")}
         >
-           <img src={DBImg}  alt="Quick access image" />
+          <img src={DBImg} alt="Quick access image" />
+          <span className="tooltiptext">Database Handling</span>
         </div>
       </div>
     </div>
