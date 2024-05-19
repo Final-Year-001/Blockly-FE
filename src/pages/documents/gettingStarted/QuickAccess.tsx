@@ -82,14 +82,14 @@ function QuickAccess() {
         </div>
         <div
           className={`tooltip ${GettingStartedBtnSize} ${APIButtonColor}`}
-          onClick={() => navigate("/doc-html")}
+          onClick={() => navigate("/doc-api-blocks")}
         >
           <img src={APIImg} alt="Quick access image" />
           <span className="tooltiptext">API Handling</span>
         </div>
         <div
           className={`tooltip ${GettingStartedBtnSize} ${DBButtonColor}`}
-          onClick={() => navigate("/doc-html")}
+          onClick={() => navigate("/doc-database-blocks")}
         >
           <img src={DBImg} alt="Quick access image" />
           <span className="tooltiptext">Database Handling</span>
