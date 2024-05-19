@@ -45,12 +45,12 @@ function GetStarted() {
 
       <div className="pt-20">
         <div>
-          <div className="flex text-3xl justify-center pt-4 mb-4">
+          <div className="flex text-3xl justify-center pt-4 mb-10">
             Get Started
           </div>
         </div>
 
-        <div className="mx-auto container ">
+        <div className="mx-auto container mb-4">
           <QuickAccess />
         </div>
 
