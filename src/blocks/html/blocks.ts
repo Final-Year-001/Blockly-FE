@@ -1819,50 +1819,6 @@ JavaScript.javascriptGenerator.forBlock["premade_option"] = function (
 
 
 
-//////////////////////////////////////////////////////////////////////////////
-
-Blockly.Blocks['preBlock_button'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Button")
-        .appendField(new Blockly.FieldDropdown([["red" , "red"], ["green" , "green"], ["blue" , "blue"], ["orange" , "orange"]]), "color")
-        .appendField("Name")
-        .appendField(new Blockly.FieldTextInput("default"), "NAME1");
-    this.appendValueInput("NAME3")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Overide CSS")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "NAME2")
-        .appendField("|")
-        .appendField("Properties");
-        
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setStyle("HTML_premade");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-JavaScript.javascriptGenerator.forBlock["preBlock_button"] = function (
-  block: any,
-  generator: any
-) {
-  var dropdown_color = block.getFieldValue('color');
-  var text_name = block.getFieldValue('NAME1');
-  var checkbox_name = block.getFieldValue('NAME2') === 'FALSE';
-  var value_name = generator.valueToCode(block, 'NAME3', JavaScript.Order.ATOMIC);
-  // TODO: Assemble javascript into code variable.
-
-  const cssTika = `style="padding: 10px 20px; background-color: ${dropdown_color}; color: #fff; border: none; border-radius: 5px; cursor: pointer;"`
-  if(!checkbox_name){
-    return `<button ${value_name}>${text_name}</button>`;
-  }else {
-    return `<button ${cssTika} ${value_name}>${text_name}</button>`;
-  }
-};
-
-
 
 ///////////////////////////////////////
 
@@ -1994,7 +1950,7 @@ JavaScript.javascriptGenerator.forBlock["preBlock_div"] = function (
   var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
   var statements_statementname = generator.statementToCode(block, 'statementName');
   // TODO: Assemble javascript into code variable.
-  const cssTika = `style=" ${number_gap > 0 && `gap: ${number_gap}px;`} ${dropdown_justify} ${checkbox_guidebox && 'border: 2px solid #000000;'}"`
+  const cssTika = `style="${number_gap > 0 ? `gap: ${number_gap}px;`:''} ${dropdown_justify} ${checkbox_guidebox ? 'border: 2px solid #000000;':''}"`
   if(!checkbox_overridecss){
     return `<div${value_cssoverride}>${statements_statementname}</div>`;
   }else {

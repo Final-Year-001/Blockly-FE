@@ -179,7 +179,11 @@ export const htmlCategory = {
       contents: [
         {
           kind: "block",
-          type: "premade_button",
+          type: "preBlock_Card",
+        },
+        {
+          kind: "block",
+          type: "preBlock_div",
         },
         {
           kind: "block",
@@ -196,14 +200,6 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "preBlock_input",
-        },
-        {
-          kind: "block",
-          type: "preBlock_Card",
-        },
-        {
-          kind: "block",
-          type: "preBlock_div",
         },
       ],
     },
