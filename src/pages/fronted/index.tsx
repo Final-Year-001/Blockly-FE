@@ -388,9 +388,9 @@ function FrontendPage() {
               setIsExpanded((prev) => !prev);
             }}>
             {isExpanded ? (
-              <ChevronDoubleRightIcon />
+              <ChevronDoubleRightIcon title="Minimize the code view"/>
             ) : (
-              <ChevronDoubleLeftIcon />
+              <ChevronDoubleLeftIcon title="Expand the code view"/> 
             )}
             </div>
         
