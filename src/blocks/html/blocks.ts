@@ -59,7 +59,7 @@ Blockly.Blocks["html_html"] = {
         "premade_dropdown",
         "premade_option",
         "premade_button",
-        "style_block_inline"
+        "style_block_inline",
       ])
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("body");
@@ -158,8 +158,52 @@ Blockly.Blocks["html_h"] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("properties");
     this.setInputsInline(false);
-    this.setPreviousStatement(true, "html_h");
-    this.setNextStatement(true, "html_h");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setStyle("HTML_text");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -208,8 +252,52 @@ Blockly.Blocks["html_p"] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("properties");
     this.setInputsInline(false);
-    this.setPreviousStatement(true, "html_p");
-    this.setNextStatement(true, "html_p");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setStyle("HTML_text");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -279,8 +367,52 @@ Blockly.Blocks["html_button"] = {
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
-    this.setPreviousStatement(true, "html_button");
-    this.setNextStatement(true, "html_button");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setStyle("HTML_form");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -361,8 +493,52 @@ Blockly.Blocks["html_input_field"] = {
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
-    this.setPreviousStatement(true, "html_input_field");
-    this.setNextStatement(true, "html_input_field");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setStyle("HTML_form");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -401,8 +577,52 @@ Blockly.Blocks["html_label"] = {
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
-    this.setPreviousStatement(true, "html_label");
-    this.setNextStatement(true, "html_label");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setStyle("HTML_form");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -484,7 +704,6 @@ Blockly.Blocks["html_form"] = {
       "premade_dropdown",
       "premade_option",
       "premade_button",
-    
     ]);
     this.setInputsInline(false);
     this.setPreviousStatement(true, "html_form");
@@ -510,7 +729,7 @@ JavaScript.javascriptGenerator.forBlock["html_form"] = function (
 
 Blockly.Blocks["html_table"] = {
   init: function () {
-    this.appendEndRowInput().appendField("Table Blocks");
+    this.appendEndRowInput().appendField("Table Block");
     this.appendDummyInput()
       .appendField("Border size")
       .appendField(new Blockly.FieldNumber(0, 0, 100, 1), "NAME");
@@ -518,19 +737,52 @@ Blockly.Blocks["html_table"] = {
       .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("properties");
-    this.appendStatementInput("NAME").setCheck(["table_rows", "style_block_inline"]);
+    this.appendStatementInput("NAME").setCheck([
+      "table_rows",
+      "style_block_inline",
+    ]);
     this.setInputsInline(false);
     this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
       "html_table",
-      "table_headings",
-      "table_rows",
-      "table_data",
+      "html_div1",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
     ]);
     this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
       "html_table",
-      "table_headings",
-      "table_rows",
-      "table_data",
+      "html_div1",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
     ]);
     this.setStyle("HTML_table");
     this.setTooltip("");
@@ -570,9 +822,7 @@ Blockly.Blocks["table_headings"] = {
       "html_label",
       "html_form",
       "html_table",
-      "table_headings",
       "html_div1",
-      "table_data",
       "html_ol_list",
       "html_ul_list",
       "html_img",
@@ -581,6 +831,7 @@ Blockly.Blocks["table_headings"] = {
       "premade_dropdown",
       "premade_option",
       "premade_button",
+      "html_textadd",
     ]);
     this.setInputsInline(false);
     this.setPreviousStatement(true, "table_headings");
@@ -610,30 +861,10 @@ Blockly.Blocks["table_rows"] = {
       .appendField("New Row")
       .appendField("|")
       .appendField("properties");
-    this.appendStatementInput("State").setCheck(
-      [
-        "html_h",
-        "html_p",
-        "html_addtext",
-        "html_button",
-        "html_name",
-        "html_input_field",
-        "html_label",
-        "html_form",
-        "html_table",
-        "html_div1",
-        "table_data",
-        "html_ol_list",
-        "table_headings",
-        "html_ul_list",
-        "html_img",
-        "html_a",
-        "html_checkbox",
-        "premade_dropdown",
-        "premade_option",
-        "premade_button",
-      ]
-    );
+    this.appendStatementInput("State").setCheck([
+      "table_headings",
+      "table_data",
+    ]);
     this.setInputsInline(false);
     this.setPreviousStatement(true, "table_rows");
     this.setNextStatement(true, "table_rows");
@@ -672,7 +903,6 @@ Blockly.Blocks["table_data"] = {
       "html_form",
       "html_table",
       "html_div1",
-      "table_data",
       "html_ol_list",
       "html_ul_list",
       "html_img",
@@ -683,8 +913,8 @@ Blockly.Blocks["table_data"] = {
       "premade_button",
     ]);
     this.setInputsInline(false);
-    this.setPreviousStatement(true, "tableRow");
-    this.setNextStatement(true, "tableRow");
+    this.setPreviousStatement(true, "table_data");
+    this.setNextStatement(true, "table_data");
     this.setStyle("HTML_tableSub");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -708,8 +938,52 @@ Blockly.Blocks["html_textadd"] = {
     this.appendDummyInput()
       .appendField("Add Text")
       .appendField(new Blockly.FieldTextInput("default"), "data");
-    this.setPreviousStatement(true, "html_textadd");
-    this.setNextStatement(true, "html_textadd");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setStyle("HTML_text");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -869,8 +1143,52 @@ Blockly.Blocks["html_ol_list"] = {
       )
       .appendField("properties");
     this.appendStatementInput("NAME").setCheck("html_li");
-    this.setPreviousStatement(true, "html_ol_list");
-    this.setNextStatement(true, "html_ol_list");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -920,8 +1238,52 @@ Blockly.Blocks["html_ul_list"] = {
       )
       .appendField("properties");
     this.appendStatementInput("NAME").setCheck("html_li");
-    this.setPreviousStatement(true, "html_ul_list");
-    this.setNextStatement(true, "html_ul_list");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -983,8 +1345,54 @@ Blockly.Blocks["html_li"] = {
       "premade_option",
       "premade_button",
     ]);
-    this.setPreviousStatement(true, "html_li");
-    this.setNextStatement(true, "html_li");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+      "html_li"
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+      "html_li"
+    ]);
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -1020,8 +1428,52 @@ Blockly.Blocks["html_img"] = {
       // .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("name:")
       .appendField(new Blockly.FieldTextInput("add image name"), "imageName");
-    this.setPreviousStatement(true, "html_img");
-    this.setNextStatement(true, "html_img");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setStyle("HTML_links");
     this.setTooltip("This is the image block");
     this.setHelpUrl("");
@@ -1046,8 +1498,52 @@ Blockly.Blocks["html_a"] = {
       .appendField("Add link")
       .appendField(new Blockly.FieldTextInput("Add link here"), "link");
     this.appendStatementInput("data").setCheck(null);
-    this.setPreviousStatement(true, "html_a");
-    this.setNextStatement(true, "html_a");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setStyle("HTML_links");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -1080,8 +1576,52 @@ Blockly.Blocks["html_checkbox"] = {
       .appendField("properties")
       .setAlign(Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
-    this.setPreviousStatement(true, "html_checkbox");
-    this.setNextStatement(true, "html_checkbox");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setStyle("HTML_form");
     this.setTooltip("");
     this.setHelpUrl("");
@@ -1115,8 +1655,52 @@ Blockly.Blocks["premade_button"] = {
     this.appendDummyInput()
       .appendField("Button Name")
       .appendField(new Blockly.FieldTextInput("btnName"), "btnName");
-    this.setPreviousStatement(true, "premade_button");
-    this.setNextStatement(true, "premade_button");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -1140,9 +1724,55 @@ JavaScript.javascriptGenerator.forBlock["premade_button"] = function (
 Blockly.Blocks["premade_dropdown"] = {
   init: function () {
     this.appendDummyInput().appendField("Drop Down Box");
-    this.appendStatementInput("NAME").setCheck("premade_option").appendField("options");
-    this.setPreviousStatement(true, "premade_dropdown");
-    this.setNextStatement(true, "premade_dropdown");
+    this.appendStatementInput("NAME")
+      .setCheck("premade_option")
+      .appendField("options");
+    this.setPreviousStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
+    this.setNextStatement(true, [
+      "html_h",
+      "html_p",
+      "html_addtext",
+      "html_button",
+      "html_name",
+      "html_input_field",
+      "html_label",
+      "html_form",
+      "html_table",
+      "table_headings",
+      "html_div1",
+      "table_data",
+      "html_ol_list",
+      "html_ul_list",
+      "html_img",
+      "html_a",
+      "html_checkbox",
+      "premade_dropdown",
+      "premade_option",
+      "premade_button",
+      "html_textadd",
+    ]);
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -1185,4 +1815,189 @@ JavaScript.javascriptGenerator.forBlock["premade_option"] = function (
   // TODO: Assemble javascript into code variable.
   var code = `<option value="volvo">${text_name}</option> \n`;
   return code;
+};
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['preBlock_button'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Button")
+        .appendField(new Blockly.FieldDropdown([["red" , "red"], ["green" , "green"], ["blue" , "blue"], ["orange" , "orange"]]), "color")
+        .appendField("Name")
+        .appendField(new Blockly.FieldTextInput("default"), "NAME1");
+    this.appendValueInput("NAME3")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Overide CSS")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "NAME2")
+        .appendField("|")
+        .appendField("Properties");
+        
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle("HTML_premade");
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock["preBlock_button"] = function (
+  block: any,
+  generator: any
+) {
+  var dropdown_color = block.getFieldValue('color');
+  var text_name = block.getFieldValue('NAME1');
+  var checkbox_name = block.getFieldValue('NAME2') === 'FALSE';
+  var value_name = generator.valueToCode(block, 'NAME3', JavaScript.Order.ATOMIC);
+  // TODO: Assemble javascript into code variable.
+
+  const cssTika = `style="padding: 10px 20px; background-color: ${dropdown_color}; color: #fff; border: none; border-radius: 5px; cursor: pointer;"`
+  if(!checkbox_name){
+    return `<button ${value_name}>${text_name}</button>`;
+  }else {
+    return `<button ${cssTika} ${value_name}>${text_name}</button>`;
+  }
+};
+
+
+
+///////////////////////////////////////
+
+
+Blockly.Blocks['preBlock_input'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Input Feild")
+        .appendField("Type")
+        .appendField(new Blockly.FieldDropdown([
+          ["Text", "text"],
+          ["Number", "number"],
+          ["Email", "email"],
+          ["Password", "password"],
+        ]), "dropdown")
+        .appendField("Name")
+        .appendField(new Blockly.FieldTextInput(""), "name");
+        this.appendValueInput("NAME")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Overide CSS")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
+        .appendField("Properties");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle("HTML_premade");
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+JavaScript.javascriptGenerator.forBlock["preBlock_input"] = function (
+  block: any,
+  generator: any
+) {
+  var dropdown_dropdown = block.getFieldValue('dropdown');
+  var text_name = block.getFieldValue('name');
+  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'FALSE';
+  var value_name = generator.valueToCode(block, 'NAME', JavaScript.Order.ATOMIC);
+
+  const cssTika = `style="width: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"`
+  if(!checkbox_overridecss){
+    return `<input type="${dropdown_dropdown}" name="${text_name}" ${value_name}>`;
+  }else {
+    return `<input type="${dropdown_dropdown}" name="${text_name}" ${cssTika} ${value_name}>`;
+  }
+};
+
+
+///////////////////////////////////
+
+
+Blockly.Blocks['preBlock_Card'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Card");
+    this.appendValueInput("cssOverride")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Overide CSS")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
+        .appendField("Properties");
+    this.appendStatementInput("statementName")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle("HTML_premade");
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+
+JavaScript.javascriptGenerator.forBlock["preBlock_Card"] = function (
+  block: any,
+  generator: any
+) {
+  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'FALSE';
+  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
+  var statements_statementname = generator.statementToCode(block, 'statementName');
+  // TODO: Assemble javascript into code variable.
+  const cssTika = `style="min-height: 200px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); padding: 20px;"`
+  if(!checkbox_overridecss){
+    return `<div ${value_cssoverride}>${statements_statementname}</div>`;
+  }else {
+    return `<div ${cssTika} ${value_cssoverride}>${statements_statementname}</div>`;
+  }
+};
+
+//////////////////////////////////////////////////////////////////////
+
+
+Blockly.Blocks['preBlock_div'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Box")
+        .appendField("|")
+        .appendField("Guide Border")
+        .appendField(new Blockly.FieldCheckbox("TRUE"), "guideBox")
+        .appendField("Justify")
+        .appendField(new Blockly.FieldDropdown([["normal",""], ["start","display: flex; justify-content: start;"], ["center","display: flex; justify-content: center;"], ["end","display: flex; justify-content: end;"]]), "justify")
+        .appendField("Gap")
+        .appendField(new Blockly.FieldNumber(0, 0), "gap")
+        .appendField("px");
+    this.appendValueInput("cssOverride")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Overide CSS")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
+        .appendField("Properties");
+    this.appendStatementInput("statementName")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle("HTML_premade");
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+
+JavaScript.javascriptGenerator.forBlock["preBlock_div"] = function (
+  block: any,
+  generator: any
+) {
+  var checkbox_guidebox = block.getFieldValue('guideBox') === 'TRUE';
+  var dropdown_justify = block.getFieldValue('justify');
+  var number_gap = block.getFieldValue('gap');
+  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'TRUE';
+  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
+  var statements_statementname = generator.statementToCode(block, 'statementName');
+  // TODO: Assemble javascript into code variable.
+  const cssTika = `style=" ${number_gap > 0 && `gap: ${number_gap}px;`} ${dropdown_justify} ${checkbox_guidebox && 'border: 2px solid #000000;'}"`
+  if(!checkbox_overridecss){
+    return `<div${value_cssoverride}>${statements_statementname}</div>`;
+  }else {
+    return `<div ${cssTika} ${value_cssoverride}>${statements_statementname}</div>`;
+  }
 };
