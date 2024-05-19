@@ -20,6 +20,9 @@ import 'react-awesome-button/dist/styles.css';
 import { useNavigate } from "react-router-dom";
 import ModalCodeEdit from "../pages/codeExplain/ModalCode";
 import { useState } from "react";
+import {
+  ArrowsPointingOutIcon
+} from "@heroicons/react/24/solid";
 
 function logout(){
   console.log("Works");
@@ -27,7 +30,11 @@ function logout(){
   window.location.href = '/login'; 
 }
 
-function FrontendTopBar() {
+interface FrontendTopBarProps {
+  hideCode: () => void;
+}
+
+const FrontendTopBar: React.FC<FrontendTopBarProps> = ({ hideCode }) => {
   let [workAreaSize, setworkAreaSize] = useRecoilState(codeAtom);
   let [code, setCode] = useRecoilState(codeAtom);
   const [showCodeEditor, setShowCodeEditor] = useState(false);
@@ -47,7 +54,10 @@ function FrontendTopBar() {
       </h3>
       </div>
 
-      <div>    
+      <div className="flex items-center">    
+      <div className="w-8 mr-4 text-red-500 hover:scale-125 active:scale-110 hover:text-red-800 transition duration-100" onClick={hideCode}>
+        <ArrowsPointingOutIcon />
+      </div>
         <AwesomeButton 
         style={{ 
           '--button-primary-color': '#33cc33',

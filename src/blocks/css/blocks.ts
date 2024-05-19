@@ -83,7 +83,7 @@ Blockly.Blocks['style_block_inline'] = {
         .appendField("Add style Dirrectly");
     this.appendStatementInput("NAME")
         .setCheck(null);
-    this.setOutput(true, null);
+    this.setOutput(true, "style_block_inline");
     this.setStyle('CSS_Main');
  this.setTooltip("");
  this.setHelpUrl("");

@@ -4,6 +4,8 @@ import { FaArrowUp } from "react-icons/fa";
 import { blocks, categoryDescriptions } from "./CSSDocData";
 import { useNavigate } from "react-router-dom";
 import Confetti from "react-dom-confetti";
+import avatar from "../../assets/avatar/avatarW.png";
+import play from "../../assets/avatar/play.png";
 
 const cardColor = "bg-white/0";
 const topBarColor = "bg-wbcMain";
@@ -15,6 +17,7 @@ const blueButton =
 
 function CSSDoc(): JSX.Element {
   const navigate = useNavigate();
+  const [isPlaying, setIsPlaying] = useState(false);
   const groupedBlocks: { [key: string]: Block[] } = blocks.reduce(
     (acc, block) => {
       acc[block.category] = acc[block.category] || [];
@@ -55,6 +58,15 @@ function CSSDoc(): JSX.Element {
       setActiveSection(category);
     }
   };
+
+  const handleVideoEnd = () => {
+    setIsPlaying(false);
+  };
+
+  const handlePlayButtonClick = () => {
+    setIsPlaying(true);
+  };
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -170,7 +182,7 @@ function CSSDoc(): JSX.Element {
           style={{ overflowY: "auto", maxHeight: "calc(100vh - 4rem)" }}
           ref={scrollContainerRef}
         >
-        <div className="pr-10 pl-10">
+         <div className="text-xl text-gray-800 px-24 pt-6">
             {/* Render blocks for each category */}
             {Object.entries(groupedBlocks).map(
               ([category, categoryBlocks], index) => (
@@ -178,26 +190,26 @@ function CSSDoc(): JSX.Element {
                   key={index}
                   id={category}
                   ref={(el) => (categoryBlocksRef.current[category] = el)}
-                  className="mb-8"
+                  className="mb-16"
                 >
-                  <div className="text-4xl font-semibold mt-2">{category}</div>
+                  <div className="underline">{category}</div>
                   {/* Render category description */}
-                  <div className="mb-8 text-xl text-justify ">
+                  <div className=" text-justify ">
                     {categoryDescriptions[category]}
                   </div>
                   {/* Map over the blocks in the category and render each one */}
                   {categoryBlocks.map((block, index) => (
                     <div
                       key={index}
-                      className={`mb- ${cardColor} p-8 rounded-xl flex flex-col`}
+                      className={`${cardColor}  rounded-xl flex flex-col`}
                     >
-                      <div className="mb-2 text-3xl text-gray-700 border-b-2 border-gray-200 pb-2 w-2/3">
-                        {block.title}
+                      <div className="mt-10  w-2/3">
+                        {index + 1}. {block.title}
                       </div>
-                      <div className="justify-between mt-4 w-full flex">
+                      <div className="justify-between w-full flex">
                         <div className="w-4/6 ">
                           <div className="flex  flex-col">
-                            <div className="text-xl text-gray-600 text-justify">
+                            <div className=" text-justify">
                               {block.description}
                             </div>
                           </div>
@@ -213,9 +225,120 @@ function CSSDoc(): JSX.Element {
                       </div>
                     </div>
                   ))}
+                  <div className="mt-16">
+                  <hr
+                    style={{
+                      border: "1px solid #ddd",
+                      width: "85%",
+                      margin: "20px 5px 20px 5px",
+                    }}
+                  />
+                  </div>
                 </div>
               )
             )}
+          </div>
+
+
+          <h3
+            className="badheh3"
+            style={{ fontFamily: "Arial, sans-serif", fontSize: "1.5rem" }}
+          >
+            Your Badges
+          </h3>
+          <div className="feedback-container">
+            <div className="kid-animation">
+              <img
+                src="/img/css.png"
+                alt="Kid Animation"
+                style={{
+                  maxWidth: "250px",
+                  maxHeight: "200px",
+                  transform: "translateY(-7px)",
+                }}
+              />
+              <p
+                className="caption"
+                style={{
+                  marginTop: "20px",
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "1.3rem",
+                }}
+              >
+                CSS Basics
+              </p>
+            </div>
+            <div className="kid-animation">
+              <img
+                src="/img/Award.gif"
+                alt="Kid Animation"
+                style={{
+                  maxWidth: "250px",
+                  maxHeight: "180px",
+                  marginLeft: "-70px",
+                  marginTop: "10px",
+                }}
+              />
+              <p
+                className="caption"
+                style={{
+                  marginTop: "28px",
+                  marginLeft: "-70px",
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "1.3rem",
+                }}
+              >
+                {" "}
+                Completion Reward
+              </p>
+            </div>
+            <div
+              className="mt-16 relative"
+              style={{
+                width: "250px",
+                marginTop: "2px",
+                marginLeft: "80px",
+                transform: "translateY(-25px)",
+              }}
+            >
+              {isPlaying ? (
+                <video width="350" controls autoPlay onEnded={handleVideoEnd}>
+                  <source
+                    src="https://res.cloudinary.com/dlw1yfobn/video/upload/v1716008459/WebBlockCraft/avatar/20240518_Congratula_1_dsqcmv.mp4"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div
+                  style={{ position: "relative", width: "70%", height: "100%" }}
+                >
+                  <img
+                    src={avatar}
+                    alt="Avatar"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <img
+                    src={play}
+                    alt="Play"
+                    onClick={handlePlayButtonClick}
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      cursor: "pointer",
+                      width: "60px", // Adjust size of the play button as needed
+                      height: "60px",
+                    }}
+                  />
+                </div>
+              )}
+            </div>
           </div>
 
           {/* footer */}
