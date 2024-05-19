@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
-import { Typography, Button } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
 import TopBar from "../topBar";
 import { FaArrowUp } from "react-icons/fa";
-import { AwesomeButton } from "react-awesome-button";
 import Overview from "./OverView";
 import "../mainpage.css";
 import GettingStartFront from "./GettingStartFrontend";
@@ -16,7 +13,6 @@ import Footer from "../../home/Footer";
 import QuickAccess from "./QuickAccess";
 
 const topBarColor = "bg-blue-500";
-const cardColor = "bg-gray-200";
 
 function GetStarted() {
   const [showScroll, setShowScroll] = useState(false);
@@ -49,12 +45,12 @@ function GetStarted() {
 
       <div className="pt-20">
         <div>
-          <div className="flex text-3xl justify-center pt-4 mb-4">
+          <div className="flex text-3xl justify-center pt-4 mb-10">
             Get Started
           </div>
         </div>
 
-        <div className="mx-auto container ">
+        <div className="mx-auto container mb-4">
           <QuickAccess />
         </div>
 
@@ -76,10 +72,13 @@ function GetStarted() {
         <div className="flex mt-20 gap-16 mx-auto container">
           <div className="w-full ">
             <div className="text-2xl mb-8">Getting Started with Frontend</div>
+
             <GettingStartFront />
           </div>
+
           <div className="w-full">
             <div className="text-2xl mb-8">Getting Started with Backend</div>
+
             <GettingStartBack />
           </div>
         </div>
@@ -88,6 +87,7 @@ function GetStarted() {
           <div className="text-2xl mt-20 mb-4">
             Connecting Frontend to Backend
           </div>
+
           <ConnectingFEBE />
         </div>
 

@@ -22,17 +22,17 @@ function GettingStartBack() {
           <div>
             <img src={serverImg} width={65} alt="image" />
           </div>
-          <div>Server Creation Tutorials</div>
+          <div>Server Creation Doc</div>
         </div>
 
         <div
           className={` ${GettingStartedBtnSize} ${APIButtonColor}`}
-          onClick={() => navigate("/doc-js")}
+          onClick={() => navigate("/doc-auth")}
         >
           <div>
             <img src={APIImg} width={65} alt="image" />
           </div>
-          <div>API Handling Tutorials</div>
+          <div>API Handling Doc</div>
         </div>
 
         <div
@@ -42,7 +42,7 @@ function GettingStartBack() {
           <div>
             <img src={DBImg} width={65} alt="image" />
           </div>
-          <div>Database Handling Tutorials</div>
+          <div>Database Handling Doc</div>
         </div>
       </div>
     </div>

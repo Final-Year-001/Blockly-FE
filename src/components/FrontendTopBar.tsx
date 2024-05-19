@@ -23,6 +23,7 @@ import { useState } from "react";
 import {
   ArrowsPointingOutIcon
 } from "@heroicons/react/24/solid";
+import { GoScreenFull } from "react-icons/go";
 
 function logout(){
   console.log("Works");
@@ -40,6 +41,13 @@ const FrontendTopBar: React.FC<FrontendTopBarProps> = ({ hideCode }) => {
   const [showCodeEditor, setShowCodeEditor] = useState(false);
   const navigate = useNavigate();
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleWorkspace = () => {
+    setIsExpanded(!isExpanded);
+    hideCode(); 
+  };
+
   return (
     <div className="flex w-full justify-between items-center p-3">
       <div className="flex flex-col  gap-3 px-2">
@@ -55,8 +63,8 @@ const FrontendTopBar: React.FC<FrontendTopBarProps> = ({ hideCode }) => {
       </div>
 
       <div className="flex items-center">    
-      <div className="w-8 mr-4 text-red-500 hover:scale-125 active:scale-110 hover:text-red-800 transition duration-100" onClick={hideCode}>
-        <ArrowsPointingOutIcon />
+      <div className="w-10 mr-4 text-black hover:scale-125 active:scale-110 hover:text-black transition duration-100" onClick={toggleWorkspace}>
+        <GoScreenFull size={30} title={isExpanded ? "Minimize Workspace" : "Expand Workspace"} />
       </div>
         <AwesomeButton 
         style={{ 
