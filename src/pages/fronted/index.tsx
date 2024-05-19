@@ -380,7 +380,7 @@ function FrontendPage() {
           }
         >
           <div
-            className="absolute p-2 top-20 left-0 w-10 z-10 bg-black rounded-xl text-white"
+            className="absolute p-2 top-2 left-1.5 w-10 z-10 bg-gray-600 rounded-xl text-white"
             
           >
             <div 
@@ -388,9 +388,9 @@ function FrontendPage() {
               setIsExpanded((prev) => !prev);
             }}>
             {isExpanded ? (
-              <ChevronDoubleRightIcon />
+              <ChevronDoubleRightIcon title="Minimize the code view"/>
             ) : (
-              <ChevronDoubleLeftIcon />
+              <ChevronDoubleLeftIcon title="Expand the code view"/> 
             )}
             </div>
         
