@@ -22,6 +22,8 @@ import CSSDoc from "./pages/documents/css";
 import CodeSplitter from "./pages/codeExplain/CodeSplitter";
 import MainPage from "./pages/home/MainPage";
 import ServerCreationDocs from "./pages/documents/serverCreationDocs";
+import APIBlocksDocPage from "./pages/documents/apiBlocksDoc";
+import DatabaseBlocksDocPage from "./pages/documents/databaseDoc";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -71,6 +73,14 @@ const router = createBrowserRouter([
   {
     path: "/doc-server-creation",
     element: <ServerCreationDocs />,
+  },
+  {
+    path: "/doc-api-blocks",
+    element: <APIBlocksDocPage />
+  },
+  {
+    path: "/doc-database-blocks",
+    element: <DatabaseBlocksDocPage />
   },
   {
     path: "/crunchCode",
