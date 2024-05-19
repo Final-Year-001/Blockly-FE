@@ -1,57 +1,119 @@
-export const HTMLBlockTheme = {
+
+const colorTheme01 = {
     'HTML_blocks': {
-        'colourPrimary': '#22c1ff',
+        'colourPrimary': '#00a7e9',
         'colourSecondary': '#0d05ab',
-        'colourTertiary': '#008fc8'
+        'colourTertiary': '#004a68'
      },
       'HTML_text': {
-        'colourPrimary': '#f87fad',
+        'colourPrimary': '#fa458b',
         'colourSecondary': '#AD7BE9',
-        'colourTertiary': '#dd5589'
+        'colourTertiary': '#6b0029'
      },
       'HTML_table': {
-         'colourPrimary': '#ffc022',
+         'colourPrimary': '#f0ac01',
          'colourSecondary': '#64C7FF',
-         'colourTertiary': '#d39700'
+         'colourTertiary': '#634700'
       },
       'HTML_tableSub': {
-        'colourPrimary': '#e8a600',
+        'colourPrimary': '#d39700',
         'colourSecondary': '#64C7FF',
-        'colourTertiary': '#b68303'
+        'colourTertiary': '#634700'
      },
      'HTML_formMain': {
-        'colourPrimary': '#1fc59b',
+        'colourPrimary': '#00c49a',
         'colourSecondary': '#64C7FF',
-        'colourTertiary': '#017d5e'
+        'colourTertiary': '#004130'
       },
       'HTML_form': {
-        'colourPrimary': '#45d3b0',
+        'colourPrimary': '#00c997',
         'colourSecondary': '#64C7FF',
-        'colourTertiary': '#009570'
+        'colourTertiary': '#004b38'
       },
       'HTML_list': {
-        'colourPrimary': '#ab7fe6',
+        'colourPrimary': '#8245d3',
         'colourSecondary': '#64C7FF',
-        'colourTertiary': '#8839c4'
+        'colourTertiary': '#300055'
       },
       'HTML_Containers': {
-        'colourPrimary': '#d1a06b',
+        'colourPrimary': '#d47612',
         'colourSecondary': '#64C7FF',
         'colourTertiary': '#c87720'
       },
       'HTML_links': {
-        'colourPrimary': '#afcd77',
+        'colourPrimary': '#83c20f',
         'colourSecondary': '#64C7FF',
         'colourTertiary': '#89bc2b'
       },
       'HTML_more': {
-        'colourPrimary': '#6590df',
+        'colourPrimary': '#1d5dd3',
         'colourSecondary': '#64C7FF',
-        'colourTertiary': '#2a5ebf'
+        'colourTertiary': '#001b4e'
       },
       'HTML_premade': {
         'colourPrimary': '#00b0b6',
         'colourSecondary': '#42b7bb',
-        'colourTertiary': '#2a5ebf'
+        'colourTertiary': '#004f52'
       },
 }
+
+const colorTheme02 = {
+  'HTML_blocks': {
+      'colourPrimary': '#00b7ff',
+      'colourSecondary': '#0d05ab',
+      'colourTertiary': '#004a68'
+   },
+    'HTML_text': {
+      'colourPrimary': '#ff0062',
+      'colourSecondary': '#AD7BE9',
+      'colourTertiary': '#6b0029'
+   },
+    'HTML_table': {
+       'colourPrimary': '#ffb700',
+       'colourSecondary': '#64C7FF',
+       'colourTertiary': '#634700'
+    },
+    'HTML_tableSub': {
+      'colourPrimary': '#f1ad00',
+      'colourSecondary': '#64C7FF',
+      'colourTertiary': '#634700'
+   },
+   'HTML_formMain': {
+      'colourPrimary': '#00ffc8',
+      'colourSecondary': '#64C7FF',
+      'colourTertiary': '#004130'
+    },
+    'HTML_form': {
+      'colourPrimary': '#00e0a8',
+      'colourSecondary': '#64C7FF',
+      'colourTertiary': '#004b38'
+    },
+    'HTML_list': {
+      'colourPrimary': '#6f00ff',
+      'colourSecondary': '#64C7FF',
+      'colourTertiary': '#300055'
+    },
+    'HTML_Containers': {
+      'colourPrimary': '#ff8400',
+      'colourSecondary': '#64C7FF',
+      'colourTertiary': '#c87720'
+    },
+    'HTML_links': {
+      'colourPrimary': '#a6ff00',
+      'colourSecondary': '#64C7FF',
+      'colourTertiary': '#89bc2b'
+    },
+    'HTML_more': {
+      'colourPrimary': '#0059ff',
+      'colourSecondary': '#64C7FF',
+      'colourTertiary': '#001b4e'
+    },
+    'HTML_premade': {
+      'colourPrimary': '#00d8d8',
+      'colourSecondary': '#42b7bb',
+      'colourTertiary': '#004f52'
+    },
+}
+
+
+export const HTMLBlockTheme = colorTheme01;

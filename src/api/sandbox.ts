@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { httpClient } from "../helpers/axios";
 import { Tokens } from "../state/auth";
 

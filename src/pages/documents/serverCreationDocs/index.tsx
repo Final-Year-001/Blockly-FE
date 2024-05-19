@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TopBar from "../topBar";
 import { FaArrowUp } from "react-icons/fa";
@@ -133,8 +133,8 @@ function ServerCreationDocs(): JSX.Element {
               {category}
             </a>
           ))}
-          <div onClick={() => navigate("#")} className={` ${blueButton} mt-6`}>
-            Server Creation Doc
+          <div onClick={() => navigate("#")} className={` ${blueButton} mt-10`}>
+            Auth Doc
           </div>
         </div>
       </div>
@@ -335,7 +335,7 @@ function ServerCreationDocs(): JSX.Element {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "#C70039",
+            backgroundColor: "black",
             color: "white",
             padding: "10px",
             borderRadius: "50%",

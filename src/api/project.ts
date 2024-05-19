@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { httpClient } from "../helpers/axios";
 import { uploadImage } from "../helpers/firebase";
 import { Tokens } from "../state/auth";
 
 export async function getAllProjects(tokens: Tokens) {
-  let res = await httpClient.request({
+  const res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
@@ -19,7 +20,7 @@ export async function saveProject(
   code: any,
   lessonStep?: number
 ) {
-  let res = await httpClient.request({
+  const res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
@@ -32,7 +33,7 @@ export async function saveProject(
 }
 
 export async function getProjectById(tokens: Tokens, id: string) {
-  let res = await httpClient.request({
+  const res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
@@ -44,7 +45,7 @@ export async function getProjectById(tokens: Tokens, id: string) {
 }
 
 export async function deleteProjectById(tokens: Tokens, id: string) {
-  let res = await httpClient.request({
+  const res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
@@ -56,7 +57,7 @@ export async function deleteProjectById(tokens: Tokens, id: string) {
 }
 
 export async function newProject(tokens: Tokens, data: any) {
-  let res = await httpClient.request({
+  const res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
@@ -69,7 +70,7 @@ export async function newProject(tokens: Tokens, data: any) {
 }
 
 export async function getLessonById(tokens: Tokens, id: string) {
-  let res = await httpClient.request({
+  const res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
@@ -81,7 +82,7 @@ export async function getLessonById(tokens: Tokens, id: string) {
 }
 
 export async function deleteLesson(tokens: Tokens, id: string) {
-  let res = await httpClient.request({
+  const res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
@@ -94,7 +95,7 @@ export async function deleteLesson(tokens: Tokens, id: string) {
 
 export async function saveLesson(tokens: Tokens, id: string, steps: any) {
   console.log(steps, "==================");
-  let uploads = [];
+  const uploads = [];
 
   for (const step of steps) {
     if (step.imageFile) {
@@ -102,7 +103,7 @@ export async function saveLesson(tokens: Tokens, id: string, steps: any) {
       uploads.push(
         (async () => {
           console.log("pppp===pp");
-          let [ref, image] = await uploadImage(step.imageFile);
+          const [ref, image] = await uploadImage(step.imageFile);
           console.log(ref, image);
           step.image = {
             url: image,
@@ -117,7 +118,7 @@ export async function saveLesson(tokens: Tokens, id: string, steps: any) {
 
   console.log(steps, "===+++====");
 
-  let res = await httpClient.request({
+  const res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
@@ -130,7 +131,7 @@ export async function saveLesson(tokens: Tokens, id: string, steps: any) {
 }
 
 export async function newLesson(tokens: Tokens, data: any) {
-  let res = await httpClient.request({
+  const res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
@@ -143,7 +144,7 @@ export async function newLesson(tokens: Tokens, data: any) {
 }
 
 export async function getAllLessons(tokens: Tokens) {
-  let res = await httpClient.request({
+  const res = await httpClient.request({
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },

@@ -6,7 +6,7 @@ function InfoComp3() {
     "https://www.youtube.com/embed/1GY3wrCKZFw?si=2Q4Ut8pRKWxfq4cm",
     "https://www.youtube.com/embed/1GY3wrCKZFw?si=2Q4Ut8pRKWxfq4cm",
     "https://www.youtube.com/embed/buapDLD1YSA?si=48R5XWeku0y9o9kN",
-    "https://www.youtube.com/embed/FRnKY-5TqOM?si=HnjgCHTn7SeDOdya",
+    "https://www.youtube.com/embed/zWxFTyRiP2Q?si=qcjtniv7nAVKEdFa",
   ];
 
   const des = "If you're feeling lost, don't worry, we've got you covered with our wonderful YouTube series. We'll help you to get started. Head over to our YouTube channel for detailed explanations."
