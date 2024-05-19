@@ -32,7 +32,7 @@ export const FETheme = Blockly.Theme.defineTheme('myCustomTheme', {
        'workspaceBackgroundColour': '#daebfbab',
       //  'toolboxBackgroundColour': '#3d3d3dcc',
        'toolboxForegroundColour': '#e2e2e2',
-       'flyoutBackgroundColour': '#60afffe8', 
+       'flyoutBackgroundColour': '#a0a0a0e8', 
        'flyoutForegroundColour': '#fff',
        'flyoutOpacity': 1,
        'scrollbarColour': '#b0c8df',

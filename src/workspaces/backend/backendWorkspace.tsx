@@ -18,7 +18,7 @@ export const workspaceConfiguration = {
   grid: {
     spacing: 20,
     length: 3,
-    colour: "#ebd50d", 
+    colour: "#a1caff", 
     //colour: "#",
     snap: true,
   },

@@ -1875,6 +1875,8 @@ JavaScript.javascriptGenerator.forBlock["preBlock_Card"] = function (
   var statements_statementname = generator.statementToCode(block, 'statementName');
   // TODO: Assemble javascript into code variable.
   const cssTika = `style="min-height: 200px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); padding: 20px;"`
+  
+  
   if(!checkbox_overridecss){
     return `<div ${value_cssoverride}>${statements_statementname}</div>`;
   }else {

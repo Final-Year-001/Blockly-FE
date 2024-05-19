@@ -1,10 +1,8 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import FrontendWorkspace from "../../workspaces/frontend/frontendWorkspace";
 import { ClipboardIcon } from "@heroicons/react/24/solid";
-import Editor from "@monaco-editor/react";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-html";
-
 import "ace-builds/src-noconflict/theme-monokai";
 import 'ace-builds/src-noconflict/theme-solarized_light';
 import 'ace-builds/src-noconflict/theme-github';
@@ -13,11 +11,9 @@ import 'ace-builds/src-noconflict/theme-solarized_dark';
 import 'ace-builds/src-noconflict/theme-solarized_light';
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/theme-cobalt';
-
 import 'ace-builds/src-noconflict/theme-ambiance';
 import 'ace-builds/src-noconflict/theme-cobalt';
 import 'ace-builds/src-noconflict/theme-cobalt';
-
 import "ace-builds/src-noconflict/ext-language_tools";
 import {
   Tabs,
@@ -30,7 +26,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { codeAtom } from "../../state/code";
 import FrontendTopBar from "../../components/FrontendTopBar";
 import { useMutation, useQuery } from "react-query";
-import { httpClient } from "../../helpers/axios";
 import { useParams } from "react-router-dom";
 import { WorkspaceSvg } from "blockly";
 import Blockly from "blockly";
@@ -46,9 +41,10 @@ import { getLessonById, getProjectById, saveProject } from "../../api/project";
 import { tokenAtom } from "../../state/auth";
 import { stripId } from "../../helpers/blockly";
 import HintComponent from "../../components/HintComponent";
-// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import StatusNoti from "./Status";
+import { js_beautify } from "js-beautify";
+import htmlBeautify from 'html-beautify'
 
 import { useChildEvents } from "../../lib/iframe-communication/iframe-communication";
 import { ConsoleLogger, LogEvent } from "../../components/ConsoleLogger";
@@ -60,6 +56,8 @@ function organizeImports(code: string) {
   // Extract import statements and other code
   const importStatements = [];
   const otherCode = [];
+
+  
 
   for (const line of lines) {
     if (line.trim().startsWith("import ")) {
@@ -130,6 +128,38 @@ function FrontendPage() {
   const tokens = useRecoilValue(tokenAtom);
 
   const [currentStepNumber, setCurrentStepNumber] = useState<number>(0);
+
+  const formattedCode = useMemo(
+    () =>
+      js_beautify(code, {
+        indent_size: 1,
+        indent_char: " ",
+        indent_with_tabs: false,
+        editorconfig: false,
+        eol: "\n",
+        end_with_newline: false,
+        indent_level: 0,
+        preserve_newlines: true,
+        max_preserve_newlines: 10,
+        space_in_paren: false,
+        space_in_empty_paren: false,
+        jslint_happy: false,
+        space_after_anon_function: false,
+        space_after_named_function: false,
+        brace_style: "collapse",
+        unindent_chained_methods: false,
+        break_chained_methods: false,
+        keep_array_indentation: false,
+        unescape_strings: false,
+        wrap_line_length: 0,
+        e4x: false,
+        comma_first: false,
+        operator_position: "before-newline",
+        indent_empty_lines: false,
+        templating: ["auto"],
+      }),
+    [code]
+  );
 
   const saveMutation = useMutation({
     mutationFn: ({ code, stepNumber }: { code: any; stepNumber: number }) =>
