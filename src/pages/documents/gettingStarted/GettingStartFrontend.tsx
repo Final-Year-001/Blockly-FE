@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-import htmlIMG from '../../../assets/gettingStarted/quickaccess/html.png'
-import cssImg from '../../../assets/gettingStarted/quickaccess/css.png'
-import jsImg from '../../../assets/gettingStarted/quickaccess/js.png'
+import htmlIMG from "../../../assets/gettingStarted/quickaccess/html.png";
+import cssImg from "../../../assets/gettingStarted/quickaccess/css.png";
+import jsImg from "../../../assets/gettingStarted/quickaccess/js.png";
 
 const GettingStartedBtnSize =
   "hover:scale-105  transition duration-300 text-3xl  cursor-pointer border-2 border-black  rounded-xl p-4 px-16 flex justify-items items-center gap-4";
@@ -23,10 +23,9 @@ function GettingStartFront() {
           <div>
             <img src={htmlIMG} width={65} alt="image" />
           </div>
-          <div>
-          HTML Tutorials
-          </div>
+          <div>HTML Doc</div>
         </div>
+
         <div
           className={` ${GettingStartedBtnSize} ${CssButtonColor}`}
           onClick={() => navigate("/doc-css")}
@@ -34,11 +33,9 @@ function GettingStartFront() {
           <div>
             <img src={cssImg} width={65} alt="image" />
           </div>
-          <div>
-          CSS Tutorials
-          </div>
-          
+          <div>CSS Doc</div>
         </div>
+
         <div
           className={` ${GettingStartedBtnSize} ${JSButtonColor}`}
           onClick={() => navigate("/doc-js")}
@@ -46,10 +43,7 @@ function GettingStartFront() {
           <div>
             <img src={jsImg} width={65} alt="image" />
           </div>
-          <div>
-          JS Tutorials
-          </div>
-          
+          <div>JS Doc</div>
         </div>
       </div>
     </div>

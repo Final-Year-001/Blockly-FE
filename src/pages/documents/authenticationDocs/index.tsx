@@ -20,7 +20,7 @@ const sideBarActive = "hover:bg-blue-600";
 const blueButton =
   "bg-blue-400 hover:bg-blue-500 cursor-pointer active:bg-blue-700 mb-10 p-2 rounded-lg border-black border-2";
 
-function ServerCreationDocs(): JSX.Element {
+function AuthenticationDocs(): JSX.Element {
   const navigate = useNavigate();
 
   // Group blocks by category
@@ -116,10 +116,10 @@ function ServerCreationDocs(): JSX.Element {
         >
           <div className="mb-10 text-xl ml-4">Server Creation Categories</div>
           <div
-            onClick={() => navigate("/doc-js")}
-            className={` ${blueButton} mt-1`}
+            onClick={() => navigate("/doc-css")}
+            className={` ${blueButton} mt-10`}
           >
-            JS Doc
+            CSS Doc
           </div>
           {/* Render links for each category */}
           {Object.keys(groupedBlocks).map((category, index) => (
@@ -134,7 +134,7 @@ function ServerCreationDocs(): JSX.Element {
             </a>
           ))}
           <div onClick={() => navigate("#")} className={` ${blueButton} mt-10`}>
-            Auth Doc
+            Server Creation Doc
           </div>
         </div>
       </div>
@@ -341,11 +341,11 @@ function ServerCreationDocs(): JSX.Element {
             borderRadius: "50%",
           }}
         >
-          <FaArrowUp size={20} />
+          <FaArrowUp size={23} />
         </div>
       )}
     </div>
   );
 }
 
-export default ServerCreationDocs;
+export default AuthenticationDocs;
