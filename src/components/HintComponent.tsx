@@ -11,12 +11,13 @@ interface HintComponentProps {
     url?: string;
   };
   readonly lastStep: number;
+  readonly frontend: boolean;
 }
 
 function HintComponent(_props: HintComponentProps) {
   const [oldProps, setProps] = useState(_props);
 
-  const { hint, step, stepPreview, image, lastStep } = oldProps;
+  const { hint, step, stepPreview, image } = oldProps;
   // const count = useMotionValue(1);
   const [scope, animate] = useAnimate();
   const [isLastStep, setIsLastStep] = useState<boolean>(true);
@@ -55,6 +56,7 @@ function HintComponent(_props: HintComponentProps) {
               <BlocklyRender
                 state={stepPreview}
                 className="h-[10em] w-[10em]"
+                frontend={_props.frontend}
               />
             )
           ) : null}
