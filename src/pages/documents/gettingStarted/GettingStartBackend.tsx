@@ -37,7 +37,7 @@ function GettingStartBack() {
 
         <div
           className={` ${GettingStartedBtnSize} ${DBButtonColor}`}
-          onClick={() => navigate("/doc-html")}
+          onClick={() => navigate("/doc-database-blocks")}
         >
           <div>
             <img src={DBImg} width={65} alt="image" />

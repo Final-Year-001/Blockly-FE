@@ -75,14 +75,14 @@ function QuickAccess() {
         </div>
         <div
           className={`tooltip ${GettingStartedBtnSize} ${serverButtonColor}`}
-          onClick={() => navigate("/doc-html")}
+          onClick={() => navigate("/doc-server-creation")}
         >
           <img src={serverImg} alt="Quick access image" />
           <span className="tooltiptext">Server Creation</span>
         </div>
         <div
           className={`tooltip ${GettingStartedBtnSize} ${APIButtonColor}`}
-          onClick={() => navigate("/doc-api-blocks")}
+          onClick={() => navigate("/doc-auth")}
         >
           <img src={APIImg} alt="Quick access image" />
           <span className="tooltiptext">API Handling</span>
