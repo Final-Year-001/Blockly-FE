@@ -145,7 +145,7 @@ function ServerCreationDocs(): JSX.Element {
               {category}
             </a>
           ))}
-          <div onClick={() => navigate("#")} className={` ${blueButton} mt-10`}>
+          <div onClick={() => navigate("/doc-auth")} className={` ${blueButton} mt-10`}>
             Auth Doc
           </div>
         </div>
