@@ -19,9 +19,9 @@ Blockly.Blocks['html_css'] = {
     this.appendDummyInput()
         .appendField("CSS Block");
     this.appendStatementInput("css_statement")
-        .setCheck("cssStatement");
+        .setCheck("style_block");
     this.setPreviousStatement(true, "html_css");
-    this.setNextStatement(true, null);
+    this.setNextStatement(true, "html_css");
     this.setStyle('CSS_Main');
  this.setTooltip("This is the CSS tag block where you include the css styling");
  this.setHelpUrl("");
@@ -47,11 +47,31 @@ Blockly.Blocks['style_block'] = {
         .appendField("name")
         .appendField(new Blockly.FieldTextInput("default"), "selector_name");
     this.appendStatementInput("css_statement")
-        .setCheck(null)
+        .setCheck([
+            "css_bg_color",
+            "css_text_color",
+            "css_border_color",
+            "css_font_size",
+            "css_font_family",
+            "css_height",
+            "css_width",
+            "css_marginPadding",
+            "css_flexbox",
+            "css_flexbox_wrap",
+            "css_flexbox_justify",
+            "css_flexbox_align",
+            "css_flexbox_align_row",
+            "css_flexbox_grow",
+            "css_text_align",
+            "css_custom",
+            "css_borderRadius",
+            "css_border_color",
+            "css_bloc_style",
+        ])
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("declarator");
-    this.setPreviousStatement(true, "cssStatement");
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "style_block");
+    this.setNextStatement(true, "style_block");
     this.setStyle('CSS_style');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -105,8 +125,48 @@ Blockly.Blocks['css_bg_color'] = {
     this.appendDummyInput()
         .appendField("Background Color")
         .appendField(new FieldColourHsvSliders("#ff9900"), "bgcolor");
-    this.setPreviousStatement(true, "css_bg_color");
-    this.setNextStatement(true, "css_bg_color");
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -127,8 +187,48 @@ Blockly.Blocks['css_text_color'] = {
     this.appendDummyInput()
         .appendField("Text Color")
         .appendField(new Blockly.FieldColour("#ff0000"), "color");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -152,8 +252,48 @@ Blockly.Blocks['css_border_color'] = {
           .appendField(new Blockly.FieldColour("#ff0000"), "color")
           .appendField("size")
           .appendField(new Blockly.FieldNumber(0, 0, 100), "size");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
+      this.setPreviousStatement(true, [
+        "css_bg_color",
+        "css_text_color",
+        "css_border_color",
+        "css_font_size",
+        "css_font_family",
+        "css_height",
+        "css_width",
+        "css_marginPadding",
+        "css_flexbox",
+        "css_flexbox_wrap",
+        "css_flexbox_justify",
+        "css_flexbox_align",
+        "css_flexbox_align_row",
+        "css_flexbox_grow",
+        "css_text_align",
+        "css_custom",
+        "css_borderRadius",
+        "css_border_color",
+        "css_bloc_style",
+    ]);
+      this.setNextStatement(true, [
+        "css_bg_color",
+        "css_text_color",
+        "css_border_color",
+        "css_font_size",
+        "css_font_family",
+        "css_height",
+        "css_width",
+        "css_marginPadding",
+        "css_flexbox",
+        "css_flexbox_wrap",
+        "css_flexbox_justify",
+        "css_flexbox_align",
+        "css_flexbox_align_row",
+        "css_flexbox_grow",
+        "css_text_align",
+        "css_custom",
+        "css_borderRadius",
+        "css_border_color",
+        "css_bloc_style",
+    ]);
       this.setStyle('CSS_blocks');
    this.setTooltip("");
    this.setHelpUrl("");
@@ -175,8 +315,48 @@ Blockly.Blocks['css_font_size'] = {
     this.appendDummyInput()
         .appendField("Font Size")
         .appendField(new Blockly.FieldNumber(0, 1, 1000, 1), "size");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -203,8 +383,48 @@ Blockly.Blocks['css_font_family'] = {
         .appendField(new Blockly.FieldCheckbox("FALSE"), "NAME")
         .appendField("Add other font")
         .appendField(new Blockly.FieldTextInput("default"), "customFont");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -236,8 +456,48 @@ Blockly.Blocks['css_height'] = {
         .appendField("Height")
         .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "type")
         .appendField(new Blockly.FieldNumber(0, 0), "number");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -260,8 +520,48 @@ Blockly.Blocks['css_width'] = {
         .appendField("Width")
         .appendField(new Blockly.FieldDropdown([["pixels","px"], ["Percentage","%"], ["em","em"]]), "type")
         .appendField(new Blockly.FieldNumber(0, 0), "number");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -422,8 +722,48 @@ Blockly.Blocks['css_marginPadding'] = {
         .appendField(new Blockly.FieldNumber(0, 0, 100), "num")
         .appendField(new Blockly.FieldDropdown([["Pixels","px"], ["Percentage","%"], ["em","em"]]), "selectNum")
         .appendField(new Blockly.FieldCheckbox("FALSE"), "Auto")
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -457,8 +797,48 @@ Blockly.Blocks['css_flexbox'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("Arange Boxes as a")
         .appendField(new Blockly.FieldDropdown([["Row","row"], ["Column","column"]]), "NAME");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -579,8 +959,48 @@ Blockly.Blocks['css_flexbox_grow'] = {
     this.appendDummyInput()
         .appendField("Box grow size")
         .appendField(new Blockly.FieldNumber(0, 0, 200), "NAME");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setColour(230);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -601,8 +1021,48 @@ Blockly.Blocks['css_text_align'] = {
     this.appendDummyInput()
         .appendField("Text Align")
         .appendField(new Blockly.FieldDropdown([["Left","left"], ["Center","center"], ["Right","right"], ["Justify","justify"]]), "align");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -625,8 +1085,48 @@ Blockly.Blocks['css_custom'] = {
         .appendField("Add Custom CSS to here.");
     this.appendDummyInput()
         .appendField(new Blockly.FieldTextInput(""), "css");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -647,8 +1147,48 @@ Blockly.Blocks['css_borderRadius'] = {
     this.appendDummyInput()
         .appendField("Border Corners")
         .appendField(new Blockly.FieldNumber(0, 0, 100), "borderCorner");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -669,8 +1209,48 @@ Blockly.Blocks['css_border_color'] = {
     this.appendDummyInput()
         .appendField("Border Color")
         .appendField(new Blockly.FieldColour("#ff0000"), "color");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");
@@ -691,8 +1271,48 @@ Blockly.Blocks['css_bloc_style'] = {
     this.appendDummyInput()
         .appendField("Border Style")
         .appendField(new Blockly.FieldDropdown([["double","double"], ["solid","solid"], ["none","none"], ["outset","outset"], ["option","option"], ["groove","groove"], ["hidden","hidden"], ["inherit","inherit"], ["inset","inset"]]), "borderstyle");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
+    this.setNextStatement(true, [
+      "css_bg_color",
+      "css_text_color",
+      "css_border_color",
+      "css_font_size",
+      "css_font_family",
+      "css_height",
+      "css_width",
+      "css_marginPadding",
+      "css_flexbox",
+      "css_flexbox_wrap",
+      "css_flexbox_justify",
+      "css_flexbox_align",
+      "css_flexbox_align_row",
+      "css_flexbox_grow",
+      "css_text_align",
+      "css_custom",
+      "css_borderRadius",
+      "css_border_color",
+      "css_bloc_style",
+  ]);
     this.setStyle('CSS_blocks');
  this.setTooltip("");
  this.setHelpUrl("");

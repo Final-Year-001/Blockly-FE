@@ -23,6 +23,7 @@
     "blockly": "^10.4.2",
     "firebase": "^10.9.0",
     "framer-motion": "^11.0.15",
+    "html-beautify": "^1.0.4",
     "install": "^0.13.0",
     "js-beautify": "^1.15.1",
     "jszip": "^3.10.1",

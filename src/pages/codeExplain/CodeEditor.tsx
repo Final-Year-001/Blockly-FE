@@ -4,6 +4,8 @@ import { splitCodeAtom } from "../../state/splitCode";
 import { useRecoilState } from "recoil";
 import CodeExpanded from "./CodeExpanded";
 import LargeIframe from "./LargeIframe";
+import htmlBeautify from 'html-beautify'
+import { js_beautify } from "js-beautify";
 
 // these are the splitted code.
 interface CodeEditorProps {
@@ -48,7 +50,7 @@ const CodeEditors: React.FC<CodeEditorProps> = ({
           height="45vh"
           theme="light"
           defaultLanguage="html"
-          defaultValue={htmlCode}
+          defaultValue={htmlBeautify(htmlCode)}
           onChange={(value) => setHtmlCode(value || "")}
         />
       </div>
@@ -59,7 +61,7 @@ const CodeEditors: React.FC<CodeEditorProps> = ({
           height="45vh"
           theme="light"
           defaultLanguage="css"
-          defaultValue={cssCode}
+          defaultValue={htmlBeautify(cssCode)}
           onChange={(value) => setCssCode(value || "")}
         />
       </div>
@@ -75,7 +77,7 @@ const CodeEditors: React.FC<CodeEditorProps> = ({
           height="45vh"
           theme="light"
           defaultLanguage="javascript"
-          defaultValue={jsCode}
+          defaultValue={js_beautify(jsCode)}
           onChange={(value) => setJsCode(value || "")}
         />
       </div>

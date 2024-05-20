@@ -84,7 +84,7 @@ const ModalCodeEdit: React.FC<ModalProps> = ({ setShowCodeEditor }) => {
   }
   return (
     <div
-      className={`fixed z-50 inset-0 overflow-y-auto backdrop-blur-2xl bg-blue-800/60`}
+      className={`fixed z-50 inset-0 overflow-y-auto backdrop-blur-lg bg-gray-400/90`}
     >
       {showDownloadMod && (
         <DownloadFiles

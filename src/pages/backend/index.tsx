@@ -251,7 +251,7 @@ function BackendPage() {
       </div>
       <SandboxTopBar />
       <div
-        className="flex flex-row flex-grow px-6 pb-4"
+        className="flex flex-row flex-grow px-1 pb-0"
         style={{ height: "calc(100% - 400px)" }}
       >
         <div
@@ -276,7 +276,7 @@ function BackendPage() {
         </div>
         <div
           className={
-            "flex-[0.3] pl-6 h-full relative transition-all duration-300 ease-in-out " +
+            "flex-[0.3] pl-4 h-full relative transition-all duration-300 ease-in-out " +
             `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"}`
           }
         >
