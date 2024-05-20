@@ -20,13 +20,13 @@ export const BETheme = Blockly.Theme.defineTheme("myCustomTheme", {
 
   // Define component styles
   componentStyles: {
-    workspaceBackgroundColour: "#fbf6daab",
+    workspaceBackgroundColour: "#daebfbab",
     //  'toolboxBackgroundColour': '#36454ff0',
     toolboxForegroundColour: "#e2e2e2",
     flyoutBackgroundColour: "#dcdcdce9",
     flyoutForegroundColour: "#fff",
     flyoutOpacity: 1,
-    scrollbarColour: "#FFA726",
+    scrollbarColour: "#b0c8df",
     scrollbarOpacity: 0.7,
     insertionMarkerColour: "#fff",
     insertionMarkerOpacity: 0.3,

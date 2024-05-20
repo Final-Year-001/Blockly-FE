@@ -115,7 +115,7 @@ Blockly.Blocks['create_task'] = {
         .appendField("Name of the delete button")
         .appendField(new Blockly.FieldTextInput('deleteButtonId'), 'deletebtn');
     this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setNextStatement(true, "create_task");
     this.setStyle('JS_Step5');
     this.setTooltip("Add a task when a button is clicked.");
   }
@@ -168,8 +168,8 @@ Blockly.Blocks['toggle_checkbox'] = {
     this.appendValueInput("checkbox")
         .setCheck("el_id_input")
         .appendField("Match the checkbox name");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, "create_task");
+    this.setNextStatement(true, "toggle_checkbox");
     this.setStyle('JS_Step5');
     this.setTooltip("Toggle a checkbox when clicked.");
   }
@@ -202,7 +202,7 @@ Blockly.Blocks['delete_task'] = {
     this.appendValueInput("button")
         .setCheck("el_id_input")
         .appendField("Match the delete button name");
-    this.setPreviousStatement(true, null);
+    this.setPreviousStatement(true, "toggle_checkbox");
     this.setNextStatement(true, null);
     this.setStyle('JS_Step5');
     this.setTooltip("Delete a task when a button is clicked.");
