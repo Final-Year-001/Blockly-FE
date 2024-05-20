@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TopBar from "../topBar";
 import { FaArrowUp } from "react-icons/fa";
 import Confetti from "react-dom-confetti";
 import "./serverCreationStyles.css";
 import { blocks, categoryDescriptions } from "./data";
+import avatar from "../../../assets/avatar/avatarW.png";
+import play from "../../../assets/avatar/play.png";
 
 // const Badge = ({ title, image }) => (
 //   <div style={{ display: "inline-block", marginRight: "10px" }}>
@@ -57,6 +59,16 @@ function ServerCreationDocs(): JSX.Element {
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
+  };
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayButtonClick = () => {
+    setIsPlaying(true);
+  };
+
+  const handleVideoEnd = () => {
+    setIsPlaying(false);
   };
 
   useEffect(() => {
@@ -133,8 +145,8 @@ function ServerCreationDocs(): JSX.Element {
               {category}
             </a>
           ))}
-          <div onClick={() => navigate("#")} className={` ${blueButton} mt-6`}>
-            Server Creation Doc
+          <div onClick={() => navigate("#")} className={` ${blueButton} mt-10`}>
+            Auth Doc
           </div>
         </div>
       </div>
@@ -219,16 +231,26 @@ function ServerCreationDocs(): JSX.Element {
                           style={{
                             marginBottom: "20px",
                             display: "flex",
-                            alignItems: "center",
+                            flexDirection: "column",
+                            alignItems: "start",
                           }}
                         >
-                          <div style={{ width: "50%", marginRight: "20px" }}>
-                            <h3>
+                          <div
+                            style={{
+                              minWidth: "50%",
+                              marginRight: "20px",
+                              marginTop: 20,
+                            }}
+                          >
+                            <h3
+                              style={{
+                                marginBottom: 20,
+                              }}
+                            >
                               {index + 1}. {block.title}
                             </h3>
-                            <p>{block.description}</p>
-                            <br />
                           </div>
+
                           <img
                             src={block.image}
                             alt={`image`}
@@ -236,8 +258,14 @@ function ServerCreationDocs(): JSX.Element {
                               maxWidth: "50%",
                               height: "auto",
                               border: "2px solid #A9A9A9",
+                              marginBottom: 20,
+                              marginLeft: 40,
                             }}
                           />
+                          <div>
+                            <p>{block.description}</p>
+                            <br />
+                          </div>
                         </div>
                       ))}
                   </div>
@@ -254,28 +282,83 @@ function ServerCreationDocs(): JSX.Element {
           </div>
 
           {/* Feedback System with Badges */}
-          <h3 className="badheh3">Your Badges</h3>
+          <h3
+            className="badheh3"
+            style={{ fontFamily: "Arial, sans-serif", fontSize: "1.5rem" }}
+          >
+            Your Badges
+          </h3>
           <div className="feedback-container">
-            <div className="kid-animation">
-              <img
-                src="/img/js.gif"
-                alt="Kid Animation"
-                style={{ maxWidth: "250px", maxHeight: "200px" }}
-              />
-              <p className="caption" style={{ marginTop: "10px" }}>
-                JavaScript Basics
-              </p>
-            </div>
             <div className="kid-animation">
               <img
                 src="/img/Award.gif"
                 alt="Kid Animation"
-                style={{ maxWidth: "250px", maxHeight: "180px" }}
+                style={{
+                  maxWidth: "250px",
+                  maxHeight: "180px",
+                  marginLeft: "-70px",
+                  marginTop: "10px",
+                }}
               />
-              <p className="caption" style={{ marginTop: "28px" }}>
+              <p
+                className="caption"
+                style={{
+                  marginTop: "28px",
+                  marginLeft: "-70px",
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "1.3rem",
+                }}
+              >
                 {" "}
                 Completion Reward
               </p>
+            </div>
+            <div
+              className="mt-16 relative"
+              style={{
+                width: "250px",
+                marginTop: "2px",
+                marginLeft: "80px",
+                transform: "translateY(-25px)",
+              }}
+            >
+              {isPlaying ? (
+                <video width="350" controls autoPlay onEnded={handleVideoEnd}>
+                  <source
+                    src="https://res.cloudinary.com/dlw1yfobn/video/upload/v1716008459/WebBlockCraft/avatar/20240518_Congratula_1_dsqcmv.mp4"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div
+                  style={{ position: "relative", width: "70%", height: "100%" }}
+                >
+                  <img
+                    src={avatar}
+                    alt="Avatar"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <img
+                    src={play}
+                    alt="Play"
+                    onClick={handlePlayButtonClick}
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      cursor: "pointer",
+                      width: "60px", // Adjust size of the play button as needed
+                      height: "60px",
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </div>
 
@@ -322,7 +405,7 @@ function ServerCreationDocs(): JSX.Element {
             bottom: "20px",
             right: "20px",
             cursor: "pointer",
-            backgroundColor: "#C70039",
+            backgroundColor: "black",
             color: "white",
             padding: "10px",
             borderRadius: "50%",

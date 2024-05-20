@@ -20,7 +20,7 @@ Blockly.Blocks['html_css'] = {
         .appendField("CSS Block");
     this.appendStatementInput("css_statement")
         .setCheck("cssStatement");
-    this.setPreviousStatement(true, "css");
+    this.setPreviousStatement(true, "html_css");
     this.setNextStatement(true, null);
     this.setStyle('CSS_Main');
  this.setTooltip("This is the CSS tag block where you include the css styling");
@@ -83,7 +83,7 @@ Blockly.Blocks['style_block_inline'] = {
         .appendField("Add style Dirrectly");
     this.appendStatementInput("NAME")
         .setCheck(null);
-    this.setOutput(true, null);
+    this.setOutput(true, "style_block_inline");
     this.setStyle('CSS_Main');
  this.setTooltip("");
  this.setHelpUrl("");

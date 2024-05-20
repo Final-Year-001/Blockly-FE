@@ -35,7 +35,7 @@ function LayoutGuideBE() {
               <div className="text-2xl">Start Tour</div>
               <div>
                 This will quickly show what are the main components of the
-                frontend builder. You can get a quick idea where things are with
+                backend builder. You can get a quick idea where things are with
                 this. Click start to begin
               </div>
               <div

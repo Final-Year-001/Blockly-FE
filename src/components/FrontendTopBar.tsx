@@ -20,6 +20,10 @@ import 'react-awesome-button/dist/styles.css';
 import { useNavigate } from "react-router-dom";
 import ModalCodeEdit from "../pages/codeExplain/ModalCode";
 import { useState } from "react";
+import {
+  ArrowsPointingOutIcon
+} from "@heroicons/react/24/solid";
+import { GoScreenFull } from "react-icons/go";
 
 function logout(){
   console.log("Works");
@@ -27,11 +31,22 @@ function logout(){
   window.location.href = '/login'; 
 }
 
-function FrontendTopBar() {
+interface FrontendTopBarProps {
+  hideCode: () => void;
+}
+
+const FrontendTopBar: React.FC<FrontendTopBarProps> = ({ hideCode }) => {
   let [workAreaSize, setworkAreaSize] = useRecoilState(codeAtom);
   let [code, setCode] = useRecoilState(codeAtom);
   const [showCodeEditor, setShowCodeEditor] = useState(false);
   const navigate = useNavigate();
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleWorkspace = () => {
+    setIsExpanded(!isExpanded);
+    hideCode(); 
+  };
 
   return (
     <div className="flex w-full justify-between items-center p-3">
@@ -47,7 +62,10 @@ function FrontendTopBar() {
       </h3>
       </div>
 
-      <div>    
+      <div className="flex items-center">    
+      <div className="w-10 mr-4 text-black hover:scale-125 active:scale-110 hover:text-black transition duration-100" onClick={toggleWorkspace}>
+        <GoScreenFull size={30} title={isExpanded ? "Minimize Workspace" : "Expand Workspace"} />
+      </div>
         <AwesomeButton 
         style={{ 
           '--button-primary-color': '#33cc33',

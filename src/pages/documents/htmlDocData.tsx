@@ -14,13 +14,13 @@ export const blocks = [
   {
     title: "HTML Block",
     description:
-      "When you build a HTML Web Pa the very first  the very first  the very first  the very  first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very firs the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first t  the very first  the very first  the very first  the very first  the very first  the very first  the very first  the very first ge, this is the very first uild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blouild a HTML Web Page, this is the very first blo that you should use. This block has two parts. The head section and then body section. Head section will contain additional information about the web page. Body section will contain all the contents of the web page. When you build a HTML Web Page, this is the very first block that you should use. This block has two parts. The head section and then body section. Head section will  When you build a HTML Web Page, this is the very first block that you should use. This block has two parts. The head section and then body section. Head section  When you build a HTML Web Page, this is the very first block that you should use. This block has two parts. The head section and then body section. Head section will contain additional information about the web page. Body section will contain all the contents of the web page.will contain additional information about the web page. Body section will contain all the contents of the web page.contain additional information about the web page. Body section will contain all the contents of the web page.",
+      "This HTML block represents the essential structure of a web page, divided into the head and body sections. The head section contains metadata and links to external resources, helping browsers understand how to process and display the page correctly. The body section includes all the visible content, such as text, images, and interactive elements, making it the core of user interaction and engagement.",
     image:
       "https://res.cloudinary.com/dlw1yfobn/image/upload/v1715143556/WebBlockCraft/HTML/80f8337d-d479-4181-a674-406986fd091a.png",
     category: "Get Started",
   },
   {
-    title: "Creating a variable",
+    title: "ID Class Block",
     description:
       "This block is used to add an ID or a Class name to other Blocks. They will help us to identify them. It's similar to giving them a name so we know which one we are talking about.",
     image:
@@ -28,7 +28,7 @@ export const blocks = [
     category: "Get Started",
   },
 
-  // Words cat
+  
   {
     title: "Adding Text",
     description:

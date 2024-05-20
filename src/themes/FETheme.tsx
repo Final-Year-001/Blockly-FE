@@ -29,13 +29,13 @@ export const FETheme = Blockly.Theme.defineTheme('myCustomTheme', {
 
     // Define component styles
     'componentStyles': {
-       'workspaceBackgroundColour': '#fbf6daab',
-      //  'toolboxBackgroundColour': '#7f4d07cc',
+       'workspaceBackgroundColour': '#daebfbab',
+      //  'toolboxBackgroundColour': '#3d3d3dcc',
        'toolboxForegroundColour': '#e2e2e2',
-       'flyoutBackgroundColour': '#dcdcdce9', 
+       'flyoutBackgroundColour': '#60afffe8', 
        'flyoutForegroundColour': '#fff',
        'flyoutOpacity': 1,
-       'scrollbarColour': '#FFA726',
+       'scrollbarColour': '#b0c8df',
        'scrollbarOpacity': 0.7,
        'insertionMarkerColour': '#fff',
        'insertionMarkerOpacity': 0.3,

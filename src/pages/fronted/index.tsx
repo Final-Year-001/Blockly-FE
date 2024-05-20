@@ -4,8 +4,20 @@ import { ClipboardIcon } from "@heroicons/react/24/solid";
 import Editor from "@monaco-editor/react";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-html";
-import "ace-builds/src-noconflict/theme-github";
+
 import "ace-builds/src-noconflict/theme-monokai";
+import 'ace-builds/src-noconflict/theme-solarized_light';
+import 'ace-builds/src-noconflict/theme-github';
+import 'ace-builds/src-noconflict/theme-twilight';
+import 'ace-builds/src-noconflict/theme-solarized_dark';
+import 'ace-builds/src-noconflict/theme-solarized_light';
+import 'ace-builds/src-noconflict/mode-javascript';
+import 'ace-builds/src-noconflict/theme-cobalt';
+
+import 'ace-builds/src-noconflict/theme-ambiance';
+import 'ace-builds/src-noconflict/theme-cobalt';
+import 'ace-builds/src-noconflict/theme-cobalt';
+
 import "ace-builds/src-noconflict/ext-language_tools";
 import {
   Tabs,
@@ -111,6 +123,8 @@ function FrontendPage() {
   }>({ message: "", show: false, loading: false });
   const [showTour, setShowTour] = useState<boolean>(true);
   const [logs, setLogs] = useState<LogEvent[]>([]);
+  const [hideOutput, setHideOutput] = useState(false);
+  const [reset, setReset] = useState(true);
 
   const params = useParams();
   const tokens = useRecoilValue(tokenAtom);
@@ -135,6 +149,16 @@ function FrontendPage() {
       });
     },
   });
+
+  const changeHideState =() =>{
+    setHideOutput(!hideOutput)
+    setReset(false)
+    console.log("state changed")
+    
+    setTimeout(() => {
+      setReset(true)
+    }, 200); // 1000 milliseconds = 1 second
+  }
 
   useEffect(() => {
     setIsVisible(true);
@@ -243,17 +267,20 @@ function FrontendPage() {
       label: "Code",
       value: "html",
       desc: (
-        <div className="whitespace-pre-line w-full h-full p-2">
+        <div className="whitespace-pre-line w-full h-full">
           {/* <code>{code}</code> */}
-
           <AceEditor
             height="100%"
             width="100%"
             value={code}
+            style={{borderRadius: '10px'}}
             mode="html"
             theme="monokai"
-            fontSize="20px"
+            wrapEnabled={true} // wraps and removes the scroll bar
+            readOnly={true}
+            fontSize="18px"
             highlightActiveLine={true}
+            // showGutter={false} // hide numbers 
             setOptions={{
               enableLiveAutocompletion: true,
               showLineNumbers: true,
@@ -264,12 +291,12 @@ function FrontendPage() {
       ),
     },
     {
-      label: "IFrame",
+      label: "Website",
       value: "iframe",
       desc: (
         <iframe
           title="preview"
-          className="bg-white pb-10 rounded-lg w-full h-full"
+          className="bg-white pb-10 border-2 border-black rounded-lg w-full h-full"
           ref={iframeRef}
           name="iframe1"
         />
@@ -278,7 +305,7 @@ function FrontendPage() {
     {
       label: "Console",
       value: "react",
-      desc: <ConsoleLogger logs={logs} />,
+      desc: (<div className="bg-black h-full rounded-lg"><ConsoleLogger logs={logs} /></div>)
     },
   ];
 
@@ -306,7 +333,7 @@ function FrontendPage() {
   });
 
   return (
-    <div className="flex flex-col h-full w-full ">
+    <div className="flex flex-col h-full w-full bg-white">
       <Tour
         steps={TourSteps}
         isOpen={showTour}
@@ -316,23 +343,25 @@ function FrontendPage() {
       />
 
       <div id="TopBar">
-        <FrontendTopBar />
+        <FrontendTopBar hideCode={changeHideState}/>
       </div>
 
       <div
-        className="flex flex-row flex-grow px-3 pb-3"
+        className="flex flex-row flex-grow "
         style={{ height: "calc(100% - 400px)" }}
       >
         <div
-          className={`flex  border-none flex-col gap-4 ${
-            isExpanded ? "flex-[0.3]" : "flex-[0.7]"
-          } duration-300 ease-in-out transition-all`}
+          className={`flex flex-col gap-4 ${
+            hideOutput ? "flex-[1] mr-1" : isExpanded ? "flex-[0.3]" : "flex-[0.7]"
+          } duration-200 ease-in-out transition-all` }
         >
+          {reset && 
           <FrontendWorkspace
             onCodeChange={injectCode}
             loaded={!getProjectQuery.isFetching}
             initialState={getProjectQuery.data?.data?.saveData}
           />
+          }
           {mode == "lesson" && getLessonQuery.isSuccess ? (
             <HintComponent
               stepPreview={currentStep.workspaceState}
@@ -346,23 +375,27 @@ function FrontendPage() {
 
         <div
           className={
-            "flex-[0.3] pl-6 h-full relative transition-all duration-300 ease-in-out " +
-            `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"}`
+            "flex-[0.3] pl-2 h-full relative transition-all duration-200 bg-gray-200 ml-1 pr-1 pt-1 rounded-lg ease-in-out " +
+            `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"} ${hideOutput && 'hidden'}`
           }
         >
           <div
-            className="absolute p-2 top-20 left-0 w-10 z-10 bg-black rounded-l-lg text-white"
+            className="absolute p-2 top-2 left-1.5 w-10 z-10 bg-gray-600 rounded-xl text-white"
+            
+          >
+            <div 
             onClick={() => {
               setIsExpanded((prev) => !prev);
-            }}
-          >
+            }}>
             {isExpanded ? (
-              <ChevronDoubleRightIcon />
+              <ChevronDoubleRightIcon title="Minimize the code view"/>
             ) : (
-              <ChevronDoubleLeftIcon />
+              <ChevronDoubleLeftIcon title="Expand the code view"/> 
             )}
+            </div>
+        
           </div>
-          <Tabs id="outputSection" value="html" className="h-full pb-10">
+          <Tabs id="outputSection" value="html" className="h-full pb-10 mr-1">
             <TabsHeader>
               {tabs.map(({ label, value }) => (
                 <Tab id={`TabBtn${label}`} key={value} value={value}>
@@ -371,9 +404,9 @@ function FrontendPage() {
               ))}
             </TabsHeader>
             {/* <TabsBody className="h-full   bg-black border rounded-xl hover:overflow-auto"> */}
-            <TabsBody className="h-full   bg-black border rounded-xl hover:overflow-auto">
+            <TabsBody className="h-full  rounded-xl hover:overflow-auto">
               {tabs.map(({ value, desc }) => (
-                <TabPanel className="m-0 p-1 h-full" key={value} value={value}>
+                <TabPanel className="m-0 p-1 pb-2 rounded-lg h-full" key={value} value={value}>
                   {desc}
                   {value == "html" && (
                     <button
