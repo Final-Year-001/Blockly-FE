@@ -148,7 +148,7 @@ function BackendPage() {
 
   let _steps = getLessonQuery.data?.data?.steps || [];
 
-  let steps = _steps.concat({})
+  let steps = _steps.concat({});
 
   const currentStep = steps?.[currentStepNumber];
 
@@ -271,6 +271,7 @@ function BackendPage() {
               hint={currentStep.description}
               image={currentStep.image}
               lastStep={steps.length}
+              frontend={false}
             />
           ) : null}
         </div>

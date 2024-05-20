@@ -4,16 +4,16 @@ import { ClipboardIcon } from "@heroicons/react/24/solid";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-html";
 import "ace-builds/src-noconflict/theme-monokai";
-import 'ace-builds/src-noconflict/theme-solarized_light';
-import 'ace-builds/src-noconflict/theme-github';
-import 'ace-builds/src-noconflict/theme-twilight';
-import 'ace-builds/src-noconflict/theme-solarized_dark';
-import 'ace-builds/src-noconflict/theme-solarized_light';
-import 'ace-builds/src-noconflict/mode-javascript';
-import 'ace-builds/src-noconflict/theme-cobalt';
-import 'ace-builds/src-noconflict/theme-ambiance';
-import 'ace-builds/src-noconflict/theme-cobalt';
-import 'ace-builds/src-noconflict/theme-cobalt';
+import "ace-builds/src-noconflict/theme-solarized_light";
+import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/theme-twilight";
+import "ace-builds/src-noconflict/theme-solarized_dark";
+import "ace-builds/src-noconflict/theme-solarized_light";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/theme-cobalt";
+import "ace-builds/src-noconflict/theme-ambiance";
+import "ace-builds/src-noconflict/theme-cobalt";
+import "ace-builds/src-noconflict/theme-cobalt";
 import "ace-builds/src-noconflict/ext-language_tools";
 import {
   Tabs,
@@ -44,7 +44,7 @@ import HintComponent from "../../components/HintComponent";
 import "react-toastify/dist/ReactToastify.css";
 import StatusNoti from "./Status";
 import { js_beautify } from "js-beautify";
-import htmlBeautify from 'html-beautify'
+import htmlBeautify from "html-beautify";
 
 import { useChildEvents } from "../../lib/iframe-communication/iframe-communication";
 import { ConsoleLogger, LogEvent } from "../../components/ConsoleLogger";
@@ -56,8 +56,6 @@ function organizeImports(code: string) {
   // Extract import statements and other code
   const importStatements = [];
   const otherCode = [];
-
-  
 
   for (const line of lines) {
     if (line.trim().startsWith("import ")) {
@@ -180,15 +178,15 @@ function FrontendPage() {
     },
   });
 
-  const changeHideState =() =>{
-    setHideOutput(!hideOutput)
-    setReset(false)
-    console.log("state changed")
-    
+  const changeHideState = () => {
+    setHideOutput(!hideOutput);
+    setReset(false);
+    console.log("state changed");
+
     setTimeout(() => {
-      setReset(true)
+      setReset(true);
     }, 200); // 1000 milliseconds = 1 second
-  }
+  };
 
   useEffect(() => {
     setIsVisible(true);
@@ -210,7 +208,7 @@ function FrontendPage() {
 
   let _steps = getLessonQuery.data?.data?.steps || [];
 
-  let steps = _steps.concat({})
+  let steps = _steps.concat({});
 
   const currentStep = steps?.[currentStepNumber];
 
@@ -303,14 +301,14 @@ function FrontendPage() {
             height="100%"
             width="100%"
             value={code}
-            style={{borderRadius: '10px'}}
+            style={{ borderRadius: "10px" }}
             mode="html"
             theme="monokai"
             wrapEnabled={true} // wraps and removes the scroll bar
             readOnly={true}
             fontSize="18px"
             highlightActiveLine={true}
-            // showGutter={false} // hide numbers 
+            // showGutter={false} // hide numbers
             setOptions={{
               enableLiveAutocompletion: true,
               showLineNumbers: true,
@@ -335,7 +333,11 @@ function FrontendPage() {
     {
       label: "Console",
       value: "react",
-      desc: (<div className="bg-black h-full rounded-lg"><ConsoleLogger logs={logs} /></div>)
+      desc: (
+        <div className="bg-black h-full rounded-lg">
+          <ConsoleLogger logs={logs} />
+        </div>
+      ),
     },
   ];
 
@@ -373,7 +375,7 @@ function FrontendPage() {
       />
 
       <div id="TopBar">
-        <FrontendTopBar hideCode={changeHideState}/>
+        <FrontendTopBar hideCode={changeHideState} />
       </div>
 
       <div
@@ -382,16 +384,20 @@ function FrontendPage() {
       >
         <div
           className={`flex flex-col gap-4 ${
-            hideOutput ? "flex-[1] mr-1" : isExpanded ? "flex-[0.3]" : "flex-[0.7]"
-          } duration-200 ease-in-out transition-all` }
+            hideOutput
+              ? "flex-[1] mr-1"
+              : isExpanded
+              ? "flex-[0.3]"
+              : "flex-[0.7]"
+          } duration-200 ease-in-out transition-all`}
         >
-          {reset && 
-          <FrontendWorkspace
-            onCodeChange={injectCode}
-            loaded={!getProjectQuery.isFetching}
-            initialState={getProjectQuery.data?.data?.saveData}
-          />
-          }
+          {reset && (
+            <FrontendWorkspace
+              onCodeChange={injectCode}
+              loaded={!getProjectQuery.isFetching}
+              initialState={getProjectQuery.data?.data?.saveData}
+            />
+          )}
           {mode == "lesson" && getLessonQuery.isSuccess ? (
             <HintComponent
               stepPreview={currentStep.workspaceState}
@@ -399,6 +405,7 @@ function FrontendPage() {
               hint={currentStep.description}
               image={currentStep.image}
               lastStep={steps.length}
+              frontend
             />
           ) : null}
         </div>
@@ -406,24 +413,23 @@ function FrontendPage() {
         <div
           className={
             "flex-[0.3] pl-2 h-full relative transition-all duration-200 bg-gray-200 ml-1 pr-1 pt-1 rounded-lg ease-in-out " +
-            `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"} ${hideOutput && 'hidden'}`
+            `${isExpanded ? "flex-[0.7]" : "flex-[0.3]"} ${
+              hideOutput && "hidden"
+            }`
           }
         >
-          <div
-            className="absolute p-2 top-2 left-1.5 w-10 z-10 bg-gray-600 rounded-xl text-white"
-            
-          >
-            <div 
-            onClick={() => {
-              setIsExpanded((prev) => !prev);
-            }}>
-            {isExpanded ? (
-              <ChevronDoubleRightIcon title="Minimize the code view"/>
-            ) : (
-              <ChevronDoubleLeftIcon title="Expand the code view"/> 
-            )}
+          <div className="absolute p-2 top-2 left-1.5 w-10 z-10 bg-gray-600 rounded-xl text-white">
+            <div
+              onClick={() => {
+                setIsExpanded((prev) => !prev);
+              }}
+            >
+              {isExpanded ? (
+                <ChevronDoubleRightIcon title="Minimize the code view" />
+              ) : (
+                <ChevronDoubleLeftIcon title="Expand the code view" />
+              )}
             </div>
-        
           </div>
           <Tabs id="outputSection" value="html" className="h-full pb-10 mr-1">
             <TabsHeader>
@@ -436,7 +442,11 @@ function FrontendPage() {
             {/* <TabsBody className="h-full   bg-black border rounded-xl hover:overflow-auto"> */}
             <TabsBody className="h-full  rounded-xl hover:overflow-auto">
               {tabs.map(({ value, desc }) => (
-                <TabPanel className="m-0 p-1 pb-2 rounded-lg h-full" key={value} value={value}>
+                <TabPanel
+                  className="m-0 p-1 pb-2 rounded-lg h-full"
+                  key={value}
+                  value={value}
+                >
                   {desc}
                   {value == "html" && (
                     <button
