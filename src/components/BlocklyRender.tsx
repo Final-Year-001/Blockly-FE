@@ -4,9 +4,10 @@ import { BlocklyWorkspace } from "react-blockly";
 interface BlocklyRenderProps {
   readonly state?: object;
   readonly className?: string;
+  readonly large?: boolean;
 }
 
-function BlocklyRender({ state, className }: BlocklyRenderProps) {
+function BlocklyRender({ state, className, large }: BlocklyRenderProps) {
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function BlocklyRender({ state, className }: BlocklyRenderProps) {
       workspaceConfiguration={{
         readOnly: true,
         zoom: {
-          startScale: 0.45,
+          startScale: large ? 1 : 0.45,
         },
       }}
     />
