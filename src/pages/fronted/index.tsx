@@ -425,7 +425,7 @@ function FrontendPage() {
             </div>
         
           </div>
-          <Tabs id="outputSection" value="html" className="h-full pb-10 mr-1">
+          <Tabs id="outputSection" value="html" className="h-full pb-16 mr-1">
             <TabsHeader>
               {tabs.map(({ label, value }) => (
                 <Tab id={`TabBtn${label}`} key={value} value={value}>

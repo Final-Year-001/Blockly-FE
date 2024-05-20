@@ -201,6 +201,22 @@ export const htmlCategory = {
           kind: "block",
           type: "preBlock_input",
         },
+        {
+          kind: "block",
+          type: "preBlock_TableMain",
+        },
+        {
+          kind: "block",
+          type: "preBlock_TableNewRow",
+        },
+        {
+          kind: "block",
+          type: "preBlock_TableHeadingCell",
+        },
+        {
+          kind: "block",
+          type: "preBlock_TableNormalCell",
+        },
       ],
     },
   ],

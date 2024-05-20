@@ -34,8 +34,8 @@ function ProjectCard(project: ProjectCardProps) {
         color="blue-gray"
         className="relative h-56 justify-center items-center flex p-12"
       >
-      {/* <div className=" bg-gradient-to-tl from-pink-200 to-amber-200 rounded-t-xl justify-center items-center flex p-12"> */}
-      {/* <div
+        {/* <div className=" bg-gradient-to-tl from-pink-200 to-amber-200 rounded-t-xl justify-center items-center flex p-12"> */}
+        {/* <div
         className={`${
           description == "New backend project" ? "bg-orange-200" : "bg-blue-200"
         } ${
@@ -58,15 +58,22 @@ function ProjectCard(project: ProjectCardProps) {
             alt="card-image"
           />
         </div>
-      {/* </div> */}
-
+        {/* </div> */}
       </CardHeader>
       <div className="rounded-b-xl">
         <CardBody>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             {name}
           </Typography>
-          <Typography>{description}</Typography>
+          <Typography
+            className={`${
+              description == "New backend project"
+                ? "bg-orange-200 rounded-lg w-44 p-2 border-2 border-black"
+                : "bg-blue-200 rounded-lg w-44 p-2 border-2 border-black"
+            }`}
+          >
+            {description}
+          </Typography>
         </CardBody>
         <CardFooter className="pt-0 flex gap-3">
           {/* <AwesomeButton

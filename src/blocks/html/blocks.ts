@@ -234,7 +234,7 @@ JavaScript.javascriptGenerator.forBlock["html_h"] = function (
     removeParentheses(value_text) +
     "</" +
     dropdown_size +
-    ">";
+    ">\n";
   return code;
 };
 
@@ -324,7 +324,7 @@ JavaScript.javascriptGenerator.forBlock["html_p"] = function (
     removeParentheses(value_identify) +
     `>` +
     removeParentheses(value_text) +
-    "</p>";
+    "</p>\n";
   return code;
 };
 
@@ -434,7 +434,7 @@ JavaScript.javascriptGenerator.forBlock["html_button"] = function (
     text_type +
     `">` +
     removeParentheses(text_name) +
-    "</button>";
+    "</button>\n";
 
   return code;
 };
@@ -560,7 +560,7 @@ JavaScript.javascriptGenerator.forBlock["html_input_field"] = function (
     `"` +
     ' type="' +
     dropdown_type +
-    `">`;
+    `">\n`;
   return code;
 };
 
@@ -637,7 +637,7 @@ JavaScript.javascriptGenerator.forBlock["html_label"] = function (
   const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
 
   const code =
-    `<label` + value_name + `>` + removeParentheses(text_name) + `</label>`;
+    `<label` + value_name + `>` + removeParentheses(text_name) + `</label>\n`;
   return code;
 };
 
@@ -721,7 +721,7 @@ JavaScript.javascriptGenerator.forBlock["html_form"] = function (
   const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
   const statements_state = generator.statementToCode(block, "State");
 
-  const code = `<form ` + value_name + `>` + statements_state + `</form>`;
+  const code = `<form ` + value_name + `>` + statements_state + `</form>\n`;
   return code;
 };
 
@@ -799,7 +799,7 @@ JavaScript.javascriptGenerator.forBlock["html_table"] = function (
   const statement = generator.statementToCode(block, "NAME");
 
   const code =
-    "<table " + "border=" + num + value_identify + ">" + statement + "</table>";
+    "<table " + "border=" + num + value_identify + ">" + statement + "</table>\n";
   return code;
 };
 
@@ -848,7 +848,7 @@ JavaScript.javascriptGenerator.forBlock["table_headings"] = function (
 ) {
   const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
   const statements_state = generator.statementToCode(block, "State");
-  const code = "<th" + value_name + ">" + statements_state + "</th>";
+  const code = "<th" + value_name + ">" + statements_state + "</th>\n";
   return code;
 };
 
@@ -879,7 +879,7 @@ JavaScript.javascriptGenerator.forBlock["table_rows"] = function (
 ) {
   const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
   const statements_state = generator.statementToCode(block, "State");
-  const code = "<tr" + value_name + ">" + statements_state + "</tr>";
+  const code = "<tr" + value_name + ">" + statements_state + "</tr>\n";
   return code;
 };
 
@@ -927,7 +927,7 @@ JavaScript.javascriptGenerator.forBlock["table_data"] = function (
 ) {
   const value_name = generator.valueToCode(block, "NAME", Order.ATOMIC);
   const statements_state = generator.statementToCode(block, "State");
-  const code = "<td" + value_name + ">" + statements_state + "</td>";
+  const code = "<td" + value_name + ">" + statements_state + "</td>\n";
   return code;
 };
 
@@ -1046,7 +1046,7 @@ JavaScript.javascriptGenerator.forBlock["html_div1"] = function (
   );
   const statements_name = generator.statementToCode(block, "statementName");
   // TODO: Assemble javascript into code variable.
-  const code = `<div ` + value_name + ">" + statements_name + "</div>";
+  const code = `<div ` + value_name + ">" + statements_name + "</div>\n";
   return code;
 };
 
@@ -1215,7 +1215,7 @@ JavaScript.javascriptGenerator.forBlock["html_ol_list"] = function (
     value_identify +
     ">" +
     statements_name +
-    `</ol>`;
+    `</ol>\n`;
   return code;
 };
 
@@ -1310,7 +1310,7 @@ JavaScript.javascriptGenerator.forBlock["html_ul_list"] = function (
     value_identify +
     ">" +
     statements_name +
-    `</ul>`;
+    `</ul>\n`;
   return code;
 };
 
@@ -1411,7 +1411,7 @@ JavaScript.javascriptGenerator.forBlock["html_li"] = function (
   );
   var statements_name = generator.statementToCode(block, "NAME");
   // TODO: Assemble javascript into code variable.
-  const code = `<li` + value_identify + ">" + statements_name + `</li>`;
+  const code = `<li` + value_identify + ">" + statements_name + `</li>\n`;
   return code;
 };
 
@@ -1485,7 +1485,7 @@ JavaScript.javascriptGenerator.forBlock["html_img"] = function (block: any) {
   const text_imagename = block.getFieldValue("imageName");
   // TODO: Assemble javascript into code variable.
   const code =
-    `<img src='` + text_imageurl + "'" + `alt="` + text_imagename + `" ` + `>`;
+    `<img src='` + text_imageurl + "'" + `alt="` + text_imagename + `" ` + `>\n`;
   return code;
 };
 
@@ -1556,7 +1556,7 @@ JavaScript.javascriptGenerator.forBlock["html_a"] = function (
 ) {
   const text_link = block.getFieldValue("link");
   const statements_data = generator.statementToCode(block, "data");
-  const code = `<a href='` + text_link + "'" + `>` + statements_data + "</a>";
+  const code = `<a href='` + text_link + "'" + `>` + statements_data + "</a>\n";
   return code;
 };
 
@@ -1644,7 +1644,7 @@ JavaScript.javascriptGenerator.forBlock["html_checkbox"] = function (
     text_name +
     `" value="` +
     text_value +
-    `">`;
+    `">\n`;
   return code;
 };
 
@@ -1717,7 +1717,7 @@ JavaScript.javascriptGenerator.forBlock["premade_dropdown"] = function (
 ) {
   var statements_name = generator.statementToCode(block, "NAME");
 
-  var code = `<select style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">\n${statements_name}</select>`;
+  var code = `<select style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">\n${statements_name}</select>\n`;
 
   return code;
 };
@@ -1791,9 +1791,9 @@ JavaScript.javascriptGenerator.forBlock["preBlock_input"] = function (
 
   const cssTika = `style="width: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"`
   if(!checkbox_overridecss){
-    return `<input type="${dropdown_dropdown}" name="${text_name}" ${value_name}>`;
+    return `<input type="${dropdown_dropdown}" name="${text_name}" ${value_name}>\n`;
   }else {
-    return `<input type="${dropdown_dropdown}" name="${text_name}" ${cssTika} ${value_name}>`;
+    return `<input type="${dropdown_dropdown}" name="${text_name}" ${cssTika} ${value_name}>\n`;
   }
 };
 
@@ -1835,9 +1835,9 @@ JavaScript.javascriptGenerator.forBlock["preBlock_button"] = function (
 
   const cssTika = `style="padding: 10px 20px; background-color: ${dropdown_color}; color: #fff; border: none; border-radius: 5px; cursor: pointer;"`
   if(!checkbox_name){
-    return `<button ${value_name}>${text_name}</button>`;
+    return `<button ${value_name}>${text_name}</button>\n`;
   }else {
-    return `<button ${cssTika} ${value_name}>${text_name}</button>`;
+    return `<button ${cssTika} ${value_name}>${text_name}</button>\n`;
   }
 };
 
@@ -1878,9 +1878,9 @@ JavaScript.javascriptGenerator.forBlock["preBlock_Card"] = function (
   
   
   if(!checkbox_overridecss){
-    return `<div ${value_cssoverride}>${statements_statementname}</div>`;
+    return `<div ${value_cssoverride}>${statements_statementname}</div>\n`;
   }else {
-    return `<div ${cssTika} ${value_cssoverride}>${statements_statementname}</div>`;
+    return `<div ${cssTika} ${value_cssoverride}>${statements_statementname}</div>\n`;
   }
 };
 
@@ -1929,8 +1929,166 @@ JavaScript.javascriptGenerator.forBlock["preBlock_div"] = function (
   // TODO: Assemble javascript into code variable.
   const cssTika = `style="${number_gap > 0 ? `gap: ${number_gap}px;`:''} ${dropdown_justify} ${checkbox_guidebox ? 'border: 2px solid #000000;':''}"`
   if(!checkbox_overridecss){
-    return `<div${value_cssoverride}>${statements_statementname}</div>`;
+    return `<div${value_cssoverride}>${statements_statementname}</div>\n`;
   }else {
-    return `<div ${cssTika} ${value_cssoverride}>${statements_statementname}</div>`;
+    return `<div ${cssTika} ${value_cssoverride}>${statements_statementname}</div>\n`;
   }
+};
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
+Blockly.Blocks['preBlock_TableMain'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Table Main");
+    this.appendValueInput("cssOverride")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Overide CSS")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
+        .appendField("Properties");
+    this.appendStatementInput("statementName")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle("HTML_premade");
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock["preBlock_TableMain"] = function (
+  block: any,
+  generator: any
+) {
+  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'TRUE';
+  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
+  var statements_statementname = generator.statementToCode(block, 'statementName');
+ 
+  const cssTika = `style="border-collapse: collapse; width: 100%; text-align: left;"`
+  var code = 
+  `<table border="1" ${value_cssoverride} ${!checkbox_overridecss ? cssTika : ''}>
+  ${statements_statementname}
+  </table>\n`
+  return code;
+  
+};
+
+
+/////////////////////////////////////////////////////////
+
+Blockly.Blocks['preBlock_TableNewRow'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("New Row");
+    this.appendValueInput("cssOverride")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Overide CSS")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
+        .appendField("Properties");
+    this.appendStatementInput("statementName")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle("HTML_premade");
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock["preBlock_TableNewRow"] = function (
+  block: any,
+  generator: any
+) {
+  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'TRUE';
+  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
+  var statements_statementname = generator.statementToCode(block, 'statementName');
+ 
+  const cssTika = ``
+  var code = 
+  `<tr ${value_cssoverride} ${!checkbox_overridecss ? cssTika : ''}>
+  ${statements_statementname}
+  </tr>\n`
+  return code;
+  
+};
+
+/////////////////////////////////////////////////////////
+
+Blockly.Blocks['preBlock_TableHeadingCell'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Heading Cell");
+    this.appendValueInput("cssOverride")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Overide CSS")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
+        .appendField("Properties");
+    this.appendStatementInput("statementName")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle("HTML_premade");
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock["preBlock_TableHeadingCell"] = function (
+  block: any,
+  generator: any
+) {
+  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'TRUE';
+  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
+  var statements_statementname = generator.statementToCode(block, 'statementName');
+ 
+  const cssTika = `style="padding: 10px; border: 1px solid #ddd; background-color: #e3e3e3;"`
+  var code = 
+  `<th ${value_cssoverride} ${!checkbox_overridecss ? cssTika : ''}>
+  ${statements_statementname}
+  </th>\n`
+  return code;
+};
+
+/////////////////////////////////////////////////////////
+
+Blockly.Blocks['preBlock_TableNormalCell'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Normal Cell");
+    this.appendValueInput("cssOverride")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Overide CSS")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
+        .appendField("Properties");
+    this.appendStatementInput("statementName")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setStyle("HTML_premade");
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock["preBlock_TableNormalCell"] = function (
+  block: any,
+  generator: any
+) {
+  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'TRUE';
+  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
+  var statements_statementname = generator.statementToCode(block, 'statementName');
+ 
+  const cssTika = `style="padding: 10px; border: 1px solid #ddd;"`
+  var code = 
+  `<td ${value_cssoverride} ${!checkbox_overridecss ? cssTika : ''}>
+  ${statements_statementname}
+  </td>\n`
+  return code;
+  
 };
