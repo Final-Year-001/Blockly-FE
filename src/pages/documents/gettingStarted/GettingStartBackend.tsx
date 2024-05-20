@@ -24,10 +24,19 @@ function GettingStartBack() {
           </div>
           <div>Server Creation Doc</div>
         </div>
-
         <div
           className={` ${GettingStartedBtnSize} ${APIButtonColor}`}
           onClick={() => navigate("/doc-auth")}
+        >
+          <div>
+            <img src={APIImg} width={65} alt="image" />
+          </div>
+          <div>Auth Handling Doc</div>
+        </div>
+
+        <div
+          className={` ${GettingStartedBtnSize} ${APIButtonColor}`}
+          onClick={() => navigate("/doc-api-blocks")}
         >
           <div>
             <img src={APIImg} width={65} alt="image" />
