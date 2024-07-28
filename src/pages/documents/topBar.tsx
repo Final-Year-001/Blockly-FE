@@ -38,7 +38,7 @@ function TopBar({ onPage }: Props): JSX.Element {
       } else {
         setIsTokenValid(false);
         console.log("pathname is ", location.pathname);
-        navigate("./login");
+        navigate("/login");
       }
     }
   }, []);
@@ -46,7 +46,7 @@ function TopBar({ onPage }: Props): JSX.Element {
   function logout() {
     localStorage.removeItem("tokens");
     console.log("Token removed!");
-    window.location.href = "/login";
+    navigate("/login");
   }
 
   return (
