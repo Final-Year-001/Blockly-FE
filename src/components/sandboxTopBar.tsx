@@ -10,6 +10,7 @@ import CopySandBoxUrl from "./CopySandBoxUrl";
 import { useRef } from "react";
 import { createSandbox, getAllSandBoxes, updateCode } from "../api/sandbox";
 import { tokenAtom } from "../state/auth";
+import StatusNoti from "../pages/fronted/Status";
 
 function SandboxTopBar() {
   const [sandbox, setSandbox] = useRecoilState(sandboxAtom);
@@ -104,6 +105,8 @@ function SandboxTopBar() {
         ) : null}
       </div>
       <CopySandBoxUrl />
+      { codeMutation.isSuccess ? <StatusNoti message={"Code updated in the sandbox."} mode="success" /> : null }
+      { codeMutation.isError ? <StatusNoti message={"Could not apply the code to the sandbox"} mode="pending"/> : null }
     </div>
   );
 }
