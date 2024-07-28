@@ -183,7 +183,7 @@ function LoginPage() {
             <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
               Don't have an account?
               <a
-                href="#signup"
+                href="/signup"
                 className="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900"
               >
                 Sign up
