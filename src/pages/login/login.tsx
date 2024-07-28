@@ -12,6 +12,7 @@ import img from "../../assets/loginImg/loginimg.gif";
 import bgImg from "../../assets/loginImg/ttbg.jpg";
 import { TypeAnimation } from "react-type-animation";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
+import StatusNoti from "../fronted/Status";
 
 const elements = document.querySelectorAll('.index-module_type__E-SaG');
 
@@ -37,7 +38,7 @@ function LoginPage() {
     mutationFn: loginWithUsernameAndPassword,
     onSuccess: (res) => {
       setTokens(res);
-      navigate("/home");
+      setTimeout(() => navigate("/home"), 3000)
     },
   });
 
@@ -177,7 +178,7 @@ function LoginPage() {
               onMouseUp={login}
               type="primary"
             >
-              {loading ? "Loading..." : "Sign In"}
+              {loginMutation.isLoading ? "Loading..." : "Sign In"}
             </AwesomeButton>
 
             <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
@@ -192,6 +193,8 @@ function LoginPage() {
           </div>
         </div>
       </div>
+      { loginMutation.isSuccess ? <StatusNoti message={"Login success."} mode="success" /> : null }
+      { loginMutation.isError ? <StatusNoti message={"Login failed."} mode="pending"/> : null }
     </div>
   );
 }

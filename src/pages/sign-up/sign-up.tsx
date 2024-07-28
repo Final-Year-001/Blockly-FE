@@ -12,6 +12,7 @@ import img from "../../assets/loginImg/loginimg.gif";
 import bgImg from "../../assets/loginImg/ttbg.jpg";
 import { TypeAnimation } from "react-type-animation";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
+import StatusNoti from "../fronted/Status";
 
 function SignUpPage() {
   const [username, setUsername] = useState<string>("");
@@ -32,7 +33,7 @@ function SignUpPage() {
   const signUpMutation = useMutation({
     mutationFn: signupWithUsernameAndPassword,
     onSuccess: () => {
-      navigate("/login");
+      setTimeout(() => navigate("/login"), 3000)
     },
   });
 
@@ -220,6 +221,8 @@ function SignUpPage() {
           </div>
         </div>
       </div>
+      { signUpMutation.isSuccess ? <StatusNoti message={"SignUp success. You may now login."} mode="success" /> : null }
+      { signUpMutation.isError ? <StatusNoti message={"SignUp failed. Are you already registered with this email or username?"} mode="pending"/> : null }
     </div>
   );
 }
