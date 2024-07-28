@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import ProjectCard, { ProjectCardProps } from "../../components/ProjectCard";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import NewProjectModal from "../../components/NewProjectModal";
 import { useState, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { tokenAtom } from "../../state/auth";
 import {
@@ -24,8 +24,6 @@ import {
   ConfirmDialog,
   ConfirmDialogProps,
 } from "../../components/Dialogs/ConfirmDialog";
-import ProductLogo from "../../assets/Logo";
-import ProductLogoBW from "../../assets/LogoB&W";
 import TopBar from "../documents/topBar";
 
 function MyProjects() {

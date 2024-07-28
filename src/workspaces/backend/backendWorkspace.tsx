@@ -18,7 +18,7 @@ export const workspaceConfiguration = {
   grid: {
     spacing: 20,
     length: 3,
-    colour: "#a1caff", 
+    colour: "#a1caff",
     //colour: "#",
     snap: true,
   },
@@ -57,6 +57,11 @@ function BackendWorkspace({
   const [BEoutCode, SetBEoutCode] = useRecoilState(BEOutAtom);
 
   useEffect(() => {
+    // Error handler for TypeError when pasting.
+    function handleTypeError(error: TypeError) {
+      console.error("TypeError occurred while pasting:", error.message);
+      // You can add your custom error handling logic here.
+    }
     if (!pluginInitialized) {
       const options = {
         contextMenu: false,
@@ -68,15 +73,9 @@ function BackendWorkspace({
       const plugin = new CrossTabCopyPaste();
       plugin.init(options);
       pluginInitialized = true; // Mark plugin as initialized
-
-      // Error handler for TypeError when pasting.
-      function handleTypeError(error: TypeError) {
-        console.error('TypeError occurred while pasting:', error.message);
-        // You can add your custom error handling logic here.
-      }
     }
   }, []); // Run only once when component mounts
-  
+
   const workspaceDidChange = (workspace: WorkspaceSvg) => {
     javascriptGenerator.addReservedWords("code");
     const code = javascriptGenerator.workspaceToCode(workspace);
