@@ -25,6 +25,7 @@ import ServerCreationDocs from "./pages/documents/serverCreationDocs";
 import APIBlocksDocPage from "./pages/documents/apiBlocksDoc";
 import DatabaseBlocksDocPage from "./pages/documents/databaseDoc";
 import AuthenticationDocs from "./pages/documents/authenticationDocs";
+import SignUpPage from "./pages/sign-up/sign-up";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/signup",
+    element: <SignUpPage />,
   },
   {
     path: "/frontend/:id",
