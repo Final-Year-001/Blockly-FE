@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { BlocklyWorkspace } from "react-blockly";
+import { workspaceConfiguration as frontendWorkspaceConfiguration } from "../workspaces/frontend/frontendWorkspace";
+import { workspaceConfiguration as backendWorkspaceConfiguration } from "../workspaces/backend/backendWorkspace";
 
 interface BlocklyRenderProps {
   readonly state?: object;
   readonly className?: string;
+  readonly frontend: boolean;
 }
 
-function BlocklyRender({ state, className }: BlocklyRenderProps) {
+function BlocklyRender({ state, className, frontend }: BlocklyRenderProps) {
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
@@ -20,12 +23,11 @@ function BlocklyRender({ state, className }: BlocklyRenderProps) {
     <BlocklyWorkspace
       initialJson={state}
       className={className}
-      workspaceConfiguration={{
-        readOnly: true,
-        zoom: {
-          startScale: 0.45,
-        },
-      }}
+      workspaceConfiguration={
+        frontend
+          ? frontendWorkspaceConfiguration
+          : backendWorkspaceConfiguration
+      }
     />
   ) : (
     <div className={className}></div>

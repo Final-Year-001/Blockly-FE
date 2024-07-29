@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input } from "@material-tailwind/react";
 import { useMutation } from "react-query";
 import { useNavigate, Link } from "react-router-dom";
-import { loginWithUsernameAndPassword } from "../../api/auth";
+import { signupWithUsernameAndPassword, User } from "../../api/auth";
 import { useRecoilState } from "recoil";
 import { tokenAtom } from "../../state/auth";
 import { AwesomeButton } from "react-awesome-button";
@@ -14,19 +14,15 @@ import { TypeAnimation } from "react-type-animation";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 import StatusNoti from "../fronted/Status";
 
-const elements = document.querySelectorAll('.index-module_type__E-SaG');
-
-elements.forEach((element: HTMLElement) => {
-  if (element.textContent.includes('build')) {
-    element.style.color = 'red';
-  }
-});
-
-function LoginPage() {
+function SignUpPage() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+
   const [showPassword, setShowPassword] = useState<boolean>(false); // State for password visibility
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const [_, setTokens] = useRecoilState(tokenAtom);
 
@@ -34,17 +30,18 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  const loginMutation = useMutation({
-    mutationFn: loginWithUsernameAndPassword,
-    onSuccess: (res) => {
-      setTokens(res);
-      setTimeout(() => navigate("/home"), 3000)
+  const signUpMutation = useMutation({
+    mutationFn: signupWithUsernameAndPassword,
+    onSuccess: () => {
+      setTimeout(() => navigate("/login"), 3000)
     },
   });
 
-  const login = () => {
+  const signup = () => {
     setLoading(true);
-    loginMutation.mutate({ username, password });
+    const signupParameters: User  = { username, password, firstName, lastName, email };
+    console.log(signUpMutation)
+    signUpMutation.mutate(signupParameters);
   };
 
   const togglePasswordVisibility = () => {
@@ -52,13 +49,16 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center items-center w-full h-full bg-repeat" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: "30%" }}>
+    <div
+      className="flex justify-center items-center w-full h-full bg-repeat"
+      style={{ backgroundImage: `url(${bgImg})`, backgroundSize: "30%" }}
+    >
       {/* Conditional rendering based on screen size */}
       <div className="hidden md:block bg-white h-full w-full relative">
         <div className="min-h-screen flex items-center justify-center">
           <div className="absolute top-0 left-0 m-6">
-          <Link to="/home">
-            <ProductLogo />
+            <Link to="/home">
+              <ProductLogo />
             </Link>
           </div>
           <div>
@@ -69,7 +69,8 @@ function LoginPage() {
         </div>
         <div className="absolute bottom-20 left-0 right-0 flex justify-center">
           <div className="m-6">
-            <TypeAnimation className="Typewriter"
+            <TypeAnimation
+              className="Typewriter"
               sequence={[
                 "Lets Learn",
                 2000,
@@ -90,41 +91,68 @@ function LoginPage() {
       </div>
       <div className="w-full bg-inherit flex justify-center ">
         <div className="flex border-4 border-black flex-col text-gray-700 bg-white w-96 rounded-xl bg-clip-border">
-          <div className="grid  ovetext-white  h-28 place-items-center rounded-xl  bg-inherit ">
-            <h3 className="block  font-sans text-3xl antialiased font-semibold leading-snug tracking-normal text-black">
-              Sign In
+          <div className="grid text-white h-28 place-items-center rounded-xl bg-inherit">
+            <h3 className="block font-sans text-3xl antialiased font-semibold leading-snug tracking-normal text-black">
+              Sign Up
             </h3>
           </div>
           <div className="flex flex-col gap-4 p-6">
             <div className="relative h-11 w-full min-w-[200px]">
               <Input
-                crossOrigin={undefined}
                 type="text"
-                label="Username"
-                value={username}
-                onChange={(email) => setUsername(email.target.value)}
-                containerProps={{
-                  className: "min-w-0",
-                }}
+                label="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                containerProps={{ className: "min-w-0" }}
               />
             </div>
             <div className="relative h-11 w-full min-w-[200px]">
               <Input
-                crossOrigin={undefined}
-                type={showPassword ? "text" : "password"} // Toggle type based on state
+                type="text"
+                label="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                containerProps={{ className: "min-w-0" }}
+              />
+            </div>
+            <div className="relative h-11 w-full min-w-[200px]">
+              <Input
+                type="email"
+                label="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                containerProps={{ className: "min-w-0" }}
+              />
+            </div>
+            <div className="relative h-11 w-full min-w-[200px]">
+              <Input
+                type="text"
+                label="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                containerProps={{ className: "min-w-0" }}
+              />
+            </div>
+            <div className="relative h-11 w-full min-w-[200px]">
+              <Input
+                type={showPassword ? "text" : "password"}
                 label="Password"
                 value={password}
-                onChange={(password) => setPassword(password.target.value)}
-                containerProps={{
-                  className: "min-w-0",
-                }}
+                onChange={(e) => setPassword(e.target.value)}
+                containerProps={{ className: "min-w-0" }}
                 icon={
                   showPassword ? (
-                    <FaEyeSlash className="cursor-pointer" onClick={togglePasswordVisibility} />
+                    <FaEyeSlash
+                      className="cursor-pointer"
+                      onClick={togglePasswordVisibility}
+                    />
                   ) : (
-                    <FaEye className="cursor-pointer" onClick={togglePasswordVisibility} />
+                    <FaEye
+                      className="cursor-pointer"
+                      onClick={togglePasswordVisibility}
+                    />
                   )
-                } // Add eye icon
+                }
               />
             </div>
             <div className="-ml-2.5">
@@ -159,7 +187,7 @@ function LoginPage() {
                   className="mt-px font-light text-gray-700 cursor-pointer select-none"
                   htmlFor="checkbox"
                 >
-                  Remember Me
+                  I agree to the terms and conditions
                 </label>
               </div>
             </div>
@@ -175,28 +203,28 @@ function LoginPage() {
                 "--button-primary-color-active": "#3399ff",
                 "--button-default-border-radius": "8px",
               }}
-              onMouseUp={login}
+              onMouseUp={signup}
               type="primary"
             >
-              {loginMutation.isLoading ? "Loading..." : "Sign In"}
+              {loading ? "Loading..." : "Sign Up"}
             </AwesomeButton>
 
             <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
-              Don't have an account?
+              Already have an account?
               <a
-                href="/signup"
+                href="/login"
                 className="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900"
               >
-                Sign up
+                Sign in
               </a>
             </p>
           </div>
         </div>
       </div>
-      { loginMutation.isSuccess ? <StatusNoti message={"Login success."} mode="success" /> : null }
-      { loginMutation.isError ? <StatusNoti message={"Login failed."} mode="pending"/> : null }
+      { signUpMutation.isSuccess ? <StatusNoti message={"SignUp success. You may now login."} mode="success" /> : null }
+      { signUpMutation.isError ? <StatusNoti message={"SignUp failed. Are you already registered with this email or username?"} mode="pending"/> : null }
     </div>
   );
 }
 
-export default LoginPage;
+export default SignUpPage;

@@ -27,5 +27,35 @@ export async function loginWithUsernameAndPassword({
     throw new APIError(res.status);
   }
 
-  return res.data
+  return res.data;
+}
+
+export interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  username: string;
+}
+
+export async function signupWithUsernameAndPassword(user: User) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const raw = JSON.stringify(user);
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+  };
+
+  let res = await fetch(
+    `${import.meta.env.VITE_API_ENDPOINT}/users`,
+    requestOptions
+  );
+
+  if (res.status != 200) {
+    throw new APIError(res.status);
+  }
 }

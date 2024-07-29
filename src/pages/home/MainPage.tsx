@@ -46,7 +46,8 @@ function MainPage() {
       setLogged(decodedToken);
 
       const currentTime: number = Date.now() / 1000; // Convert milliseconds to seconds
-      if (decodedToken.exp > currentTime) {
+      console.log(currentTime,decodedToken.exp)
+      if (decodedToken.exp < currentTime) {
         setIsTokenValid(true);
         console.log("HETT", isTokenValid, decodedToken.exp, "ss", currentTime);
       } else {
