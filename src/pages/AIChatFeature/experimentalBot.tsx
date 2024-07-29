@@ -20,7 +20,7 @@ const Chatbot: React.FC = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Bearer sk-proj-7AO7917rGTYATV97qLfBT3BlbkFJ5lUTKu6022WMHxDNpgtN`,
+          
             'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
           },
           body: JSON.stringify({
