@@ -97,10 +97,41 @@ JavaScript.javascriptGenerator.forBlock['style_block'] = function(block : any, g
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+
+Blockly.Blocks['addclassid'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Add Identifiers |")
+        .appendField("Class")
+        .appendField(new Blockly.FieldTextInput("Class"), "classname")
+        .appendField("ID")
+        .appendField(new Blockly.FieldTextInput("ID"), "idname");
+    this.setOutput(true, null);
+    this.setStyle('CSS_Main');
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['addclassid'] = function(block :any, generator : any) {
+  var text_classname = block.getFieldValue('classname');
+  var text_idname = block.getFieldValue('idname');
+  // TODO: Assemble javascript into code variable.
+  var code;
+  
+
+    code = `class="${text_classname}" id="${text_idname}"`
+  
+  return [code, generator.ORDER_ATOMIC];
+};
+
+
+/////////////////////////////////////////////////
+
 Blockly.Blocks['style_block_inline'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Add style Dirrectly");
+        .appendField("Add Styles here");
     this.appendStatementInput("NAME")
         .setCheck(null);
     this.setOutput(true, "style_block_inline");
@@ -110,10 +141,10 @@ Blockly.Blocks['style_block_inline'] = {
   }
 };
 
+
 JavaScript.javascriptGenerator.forBlock['style_block_inline'] = function(block: any, generator: any) {
   var statements_name = generator.statementToCode(block, 'NAME');
-  // TODO: Assemble javascript into code variable.
-  var code = `style="${statements_name}"`;
+  var code = `${statements_name} `;
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, generator.ORDER_ATOMIC];
 };
@@ -508,9 +539,12 @@ JavaScript.javascriptGenerator.forBlock['css_height'] = function(block : any, ge
   var dropdown_type = block.getFieldValue('type');
   var number_number = block.getFieldValue('number');
 
-  var code = `height: "` + number_number + dropdown_type + '"; ';
+  var code = `height:${number_number}${dropdown_type} `;
   return code;
 };
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -1325,3 +1359,69 @@ JavaScript.javascriptGenerator.forBlock['css_bloc_style'] = function(block: any,
   var code = `border-style: ${dropdown_borderstyle};\n`;
   return code;
 };
+
+
+
+/////////////////////////////////
+
+
+Blockly.Blocks['style_block_Position'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Position")
+        .appendField(new Blockly.FieldDropdown([["static","static"], ["relative","relative"], ["fixed","fixed"], ["absolute","absolute"], ["sticky","sticky"]]), "position");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "top")
+        .appendField("Top")
+        .appendField(new Blockly.FieldNumber(0), "topNum")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "bottom")
+        .appendField("Bottom")
+        .appendField(new Blockly.FieldNumber(0), "botnum")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "left")
+        .appendField("Left")
+        .appendField(new Blockly.FieldNumber(0), "leftNum")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "right")
+        .appendField("Right")
+        .appendField(new Blockly.FieldNumber(0), "rightNum");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+JavaScript.javascriptGenerator.forBlock['style_block_Position'] = function(block : any, generator : any) {
+  var dropdown_position = block.getFieldValue('position');
+  var checkbox_top = block.getFieldValue('top') === 'TRUE';
+  var number_topnum = block.getFieldValue('topNum');
+  var checkbox_bottom = block.getFieldValue('bottom') === 'TRUE';
+  var number_botnum = block.getFieldValue('botnum');
+  var checkbox_left = block.getFieldValue('left') === 'TRUE';
+  var number_leftnum = block.getFieldValue('leftNum');
+  var checkbox_right = block.getFieldValue('right') === 'TRUE';
+  var number_rightnum = block.getFieldValue('rightNum');
+  // TODO: Assemble javascript into code variable.
+  var temp = '';
+
+  if(checkbox_top){
+    temp = temp + `top:${number_topnum}; `
+  }
+  if(checkbox_bottom){
+    temp = temp + `bottom:${number_botnum}; `
+  }
+  if(checkbox_left){
+    temp = temp + `left:${number_leftnum}; `
+  }
+  if(checkbox_right){
+    temp = temp + `right:${number_rightnum}; `
+  }
+
+  var code = `position:${dropdown_position}; ${temp}\n`;
+  return code;
+};
+
+
+////////////////
+

@@ -1,5 +1,6 @@
 // import "../blocks/javascript/blocks";
 import "../blocks/html/blocks";
+import "../blocks/html/blocksWithStyle";
 import book from '../assets/statusImages/book.gif'
 import ProductLogo from "../assets/Logo";
 
@@ -216,6 +217,10 @@ export const htmlCategory = {
         {
           kind: "block",
           type: "preBlock_TableNormalCell",
+        },
+        {
+          kind: "block",
+          type: "add_image_block",
         },
       ],
     },

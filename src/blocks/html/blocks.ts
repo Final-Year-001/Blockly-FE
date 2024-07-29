@@ -3,6 +3,7 @@ import Blockly from "blockly";
 import * as JavaScript from "blockly/javascript";
 import { Order } from "blockly/javascript";
 
+
 function removeParentheses(str: any) {
   // Check if the string starts and ends with parentheses
   if (str.startsWith("(") && str.endsWith(")")) {
@@ -135,6 +136,7 @@ JavaScript.javascriptGenerator.forBlock["html_identifier"] = function (
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
+
 Blockly.Blocks["html_h"] = {
   init: function () {
     this.appendValueInput("identify")
@@ -152,11 +154,9 @@ Blockly.Blocks["html_h"] = {
         ]),
         "size"
       )
-      .appendField("Text");
-    this.appendValueInput("text")
-      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("properties");
+    this.appendDummyInput()
+    .appendField("Enter Text")
+    .appendField(new Blockly.FieldTextInput("Enter your para"), "Para");
     this.setInputsInline(false);
     this.setPreviousStatement(true, [
       "html_h",
@@ -220,21 +220,10 @@ JavaScript.javascriptGenerator.forBlock["html_h"] = function (
     "text",
     generator.ORDER_ATOMIC
   );
-  const value_text = generator.valueToCode(
-    block,
-    "identify",
-    generator.ORDER_ATOMIC
-  );
+  var text_para = block.getFieldValue('Para');
 
   const code =
-    `<` +
-    dropdown_size +
-    removeParentheses(value_identify) +
-    `>` +
-    removeParentheses(value_text) +
-    "</" +
-    dropdown_size +
-    ">\n";
+    `<${dropdown_size} ${value_identify}> ${text_para} </${dropdown_size}>\n`;
   return code;
 };
 
@@ -242,15 +231,10 @@ JavaScript.javascriptGenerator.forBlock["html_h"] = function (
 
 Blockly.Blocks["html_p"] = {
   init: function () {
-    this.appendValueInput("identify")
-      .setCheck("html_addtext")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Paragrapgh")
-      .appendField("Text");
-    this.appendValueInput("text")
-      .setCheck(["html_idClass", "html_identifier", "style_block_inline"])
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("properties");
+    this.appendValueInput("values")
+        .setCheck(null)
+        .appendField("Paragraph")
+        .appendField(new Blockly.FieldTextInput("Enter your para"), "Para");
     this.setInputsInline(false);
     this.setPreviousStatement(true, [
       "html_h",
@@ -308,23 +292,11 @@ JavaScript.javascriptGenerator.forBlock["html_p"] = function (
   block: any,
   generator: any
 ) {
-  const value_identify = generator.valueToCode(
-    block,
-    "text",
-    generator.ORDER_ATOMIC
-  );
-  const value_text = generator.valueToCode(
-    block,
-    "identify",
-    generator.ORDER_ATOMIC
-  );
+  var text_para = block.getFieldValue('Para');
+  var value_values = generator.valueToCode(block, 'values', JavaScript.Order.ATOMIC);
 
   const code =
-    `<p` +
-    removeParentheses(value_identify) +
-    `>` +
-    removeParentheses(value_text) +
-    "</p>\n";
+    `<p ${value_values}> ${text_para} </p>\n`;
   return code;
 };
 
@@ -1648,447 +1620,3 @@ JavaScript.javascriptGenerator.forBlock["html_checkbox"] = function (
   return code;
 };
 
-
-
-////////////////////////////////////////////////////////////////////////////
-
-Blockly.Blocks["premade_dropdown"] = {
-  init: function () {
-    this.appendDummyInput().appendField("Drop Down Box");
-    this.appendStatementInput("NAME")
-      .setCheck("premade_option")
-      .appendField("options");
-    this.setPreviousStatement(true, [
-      "html_h",
-      "html_p",
-      "html_addtext",
-      "html_button",
-      "html_name",
-      "html_input_field",
-      "html_label",
-      "html_form",
-      "html_table",
-      "table_headings",
-      "html_div1",
-      "table_data",
-      "html_ol_list",
-      "html_ul_list",
-      "html_img",
-      "html_a",
-      "html_checkbox",
-      "premade_dropdown",
-      "premade_option",
-      "premade_button",
-      "html_textadd",
-    ]);
-    this.setNextStatement(true, [
-      "html_h",
-      "html_p",
-      "html_addtext",
-      "html_button",
-      "html_name",
-      "html_input_field",
-      "html_label",
-      "html_form",
-      "html_table",
-      "table_headings",
-      "html_div1",
-      "table_data",
-      "html_ol_list",
-      "html_ul_list",
-      "html_img",
-      "html_a",
-      "html_checkbox",
-      "premade_dropdown",
-      "premade_option",
-      "premade_button",
-      "html_textadd",
-    ]);
-    this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-    this.setStyle("HTML_premade");
-  },
-};
-
-JavaScript.javascriptGenerator.forBlock["premade_dropdown"] = function (
-  block: any,
-  generator: any
-) {
-  var statements_name = generator.statementToCode(block, "NAME");
-
-  var code = `<select style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">\n${statements_name}</select>\n`;
-
-  return code;
-};
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-Blockly.Blocks["premade_option"] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("option")
-      .appendField(new Blockly.FieldTextInput("default"), "NAME");
-    this.setPreviousStatement(true, "premade_option");
-    this.setNextStatement(true, "premade_option");
-    this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-    this.setStyle("HTML_premade");
-  },
-};
-
-JavaScript.javascriptGenerator.forBlock["premade_option"] = function (
-  block: any,
-  generator: any
-) {
-  var text_name = block.getFieldValue("NAME");
-  // TODO: Assemble javascript into code variable.
-  var code = `<option value="volvo">${text_name}</option> \n`;
-  return code;
-};
-
-
-
-
-///////////////////////////////////////
-
-
-Blockly.Blocks['preBlock_input'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Input Feild")
-        .appendField("Type")
-        .appendField(new Blockly.FieldDropdown([
-          ["Text", "text"],
-          ["Number", "number"],
-          ["Email", "email"],
-          ["Password", "password"],
-        ]), "dropdown")
-        .appendField("Name")
-        .appendField(new Blockly.FieldTextInput(""), "name");
-        this.appendValueInput("NAME")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Overide CSS")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
-        .appendField("Properties");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setStyle("HTML_premade");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-JavaScript.javascriptGenerator.forBlock["preBlock_input"] = function (
-  block: any,
-  generator: any
-) {
-  var dropdown_dropdown = block.getFieldValue('dropdown');
-  var text_name = block.getFieldValue('name');
-  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'FALSE';
-  var value_name = generator.valueToCode(block, 'NAME', JavaScript.Order.ATOMIC);
-
-  const cssTika = `style="width: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"`
-  if(!checkbox_overridecss){
-    return `<input type="${dropdown_dropdown}" name="${text_name}" ${value_name}>\n`;
-  }else {
-    return `<input type="${dropdown_dropdown}" name="${text_name}" ${cssTika} ${value_name}>\n`;
-  }
-};
-
-////////////////////////
-
-
-Blockly.Blocks['preBlock_button'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Button")
-        .appendField(new Blockly.FieldDropdown([["red" , "red"], ["green" , "green"], ["blue" , "blue"], ["orange" , "orange"]]), "color")
-        .appendField("Name")
-        .appendField(new Blockly.FieldTextInput("default"), "NAME1");
-    this.appendValueInput("NAME3")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Overide CSS")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "NAME2")
-        .appendField("|")
-        .appendField("Properties");
-        
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setStyle("HTML_premade");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-JavaScript.javascriptGenerator.forBlock["preBlock_button"] = function (
-  block: any,
-  generator: any
-) {
-  var dropdown_color = block.getFieldValue('color');
-  var text_name = block.getFieldValue('NAME1');
-  var checkbox_name = block.getFieldValue('NAME2') === 'FALSE';
-  var value_name = generator.valueToCode(block, 'NAME3', JavaScript.Order.ATOMIC);
-  // TODO: Assemble javascript into code variable.
-
-  const cssTika = `style="padding: 10px 20px; background-color: ${dropdown_color}; color: #fff; border: none; border-radius: 5px; cursor: pointer;"`
-  if(!checkbox_name){
-    return `<button ${value_name}>${text_name}</button>\n`;
-  }else {
-    return `<button ${cssTika} ${value_name}>${text_name}</button>\n`;
-  }
-};
-
-
-///////////////////////////////////
-
-
-Blockly.Blocks['preBlock_Card'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Card");
-    this.appendValueInput("cssOverride")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Overide CSS")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
-        .appendField("Properties");
-    this.appendStatementInput("statementName")
-        .setCheck(null);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setStyle("HTML_premade");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-
-JavaScript.javascriptGenerator.forBlock["preBlock_Card"] = function (
-  block: any,
-  generator: any
-) {
-  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'FALSE';
-  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
-  var statements_statementname = generator.statementToCode(block, 'statementName');
-  // TODO: Assemble javascript into code variable.
-  const cssTika = `style="min-height: 200px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); padding: 20px;"`
-  
-  
-  if(!checkbox_overridecss){
-    return `<div ${value_cssoverride}>${statements_statementname}</div>\n`;
-  }else {
-    return `<div ${cssTika} ${value_cssoverride}>${statements_statementname}</div>\n`;
-  }
-};
-
-//////////////////////////////////////////////////////////////////////
-
-
-Blockly.Blocks['preBlock_div'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Box")
-        .appendField("|")
-        .appendField("Guide Border")
-        .appendField(new Blockly.FieldCheckbox("TRUE"), "guideBox")
-        .appendField("Justify")
-        .appendField(new Blockly.FieldDropdown([["normal",""], ["start","display: flex; justify-content: start;"], ["center","display: flex; justify-content: center;"], ["end","display: flex; justify-content: end;"]]), "justify")
-        .appendField("Gap")
-        .appendField(new Blockly.FieldNumber(0, 0), "gap")
-        .appendField("px");
-    this.appendValueInput("cssOverride")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Overide CSS")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
-        .appendField("Properties");
-    this.appendStatementInput("statementName")
-        .setCheck(null);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setStyle("HTML_premade");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-
-JavaScript.javascriptGenerator.forBlock["preBlock_div"] = function (
-  block: any,
-  generator: any
-) {
-  var checkbox_guidebox = block.getFieldValue('guideBox') === 'TRUE';
-  var dropdown_justify = block.getFieldValue('justify');
-  var number_gap = block.getFieldValue('gap');
-  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'TRUE';
-  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
-  var statements_statementname = generator.statementToCode(block, 'statementName');
-  // TODO: Assemble javascript into code variable.
-  const cssTika = `style="${number_gap > 0 ? `gap: ${number_gap}px;`:''} ${dropdown_justify} ${checkbox_guidebox ? 'border: 2px solid #000000;':''}"`
-  if(!checkbox_overridecss){
-    return `<div${value_cssoverride}>${statements_statementname}</div>\n`;
-  }else {
-    return `<div ${cssTika} ${value_cssoverride}>${statements_statementname}</div>\n`;
-  }
-};
-
-
-
-///////////////////////////////////////////////////////////////////////////
-
-Blockly.Blocks['preBlock_TableMain'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Table Main");
-    this.appendValueInput("cssOverride")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Overide CSS")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
-        .appendField("Properties");
-    this.appendStatementInput("statementName")
-        .setCheck(null);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setStyle("HTML_premade");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-JavaScript.javascriptGenerator.forBlock["preBlock_TableMain"] = function (
-  block: any,
-  generator: any
-) {
-  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'TRUE';
-  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
-  var statements_statementname = generator.statementToCode(block, 'statementName');
- 
-  const cssTika = `style="border-collapse: collapse; width: 100%; text-align: left;"`
-  var code = 
-  `<table border="1" ${value_cssoverride} ${!checkbox_overridecss ? cssTika : ''}>
-  ${statements_statementname}
-  </table>\n`
-  return code;
-  
-};
-
-
-/////////////////////////////////////////////////////////
-
-Blockly.Blocks['preBlock_TableNewRow'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("New Row");
-    this.appendValueInput("cssOverride")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Overide CSS")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
-        .appendField("Properties");
-    this.appendStatementInput("statementName")
-        .setCheck(null);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setStyle("HTML_premade");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-JavaScript.javascriptGenerator.forBlock["preBlock_TableNewRow"] = function (
-  block: any,
-  generator: any
-) {
-  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'TRUE';
-  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
-  var statements_statementname = generator.statementToCode(block, 'statementName');
- 
-  const cssTika = ``
-  var code = 
-  `<tr ${value_cssoverride} ${!checkbox_overridecss ? cssTika : ''}>
-  ${statements_statementname}
-  </tr>\n`
-  return code;
-  
-};
-
-/////////////////////////////////////////////////////////
-
-Blockly.Blocks['preBlock_TableHeadingCell'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Heading Cell");
-    this.appendValueInput("cssOverride")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Overide CSS")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
-        .appendField("Properties");
-    this.appendStatementInput("statementName")
-        .setCheck(null);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setStyle("HTML_premade");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-JavaScript.javascriptGenerator.forBlock["preBlock_TableHeadingCell"] = function (
-  block: any,
-  generator: any
-) {
-  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'TRUE';
-  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
-  var statements_statementname = generator.statementToCode(block, 'statementName');
- 
-  const cssTika = `style="padding: 10px; border: 1px solid #ddd; background-color: #e3e3e3;"`
-  var code = 
-  `<th ${value_cssoverride} ${!checkbox_overridecss ? cssTika : ''}>
-  ${statements_statementname}
-  </th>\n`
-  return code;
-};
-
-/////////////////////////////////////////////////////////
-
-Blockly.Blocks['preBlock_TableNormalCell'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Normal Cell");
-    this.appendValueInput("cssOverride")
-        .setCheck(null)
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Overide CSS")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "overrideCss")
-        .appendField("Properties");
-    this.appendStatementInput("statementName")
-        .setCheck(null);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setStyle("HTML_premade");
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-JavaScript.javascriptGenerator.forBlock["preBlock_TableNormalCell"] = function (
-  block: any,
-  generator: any
-) {
-  var checkbox_overridecss = block.getFieldValue('overrideCss') === 'TRUE';
-  var value_cssoverride = generator.valueToCode(block, 'cssOverride', JavaScript.Order.ATOMIC);
-  var statements_statementname = generator.statementToCode(block, 'statementName');
- 
-  const cssTika = `style="padding: 10px; border: 1px solid #ddd;"`
-  var code = 
-  `<td ${value_cssoverride} ${!checkbox_overridecss ? cssTika : ''}>
-  ${statements_statementname}
-  </td>\n`
-  return code;
-  
-};
