@@ -33,7 +33,7 @@ function TopBar({ onPage }: Props): JSX.Element {
       const decodedToken: any = jwtDecode(token);
 
       const currentTime: number = Date.now() / 1000; // Convert milliseconds to seconds
-      if (decodedToken.exp < currentTime) {
+      if (decodedToken.exp > currentTime) {
         console.log("token true")
         setIsTokenValid(true);
       } else {
