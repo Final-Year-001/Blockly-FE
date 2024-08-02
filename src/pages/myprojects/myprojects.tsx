@@ -25,6 +25,7 @@ import {
   ConfirmDialogProps,
 } from "../../components/Dialogs/ConfirmDialog";
 import TopBar from "../documents/topBar";
+import bgImage from '../../assets/home/pattWhite.png'
 
 function MyProjects() {
   const tokens = useRecoilValue(tokenAtom);
@@ -203,7 +204,8 @@ function MyProjects() {
   };
 
   return (
-    <div className="">
+    <div style={{ backgroundImage: `url(${bgImage})` }}  className={`bg-cover bg-[length:50%]`}>
+
       {/* left aligned the logo to keep consistency  */}
       <div className="fixed top-0 w-full z-10">
         <TopBar onPage={'projectSelection'}/>

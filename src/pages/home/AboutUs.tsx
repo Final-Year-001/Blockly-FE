@@ -3,7 +3,7 @@ import TeamImg from "../../assets/home/team.png";
 function AboutUs() {
   return (
     <div className="w-full mx-auto container">
-      <div className=" mx-32 border-black border-4 mx-auto bg-orange-200 rounded-2xl p-10 px-20 mt-4">
+      <div className=" mx-56 mx-30 border-black border-4 mx-auto bg-amber-200 rounded-2xl p-10 px-20 mt-4">
         <h2 className="text-3xl font-bold mb-8 flex justify-center">
           About Us
         </h2>

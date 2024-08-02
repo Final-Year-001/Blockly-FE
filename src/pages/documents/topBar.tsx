@@ -5,6 +5,7 @@ import { AwesomeButton } from "react-awesome-button";
 import { useNavigate, useLocation } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
+import Chatbot from "../AIChatFeature/experimentalBot";
 
 const buttonGroup = "flex gap-2";
 const logoutBtn =
@@ -58,6 +59,8 @@ function TopBar({ onPage }: Props): JSX.Element {
           <ProductLogoBW TextSize={3} />
         </Link>
       </div>
+
+      <Chatbot />
 
       <div className="flex">
         {onPage == "projectSss" && isTokenValid && (
