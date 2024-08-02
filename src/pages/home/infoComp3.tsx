@@ -5,7 +5,7 @@ function InfoComp3() {
     // click share video and click EMBEDDED. then copy just the SOURCE URL and add it.
     "https://www.youtube.com/embed/oRy_YiIxRwk?si=2N-VOvTcjvmXtciG", 
     "https://www.youtube.com/embed/-__vMHhgoBE?si=sYWSCrMytLoEu_U_",
-    "https://www.youtube.com/embed/v4hh5axE6kg?si=KuvT4_WhfHxAd6_p"",
+    "https://www.youtube.com/embed/v4hh5axE6kg?si=KuvT4_WhfHxAd6_p",
     "https://www.youtube.com/embed/quhSnpzB71s?si=nBOBTeLhfEUbBdXb",
   ];
 
