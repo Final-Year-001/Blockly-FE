@@ -35,7 +35,7 @@ function TopSection(tokenValid : any) {
         {tokenValid.tokenValid ? (
         <div className=" bg-gray-200  p-8 rounded-xl px-16 border-4 border-black flex flex-row gap-4">
           <div
-            onClick={() => navigate("/get-started")}
+            onClick={() => navigate("/guide-books")}
             className="cursor-pointer w-40 bg-green-500 border-2 border-black rounded-lg py-2 text-lg flex justify-center hover:bg-green-600 active:green-800"
           >
             Learn
