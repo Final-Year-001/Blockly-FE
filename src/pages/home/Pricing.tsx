@@ -54,7 +54,7 @@ const Pricing: React.FC = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {plans.map((plan) => (
-            <div key={plan.title} className={`shadow-lg
+            <div key={plan.title} className={`shadow-lg border-2 rounded-xl border-black
             ${plan.title === 'Free' ? 'bg-gradient-to-tr from-purple-100 to-blue-100'  : plan.title === 'Basic' ? 'bg-gradient-to-tr from-teal-100 to-lime-100' : 'bg-gradient-to-tr from-red-100 to-orange-100'}  rounded-lg  py-10 flex flex-col`}>
               <div className="flex-grow">
                 <h3 className="text-4xl font-bold mb-4 text-center">{plan.title}</h3>

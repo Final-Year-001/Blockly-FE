@@ -14,6 +14,9 @@ import InfoComp4 from "./infoComp4";
 import Footer from "./Footer";
 import { FaArrowUp } from "react-icons/fa";
 import Pricing from "./Pricing";
+import bgImage from '../../assets/home/patt.jpg'
+import bgImageWhite from '../../assets/home/pattWhite.png'
+import bgImageWhiteNoOp from '../../assets/home/pattWhiteNoOp.jpg'
 
 function logout() {
   localStorage.removeItem("tokens");
@@ -105,7 +108,7 @@ function MainPage() {
       </header>
       {/* <div className="mb-16"></div> */}
 
-      <div className="bg-white">
+      <div style={{ backgroundImage: `url(${bgImage})` }}  className={`bg-cover bg-[length:80%] `}>
       {/* <div className="bg-blue-400"> */}
         <TopSection tokenValid={isTokenValid} />
       </div>
@@ -116,7 +119,8 @@ function MainPage() {
         <IntroToWBC />
       </div>
 
-      <div className="pb-20 pt-10">
+      {/* <div className="pb-20 pt-10"> */}
+      <div style={{ backgroundImage: `url(${bgImageWhite})` }}  className={`pb-20 pt-10 bg-cover bg-[length:50%]`}>
         <Pricing />
       </div>
 
@@ -137,11 +141,11 @@ function MainPage() {
       </div>
 
       {/* <div className="pt-28 pb-28 bg-green-200 py-10"> */}
-      <div className="pt-28 pb-28 py-10 bg-gray-00">
+      <div className="pt-28 pb-28 py-10 bg-gray-300">
         <InfoComp4 />
       </div>
 
-      <div className="pt-32 pb-32 py-10 bg-gray-300">
+      <div style={{ backgroundImage: `url(${bgImageWhite})` }}  className={`pt-32 pb-32 py-10 bg-cover bg-[length:50%]`}>
       {/* <div className="pt-32 pb-32 bg-orange-400 py-10"> */}
         <AboutUs />
       </div>
