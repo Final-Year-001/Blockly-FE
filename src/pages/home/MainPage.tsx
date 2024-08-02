@@ -13,6 +13,7 @@ import InfoComp3 from "./infoComp3";
 import InfoComp4 from "./infoComp4";
 import Footer from "./Footer";
 import { FaArrowUp } from "react-icons/fa";
+import Pricing from "./Pricing";
 
 function logout() {
   localStorage.removeItem("tokens");
@@ -104,34 +105,44 @@ function MainPage() {
       </header>
       {/* <div className="mb-16"></div> */}
 
-      {/* <div className="bg-white"> */}
-      <div className="bg-blue-400">
+      <div className="bg-white">
+      {/* <div className="bg-blue-400"> */}
         <TopSection tokenValid={isTokenValid} />
       </div>
 
       {/* what is WBC */}
+      {/* <div className="bg-white"> */}
       <div className="bg-blue-100">
         <IntroToWBC />
       </div>
 
+      <div className="pb-20 pt-10">
+        <Pricing />
+      </div>
+
       {/* what can you learn from WBC */}
-      <div className="bg-amber-500 pt-24 pb-12">
+      {/* <div className="bg-amber-500 pt-24 pb-12"> */}
+      <div className="pt-24 pb-12 bg-blue-100">
         <InfoComp1 />
       </div>
 
-      <div className="pt-28 pb-28 bg-amber-200 py-10">
+      {/* <div className="pt-28 pb-28 bg-orange-100 py-10"> */}
+      <div className="pt-28 pb-28 py-10">
         <InfoComp2 />
       </div>
 
-      <div className="pt-28 pb-28 bg-green-500 py-10">
+      {/* <div className="pt-28 pb-28 bg-green-500 py-10"> */}
+      <div className="pt-28 bg-red-100 pb-28 py-10">
         <InfoComp3 />
       </div>
 
-      <div className="pt-28 pb-28 bg-green-200 py-10">
+      {/* <div className="pt-28 pb-28 bg-green-200 py-10"> */}
+      <div className="pt-28 pb-28 py-10 bg-gray-00">
         <InfoComp4 />
       </div>
 
-      <div className="pt-32 pb-32 bg-orange-400 py-10">
+      <div className="pt-32 pb-32 py-10 bg-gray-300">
+      {/* <div className="pt-32 pb-32 bg-orange-400 py-10"> */}
         <AboutUs />
       </div>
 
