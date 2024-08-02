@@ -3,10 +3,10 @@ function InfoComp3() {
   const youtubeLinks = [
     // To add videos you need to use EMBEDDED LINK not the normal link from browser. 
     // click share video and click EMBEDDED. then copy just the SOURCE URL and add it.
-    "https://www.youtube.com/embed/1GY3wrCKZFw?si=2Q4Ut8pRKWxfq4cm",
-    "https://www.youtube.com/embed/1GY3wrCKZFw?si=2Q4Ut8pRKWxfq4cm",
-    "https://www.youtube.com/embed/buapDLD1YSA?si=48R5XWeku0y9o9kN",
-    "https://www.youtube.com/embed/zWxFTyRiP2Q?si=qcjtniv7nAVKEdFa",
+    "https://www.youtube.com/embed/oRy_YiIxRwk?si=2N-VOvTcjvmXtciG", 
+    "https://www.youtube.com/embed/-__vMHhgoBE?si=sYWSCrMytLoEu_U_",
+    "https://www.youtube.com/embed/v4hh5axE6kg?si=KuvT4_WhfHxAd6_p",
+    "https://www.youtube.com/embed/quhSnpzB71s?si=nBOBTeLhfEUbBdXb",
   ];
 
   const des = "If you're feeling lost, don't worry, we've got you covered with our wonderful YouTube series. We'll help you to get started. Head over to our YouTube channel for detailed explanations."
